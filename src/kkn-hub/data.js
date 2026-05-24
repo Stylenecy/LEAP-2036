@@ -14,6 +14,13 @@ const KKN = {
   latestUpdates: [
     {
       date: "2026-05-24",
+      title: "📂 Paket Lengkap Handover Tersedia",
+      desc: "Asisten brief untuk Dhevina & Syendhi, skenario starter pack 15+ skenario, handover master, WA template — semua siap. Cek halaman Dokumen Drive.",
+      tag: "NEW",
+      gotoPage: "dokumen",
+    },
+    {
+      date: "2026-05-24",
       title: "Tema Workshop SMA Fix: Simulasi Hidup 10 Tahun (LEAP 2036)",
       desc: "Kelompok memutuskan tema final. Draft proposal v1.0 sudah selesai. GMeet malam ini 20.00 WIB untuk sharing progress ke DPL.",
       tag: "DECISION",
@@ -151,6 +158,7 @@ const KKN = {
       kategori: "Komunikasi",
       files: [
         { name: "GMeet Talking Points (Dex)", file: "GMeet-Talking-Points_24-Mei.md", desc: "Script Dex untuk GMeet sharing progress 24 Mei", priority: "medium" },
+        { name: "Template Pesan WA", file: "WA-Message-Template.md", desc: "Template pesan grup & DM siap copy-paste — untuk push update ke tim", priority: "medium" },
       ],
     },
   ],
