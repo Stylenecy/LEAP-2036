@@ -1,0 +1,30 @@
+# Vercel
+.vercel/
+src/kkn-hub/.vercel/
+
+# Session logs (huge files, not needed in repo)
+last-progress_*.md
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# Node (kalau nanti pakai)
+node_modules/
+npm-debug.log
+
+# ═══════════════════════════════════════════════════════════
+# SENSITIVE — JANGAN PUSH KE PUBLIC REPO
+# ═══════════════════════════════════════════════════════════
+# Bukti pelunasan & dokumen personal
+assets/Bukti-Pelunasan-*
+assets/Surat Kesanggupan*
+
+# API keys (kalau dipindah ke env file di masa depan)
+.env
+.env.local
+.env.*.local

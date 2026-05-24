@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rtk ls *)",
+      "Bash(node -e \"require\\('D:/AT Kuliah/Semester 6/7. KKN/src/kkn-hub/data.js'\\); console.log\\('data.js OK'\\)\")",
+      "Bash(node --check \"D:/AT Kuliah/Semester 6/7. KKN/src/kkn-hub/app.js\")",
+      "Bash(vercel --version)",
+      "Bash(node -e \"require\\('D:/AT Kuliah/Semester 6/7. KKN/src/kkn-hub/data.js'\\); console.log\\('data.js OK — dokumenKelompok:', KKN.dokumenKelompok.length, 'cat'\\)\")",
+      "Bash(node --check \"D:/AT Kuliah/Semester 6/7. KKN/src/kkn-hub/data.js\")",
+      "Bash(vercel --yes --prod --scope stylenecys-projects)",
+      "Bash(gh --version)",
+      "Bash(gh auth *)",
+      "Bash(rtk read *)",
+      "Bash(git rm *)",
+      "Bash(rtk git *)",
+      "Bash(git -c user.email=ezranhmry@gmail.com -c 'user.name=Dex Bennett' commit -m ' *)"
+    ]
+  }
+}

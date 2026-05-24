@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KKN HUB — STEM 2026 · Kelompok 2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
+</head>
+<body>
+
+<!-- ══ MOBILE TOPBAR ══ -->
+<div id="topbar">
+  <button id="hamburger" aria-label="Buka menu" onclick="toggleSidebar()">☰</button>
+  <span class="tb-title">KKN <span>HUB</span></span>
+  <span class="tb-klp">⚡ Klp. 2</span>
+</div>
+<div id="overlay" onclick="closeSidebar()"></div>
+
+<!-- ══ SIDEBAR ══ -->
+<aside id="sidebar">
+  <div class="sb-logo">
+    <div class="app-name">KKN <span>HUB</span></div>
+    <div class="app-sub">STEM 2026 · UKDW × PolyU HK</div>
+    <div class="klp-tag">⚡ Kelompok 2</div>
+  </div>
+
+  <nav>
+    <div class="nav-sec">Overview</div>
+    <div class="nav-item active" data-page="dashboard"><span class="ni">🏠</span> Dashboard</div>
+    <div class="nav-item" data-page="timeline"><span class="ni">📅</span> Timeline</div>
+
+    <div class="nav-sec">Informasi</div>
+    <div class="nav-item" data-page="team"><span class="ni">👥</span> Tim & Kontak</div>
+    <div class="nav-item" data-page="prosedur"><span class="ni">🔬</span> Prosedur</div>
+    <div class="nav-item" data-page="lokasi"><span class="ni">📍</span> Lokasi</div>
+
+    <div class="nav-sec">Program SMA</div>
+    <div class="nav-item" data-page="proker"><span class="ni">🎯</span> Proker SMA</div>
+    <div class="nav-item" data-page="tugas"><span class="ni">📋</span> Tugas Tim</div>
+    <div class="nav-item" data-page="dokumen"><span class="ni">📂</span> Dokumen Drive</div>
+
+    <div class="nav-sec">Tools</div>
+    <div class="nav-item" data-page="search"><span class="ni">🔍</span> Cari Info / AI</div>
+    <div class="nav-item" data-page="checklist"><span class="ni">✅</span> Checklist</div>
+    <div class="nav-item" data-page="notes"><span class="ni">📝</span> Catatan</div>
+  </nav>
+
+  <div class="sb-footer">Kelompok 2 · dr. Loury Priiskila</div>
+</aside>
+
+<!-- ══ MAIN ══ -->
+<main id="main">
+
+  <!-- ─── DASHBOARD ─── -->
+  <div id="page-dashboard" class="page active">
+    <div class="dash-head">
+      <div class="left">
+        <div class="title">KKN HUB</div>
+        <div class="sub">STEM 2026 · UKDW × PolyU HK · Kelompok 2</div>
+      </div>
+    </div>
+
+    <!-- Latest Update Banner -->
+    <div id="latest-update-banner" class="lub-wrap"></div>
+
+    <div class="g-23" style="align-items:start">
+      <!-- Left: Situation brief + Alerts -->
+      <div>
+        <div id="situation-card" class="situation-card"></div>
+
+        <div class="gap">
+          <div class="alert a-danger">
+            <span class="alert-icon">⛔</span>
+            <div><strong>Alat Restricted:</strong> Fundus Camera (Funduscopy) hanya boleh dipegang mahasiswa PolyU HK. Ada alat lain juga restricted — perhatikan saat training.</div>
+          </div>
+          <div class="alert a-warn">
+            <span class="alert-icon">⚠️</span>
+            <div><strong>Program Dinamis:</strong> Jadwal sering berubah mendadak. Selalu pantau update dari DPL/APL.</div>
+          </div>
+          <div class="alert a-info">
+            <span class="alert-icon">ℹ️</span>
+            <div><strong>Kelompok 2:</strong> 3 anggota dari Kedokteran (Benediktus, Maria, Theana) — manfaatkan untuk memahami konteks medis prosedur eyecare!</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Countdown + Quick contacts + Checklist teaser -->
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div id="countdown-widget" class="countdown-widget"></div>
+
+        <div class="card card-sm">
+          <div class="sec-label">Quick Contact</div>
+          <div id="quick-contacts"></div>
+        </div>
+
+        <div class="check-teaser">
+          <div class="sec-label">Persiapan Mendesak</div>
+          <div id="check-teaser-items"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gap" id="dash-progress"></div>
+  </div>
+
+  <!-- ─── TIMELINE ─── -->
+  <div id="page-timeline" class="page">
+    <div class="ph1">Timeline</div>
+    <div class="psub">Seluruh rangkaian kegiatan KKN STEM 2026</div>
+
+    <div class="alert a-info">
+      <span class="alert-icon">📍</span>
+      <div>Garis merah = posisi hari ini. Bar yang pudar = sudah selesai.</div>
+    </div>
+
+    <div class="card" style="padding:20px">
+      <div class="gantt-wrap">
+        <div class="gantt-inner" id="gantt-body">Memuat timeline...</div>
+      </div>
+    </div>
+
+    <div class="gap">
+      <div class="ph2">Legenda Warna</div>
+      <div class="gap-sm" style="display:flex;gap:10px;flex-wrap:wrap">
+        <span class="badge b-cyan">Persiapan</span>
+        <span class="badge b-orange">Service Day</span>
+        <span class="badge b-green">Ceremony</span>
+        <span class="badge b-violet">Pasca / Orientasi</span>
+      </div>
+    </div>
+
+    <div class="gap">
+      <div class="ph2">Fase Besar</div>
+      <div class="gap-sm g2">
+        <div class="card">
+          <div class="badge b-cyan" style="margin-bottom:10px">Fase 1 — Persiapan</div>
+          <div style="font-size:13px;color:var(--t2)">9 Mei – 19 Juni 2026</div>
+          <div style="font-size:12px;color:var(--t2);margin-top:6px">Pembekalan, persiapan proposal SMA, online coaching PolyU, pengumpulan consent form sekolah.</div>
+        </div>
+        <div class="card">
+          <div class="badge b-orange" style="margin-bottom:10px">Fase 2 — SO Eyecare SD/SMP</div>
+          <div style="font-size:13px;color:var(--t2)">20–27 Juni 2026</div>
+          <div style="font-size:12px;color:var(--t2);margin-top:6px">Opening Ceremony, 5 Service Days di SD/SMP, Closing Ceremony.</div>
+        </div>
+        <div class="card">
+          <div class="badge b-violet" style="margin-bottom:10px">Fase 3 — Pasca & Orientasi</div>
+          <div style="font-size:13px;color:var(--t2)">28 Juni – 31 Juli 2026</div>
+          <div style="font-size:12px;color:var(--t2);margin-top:6px">Pembuatan video edukasi, penyusunan proposal SMA, Orientation Session 19 Juli.</div>
+        </div>
+        <div class="card">
+          <div class="badge b-green" style="margin-bottom:10px">Fase 4 — Workshop SMA</div>
+          <div style="font-size:13px;color:var(--t2)">3–14 Agustus 2026</div>
+          <div style="font-size:12px;color:var(--t2);margin-top:6px">5 Service Days SMA, pembuatan laporan, presentasi ke DPL.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── TIM ─── -->
+  <div id="page-team" class="page">
+    <div class="ph1">Tim & Kontak</div>
+    <div class="psub">Kelompok 2 — anggota, DPL, APL, dan teman di kelompok lain</div>
+    <div id="team-body">Memuat...</div>
+  </div>
+
+  <!-- ─── PROSEDUR ─── -->
+  <div id="page-prosedur" class="page">
+    <div class="ph1">Prosedur Vision Screening</div>
+    <div class="psub">10 tahap pemeriksaan mata + rotasi tim service day</div>
+
+    <div class="alert a-danger" style="margin-bottom:16px">
+      <span class="alert-icon">⛔</span>
+      <div><strong>Alat Restricted (No. 10 — Funduscopy):</strong> Hanya mahasiswa PolyU HK yang boleh memegang dan mengoperasikan fundus camera. Peran UKDW = translasi dan support komunikasi saja.</div>
+    </div>
+
+    <div class="alert a-info" style="margin-bottom:20px">
+      <span class="alert-icon">👤</span>
+      <div><strong>Peran UKDW:</strong> Translasi in-class (materi PolyU → Bahasa Indonesia), support komunikasi dengan anak-anak saat screening, interpretation assistance. Kita tidak mengoperasikan alat medis apapun.</div>
+    </div>
+
+    <div id="prosedur-body">Memuat...</div>
+  </div>
+
+  <!-- ─── LOKASI ─── -->
+  <div id="page-lokasi" class="page">
+    <div class="ph1">Lokasi</div>
+    <div class="psub">Sekolah-sekolah yang dikunjungi selama KKN STEM 2026</div>
+
+    <div class="g2">
+      <div class="card">
+        <div class="card-title">🏫 SD/SMP — SO Eyecare (Juni 2026)</div>
+        <div id="loc-sdSmp"></div>
+      </div>
+      <div class="card">
+        <div class="card-title">🏫 SMA — Workshop Softskill (Agustus 2026)</div>
+        <div id="loc-sma"></div>
+        <div class="alert a-warn" style="margin-top:14px">
+          <span class="alert-icon">⚠️</span>
+          <div>Lokasi SMA masih tentative. Pantau informasi dari DPL/APL.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gap">
+      <div class="ph2">Orientation Session</div>
+      <div class="card gap-sm">
+        <div class="card-title">📍 19 Juli 2026 — Lokasi TBC</div>
+        <table class="itbl">
+          <tr><td>Peserta</td><td>Mahasiswa UKDW + Mahasiswa PolyU HK</td></tr>
+          <tr><td>Format</td><td>7 kelompok masing-masing pihak</td></tr>
+          <tr><td>Durasi</td><td>~4 jam total</td></tr>
+          <tr><td>Ice Breaking</td><td>UKDW rotasi ke tiap kelompok PolyU, 15 mnt/kelompok (~2 jam)</td></tr>
+          <tr><td>Demo Screening</td><td>PolyU demonstrasikan prosedur ke UKDW (~1 jam)</td></tr>
+          <tr><td>Activities</td><td>UKDW siapkan interactive games untuk PolyU (~1 jam)</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── SEARCH / AI ─── -->
+  <div id="page-search" class="page">
+    <div class="ph1">Cari Info & Tanya AI</div>
+    <div class="psub">Smart search dari semua data KKN, atau tanya langsung ke AI</div>
+
+    <!-- Smart Search -->
+    <div class="card" style="margin-bottom:20px">
+      <div class="ph2" style="margin-bottom:14px">🔍 Smart Search</div>
+      <div class="search-wrap">
+        <span class="s-icon">🔍</span>
+        <input type="text" id="search-input" placeholder="Cari... cth: 'funduscopy', 'jadwal juni', 'peran UKDW'">
+      </div>
+      <div class="search-results" id="search-results"></div>
+    </div>
+
+    <!-- AI Q&A -->
+    <div class="card">
+      <div class="flex-sb" style="margin-bottom:12px">
+        <div class="ph2" style="margin-bottom:0">🤖 Tanya AI</div>
+        <div class="chat-status"><div class="dot"></div><span>Aktif — Gemini Flash</span></div>
+      </div>
+      <div style="font-size:12px;color:var(--t2);margin-bottom:16px">
+        AI ini sudah dikonfigurasi dan langsung bisa dipakai. Tanya apapun soal KKN STEM 2026.
+      </div>
+
+      <!-- Hidden API key override (advanced) -->
+      <details style="margin-bottom:12px">
+        <summary style="font-size:11px;color:var(--t3);cursor:pointer;user-select:none">⚙️ Override API Key (opsional)</summary>
+        <div style="display:flex;gap:8px;margin-top:8px">
+          <input type="password" id="api-key-input" placeholder="Masukkan API Key lain untuk override...">
+          <button class="btn btn-ghost btn-sm" onclick="toggleApiKey()">👁</button>
+          <button class="btn btn-primary btn-sm" onclick="saveApiKey()">Simpan</button>
+        </div>
+      </details>
+
+      <div class="chat-box" id="chat-box">
+        <div class="chat-empty">Tanyakan apapun soal KKN STEM 2026...<br><br>
+          Contoh:<br>
+          "Apa yang harus aku lakukan saat service day?"<br>
+          "Jelaskan prosedur cover test"<br>
+          "Kapan deadline video edukasi?"<br>
+          "Tim mana yang pegang alat funduscopy?"
+        </div>
+      </div>
+
+      <div class="chat-input-row">
+        <input type="text" id="chat-input" placeholder="Tanya sesuatu... (Enter untuk kirim)">
+        <button class="btn btn-primary" id="chat-send" onclick="sendChat()">Kirim</button>
+        <button class="btn btn-ghost btn-sm" onclick="clearChat()">↺</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── PROKER SMA ─── -->
+  <div id="page-proker" class="page">
+    <div class="ph1">Proker SMA — Workshop Softskill</div>
+    <div class="psub">Tema final, rundown, decision log, dan riwayat brainstorm</div>
+    <div id="proker-final-body"></div>
+    <div id="decision-log-body"></div>
+    <div id="proker-body">Memuat...</div>
+  </div>
+
+  <!-- ─── TUGAS TIM ─── -->
+  <div id="page-tugas" class="page">
+    <div class="ph1">Tugas Tim</div>
+    <div class="psub">Pembagian tugas spesifik per anggota — cek bagianmu</div>
+    <div id="tugas-body">Memuat...</div>
+  </div>
+
+  <!-- ─── DOKUMEN DRIVE ─── -->
+  <div id="page-dokumen" class="page">
+    <div class="ph1">Dokumen Drive</div>
+    <div class="psub">Semua file kelompok 2 yang bisa di-download dari Google Drive</div>
+    <div id="dokumen-body">Memuat...</div>
+  </div>
+
+  <!-- ─── CHECKLIST ─── -->
+  <div id="page-checklist" class="page">
+    <div class="ph1">Checklist Persiapan</div>
+    <div class="psub">Hal-hal yang perlu disiapkan sebelum dan selama KKN</div>
+    <div id="checklist-body">Memuat...</div>
+  </div>
+
+  <!-- ─── NOTES ─── -->
+  <div id="page-notes" class="page">
+    <div class="ph1">Catatan</div>
+    <div class="psub">Catat apapun — disimpan di browser ini (Ctrl+Enter untuk simpan)</div>
+
+    <div class="card" style="margin-bottom:16px">
+      <div class="form-group">
+        <label>Catatan baru</label>
+        <textarea id="note-input" placeholder="Tulis catatan... (Ctrl+Enter untuk simpan cepat)"></textarea>
+      </div>
+      <button class="btn btn-primary" onclick="addNote()">+ Simpan Catatan</button>
+    </div>
+
+    <div id="notes-list"></div>
+  </div>
+
+</main>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const sdSmpEl = document.getElementById('loc-sdSmp');
+  if (sdSmpEl) {
+    sdSmpEl.innerHTML = KKN.locations.sdSmp.map(l => `
+      <div class="loc-item">
+        <span class="loc-badge ${l.jenjang === 'SD' ? 'lb-sd' : 'lb-smp'}">${l.jenjang}</span>
+        <span style="flex:1">${l.nama}</span>
+        ${!l.confirmed ? '<span class="badge b-gray" style="font-size:10px">TBC</span>' : ''}
+      </div>`).join('');
+  }
+  const smaEl = document.getElementById('loc-sma');
+  if (smaEl) {
+    smaEl.innerHTML = KKN.locations.sma.map(l => `
+      <div class="loc-item">
+        <span class="loc-badge lb-sma">SMA</span>
+        <span style="flex:1">${l.nama}</span>
+        <span class="badge b-gray" style="font-size:10px">${l.note}</span>
+      </div>`).join('');
+  }
+});
+</script>
+
+</body>
+</html>
