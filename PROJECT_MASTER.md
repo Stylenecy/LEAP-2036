@@ -39,8 +39,9 @@
 - Lulus `node --check` + 4 state di-screenshot-verify (fresh/member × desktop/mobile). Adversarial review: 0 critical/high/medium, 10 low semua di-fix.
 - ✅ **COMMITTED `a4437cb` + DEPLOYED prod (1 Jun) → live di kknstem.vercel.app** (verified serving v3). Deploy via `vercel --prod` (Vercel CLI linked).
 - ✅ **`docs/` dirapiin + commit `6815d0e` + redeploy (1 Jun):** canonical di root; `_internal/` (catatan mentah, gitignored, NON-publik); `referensi/` (PDF besar); `_archive/` (versi lama + Ide-Materi); `docs/README.md` index. `.gitignore` exclude `_internal/`/`.agent/`/`settings.local.json` utk repo PUBLIK. Web `data.js`: Dokumen list disinkron + kategori "Sistem Data Hari-H" + banner 1-Jun. Laporan grup Kelompok 2 (format DPL) dibuat.
-- ⏳ **GitHub:** gh CLI terinstall (2.93.0), **belum `gh auth login`** (Dex jalanin sendiri, interaktif) → lalu `gh repo create` + push. Repo = **PUBLIC** (keputusan Dex).
-- ⏳ **Drive:** upload subset team-shareable (`docs/` minus `_internal/`) → paste link Drive ke web (placeholder di halaman Dokumen).
+- ✅ **`docs/` dirombak total + commit `ce9d8e2` + redeploy (1 Jun):** 7 folder ramah-manusia (`workshop/ sistem-data/ panduan-tim/ info-program/ referensi/ arsip/ _internal/`). Konsolidasi: Ide-Materi 3→1, Handover→README, hapus Proposal-v1 (dup), arsipkan Skenario-Starter (model lama). `docs/README.md` = entry point (onboarding per-peran + prompt md→Docs). Semua path-ref disinkron (data.js/PROJECT_MASTER/CLAUDE/PANDUAN/LEAP-modular). docx kelompok lain di-exclude dari repo publik.
+- ✅ **GitHub (1 Jun):** pushed → **https://github.com/Stylenecy/LEAP-2036** (PUBLIC, portofolio). Remote `origin`, branch `main` @ `ce9d8e2`. Auth via Git Credential Manager (gh CLI terinstall tapi tak ke-auth). `_internal/`/`.agent/`(current)/`settings.local.json`/docx-kelompok-lain di-exclude dari tree; key Gemini sengaja tetap (keputusan Dex).
+- ⏳ **Drive:** Dex upload `docs/` (minus `_internal/`) sendiri → nanti paste link Drive → wire ke web (placeholder halaman Dokumen) + redeploy.
 
 **⏸️ NEXT ACTIONS (urut):**
 1. ✅ DONE (30 Mei) — Reconcile dokumen: PROJECT_MASTER (ini) jadi canonical; LEAP master §2.3 APL confirmed + §7 banner constraint anggaran.

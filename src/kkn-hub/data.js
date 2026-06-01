@@ -8,6 +8,7 @@ const KKN = {
     semester: "Genap 2025/2026",
     kelompok: 2,
     totalKelompok: 10,
+    driveFolderUrl: "https://drive.google.com/drive/folders/1T945ha4WOtJcQO0eU01Aj24ed6dvRGUn?usp=drive_link",
   },
 
   // ══ LATEST UPDATES (push signal — paling baru di atas) ══

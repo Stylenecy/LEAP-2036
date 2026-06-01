@@ -1278,10 +1278,15 @@ function renderDokumen() {
         File <code>.md</code> bisa di-convert ke Word/Docs dengan AI — copy paste isi-nya ke ChatGPT/Claude/Gemini dan minta convert.
       </div>
     </div>
+    ${KKN.meta.driveFolderUrl ? `
+    <div class="alert a-success" style="margin-bottom:24px">
+      <span class="alert-icon" aria-hidden="true">🔗</span>
+      <div><strong>Folder Drive kelompok:</strong> <a href="${KKN.meta.driveFolderUrl}" target="_blank" rel="noopener">buka folder Drive →</a> — semua dokumen ada di sini (struktur folder ikut <code>docs/</code>). Download yang sesuai tugasmu.</div>
+    </div>` : `
     <div class="alert a-warn" style="margin-bottom:24px">
       <span class="alert-icon" aria-hidden="true">🔗</span>
-      <div><strong>Link Drive:</strong> <code>(Dex isi link Drive setelah upload)</code> — sementara, file ada di folder lokal Dex.</div>
-    </div>`;
+      <div><strong>Link Drive:</strong> <code>(belum diisi)</code></div>
+    </div>`}`;
 
   cats.forEach(cat => {
     html += `

@@ -87,7 +87,7 @@ AI recommended: ChatGPT (formatting Docs) · Claude (struktur kompleks) · Gemin
 ## 📞 Kontak
 DPL **dr. Loury Priiskila, M.Biomed.** +62 813-9070-9672 · APL1 **Eleonora Bintang** +62 858-1775-6217 · APL2 **Carolus Yasser** +62 852-5425-3035 · Koordinator **Dex Bennett** (WA grup).
 
-🌐 Hub: **https://kknstem.vercel.app** · 📁 Drive: *(Dex isi link setelah upload)*
+🌐 Hub: **https://kknstem.vercel.app** · 📁 [Folder Drive kelompok](https://drive.google.com/drive/folders/1T945ha4WOtJcQO0eU01Aj24ed6dvRGUn?usp=drive_link) · 💻 Repo: **github.com/Stylenecy/LEAP-2036**
 
 ---
 *Peta DOKUMEN. Status/STATE proyek = `../PROJECT_MASTER.md`. Update peta ini kalau struktur folder berubah. Terakhir dirapikan: 1 Juni 2026.*
