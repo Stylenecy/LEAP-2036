@@ -28,3 +28,17 @@ assets/Surat Kesanggupan*
 .env
 .env.local
 .env.*.local
+
+# ═══════════════════════════════════════════════════════════
+# PUBLIC REPO — exclude internal / machine / personal (1 Jun)
+# ═══════════════════════════════════════════════════════════
+# Catatan kerja mentah Dex (progress raw, miskom APL, pertimbangan, patch notes)
+docs/_internal/
+# Setting lokal Claude Code (machine-specific)
+.claude/settings.local.json
+# Agent OS internals (workflow pribadi, bukan deliverable KKN)
+.agent/
+# Temp screenshot / preview render
+*_shot_*.png
+**/_preview_*.html
+**/_test.js

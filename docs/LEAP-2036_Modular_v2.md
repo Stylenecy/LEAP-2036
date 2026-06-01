@@ -204,8 +204,8 @@ Di tab `Skor Siswa`: anggap `E`=Energi, `K`=Uang, `M`=Mental (sudah ter-jepit 0�
 
 ```
 =IFS(
-  AND(K>=115; OR(E<85; M<85)),                                       "Sukses-tapi-Tumbang";
   AND(E>=115; K>=115; M<85),                                         "Pelari Tanpa Rem";
+  AND(K>=115; OR(E<85; M<85)),                                       "Sukses-tapi-Tumbang";
   AND(M>=115; E<115; K<115),                                         "Bijak yang Tenang";
   AND((TotalAkhir-TotalF1)>=25; TotalF1<290),                        "Mekar Belakangan";
   AND((MAXm-MINm)>=35; OR(E>=115;K>=115;M>=115);
@@ -215,15 +215,17 @@ Di tab `Skor Siswa`: anggap `E`=Energi, `K`=Uang, `M`=Mental (sudah ter-jepit 0�
 )
 ```
 > Cek dari atas, berhenti di kondisi pertama yang cocok ("yang pertama cocok, menang"). Hasilnya **selalu tepat 1 profil**, sama persis dengan hitungan manual papan tulis. Nama profil di rumus = **nama kanonik §2b** (jangan pakai variasi lain, biar sticker & CSV cocok).
+>
+> ⚠️ **Urutan baris 1 & 2 PENTING (koreksi 1 Juni):** *Pelari Tanpa Rem* dicek **sebelum** *Sukses-tapi-Tumbang*. Kalau dibalik (Sukses dulu), semua kasus Pelari (Uang≥115 **dan** Mental<85) langsung ketelan baris Sukses → profil "Pelari Tanpa Rem" **tak akan pernah keluar** untuk siapa pun (1 dari 7 profil mati). Pelari = kasus lebih spesifik (Energi TINGGI **juga**), jadi wajib dicek lebih dulu. Sudah benar di script `docs/data-system/leap2036-build.gs` + kartu cek §3C.
 
 **Langkah 5 — EKSPOR CSV.**
 Buat tab `EKSPOR` yang menarik kolom final. Lalu `File → Download → Comma-separated values (.csv)`:
 
 ```
 Kode Siswa,Energi,Uang,Mental,TotalF1,Profil
-A-01,128,142,71,268,Sukses-tapi-Tumbang
+A-01,128,142,71,268,Pelari Tanpa Rem
 A-02,96,88,103,281,Pembangun Seimbang
-A-07,118,121,64,256,Pelari Tanpa Rem
+A-07,80,121,64,256,Sukses-tapi-Tumbang
 ...
 ```
 > Inilah file mentah untuk DPL/laporan/skripsi. Bisa langsung **dirangkum/dihitung** (berapa siswa per profil, rata-rata tiap poin, dll). Kolom `TotalF1` ikut diekspor supaya profil **Mekar Belakangan** bisa diverifikasi & dihitung ulang kapan saja. **Tidak ada kolom peringkat** — sesuai filosofi no-juara.
@@ -278,8 +280,8 @@ Tiap siswa pegang **1 kartu** sepanjang workshop (cetak 1 lembar/siswa, kotak is
 
 Untuk menentukan profil tanpa Sheet (<20 detik/siswa). Cek dari atas, **berhenti di baris pertama yang cocok**. Ambang: TINGGI ≥115 · RENDAH <85. (E=Energi, U=Uang, M=Mental.)
 
-1. **Sukses-tapi-Tumbang** — Uang TINGGI **DAN** (Energi RENDAH **ATAU** Mental RENDAH).
-2. **Pelari Tanpa Rem** — Energi TINGGI **DAN** Uang TINGGI **DAN** Mental RENDAH.
+1. **Pelari Tanpa Rem** — Energi TINGGI **DAN** Uang TINGGI **DAN** Mental RENDAH. *(dicek DULU — kasus paling spesifik; kalau tidak, profil ini tak pernah keluar)*
+2. **Sukses-tapi-Tumbang** — Uang TINGGI **DAN** (Energi RENDAH **ATAU** Mental RENDAH).
 3. **Bijak yang Tenang** — Mental TINGGI **DAN** Energi bukan-TINGGI (<115) **DAN** Uang bukan-TINGGI (<115).
 4. **Mekar Belakangan** — (Total akhir − Total saat selesai Fase 1) **≥ 25** **DAN** Total saat selesai Fase 1 **< 290**.
 5. **Pemberontak Kreatif** — **TIGA syarat sekaligus:** selisih poin tertinggi−terendah **≥ 35** **DAN** minimal satu poin **≥ 115** **DAN** minimal satu poin **< 85**.
@@ -439,8 +441,8 @@ Kartu Kejutan opsional dan berlaku **serempak, sama persis ke seluruh kelas** (b
 
 Ambang polos: **TINGGI = poin ≥ 115 · SEDANG = 85–114 · RENDAH = di bawah 85**. (E=Energi, U=Uang, M=Mental.)
 
-1. **Sukses-tapi-Tumbang** — Uang TINGGI **DAN** (Energi RENDAH **ATAU** Mental RENDAH).
-2. **Pelari Tanpa Rem** — Energi TINGGI **DAN** Uang TINGGI **DAN** Mental RENDAH.
+1. **Pelari Tanpa Rem** — Energi TINGGI **DAN** Uang TINGGI **DAN** Mental RENDAH. *(dicek DULU — kasus paling spesifik; kalau tidak, profil ini tak pernah keluar)*
+2. **Sukses-tapi-Tumbang** — Uang TINGGI **DAN** (Energi RENDAH **ATAU** Mental RENDAH).
 3. **Bijak yang Tenang** — Mental TINGGI **DAN** Energi bukan-TINGGI **DAN** Uang bukan-TINGGI.
 4. **Mekar Belakangan** — total skor naik **≥ 25 poin** dari akhir Fase 1 ke akhir **DAN** total di akhir Fase 1 masih di bawah 290. *(butuh 1 catatan: total saat selesai Fase 1 — lihat kotak di bawah.)*
 5. **Pemberontak Kreatif** — **TIGA syarat sekaligus:** (a) selisih poin tertinggi vs terendah antar-modal **≥ 35** **DAN** (b) minimal **satu** modal TINGGI (≥115) **DAN** (c) minimal **satu** modal RENDAH (di bawah 85). *(Catatan operator: "selisih ≥35" saja TIDAK cukup. Contoh jebakan: Energi 110 / Uang 110 / Mental 70 → selisih 40 tapi tak ada modal ≥115 → BUKAN Pemberontak Kreatif, jatuh ke baris berikutnya.)*

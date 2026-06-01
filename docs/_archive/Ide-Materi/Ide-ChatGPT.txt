@@ -1,0 +1,332 @@
+## 1. **“SIMULASI HIDUP 10 TAHUN”**
+
+> *“Selamat datang di tahun 2036. Kamu baru bangun, dan hidupmu adalah hasil keputusan hari ini.”*
+
+### Premis
+
+Siswa dibagi ke “timeline hidup” random hasil kombinasi pilihan mereka sendiri: jurusan, gaya hidup, relasi, pola tidur, penggunaan gadget, cara ambil keputusan finansial, dll. Setelah itu mereka menjalani simulasi cepat tentang konsekuensi hidup mereka 10 tahun ke depan.
+
+Mereka akan sadar kalau masa depan ternyata bukan dibentuk “passion doang”, tapi akumulasi habit kecil + keputusan absurd yang diremehkan.
+
+### Kenapa memorable
+
+Karena ini bukan seminar motivasi — ini kayak *Black Mirror versi SMA*. Anak-anak literally lihat “masa depan alternatif” mereka sendiri.
+
+Dan yang bikin kena: hasilnya personalized.
+
+### Peran Tim
+
+* FK 1 → efek sleep deprivation, stres kronis, burnout
+* FK 2 → simulasi kesehatan fisik & mental dari lifestyle choices
+* FK 3 → “emergency event cards” (panic attack, kecelakaan, dll)
+* Manajemen → uang, hutang, lifestyle inflation
+* Informatika → sistem scoring digital / randomizer
+* SI → dashboard hasil & visualisasi “future profile”
+
+### Twist
+
+Di akhir, mereka dapat **“Surat dari Diri 2036”** yang ternyata ditulis berdasarkan pola keputusan mereka selama workshop.
+
+Dan kalian diam-diam dapat data:
+
+* pola kecemasan terbesar siswa
+* value system mereka
+* keputusan hidup paling impulsif yang sering dipilih
+
+Itu insight emas buat sesi berikutnya.
+
+---
+
+## 2. **“THE ALGORITHM OWNS YOU”**
+
+> *“Kamu yakin semua pilihanmu benar-benar pilihanmu?”*
+
+### Premis
+
+Workshop tentang bagaimana algoritma TikTok, Instagram, YouTube, bahkan online shop membentuk identitas, opini, mood, dan ambisi siswa — tanpa mereka sadar.
+
+Mereka diminta audit digital life sendiri:
+
+* feed mereka
+* screen time
+* jam doomscrolling
+* topik yang paling sering muncul
+* tipe konten yang bikin insecure
+
+### Kenapa memorable
+
+Karena ini personal dan sedikit unsettling 😵‍💫
+Anak SMA jarang diajak melihat bahwa “aku pengen ini” bisa jadi hasil conditioning algoritma.
+
+Bukan ceramah “main HP itu buruk.”
+Tapi bedah identitas digital mereka sendiri.
+
+### Peran Tim
+
+* Informatika → cara algoritma recommendation bekerja
+* SI → data visualization live polling kelas
+* Manajemen → attention economy & kenapa perhatian mereka dijual
+* FK → dampak dopamin, kecemasan, tidur, overstimulation
+
+### Twist
+
+Di akhir, siswa dapat:
+
+* “Digital Personality Report”
+* kategori konsumsi konten mereka
+* estimasi berapa jam hidup per tahun habis untuk scroll
+
+Dan kalian dapat data anonim soal:
+
+* pola adiksi digital
+* insecurity paling umum
+* aspirasi palsu vs genuine interest
+
+---
+
+## 3. **“ESCAPE ROOM: KRISIS UMUR 25”**
+
+> *“Umur 25. Kerja nggak jelas. Mental capek. Dompet tipis. Hubungan berantakan. Escape sebelum waktumu habis.”*
+
+### Premis
+
+Kelas diubah jadi semi roleplay escape room.
+Setiap tim harus menyelesaikan serangkaian masalah realistis:
+
+* burnout
+* gaji kecil
+* toxic productivity
+* medical emergency
+* AI replacing jobs
+* pinjol
+* overwork
+* quarter life crisis
+
+Untuk lolos, mereka harus bikin keputusan lintas bidang.
+
+### Kenapa memorable
+
+Karena ini terasa seperti game, bukan workshop.
+Dan surprisingly… banyak siswa belum pernah mikir soal “hidup dewasa” secara konkret.
+
+### Peran Tim
+
+* FK → skenario kesehatan & mental health
+* Manajemen → budgeting dan decision trade-off
+* Informatika → AI/job disruption challenge
+* SI → sistem game + leaderboard
+
+### Twist
+
+Tidak ada ending sempurna.
+
+Semua tim pasti “kehilangan sesuatu”:
+
+* uang
+* kesehatan
+* relasi
+* waktu
+
+Dan itu justru pelajaran utamanya:
+
+> hidup dewasa bukan cari perfect outcome, tapi memilih pengorbanan yang sadar.
+
+---
+
+## 4. **“YOUR BODY IS A STARTUP”**
+
+> *“Kalau tubuhmu adalah perusahaan, kamu CEO yang bagus atau investor yang menghancurkannya?”*
+
+### Premis
+
+Tubuh diperlakukan seperti startup:
+
+* energi = capital
+* fokus = resource
+* tidur = maintenance
+* junk dopamine = bad investment
+* habit = compound growth
+
+Siswa diminta audit “performa perusahaan tubuh” mereka.
+
+### Kenapa memorable
+
+Karena analoginya absurd tapi langsung klik.
+Anak SMA biasanya ngerti “burnout” secara emosional, tapi belum pernah lihat tubuh sebagai sistem yang bisa collapse.
+
+### Peran Tim
+
+* FK → biological explanation
+* Manajemen → framework business/startup
+* Informatika/SI → tracker habit & scoring
+
+### Twist
+
+Di akhir mereka dapat:
+
+* “Annual Report Tubuh”
+* skor sustainability hidup mereka
+* prediksi risiko burnout
+
+Kalian dapat insight:
+
+* pola tidur
+* kecanduan
+* kebiasaan destruktif paling umum
+
+---
+
+## 5. **“AI VS YOU: PEKERJAAN MANA YANG MATI DULUAN?”**
+
+> *“Tebak: jurusan impianmu survive atau digilas AI?”*
+
+### Premis
+
+Alih-alih seminar AI generik, siswa diajak memainkan game prediksi masa depan kerja:
+
+* profesi mana yang hilang
+* skill mana yang makin mahal
+* mana yang ternyata overrated
+
+Lalu mereka harus “mendesain versi diri” yang tetap relevan 10 tahun lagi.
+
+### Kenapa memorable
+
+Karena provocative 😭
+Dan anak SMA sekarang genuinely anxious soal masa depan kerja.
+
+### Peran Tim
+
+* Informatika → AI reality check
+* SI → tools AI live demo
+* Manajemen → future economic shifts
+* FK → profesi kesehatan vs AI discussion
+
+### Twist
+
+Di akhir:
+AI diminta menilai apakah profil siswa “replaceable” atau “anti-replaceable”.
+
+Itu bakal jadi bahan obrolan mereka seminggu penuh 😭
+
+---
+
+## 6. **“IDENTITY MARKETPLACE”**
+
+> *“Kalau semua orang sedang branding dirinya… siapa dirimu saat tidak dilihat siapa-siapa?”*
+
+### Premis
+
+Workshop tentang identitas, social masking, validation, dan performative life di era sosial media.
+
+Siswa membuat dua profil:
+
+1. “Aku yang diposting”
+2. “Aku yang sebenarnya”
+
+### Kenapa memorable
+
+Karena sangat dekat dengan realita mereka, tapi jarang dibahas secara jujur.
+
+Biasanya sesi kayak gini jadi unexpectedly emotional.
+
+### Peran Tim
+
+* FK → psychological safety & emotional processing
+* Manajemen → personal branding culture
+* Informatika/SI → digital identity & permanence
+
+### Twist
+
+Di akhir semua siswa dapat kartu anonim berisi:
+
+> “Hal yang sebenarnya paling ditakuti anak-anak di ruangan ini.”
+
+Diambil dari polling anonim realtime.
+
+Itu biasanya bikin ruangan langsung hening.
+
+---
+
+## 7. **“THE HUMAN PATCH UPDATE”**
+
+> *“Kalau hidupmu versi software… bug terbesarmu apa?”*
+
+### Premis
+
+Siswa memperlakukan dirinya seperti operating system:
+
+* bug
+* memory leak
+* corrupted belief
+* toxic plugin
+* outdated operating system
+
+Mereka harus membuat “patch notes” untuk diri sendiri.
+
+### Kenapa memorable
+
+Karena self-reflection dibungkus bahasa tech/game 😭
+Jauh lebih engaging dibanding sesi motivasi biasa.
+
+### Peran Tim
+
+* Informatika/SI → analogi system design
+* FK → mental & physical human system
+* Manajemen → productivity & life architecture
+
+### Twist
+
+Output akhirnya adalah:
+
+> “Patch Notes v2.0 — Coming Soon”
+
+Yang bentuknya literally changelog hidup mereka:
+
+* fixed:
+* removed:
+* optimized:
+* known issues:
+
+Dan yes, itu sangat Instagrammable 😭
+
+---
+
+# Kombinasi 2 Sesi Paling Kohesif
+
+## Sesi 1 → **“THE ALGORITHM OWNS YOU”**
+
+Kenapa:
+
+* langsung relevan
+* bikin mereka sadar
+* membuka insecurity & kecemasan nyata
+* menghasilkan data insight sangat kaya
+
+Ini sesi “disruption”.
+
+---
+
+## Sesi 2 → **“SIMULASI HIDUP 10 TAHUN”**
+
+Kenapa:
+
+* jadi continuation natural
+* dari “siapa yang mengontrol hidupmu sekarang?”
+  → ke
+  “hidup seperti apa yang sebenarnya sedang kamu bangun?”
+
+Ini sesi “reconstruction”.
+
+---
+
+Dan jujur, menurutku leverage terbesar kalian bukan “kami mahasiswa ngajarin skill.”
+Itu sudah terlalu umum.
+
+Leverage kalian adalah:
+
+> membuat anak SMA merasa “dilihat”, dipaksa mikir lebih dalam, lalu pulang dengan pengalaman yang nempel secara emosional.
+
+Karena problem terbesar anak SMA sekarang bukan kekurangan informasi.
+
+Mereka tenggelam dalam informasi, tapi minim ruang refleksi yang benar-benar meaningful.

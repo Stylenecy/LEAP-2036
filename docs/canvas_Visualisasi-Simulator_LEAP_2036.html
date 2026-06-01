@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="id" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEAP 2036 — Visualisasi & Simulator Engine Sistemis</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & Instrument Serif -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Instrument Serif', 'serif'],
+                    },
+                    colors: {
+                        navy: {
+                            bg: '#07071c',
+                            surface: '#0c0c28',
+                            card: '#111130',
+                            border: '#1d1d4d'
+                        },
+                        indigo: '#818cf8',
+                        cyan: '#22d3ee',
+                        gold: '#fbbf24',
+                        green: '#34d399',
+                        rose: '#fb7185',
+                        violet: '#c084fc',
+                        orange: '#fb923c'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #07071c;
+            color: #f3f4f6;
+        }
+        .font-serif-italic {
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+        }
+        .glow-indigo {
+            box-shadow: 0 0 20px rgba(129, 140, 248, 0.15);
+        }
+        .inner-glow {
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.05), 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        /* Hide scrollbars but keep functionality */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased min-h-screen no-scrollbar">
+
+    <!-- TOPBAR & LOGO -->
+    <header class="border-b border-navy-border bg-navy-surface/80 backdrop-blur sticky top-0 z-50 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="h-10 w-10 rounded-xl bg-gradient-to-tr from-indigo to-cyan flex items-center justify-center font-bold text-navy-bg text-xl">
+                    🪐
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold tracking-tight text-white">LEAP <span class="text-indigo">2036</span></h1>
+                    <p class="text-xs text-slate-400">Systemic Life Simulator — Kelompok 2 KKN STEM UKDW 2026</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-indigo/10 text-indigo border border-indigo/20">
+                    <span class="h-1.5 w-1.5 rounded-full bg-indigo animate-pulse"></span>
+                    Miopi Masa Depan Framework
+                </span>
+                <button onclick="resetSimulation()" class="px-3 py-1.5 text-xs bg-navy-border hover:bg-indigo/20 hover:text-indigo border border-slate-600 rounded-lg transition-all duration-200">
+                    🔄 Reset Simulasi
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main class="max-w-7xl mx-auto px-4 md:px-6 py-8">
+        
+        <!-- PITCH JEMBATAN EMAS: DPL HOOK (Kesehatan Mata & Masa Depan) -->
+        <div class="mb-8 p-6 rounded-2xl bg-gradient-to-r from-navy-surface via-navy-card to-navy-surface border border-navy-border inner-glow relative overflow-hidden">
+            <div class="absolute right-0 top-0 h-40 w-40 bg-indigo/5 rounded-full filter blur-3xl pointer-events-none"></div>
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
+                <div class="max-w-3xl">
+                    <h2 class="text-2xl md:text-3xl text-white font-medium mb-2">
+                        Menghubungkan <span class="font-serif-italic text-indigo text-3xl md:text-4xl">SO Eyecare</span> dengan <span class="font-serif-italic text-cyan text-3xl md:text-4xl">Miopi Masa Depan</span>
+                    </h2>
+                    <p class="text-sm text-slate-300 leading-relaxed">
+                        <strong>Filosofi Jembatan:</strong> Di SD/SMP, kita merawat <strong>penglihatan fisik</strong> anak-anak (skrining miopi). Di SMA, kita merawat <strong>penglihatan hidup</strong> mereka. Banyak remaja menderita <em>"Miopi Karir"</em> — bisa melihat kebahagiaan jarak dekat hari ini, tapi buta terhadap konsekuensi fatal 10 tahun ke depan.
+                    </p>
+                </div>
+                <div class="flex flex-wrap gap-2 md:self-center">
+                    <span class="px-3 py-1.5 bg-navy-bg/60 text-emerald-400 border border-emerald-500/20 rounded-xl text-xs font-semibold">✓ 100% Cocok Konsep Kedokteran</span>
+                    <span class="px-3 py-1.5 bg-navy-bg/60 text-cyan-400 border border-cyan-500/20 rounded-xl text-xs font-semibold">✓ Anti-Mainstream</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- TWO COLUMN DASHBOARD -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            <!-- LEFT COLUMN: PLAYABLE GAME SIMULATOR ENGINE (7 COLS) -->
+            <section class="lg:col-span-7 space-y-6">
+                
+                <!-- PLAY CARD -->
+                <div class="rounded-2xl bg-navy-surface border border-navy-border inner-glow overflow-hidden">
+                    <!-- Card Header -->
+                    <div class="p-5 border-b border-navy-border bg-navy-card/50 flex justify-between items-center">
+                        <div class="flex items-center gap-2">
+                            <span class="text-xl">🎴</span>
+                            <div>
+                                <h3 class="font-bold text-white text-base">Decision Engine — Interactive Play</h3>
+                                <p class="text-xs text-slate-400">Jalani skenario & rasakan efek domino sistemisnya</p>
+                            </div>
+                        </div>
+                        <div id="fase-badge" class="px-3 py-1 bg-indigo/10 text-indigo border border-indigo/20 text-xs font-bold rounded-lg tracking-wider">
+                            FASE 1 — FONDASI
+                        </div>
+                    </div>
+
+                    <!-- Simulator Container -->
+                    <div class="p-6">
+                        <!-- Progress Indicator -->
+                        <div class="mb-6">
+                            <div class="flex justify-between items-center text-xs mb-2">
+                                <span class="text-slate-400" id="progress-text">Skenario 1 dari 7</span>
+                                <span class="text-slate-400" id="year-text">Tahun Simulasi: 2026</span>
+                            </div>
+                            <div class="w-full bg-navy-bg h-1.5 rounded-full overflow-hidden">
+                                <div id="progress-bar" class="bg-gradient-to-r from-indigo to-cyan h-full transition-all duration-300" style="width: 14%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Main Screen/Story Panel -->
+                        <div id="story-panel" class="min-h-[220px] bg-navy-bg/50 border border-navy-border/50 rounded-xl p-6 mb-6 flex flex-col justify-between relative">
+                            <!-- Glowing Background Details -->
+                            <div class="absolute inset-0 bg-gradient-to-b from-indigo/5 to-transparent pointer-events-none rounded-xl"></div>
+                            
+                            <div class="relative z-10">
+                                <span id="scenario-id-tag" class="text-xs text-indigo font-semibold tracking-widest uppercase block mb-1">SKENARIO 1.1</span>
+                                <h4 id="scenario-title" class="text-lg font-bold text-white mb-3">Beasiswa Luar Kota</h4>
+                                <p id="scenario-situation" class="text-sm text-slate-300 leading-relaxed">
+                                    Kamu dapat tawaran beasiswa penuh di kampus top luar kota. Tapi pacar/sahabat dekat kamu tetap di kota asal.
+                                </p>
+                            </div>
+
+                            <!-- Flag Warnings Inside Scenario Screen -->
+                            <div id="scenario-alert-box" class="mt-4 p-3 bg-rose-500/10 border border-rose-500/25 rounded-lg text-xs text-rose-300 hidden">
+                                ⚠️ <strong>Konsekuensi Domino Terpicu:</strong> Karena kamu memiliki flag "Hutang Tidur" yang tinggi, krisis fisik ini merusak Energimu 2x lipat!
+                            </div>
+                        </div>
+
+                        <!-- Decision Choices Buttons -->
+                        <div class="space-y-3" id="choices-container">
+                            <button onclick="chooseOption('A')" class="w-full text-left p-4 rounded-xl bg-navy-card hover:bg-indigo/10 border border-navy-border hover:border-indigo/40 group transition-all duration-200 flex items-start gap-4">
+                                <span class="h-6 w-6 rounded-lg bg-indigo/20 group-hover:bg-indigo text-indigo group-hover:text-navy-bg flex items-center justify-center font-bold text-xs shrink-0 transition-colors">A</span>
+                                <div class="grow">
+                                    <p id="optA-text" class="text-sm font-semibold text-slate-200 group-hover:text-white transition-colors">Ambil beasiswa, pindah.</p>
+                                    <p id="optA-effects" class="text-xs text-slate-400 mt-1 flex flex-wrap gap-2">
+                                        <span class="text-emerald-400 font-medium">+15 Kapital</span>
+                                        <span class="text-rose-400 font-medium">-10 Mental</span>
+                                        <span class="text-rose-400 font-medium">-5 Energi</span>
+                                    </p>
+                                </div>
+                            </button>
+                            
+                            <button onclick="chooseOption('B')" class="w-full text-left p-4 rounded-xl bg-navy-card hover:bg-indigo/10 border border-navy-border hover:border-indigo/40 group transition-all duration-200 flex items-start gap-4">
+                                <span class="h-6 w-6 rounded-lg bg-indigo/20 group-hover:bg-indigo text-indigo group-hover:text-navy-bg flex items-center justify-center font-bold text-xs shrink-0 transition-colors">B</span>
+                                <div class="grow">
+                                    <p id="optB-text" class="text-sm font-semibold text-slate-200 group-hover:text-white transition-colors">Tolak, kuliah di kota sendiri.</p>
+                                    <p id="optB-effects" class="text-xs text-slate-400 mt-1 flex flex-wrap gap-2">
+                                        <span class="text-emerald-400 font-medium">+10 Mental</span>
+                                        <span class="text-rose-400 font-medium">-10 Kapital</span>
+                                    </p>
+                                </div>
+                            </button>
+                        </div>
+
+                        <!-- Game Over / Profil Reveal Screen (Initially hidden) -->
+                        <div id="reveal-container" class="hidden space-y-6">
+                            <div class="p-6 bg-gradient-to-tr from-indigo/20 via-navy-card to-cyan/20 border border-indigo/30 rounded-xl text-center">
+                                <span class="text-5xl mb-2 block">🏆</span>
+                                <h4 class="text-lg font-bold text-white mb-1">Hasil Akumulasi 10 Tahun Terkunci!</h4>
+                                <p class="text-xs text-slate-400">Keputusan hidup kamu telah membentuk versi dirimu di tahun 2036.</p>
+                                
+                                <div class="my-6">
+                                    <h3 id="profile-name" class="text-2xl font-bold text-indigo tracking-tight font-serif-italic">The Burnout Achiever</h3>
+                                    <p id="profile-desc" class="text-sm text-slate-300 max-w-md mx-auto mt-2 leading-relaxed">
+                                        Kariermu tinggi luar biasa, tapi mentalmu hancur di tengah jalan. Kamu memiliki uang untuk membeli kemewahan apa pun, tapi tidak memiliki energi untuk menikmatinya.
+                                    </p>
+                                </div>
+
+                                <div class="flex justify-center gap-2">
+                                    <button onclick="scrollToSurat()" class="px-4 py-2 bg-indigo hover:bg-indigo-600 text-navy-bg text-sm font-bold rounded-lg transition-colors">
+                                        ✉️ Baca Surat Diri 2036
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- HISTORY / LOG PATHWAY (Mini Visual Checklist) -->
+                <div class="rounded-2xl bg-navy-surface border border-navy-border inner-glow p-5">
+                    <h4 class="text-sm font-bold text-white mb-4 flex items-center gap-2">
+                        <span>📜</span> Riwayat Jalur Keputusanmu
+                    </h4>
+                    <div class="space-y-3 max-h-48 overflow-y-auto no-scrollbar pr-1" id="history-list">
+                        <!-- Dynamic logs go here -->
+                        <p class="text-xs text-slate-500 italic">Belum ada keputusan yang diambil.</p>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- RIGHT COLUMN: STATS, ACTIVE STATUSES, PATH MAP (5 COLS) -->
+            <section class="lg:col-span-5 space-y-6">
+                
+                <!-- LIVE STATS DISPLAY -->
+                <div class="rounded-2xl bg-navy-surface border border-navy-border inner-glow p-6 space-y-6">
+                    <h3 class="font-bold text-white text-base border-b border-navy-border pb-3 flex items-center gap-2">
+                        <span>📊</span> Real-Time Life Stats
+                    </h3>
+
+                    <!-- Stat 1: Energi -->
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-xs">
+                            <span class="text-rose-400 font-semibold flex items-center gap-1">⚡ ENERGI (Fisik)</span>
+                            <span id="val-energi" class="font-mono text-white text-sm font-bold">100 / 100</span>
+                        </div>
+                        <div class="w-full bg-navy-bg h-3 rounded-full overflow-hidden border border-navy-border">
+                            <div id="bar-energi" class="bg-rose-500 h-full transition-all duration-300" style="width: 100%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Stat 2: Kapital -->
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-xs">
+                            <span class="text-emerald-400 font-semibold flex items-center gap-1">💵 KAPITAL (Ekonomi & Waktu)</span>
+                            <span id="val-kapital" class="font-mono text-white text-sm font-bold">100 / 100</span>
+                        </div>
+                        <div class="w-full bg-navy-bg h-3 rounded-full overflow-hidden border border-navy-border">
+                            <div id="bar-kapital" class="bg-emerald-500 h-full transition-all duration-300" style="width: 100%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Stat 3: Kesehatan Mental -->
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-xs">
+                            <span class="text-violet-400 font-semibold flex items-center gap-1">💚 KESEHATAN MENTAL</span>
+                            <span id="val-mental" class="font-mono text-white text-sm font-bold">100 / 100</span>
+                        </div>
+                        <div class="w-full bg-navy-bg h-3 rounded-full overflow-hidden border border-navy-border">
+                            <div id="bar-mental" class="bg-violet-500 h-full transition-all duration-300" style="width: 100%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STATE ENGINE STATUS & HIDDEN FLAGS -->
+                <div class="rounded-2xl bg-navy-surface border border-navy-border inner-glow p-6 space-y-5">
+                    <h4 class="text-sm font-bold text-white border-b border-navy-border pb-3 flex items-center gap-2">
+                        <span>⚠️</span> Status Debuff & Flags Tersembunyi
+                    </h4>
+
+                    <!-- Dynamic Debuff Badges -->
+                    <div class="space-y-2">
+                        <p class="text-xs text-slate-400 font-medium">Debuff Ambang Batas Aktif:</p>
+                        <div class="flex flex-wrap gap-2" id="debuff-badges-container">
+                            <span class="px-2.5 py-1 rounded bg-slate-800 text-slate-500 text-[10px] font-bold tracking-wider border border-slate-700">SEMUA NORMAL</span>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Flag Checks -->
+                    <div class="space-y-3 pt-2">
+                        <p class="text-xs text-slate-400 font-medium">Flags Keputusan yang Terkunci:</p>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div class="p-2 rounded-lg bg-navy-bg border border-navy-border flex items-center justify-between">
+                                <span class="text-[11px] text-slate-400">Flag: Beasiswa LDR</span>
+                                <span id="flag-ldr" class="h-2.5 w-2.5 rounded-full bg-slate-600 transition-colors"></span>
+                            </div>
+                            <div class="p-2 rounded-lg bg-navy-bg border border-navy-border flex items-center justify-between">
+                                <span class="text-[11px] text-slate-400">Flag: Hutang Tidur</span>
+                                <span id="flag-begadang" class="h-2.5 w-2.5 rounded-full bg-slate-600 transition-colors"></span>
+                            </div>
+                            <div class="p-2 rounded-lg bg-navy-bg border border-navy-border flex items-center justify-between">
+                                <span class="text-[11px] text-slate-400">Flag: Himpunan</span>
+                                <span id="flag-himpunan" class="h-2.5 w-2.5 rounded-full bg-slate-600 transition-colors"></span>
+                            </div>
+                            <div class="p-2 rounded-lg bg-navy-bg border border-navy-border flex items-center justify-between">
+                                <span class="text-[11px] text-slate-400">Flag: Magang Startup</span>
+                                <span id="flag-magang" class="h-2.5 w-2.5 rounded-full bg-slate-600 transition-colors"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- INFO BOX: ATURAN ENGINE UNTUK PITCH DPL -->
+                <div class="rounded-2xl bg-gradient-to-br from-indigo/5 to-cyan/5 border border-navy-border p-5 text-xs text-slate-300 space-y-3">
+                    <p class="font-bold text-white text-sm">💡 Mengapa Ini Penting untuk Laporan KKN & Skripsi Dex?</p>
+                    <p class="leading-relaxed">
+                        Dengan merekam histori pilihan siswa (misal lewat Google Form pasca-sesi), kelompok kita bisa memetakan <strong>profil kerentanan psikologis remaja kelas 12</strong> di Yogyakarta secara nyata.
+                    </p>
+                    <p class="leading-relaxed">
+                        Data ini adalah data orisinal kualitatif & kuantitatif berharga tinggi untuk diserahkan sebagai laporan akhir ke LPPM & DPL dr. Loury.
+                    </p>
+                </div>
+
+            </section>
+        </div>
+
+        <!-- ENGINE RULES INTERACTIVE BENCHMARK (PLAYGROUND LAB) -->
+        <section class="mt-12 rounded-2xl bg-navy-surface border border-navy-border inner-glow p-6">
+            <h3 class="font-bold text-white text-lg mb-2">⚙️ Playground Lab: Simulasi Sistemis Dibalik Layar</h3>
+            <p class="text-xs text-slate-400 mb-6">Sebagai koordinator, kamu (Dex) & Syendhi bisa menggunakan panel simulasi interaktif ini untuk memperagakan cara kerja engine ke anggota kelompok/DPL.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Tab 1: Threshold Rules Sandbox -->
+                <div class="p-4 rounded-xl bg-navy-bg/50 border border-navy-border space-y-4">
+                    <h4 class="text-sm font-bold text-indigo flex items-center gap-1.5">
+                        <span class="text-xs px-1.5 py-0.5 bg-indigo/10 rounded">Rule 1</span>
+                        Threshold Debuffs Sandbox
+                    </h4>
+                    <p class="text-xs text-slate-400">Geser slider di bawah untuk menyimulasikan batas kritis stamina/mental siswa secara manual:</p>
+                    
+                    <!-- Sandbox Sliders -->
+                    <div class="space-y-4 pt-2">
+                        <div class="space-y-1">
+                            <div class="flex justify-between text-[11px]">
+                                <span class="text-rose-400">Energi</span>
+                                <span id="sandbox-val-energi" class="font-bold">100</span>
+                            </div>
+                            <input id="sandbox-slide-energi" type="range" min="0" max="100" value="100" oninput="updateSandbox()" class="w-full accent-rose-500 h-1 bg-navy-border rounded-lg appearance-none cursor-pointer">
+                        </div>
+
+                        <div class="space-y-1">
+                            <div class="flex justify-between text-[11px]">
+                                <span class="text-violet-400">Kesehatan Mental</span>
+                                <span id="sandbox-val-mental" class="font-bold">100</span>
+                            </div>
+                            <input id="sandbox-slide-mental" type="range" min="0" max="100" value="100" oninput="updateSandbox()" class="w-full accent-violet-500 h-1 bg-navy-border rounded-lg appearance-none cursor-pointer">
+                        </div>
+                    </div>
+
+                    <!-- Sandbox Result Info Box -->
+                    <div class="p-3 bg-navy-card rounded-lg border border-navy-border space-y-2">
+                        <p class="text-[10px] text-slate-400 font-bold tracking-wider uppercase">Debuff Terpicu:</p>
+                        <div id="sandbox-debuff-status" class="text-xs space-y-1">
+                            <p class="text-emerald-400">✓ Semua sistem sehat & stabil</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 2: Time-Bomb Flags Tracker -->
+                <div class="p-4 rounded-xl bg-navy-bg/50 border border-navy-border space-y-3">
+                    <h4 class="text-sm font-bold text-cyan flex items-center gap-1.5">
+                        <span class="text-xs px-1.5 py-0.5 bg-cyan/10 rounded">Rule 2</span>
+                        Delayed Time-Bomb Flags
+                    </h4>
+                    <p class="text-xs text-slate-400">Di dunia nyata, keputusan buruk di masa lalu adalah ranjau masa depan. Aktifkan flag di bawah untuk melihat reaksinya:</p>
+                    
+                    <div class="space-y-2 pt-2 text-xs">
+                        <label class="flex items-center gap-2 cursor-pointer p-2 rounded bg-navy-card hover:bg-navy-card/80 border border-navy-border">
+                            <input type="checkbox" id="sandbox-flag-begadang" onchange="updateSandbox()" class="accent-cyan rounded">
+                            <div>
+                                <p class="font-semibold text-white">Flag: Begadang Berlebih (F1)</p>
+                                <p class="text-[10px] text-slate-400">Imunitas tubuh berkurang diam-diam.</p>
+                            </div>
+                        </label>
+
+                        <div id="sandbox-timebomb-trigger" class="p-2.5 rounded bg-amber-500/10 border border-amber-500/20 text-[11px] text-amber-300 hidden">
+                            ⚠️ <strong>Pemicu Aktif:</strong> Jika ditarik Event Card <em>"Family Health Crisis"</em> di Fase 2, kelompok dengan flag ini otomatis terkena <strong>Ekstra Penalti -30 Energi</strong> (Imunitas kolaps)!
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 3: Network Effects Simulasi -->
+                <div class="p-4 rounded-xl bg-navy-bg/50 border border-navy-border space-y-4">
+                    <h4 class="text-sm font-bold text-emerald-400 flex items-center gap-1.5">
+                        <span class="text-xs px-1.5 py-0.5 bg-emerald-500/10 rounded">Rule 3</span>
+                        Market Saturation Simulator
+                    </h4>
+                    <p class="text-xs text-slate-400">Gaya hidup juga dipengaruhi keputusan seluruh kelas (lingkungan sosial). Geser persentase kelas yang mengambil opsi side hustle:</p>
+                    
+                    <div class="space-y-3 pt-2">
+                        <div class="space-y-1">
+                            <div class="flex justify-between text-xs">
+                                <span class="text-slate-400">% Kelas Ambil Freelance</span>
+                                <span id="val-saturation" class="font-bold text-emerald-400">10%</span>
+                            </div>
+                            <input id="slide-saturation" type="range" min="10" max="100" step="5" value="10" oninput="updateSandbox()" class="w-full accent-emerald-500 h-1 bg-navy-border rounded-lg appearance-none cursor-pointer">
+                        </div>
+
+                        <div class="p-3 bg-navy-card rounded-lg border border-navy-border text-xs">
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Imbalan Freelance:</span>
+                                <span id="sandbox-freelance-reward" class="font-mono font-bold text-emerald-400">+$20 Kapital</span>
+                            </div>
+                            <p id="sandbox-saturation-desc" class="text-[10px] text-slate-500 mt-1">Pasar masih luas. Kebutuhan industri tinggi, imbalan maksimal.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- TWIST AKHIR: SURAT DINAMIS DARI DIRI 2036 -->
+        <section id="surat-section" class="mt-12 p-8 rounded-3xl bg-gradient-to-b from-navy-card to-navy-bg border border-indigo/20 relative overflow-hidden max-w-4xl mx-auto glow-indigo">
+            <div class="absolute inset-0 bg-gradient-to-tr from-indigo/5 via-transparent to-cyan/5 pointer-events-none"></div>
+            
+            <div class="text-center mb-8 relative z-10">
+                <span class="px-3 py-1 bg-indigo/10 text-indigo border border-indigo/20 text-[10px] font-bold tracking-widest uppercase rounded-full">Twist Sesi Akhir</span>
+                <h3 class="text-2xl md:text-3xl font-bold text-white mt-2 font-serif-italic italic">Surat dari Dirimu di Tahun 2036</h3>
+                <p class="text-xs text-slate-400 max-w-md mx-auto mt-1">Lembar reflektif yang akan ditulis siswa setelah melihat hasil simulasi profil 10 tahun hidup mereka.</p>
+            </div>
+
+            <!-- Surat Card Body -->
+            <div class="bg-navy-bg/80 border border-navy-border p-6 md:p-8 rounded-2xl relative z-10 inner-glow font-mono text-sm text-slate-300 leading-relaxed space-y-6">
+                <p class="text-right text-slate-500 text-xs">Tanggal: 24 Mei 2036</p>
+                
+                <p>Halo dari masa depan,</p>
+                
+                <p>
+                    Aku adalah versi dirimu dari 10 tahun yang lalu. Saat ini, di tahun 2036, kehidupanku berujung dengan profil akhir: 
+                    <span id="surat-profil-span" class="text-indigo font-bold underline font-serif-italic text-lg tracking-tight">The Burnout Achiever</span>.
+                </p>
+
+                <p>
+                    Keputusan paling krusial yang aku ambil di tahun 2026 yang mengunci takdir ini adalah ketika aku memilih untuk: 
+                    <span id="surat-keputusan-span" class="text-white font-semibold italic">"Mengambil tawaran beasiswa penuh di luar kota & begadang demi side hustle."</span>.
+                </p>
+
+                <p>
+                    Hal yang paling aku syukuri dari rangkaian keputusan tersebut adalah: <br>
+                    <span id="surat-syukur-span" class="text-emerald-400 block pl-4 border-l-2 border-emerald-500/25 mt-1 font-sans">"Aku memiliki modal finansial yang kokoh untuk hari tua dan portofolio profesional yang mentereng."</span>
+                </p>
+
+                <p>
+                    Namun, satu hal yang paling aku sesali adalah: <br>
+                    <span id="surat-sesal-span" class="text-rose-400 block pl-4 border-l-2 border-rose-500/25 mt-1 font-sans">"Aku mengorbankan waktu tidur, kesehatan fisik, dan merusak kestabilan kesehatan mental demi validasi sosial."</span>
+                </p>
+
+                <p class="pt-4 border-t border-navy-border/50">
+                    Untuk dirimu yang saat ini masih berusia 17 tahun, sedang bersiap-siap di ruang kelas SMA tahun 2026, dengarkan pesanku baik-baik:
+                </p>
+
+                <p class="text-white italic pl-4 border-l-2 border-indigo-400 font-sans text-xs md:text-sm bg-indigo/5 py-3 pr-3 rounded-r-lg" id="surat-pesan-p">
+                    "Keseimbangan bukanlah tanda kelemahan, melainkan kunci dari keberlanjutan. Jangan biarkan miopi masa depan membutakanmu dari hal-hal yang tidak bisa dibeli dengan kapital: ketenangan jiwa dan kesehatan tubuhmu."
+                </p>
+
+                <div class="pt-8 flex justify-between items-end">
+                    <div class="text-xs text-slate-500 font-sans">
+                        <p>Tertanda,</p>
+                        <p class="font-bold text-slate-300 mt-1">Versi Kamu di 2036</p>
+                    </div>
+                    <div class="h-12 w-24 border-b border-indigo/20 flex items-center justify-center text-indigo/30 font-serif-italic text-sm">
+                        LEAP 2036
+                    </div>
+                </div>
+            </div>
+
+            <!-- Print Prompt Button -->
+            <div class="mt-6 text-center">
+                <button onclick="window.print()" class="px-5 py-2.5 bg-navy-card hover:bg-navy-border border border-slate-600 rounded-xl text-xs text-slate-300 font-bold transition-colors">
+                    🖨️ Cetak Lembar Surat Ini
+                </button>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="mt-16 text-center text-xs text-slate-500 space-y-2 border-t border-navy-border/50 pt-8 pb-12">
+            <p>LEAP 2036 — Dirancang oleh Kelompok 2 KKN Tematik STEM UKDW Yogyakarta 2026</p>
+            <p class="text-[10px]">DPL: dr. Loury Priiskila, M.Biomed. | APL: Bintang Dahayu, Carolus Yasser</p>
+        </footer>
+
+    </main>
+
+    <!-- DATA & JS GAME ENGINE -->
+    <script>
+        // Database Skenario (Starter Pack)
+        const skenarios = [
+            {
+                id: "1.1",
+                fase: 1,
+                title: "Beasiswa Luar Kota",
+                situation: "Kamu dapat tawaran beasiswa penuh di kampus top luar kota. Tapi pacar/sahabat dekat kamu tetap di kota asal.",
+                optA: {
+                    text: "Ambil beasiswa, pindah.",
+                    eff: { kapital: 15, mental: -10, energi: -5 },
+                    flag: "ldr",
+                    log: "Mengambil beasiswa luar kota (Memulai hubungan LDR)."
+                },
+                optB: {
+                    text: "Tolak, kuliah di kota sendiri.",
+                    eff: { kapital: -10, mental: 10, energi: 0 },
+                    flag: null,
+                    log: "Menolak beasiswa, tetap tinggal di kota asal."
+                }
+            },
+            {
+                id: "1.2",
+                fase: 1,
+                title: "Side Hustle vs Tidur",
+                situation: "Tahun pertama kuliah. Kamu ditawari freelance design Rp 500rb/bulan. Tapi harus begadang 3 hari seminggu.",
+                optA: {
+                    text: "Ambil freelance.",
+                    eff: { kapital: 20, mental: -5, energi: -15 },
+                    flag: "begadang",
+                    log: "Mengambil freelance dengan konsekuensi begadang (Akumulasi hutang tidur)."
+                },
+                optB: {
+                    text: "Tolak, fokus akademik & istirahat.",
+                    eff: { kapital: -5, mental: 5, energi: 10 },
+                    flag: null,
+                    log: "Menolak freelance, mengutamakan tidur teratur."
+                }
+            },
+            {
+                id: "1.3",
+                fase: 1,
+                title: "Organisasi atau Magang",
+                situation: "Semester 4. Ada peluang jadi ketua himpunan (1 tahun komitmen besar) atau magang di startup (3 bulan, dapat gaji + portfolio).",
+                optA: {
+                    text: "Ketua himpunan.",
+                    eff: { kapital: -10, mental: 10, energi: -5 },
+                    flag: "himpunan",
+                    log: "Menjadi Ketua Himpunan (Membangun relasi sosial)."
+                },
+                optB: {
+                    text: "Magang startup.",
+                    eff: { kapital: 15, mental: 0, energi: -10 },
+                    flag: "magang",
+                    log: "Mengambil magang startup (Mengejar portfolio karir)."
+                }
+            },
+            {
+                id: "2.1",
+                fase: 2,
+                title: "Promosi vs Burnout",
+                situation: "Tahun ke-3 kerja. Atasan tawarin promosi (gaji naik 40%) tapi jam kerja jadi 12 jam/hari, lembur tiap weekend.",
+                optA: {
+                    text: "Terima promosi.",
+                    eff: { kapital: 25, mental: -30, energi: -20 },
+                    flag: "burnout",
+                    log: "Menerima promosi kerja intensif (Risiko burnout tinggi)."
+                },
+                optB: {
+                    text: "Tolak, pertahankan work-life balance.",
+                    eff: { kapital: 0, mental: 5, energi: 5 },
+                    flag: null,
+                    log: "Menolak promosi demi menjaga work-life balance."
+                }
+            },
+            {
+                id: "2.2",
+                fase: 2,
+                title: "AI Replacement",
+                situation: "Perusahaan kamu mulai pakai AI untuk gantiin 30% pekerjaan junior. Kamu masuk shortlist orang yang mungkin di-PHK.",
+                optA: {
+                    text: "Belajar AI tools, jadi orang yang mengoperasikannya.",
+                    eff: { kapital: 25, mental: 10, energi: -15 },
+                    flag: "ai-pro",
+                    log: "Mempelajari AI tools (Mengamankan diri dari ancaman automasi)."
+                },
+                optB: {
+                    text: "Fokus core job, berharap aman.",
+                    eff: { kapital: -30, mental: -5, energi: 0 },
+                    flag: "ai-risk",
+                    log: "Bertahan di jalur konvensional (Terkena dampak lay-off/PHK)."
+                }
+            },
+            {
+                id: "2.3",
+                fase: 2,
+                title: "Family Health Crisis (Event)",
+                situation: "Keluarga di rumah jatuh sakit keras mendadak, membutuhkan biaya pengobatan senilai puluhan juta rupiah.",
+                optA: {
+                    text: "Pakai semua sisa tabungan.",
+                    eff: { kapital: -40, mental: 15, energi: 0 },
+                    flag: null,
+                    log: "Membiayai penuh pengobatan keluarga menggunakan aset pribadi."
+                },
+                optB: {
+                    text: "Pinjam uang, cicil 2 tahun.",
+                    eff: { kapital: -20, mental: -15, energi: 0 },
+                    flag: "hutang",
+                    log: "Mengambil hutang cicilan untuk membiayai pengobatan."
+                }
+            },
+            {
+                id: "2.4",
+                fase: 2,
+                title: "Hubungan Serius vs Karier",
+                situation: "Pasanganmu mengajak menikah. Di saat bersamaan, kamu mendapat kesempatan dikirim dinas kerja ke luar negeri.",
+                optA: {
+                    text: "Menikah, batalkan kerja luar negeri.",
+                    eff: { kapital: -15, mental: 20, energi: 0 },
+                    flag: "married",
+                    log: "Memutuskan menikah & menetap."
+                },
+                optB: {
+                    text: "Ambil tawaran kerja luar negeri, jalani LDR.",
+                    eff: { kapital: 25, mental: -20, energi: 0 },
+                    flag: "overseas",
+                    log: "Mengambil tawaran dinas luar negeri."
+                }
+            }
+        ];
+
+        // State Global Game
+        let stats = {
+            energi: 100,
+            kapital: 100,
+            mental: 100
+        };
+
+        let flags = {
+            ldr: false,
+            begadang: false,
+            himpunan: false,
+            magang: false,
+            burnout: false,
+            hutang: false
+        };
+
+        let currentIdx = 0;
+        let choiceHistory = [];
+
+        // Inisialisasi Game
+        function initGame() {
+            stats = { energi: 100, kapital: 100, mental: 100 };
+            flags = { ldr: false, begadang: false, himpunan: false, magang: false, burnout: false, hutang: false };
+            currentIdx = 0;
+            choiceHistory = [];
+            
+            document.getElementById("reveal-container").classList.add("hidden");
+            document.getElementById("choices-container").classList.remove("hidden");
+            document.getElementById("story-panel").classList.remove("hidden");
+            
+            updateUI();
+        }
+
+        // Pilihan Diambil
+        function chooseOption(option) {
+            const sc = skenarios[currentIdx];
+            const opt = option === 'A' ? sc.optA : sc.optB;
+            
+            // Simpan Histori
+            choiceHistory.push({
+                title: sc.title,
+                choice: option,
+                text: opt.text,
+                effects: { ...opt.eff },
+                logText: opt.log
+            });
+
+            // Set Flag jika ada
+            if (opt.flag) {
+                flags[opt.flag] = true;
+            }
+
+            // --- SISTEMIS ENGINE DOMINO CALCULATION ---
+            let calculatedEffects = { ...opt.eff };
+
+            // 1. Reaksi Skenario 2.3 (Family Crisis) + Flag Begadang
+            if (sc.id === "2.3" && flags.begadang) {
+                calculatedEffects.energi -= 30; // Imunitas jebol karena hutang tidur
+                triggerAlertBox("Begadang berlebihan di masa kuliah merusak imunitas fisikmu! Krisis kesehatan keluarga ini memberimu denda ekstra -30 Energi karena kelelahan kronis.");
+            }
+
+            // 2. Reaksi Skenario 2.4 (Hubungan Serius) + Flag LDR
+            if (sc.id === "2.4" && flags.ldr && option === 'B') {
+                calculatedEffects.mental -= 15; // Hubungan LDR kolaps karena pergi lagi
+                triggerAlertBox("Hubungan jarak jauh (LDR) yang kamu paksakan sejak kuliah akhirnya runtuh sepenuhnya. Kamu mendapat denda mental tambahan -15!");
+            }
+
+            // Apply Stats
+            stats.energi += calculatedEffects.energi;
+            stats.kapital += calculatedEffects.kapital;
+            stats.mental += calculatedEffects.mental;
+
+            // Clamp Stats 0-150 (maksimal 150)
+            stats.energi = Math.max(0, Math.min(150, stats.energi));
+            stats.kapital = Math.max(0, Math.min(150, stats.kapital));
+            stats.mental = Math.max(0, Math.min(150, stats.mental));
+
+            // Periksa Ambang Batas (Threshold Debuffs)
+            applyThresholdEffects();
+
+            // Next Scenario atau Selesai
+            currentIdx++;
+            if (currentIdx < skenarios.length) {
+                setTimeout(() => {
+                    hideAlertBox();
+                    updateUI();
+                }, sc.id === "2.3" || sc.id === "2.4" ? 4000 : 0); // Tahan jika ada trigger
+            } else {
+                finishGame();
+            }
+        }
+
+        // Apply Threshold Systemic Rules
+        function applyThresholdEffects() {
+            // Depressive Spiral
+            if (stats.mental < 30) {
+                // Di masa depan, pilihan yang memakan energi akan memotong poin lebih besar
+                // Di simulator, kita beri alert/visual warning
+            }
+            // Chronic Fatigue
+            if (stats.energi < 30) {
+                // Sanksi finansial karena pengobatan
+            }
+        }
+
+        // Handle Alert Box inside Screen
+        function triggerAlertBox(msg) {
+            const alertBox = document.getElementById("scenario-alert-box");
+            alertBox.innerHTML = `⚠️ <strong>Konsekuensi Domino Terpilih:</strong> ${msg}`;
+            alertBox.classList.remove("hidden");
+        }
+
+        function hideAlertBox() {
+            document.getElementById("scenario-alert-box").classList.add("hidden");
+        }
+
+        // Update Interface
+        function updateUI() {
+            if (currentIdx >= skenarios.length) return;
+
+            const sc = skenarios[currentIdx];
+            
+            // Progress
+            document.getElementById("progress-text").innerText = `Skenario ${currentIdx + 1} dari ${skenarios.length}`;
+            document.getElementById("year-text").innerText = `Tahun Simulasi: ${sc.fase === 1 ? '2026 - 2028' : '2029 - 2032'}`;
+            document.getElementById("progress-bar").style.width = `${((currentIdx + 1) / skenarios.length) * 100}%`;
+            
+            // Fase Badge
+            const fb = document.getElementById("fase-badge");
+            if (sc.fase === 1) {
+                fb.innerText = "FASE 1 — FONDASI";
+                fb.className = "px-3 py-1 bg-indigo/10 text-indigo border border-indigo/20 text-xs font-bold rounded-lg tracking-wider";
+            } else {
+                fb.innerText = "FASE 2 — KRISIS";
+                fb.className = "px-3 py-1 bg-amber-500/10 text-amber-400 border border-amber-500/20 text-xs font-bold rounded-lg tracking-wider";
+            }
+
+            // Skenario Texts
+            document.getElementById("scenario-id-tag").innerText = `SKENARIO ${sc.id}`;
+            document.getElementById("scenario-title").innerText = sc.title;
+            document.getElementById("scenario-situation").innerText = sc.situation;
+
+            // Options
+            document.getElementById("optA-text").innerText = sc.optA.text;
+            document.getElementById("optA-effects").innerHTML = formatEffectsHTML(sc.optA.eff, sc.id);
+            
+            document.getElementById("optB-text").innerText = sc.optB.text;
+            document.getElementById("optB-effects").innerHTML = formatEffectsHTML(sc.optB.eff, sc.id);
+
+            // Real-Time Stats Bar
+            updateLiveStatsUI();
+
+            // Check Debuffs & Update Badges
+            updateDebuffBadges();
+
+            // Update Flags Visual UI
+            updateFlagsUI();
+
+            // Render Log List
+            renderLogs();
+        }
+
+        function formatEffectsHTML(eff, scId) {
+            let html = '';
+            if (eff.kapital !== 0) {
+                html += `<span class="${eff.kapital > 0 ? 'text-emerald-400' : 'text-rose-400'} font-medium">${eff.kapital > 0 ? '+' : ''}${eff.kapital} Kapital</span>`;
+            }
+            if (eff.mental !== 0) {
+                html += `<span class="${eff.mental > 0 ? 'text-violet-400' : 'text-rose-400'} font-medium">${eff.mental > 0 ? '+' : ''}${eff.mental} Mental</span>`;
+            }
+            if (eff.energi !== 0) {
+                html += `<span class="${eff.energi > 0 ? 'text-rose-400' : 'text-rose-400'} font-medium">${eff.energi > 0 ? '+' : ''}${eff.energi} Energi</span>`;
+            }
+
+            // Tambahkan hint bom waktu di deskripsi tombol pilihan jika sesuai
+            if (scId === "1.2" && eff.energi < 0) {
+                html += `<span class="text-orange-400 border border-orange-500/25 px-1 rounded text-[9px] font-bold">Ranji Imunitas</span>`;
+            }
+            if (scId === "1.1" && eff.kapital > 0) {
+                html += `<span class="text-indigo-400 border border-indigo-500/25 px-1 rounded text-[9px] font-bold">Ranjau LDR</span>`;
+            }
+            return html;
+        }
+
+        function updateLiveStatsUI() {
+            document.getElementById("val-energi").innerText = `${stats.energi} / 150`;
+            document.getElementById("bar-energi").style.width = `${(stats.energi / 150) * 100}%`;
+            
+            document.getElementById("val-kapital").innerText = `${stats.kapital} / 150`;
+            document.getElementById("bar-kapital").style.width = `${(stats.kapital / 150) * 100}%`;
+            
+            document.getElementById("val-mental").innerText = `${stats.mental} / 150`;
+            document.getElementById("bar-mental").style.width = `${(stats.mental / 150) * 100}%`;
+        }
+
+        function updateDebuffBadges() {
+            const container = document.getElementById("debuff-badges-container");
+            container.innerHTML = '';
+
+            let hasDebuff = false;
+
+            if (stats.mental < 30) {
+                container.innerHTML += `<span class="px-2.5 py-1 rounded bg-rose-500/20 text-rose-300 text-[10px] font-bold tracking-wider border border-rose-500/30 animate-pulse">DEPRESSIVE SPIRAL</span>`;
+                hasDebuff = true;
+            }
+            if (stats.energi < 30) {
+                container.innerHTML += `<span class="px-2.5 py-1 rounded bg-orange-500/20 text-orange-300 text-[10px] font-bold tracking-wider border border-orange-500/30 animate-pulse">CHRONIC FATIGUE</span>`;
+                hasDebuff = true;
+            }
+            if (stats.kapital < 30) {
+                container.innerHTML += `<span class="px-2.5 py-1 rounded bg-red-500/20 text-red-300 text-[10px] font-bold tracking-wider border border-red-500/30 animate-pulse">SURVIVAL MODE</span>`;
+                hasDebuff = true;
+            }
+
+            if (!hasDebuff) {
+                container.innerHTML = `<span class="px-2.5 py-1 rounded bg-emerald-500/10 text-emerald-400 text-[10px] font-bold tracking-wider border border-emerald-500/20">SEMUA ASPEK SEHAT</span>`;
+            }
+        }
+
+        function updateFlagsUI() {
+            toggleFlagBadge("flag-ldr", flags.ldr);
+            toggleFlagBadge("flag-begadang", flags.begadang);
+            toggleFlagBadge("flag-himpunan", flags.himpunan);
+            toggleFlagBadge("flag-magang", flags.magang);
+        }
+
+        function toggleFlagBadge(elementId, isActive) {
+            const el = document.getElementById(elementId);
+            if (isActive) {
+                el.classList.remove("bg-slate-600");
+                el.classList.add("bg-indigo");
+                el.style.boxShadow = "0 0 8px #818cf8";
+            } else {
+                el.classList.remove("bg-indigo");
+                el.classList.add("bg-slate-600");
+                el.style.boxShadow = "none";
+            }
+        }
+
+        function renderLogs() {
+            const list = document.getElementById("history-list");
+            if (choiceHistory.length === 0) {
+                list.innerHTML = `<p class="text-xs text-slate-500 italic">Belum ada keputusan yang diambil.</p>`;
+                return;
+            }
+
+            list.innerHTML = choiceHistory.map((item, idx) => `
+                <div class="p-2.5 rounded-lg bg-navy-bg border border-navy-border/50 text-xs flex justify-between items-start gap-3">
+                    <div>
+                        <span class="text-[9px] font-bold px-1 py-0.5 bg-indigo/10 text-indigo rounded mr-1.5">Skenario ${idx + 1}</span>
+                        <span class="font-semibold text-slate-200">${item.title}</span>
+                        <p class="text-slate-400 text-[11px] mt-1">${item.logText}</p>
+                    </div>
+                    <span class="text-xs font-mono font-bold text-slate-500 bg-slate-800/50 px-1.5 py-0.5 rounded">Opsi ${item.choice}</span>
+                </div>
+            `).join('');
+        }
+
+        // Selesai Game
+        function finishGame() {
+            document.getElementById("story-panel").classList.add("hidden");
+            document.getElementById("choices-container").classList.add("hidden");
+            document.getElementById("reveal-container").classList.remove("hidden");
+
+            // Calculate Profile
+            let profile = { name: "", desc: "", syukur: "", sesal: "", saran: "" };
+            let total = stats.energi + stats.kapital + stats.mental;
+
+            if (stats.kapital > 120 && stats.mental < 40) {
+                profile.name = "The Burnout Achiever";
+                profile.desc = "Kamu berhasil membangun aset keuangan yang melimpah dan reputasi profesional mentereng, namun mentalmu hancur di tengah jalan. Kamu memiliki uang untuk membeli kemewahan apa pun, tapi tidak memiliki energi serta ketenangan jiwa untuk menikmatinya.";
+                profile.syukur = "Aku memiliki modal finansial yang sangat stabil untuk masa depan.";
+                profile.sesal = "Aku mengorbankan waktu istirahat dan kedamaian pikiran demi validasi sosial dan prestasi semu.";
+                profile.saran = "Keseimbangan bukanlah tanda kelemahan, melainkan kunci dari keberlanjutan. Mulailah menginvestasikan waktu untuk kesehatan jiwamu hari ini sebelum terlambat.";
+            } else if (stats.energi >= 80 && stats.kapital >= 80 && stats.mental >= 80) {
+                profile.name = "The Balanced Builder";
+                profile.desc = "Takdir emas! Kamu berhasil menjaga harmoni kehidupan secara stabil. Kariermu berkembang sehat, fisikmu bertenaga, dan kamu dikelilingi oleh hubungan sosial yang suportif.";
+                profile.syukur = "Aku berhasil menjaga keseimbangan antara karir, kesehatan, dan keluarga tanpa mengorbankan salah satunya.";
+                profile.sesal = "Nyaris tidak ada penyesalan besar, semua langkah diambil dengan kesadaran penuh terhadap batas kemampuan diri.";
+                profile.saran = "Konsistensi adalah teman terbaikmu. Teruskan kebiasaan sehat ini untuk menginspirasi orang-orang di sekitarmu.";
+            } else if (total < 150) {
+                profile.name = "The Lost Pilot";
+                profile.desc = "Kamu terjebak di dalam labirin kebingungan dan kelelahan kronis. Keputusan impulsif dan hutang kesehatan di masa muda membuatmu kehabisan daya saat badai krisis finansial melanda di usia dewasa awal.";
+                profile.syukur = "Meskipun sulit, aku masih bertahan hingga hari ini dan belajar banyak dari kesalahan masa lalu.";
+                profile.sesal = "Aku terlalu sering mengambil keputusan tanpa memikirkan konsekuensi jangka panjang, menganggap remeh kesehatan tidur, dan lalai menabung.";
+                profile.saran = "Tidak pernah ada kata terlambat untuk berbenah. Mulailah dari langkah terkecil: atur ulang jam tidurmu malam ini, lalu rencanakan keuanganmu secara konservatif.";
+            } else {
+                profile.name = "The Silent Survivor";
+                profile.desc = "Kamu berhasil selamat melewati badai krisis parah di Fase 2 dengan mengorbankan banyak hal penting. Hidupmu di tahun 2036 cukup stabil, tapi kamu memulainya dengan bekas luka keputusan masa lalu.";
+                profile.syukur = "Aku berhasil bertahan melewati krisis keuangan keluarga dan tekanan pekerjaan tanpa tumbang sepenuhnya.";
+                profile.sesal = "Aku harus mengorbankan impian besar beasiswa dan terjebak di kenyamanan lokal demi menghindari krisis jangka pendek.";
+                profile.saran = "Setiap bekas luka adalah lencana ketangguhan. Jadikan pengalaman pahit ini sebagai fondasi kebijaksanaanmu untuk dekade berikutnya.";
+            }
+
+            // Update UI Profile & Surat Dinamis
+            document.getElementById("profile-name").innerText = profile.name;
+            document.getElementById("profile-desc").innerText = profile.desc;
+
+            document.getElementById("surat-profil-span").innerText = profile.name;
+            document.getElementById("surat-syukur-span").innerText = `"${profile.syukur}"`;
+            document.getElementById("surat-sesal-span").innerText = `"${profile.sesal}"`;
+            document.getElementById("surat-pesan-p").innerText = `"${profile.saran}"`;
+
+            // Update Keputusan Terpenting di Surat
+            if (choiceHistory.length > 0) {
+                document.getElementById("surat-keputusan-span").innerText = `"${choiceHistory[0].text} dan ${choiceHistory[1].text}"`;
+            }
+
+            updateLiveStatsUI();
+            updateDebuffBadges();
+        }
+
+        // Reset Simulator
+        function resetSimulation() {
+            initGame();
+        }
+
+        // Scroll to Surat
+        function scrollToSurat() {
+            document.getElementById("surat-section").scrollIntoView({ behavior: 'smooth' });
+        }
+
+
+        // --- SANDBOX LAB PLAYGROUND CODE ---
+        function updateSandbox() {
+            // Get values
+            const energi = parseInt(document.getElementById("sandbox-slide-energi").value);
+            const mental = parseInt(document.getElementById("sandbox-slide-mental").value);
+            const flagBegadang = document.getElementById("sandbox-flag-begadang").checked;
+            const saturation = parseInt(document.getElementById("slide-saturation").value);
+
+            // Update Val Texts
+            document.getElementById("sandbox-val-energi").innerText = energi;
+            document.getElementById("sandbox-val-mental").innerText = mental;
+            document.getElementById("val-saturation").innerText = `${saturation}%`;
+
+            // Threshold Status Checker
+            const statusBox = document.getElementById("sandbox-debuff-status");
+            let debuffs = [];
+
+            if (mental < 30) {
+                debuffs.push(`<p class="text-rose-400">🔴 <strong>DEPRESSIVE SPIRAL:</strong> Setiap keputusan yang memotong Energi akan memakan poin 2x lipat!</p>`);
+            }
+            if (energi < 30) {
+                debuffs.push(`<p class="text-orange-400">🔴 <strong>CHRONIC FATIGUE:</strong> Siswa otomatis dikenai denda finansial $20 karena harus berobat medis.</p>`);
+            }
+
+            if (debuffs.length > 0) {
+                statusBox.innerHTML = debuffs.join('');
+            } else {
+                statusBox.innerHTML = `<p class="text-emerald-400">✓ Semua sistem faksi berjalan sehat & stabil.</p>`;
+            }
+
+            // Delayed Flag Bomb Warning
+            const timeBombBox = document.getElementById("sandbox-timebomb-trigger");
+            if (flagBegadang) {
+                timeBombBox.classList.remove("hidden");
+            } else {
+                timeBombBox.classList.add("hidden");
+            }
+
+            // Saturation Price Drop Calculation
+            const rewardSpan = document.getElementById("sandbox-freelance-reward");
+            const satDesc = document.getElementById("sandbox-saturation-desc");
+            let reward = 20;
+
+            if (saturation > 70) {
+                reward = 5;
+                rewardSpan.className = "font-mono font-bold text-rose-400";
+                satDesc.innerText = "Pasar terlalu jenuh! Hampir seluruh siswa mengambil freelance sehingga nilainya jatuh menjadi hanya +5 Kapital.";
+            } else if (saturation > 40) {
+                reward = 10;
+                rewardSpan.className = "font-mono font-bold text-amber-400";
+                satDesc.innerText = "Kompetisi mulai ketat. Nilai jasa freelance kamu terpaksa turun menjadi +10 Kapital.";
+            } else {
+                reward = 20;
+                rewardSpan.className = "font-mono font-bold text-emerald-400";
+                satDesc.innerText = "Pasar masih luas. Kebutuhan industri tinggi, imbalan maksimal (+20 Kapital).";
+            }
+
+            rewardSpan.innerText = `+$${reward} Kapital`;
+        }
+
+        // Start On Load
+        window.onload = function() {
+            initGame();
+            updateSandbox();
+        }
+    </script>
+</body>
+</html>

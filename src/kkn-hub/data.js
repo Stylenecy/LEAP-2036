@@ -13,6 +13,13 @@ const KKN = {
   // ══ LATEST UPDATES (push signal — paling baru di atas) ══
   latestUpdates: [
     {
+      date: "2026-06-01",
+      title: "✨ Hub Diperbarui + Sistem Data Skor Siap",
+      desc: "Tampilan hub dirapikan & dipermudah: buka → pilih namamu → langsung muncul tugasmu + dokumenmu. Sistem data per-siswa juga sudah jadi (Google Form + Sheet skor otomatis → Profil 2036 → CSV untuk DPL). Cek 'Dokumen Drive' bagian 'Sistem Data Hari-H'. Syendhi tinggal pasang & uji.",
+      tag: "NEW",
+      gotoPage: "dokumen",
+    },
+    {
       date: "2026-05-31",
       title: "🔄 Workshop Dirombak v2 — Lebih Simpel, 3 Jam/Hari, Tiap Orang Ada Bagian",
       desc: "Pasca update DPL (waktu cuma ~3 jam/hari), desain workshop dipadatkan & disederhanakan: bahasa polos (3 'baterai hidup': Energi/Uang/Mental), 5 modul harian yang bisa dirakit, plus sistem data per-siswa (permintaan DPL). 👉 Buka 'Proker SMA' untuk ringkasan, 'Tugas Tim' untuk USULAN peran tiap orang, atau 'Dokumen Drive' untuk baca lengkap. Bingung? Tanya AI di halaman 'Cari Info / AI' atau di grup WA.",
@@ -177,13 +184,24 @@ const KKN = {
       kategori: "Handover & Index",
       files: [
         { name: "Handover Master", file: "Handover-Master.md", desc: "Peta navigasi semua dokumen — baca dulu kalau bingung", priority: "high" },
+        { name: "Peta Folder docs/ (README)", file: "README.md", desc: "Index isi folder docs/ — mana yang dipakai, mana arsip", priority: "medium" },
+      ],
+    },
+    {
+      kategori: "Sistem Data Hari-H (Skor Siswa → CSV DPL)",
+      files: [
+        { name: "Panduan Sistem Data", file: "data-system/PANDUAN-SISTEM-DATA.md", desc: "Cara setup Form + Sheet skor siswa → CSV untuk DPL. Baca ini dulu.", priority: "high", forPerson: "Syendhi" },
+        { name: "Script Form + Sheet otomatis (.gs)", file: "data-system/leap2036-build.gs", desc: "Paste ke Apps Script → Run → otomatis bikin Google Form + Sheet skor + Profil 2036 + ekspor CSV", priority: "high", forPerson: "Syendhi" },
+        { name: "Kartu Skor cetak (fallback sinyal mati)", file: "data-system/kartu-skor.html", desc: "Kartu kertas — buka di browser → atur jumlah → print", priority: "medium" },
       ],
     },
     {
       kategori: "Dokumen Proposal & Materi",
       files: [
-        { name: "Proposal Workshop SMA", file: "Proposal-Workshop-SMA-Kelompok2.md", desc: "Proposal LEAP 2036 lengkap untuk DPL", priority: "high" },
         { name: "🌟 Workshop LEAP 2036 — Rundown v2 (BACA INI DULU)", file: "LEAP-2036_Modular_v2.md", desc: "Desain workshop TERBARU & terlengkap: 5 modul harian (3 jam/hari) + skenario + sistem data per-siswa + naskah fasilitator. Versi paling update — pakai ini.", priority: "high" },
+        { name: "Proposal Workshop SMA (v3)", file: "Proposal Workshop SMA Kelompok 2 - LEAP 2036-v3.md", desc: "Proposal LEAP 2036 v3 — versi terbaru untuk DPL", priority: "high" },
+        { name: "Desain Lengkap LEAP 2036", file: "Project-Master-LEAP-2036.md", desc: "Deep-design workshop (sumber materi + NotebookLM)", priority: "medium" },
+        { name: "Prompt PPT NotebookLM", file: "NotebookLM-Prompt-PPT-DPL.md", desc: "Prompt untuk generate PPT presentasi ke DPL", priority: "medium" },
         { name: "Skenario Starter Pack (arsip)", file: "Skenario-Starter-Pack.md", desc: "15+ skenario draft per fase + template Surat 2036 (referensi lama)", priority: "low" },
       ],
     },

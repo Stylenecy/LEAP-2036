@@ -36,16 +36,20 @@
 - **Mobile-safe:** tap target ≥44px, overflow code, safe-area insets, body-scroll-lock, 2-col grids collapse, screenshot 390px verified clean.
 - **Bug fixes:** DPL tel: link digit-clean, timeline sort + un-cache, chat race guard + maxOutputTokens 1500 + MAX_TOKENS note, lsSet() private-mode-safe, tugas "KAMU" highlight dari getUser(), dead code removed.
 - **Security:** Gemini key **TETAP client-side** (keputusan Dex — tool sementara, tim gaptek). Dex action (free, opsional): restrict HTTP referrer ke `kknstem.vercel.app/*` di Google AI Studio. Lihat memory `kkn-hub-gemini-key-exposed`.
-- Lulus `node --check`. **⚠️ Belum commit/push.**
+- Lulus `node --check` + 4 state di-screenshot-verify (fresh/member × desktop/mobile). Adversarial review: 0 critical/high/medium, 10 low semua di-fix.
+- ✅ **COMMITTED `a4437cb` + DEPLOYED prod (1 Jun) → live di kknstem.vercel.app** (verified serving v3). Deploy via `vercel --prod` (no git remote — Vercel CLI linked).
 
 **⏸️ NEXT ACTIONS (urut):**
 1. ✅ DONE (30 Mei) — Reconcile dokumen: PROJECT_MASTER (ini) jadi canonical; LEAP master §2.3 APL confirmed + §7 banner constraint anggaran.
 2. ✅ DONE (30 Mei) — KKN-HUB synced: `data.js` (latestUpdates + decisions + prokerFinal + proker arsip) + **`GEMINI_CONTEXT` rewrite** (AI sekarang paham LEAP 2036 + constraint). `app.js` de-stale (banner brainstorm + judul rundown). Lulus `node --check`. ⚠️ *Belum deploy — perlu commit + push ke Vercel.*
 3. ✅ DONE (30 Mei) — Skema LPPM-2 Sekolah A (2 hari) → **`docs/LPPM-2_Sekolah-A_2hari.md`** (~123k char). Rundown A1 (255') & A2 (260') menit-per-menit · Bank Skenario (F1.1–F1.5, F2.1–F2.5 + 3 Kartu Chaos, F3.1–F3.2) · naskah fasilitator 14 segmen + template Surat 2036 · backup plan · checklist. Dibangun via workflow (gen → audit adversarial → fixer reconcile). Anggaran masih dipisah (item 4).
 4. ✅ DONE (31 Mei) — **KKN-HUB di-update ke v2 (digestible)**: proker ringkas · latestUpdates "start here" · **taskAssignments USULAN per orang** (FK confirm-items ⭐, Theana fleksibel/magang) · `GEMINI_CONTEXT` v2 + **AI tanya-dulu-siapa** (kecuali Dex) · framing netral (buang "kamu"/"YOU" → "Ketua") · kontras CSS dinaikkan · v2 doc masuk Dokumen. Lulus `node --check`. ⚠️ **Belum commit/deploy**.
-5. ⏳ **Commit + push** KKN-HUB → live `kknstem.vercel.app` (biar tim lihat).
-6. ⏳ **Bangun sistem data** (Google Sheet + Form template + Kartu Skor cetak) — otomasi data DPL, kurangi beban hari-H Dex.
-7. ⏳ Revisi anggaran ≤ Rp 500k tanpa makanan + tulis backup plan.
+5. ✅ DONE (1 Jun) — **Commit (`a4437cb`) + deploy prod** KKN-HUB v3 → live `kknstem.vercel.app` (verified).
+6. ✅ DONE (1 Jun) — **Sistem data per-siswa dibangun** → `docs/data-system/`: (a) `leap2036-build.gs` Apps Script (paste→run→auto-bikin Google Form + Sheet; skor running-clamp 0–200 + Profil 2036 via JS + ekspor CSV; delta asli dari Bank Skenario), (b) `kartu-skor.html` print fallback, (c) `PANDUAN-SISTEM-DATA.md` panduan Syendhi. Logika di-test (semua pass). **Syendhi tinggal: paste script → setup → uji 1 kelas dummy.**
+   - 🐞 **Fix bawaan:** profil **Pelari Tanpa Rem** sebelumnya *unreachable* (urutan IFS doc: Sukses dicek dulu → telan semua kasus Pelari). Sudah dibetulkan (Pelari dicek dulu) di script + `LEAP-2036_Modular_v2.md` (IFS §3 Langkah 4, cheat §3C + reveal) + panduan. Sekarang 7 profil semua bisa keluar.
+7. ⏳ Revisi anggaran ≤ Rp 500k tanpa makanan + tulis backup plan. ← **next**
+8. ⏳ (opsional, free) Dex: restrict Gemini key by HTTP referrer di Google AI Studio (`kknstem.vercel.app/*`).
+9. ⏳ Tim: putuskan F2.5 payoff (+20 Uang utk yg Berhasil, opsional) + Kartu Chaos mana yang dipakai (set di `CONFIG.chaosPlayed`).
 
 **✅ RESOLVED (30 Mei) — desain Sekolah A 2-hari SELESAI & dirakit ke `docs/LPPM-2_Sekolah-A_2hari.md`.** Pipeline: gen workflow `wy61qdhg1` → fixer `wu8o9m48w` (reconcile rundown↔bank + audit-fix: Day A2 260' · score-floor 0–200 · no-food · safety F2.3 · no-juara · bilingual) → cleanup clutter. Scaffolding dihapus. LEAP master §6.3 di-point ke file. Audit verifikasi adversarial sudah diterapkan.
 
