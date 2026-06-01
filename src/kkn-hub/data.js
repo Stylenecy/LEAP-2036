@@ -181,50 +181,48 @@ const KKN = {
   // ══ DOKUMEN KELOMPOK (link ke MD files yang sudah disiapkan) ══
   dokumenKelompok: [
     {
-      kategori: "Handover & Index",
+      kategori: "Mulai Dari Sini",
       files: [
-        { name: "Handover Master", file: "Handover-Master.md", desc: "Peta navigasi semua dokumen — baca dulu kalau bingung", priority: "high" },
-        { name: "Peta Folder docs/ (README)", file: "README.md", desc: "Index isi folder docs/ — mana yang dipakai, mana arsip", priority: "medium" },
+        { name: "Peta Dokumen (README)", file: "README.md", desc: "Index isi folder docs/ + mulai dari mana per peran. Bingung? Buka ini dulu.", priority: "high" },
       ],
     },
     {
       kategori: "Sistem Data Hari-H (Skor Siswa → CSV DPL)",
       files: [
-        { name: "Panduan Sistem Data", file: "data-system/PANDUAN-SISTEM-DATA.md", desc: "Cara setup Form + Sheet skor siswa → CSV untuk DPL. Baca ini dulu.", priority: "high", forPerson: "Syendhi" },
-        { name: "Script Form + Sheet otomatis (.gs)", file: "data-system/leap2036-build.gs", desc: "Paste ke Apps Script → Run → otomatis bikin Google Form + Sheet skor + Profil 2036 + ekspor CSV", priority: "high", forPerson: "Syendhi" },
-        { name: "Kartu Skor cetak (fallback sinyal mati)", file: "data-system/kartu-skor.html", desc: "Kartu kertas — buka di browser → atur jumlah → print", priority: "medium" },
+        { name: "Panduan Sistem Data", file: "sistem-data/PANDUAN-SISTEM-DATA.md", desc: "Cara setup Form + Sheet skor siswa → CSV untuk DPL. Baca ini dulu.", priority: "high", forPerson: "Syendhi" },
+        { name: "Script Form + Sheet otomatis (.gs)", file: "sistem-data/leap2036-build.gs", desc: "Paste ke Apps Script → Run → otomatis bikin Google Form + Sheet skor + Profil 2036 + ekspor CSV", priority: "high", forPerson: "Syendhi" },
+        { name: "Kartu Skor cetak (fallback sinyal mati)", file: "sistem-data/kartu-skor.html", desc: "Kartu kertas — buka di browser → atur jumlah → print", priority: "medium" },
       ],
     },
     {
-      kategori: "Dokumen Proposal & Materi",
+      kategori: "Workshop LEAP 2036 (Desain & Proposal)",
       files: [
-        { name: "🌟 Workshop LEAP 2036 — Rundown v2 (BACA INI DULU)", file: "LEAP-2036_Modular_v2.md", desc: "Desain workshop TERBARU & terlengkap: 5 modul harian (3 jam/hari) + skenario + sistem data per-siswa + naskah fasilitator. Versi paling update — pakai ini.", priority: "high" },
-        { name: "Proposal Workshop SMA (v3)", file: "Proposal Workshop SMA Kelompok 2 - LEAP 2036-v3.md", desc: "Proposal LEAP 2036 v3 — versi terbaru untuk DPL", priority: "high" },
-        { name: "Desain Lengkap LEAP 2036", file: "Project-Master-LEAP-2036.md", desc: "Deep-design workshop (sumber materi + NotebookLM)", priority: "medium" },
-        { name: "Prompt PPT NotebookLM", file: "NotebookLM-Prompt-PPT-DPL.md", desc: "Prompt untuk generate PPT presentasi ke DPL", priority: "medium" },
-        { name: "Skenario Starter Pack (arsip)", file: "Skenario-Starter-Pack.md", desc: "15+ skenario draft per fase + template Surat 2036 (referensi lama)", priority: "low" },
+        { name: "🌟 Rundown v2 — Desain Lengkap (BACA INI DULU)", file: "workshop/LEAP-2036_Modular_v2.md", desc: "Desain workshop TERBARU & terlengkap: 5 modul harian (3 jam/hari) + skenario + sistem data per-siswa + naskah fasilitator. Versi paling update.", priority: "high" },
+        { name: "Proposal Workshop SMA (v3)", file: "workshop/Proposal-LEAP-2036-v3.md", desc: "Proposal LEAP 2036 v3 — versi terbaru untuk DPL", priority: "high" },
+        { name: "Desain Lengkap (Project Master)", file: "workshop/Project-Master-LEAP-2036.md", desc: "Deep-design workshop (visi, risk, decision log) — sumber NotebookLM", priority: "medium" },
+        { name: "Prompt PPT NotebookLM", file: "workshop/NotebookLM-Prompt-PPT-DPL.md", desc: "Prompt untuk generate PPT presentasi ke DPL", priority: "medium" },
       ],
     },
     {
-      kategori: "Asisten Brief (Per Person)",
+      kategori: "Brief Tim & Komunikasi",
       files: [
-        { name: "Brief untuk Dhevina (Manajemen)", file: "Asisten-Brief_Dhevina.md", desc: "Tugas, script, materi belajar — Lead Fase 1", priority: "high", forPerson: "Dhevina" },
-        { name: "Brief untuk Syendhi (Informatika)", file: "Asisten-Brief_Syendhi.md", desc: "Tugas, setup Google Sheets, materi belajar — Lead teknis", priority: "high", forPerson: "Syendhi" },
+        { name: "Brief untuk Dhevina (Manajemen)", file: "panduan-tim/Brief-Dhevina.md", desc: "Tugas, script, materi belajar — Lead Fase 1", priority: "high", forPerson: "Dhevina" },
+        { name: "Brief untuk Syendhi (Informatika)", file: "panduan-tim/Brief-Syendhi.md", desc: "Tugas + checklist alat. (Setup data → lihat Panduan Sistem Data)", priority: "high", forPerson: "Syendhi" },
+        { name: "Template Pesan WA", file: "panduan-tim/Template-Pesan-WA.md", desc: "Template pesan grup & DM siap copy-paste", priority: "medium" },
       ],
     },
     {
-      kategori: "Master & History",
+      kategori: "Info Program & Master",
       files: [
-        { name: "Catatan Master KKN", file: "Catatan-KKN-STEM-2026.md", desc: "Master info program KKN (timeline, prosedur, kontak)", priority: "medium" },
-        { name: "Progress Brainstorm", file: "Progress-KKN-STEM-2026.md", desc: "Riwayat brainstorm 4 AI + tier list ide", priority: "low" },
-        { name: "Catatan APL/DPL", file: "Catatan APL & DPL.txt", desc: "Update dari APL: jadwal, format proposal, durasi workshop", priority: "high" },
+        { name: "Catatan Master KKN", file: "info-program/Catatan-KKN-STEM-2026.md", desc: "Master info program (timeline, prosedur, rotasi tim, kontak)", priority: "medium" },
+        { name: "Catatan APL/DPL", file: "info-program/Catatan-APL-DPL.txt", desc: "Update dari APL: jadwal, format proposal, durasi workshop", priority: "medium" },
       ],
     },
     {
-      kategori: "Komunikasi",
+      kategori: "Arsip (Referensi Lama)",
       files: [
-        { name: "GMeet Talking Points (Dex)", file: "GMeet-Talking-Points_24-Mei.md", desc: "Script Dex untuk GMeet sharing progress 24 Mei", priority: "medium" },
-        { name: "Template Pesan WA", file: "WA-Message-Template.md", desc: "Template pesan grup & DM siap copy-paste — untuk push update ke tim", priority: "medium" },
+        { name: "Progress Brainstorm 4 AI", file: "arsip/Progress-KKN-STEM-2026.md", desc: "Riwayat brainstorm + tier list ide (historis)", priority: "low" },
+        { name: "Skenario Starter Pack (model lama)", file: "arsip/Skenario-Starter-Pack.md", desc: "Draft skenario v1 — JANGAN acuan terbaru (skor beda dari Rundown v2)", priority: "low" },
       ],
     },
   ],

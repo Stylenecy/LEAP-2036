@@ -5,7 +5,7 @@ Parent protocol auto-loads from `D:\AT Kuliah\CLAUDE.md` (Universal Session Prot
 ## This project — read before acting
 1. **`PROJECT_MASTER.md`** — **canonical STATE** (Vision / Past / Present / Future). Single source of truth for KKN status. Update it as you work; recap here on stop.
 2. **`.agent/AGENT.md`** — local rules (Dex OS). Note: it references `.agent/Dex-Core.md` — that file is **dead/never existed**, ignore it, don't recreate. Canonical state = `PROJECT_MASTER.md` (decided 2026-05-29).
-3. Dated progress / handoff: `docs/Progress-KKN-STEM-2026.md`, `last-progress_*.md`, `docs/Handover-Master.md`.
+3. Doc map / entry point: `docs/README.md`. Dated progress / handoff: `docs/arsip/Progress-KKN-STEM-2026.md`, `last-progress_*.md`, `docs/arsip/Handover-Master_24-Mei.md`.
 
 ## Notes
 - **Stack** (`src/kkn-hub`): Vanilla JS/HTML/CSS, Fuse.js, Gemini API → Vercel (`kknstem.vercel.app`). Git repo.

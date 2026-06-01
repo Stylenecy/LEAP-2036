@@ -42,3 +42,5 @@ docs/_internal/
 *_shot_*.png
 **/_preview_*.html
 **/_test.js
+# Dokumen milik kelompok lain — jangan publish di repo publik (working copy tetap ada)
+docs/referensi/Contoh_Proposal*

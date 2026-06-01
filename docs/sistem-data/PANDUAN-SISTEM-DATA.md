@@ -1,7 +1,7 @@
 # Panduan Sistem Data Per-Siswa — LEAP 2036
 
 > Untuk **operator skor (Syendhi)** + backup Dex. Tujuan: tiap siswa punya skor akhir **Energi · Uang · Mental** + **Profil 2036**, bisa diekspor **CSV** untuk DPL/laporan/skripsi (permintaan DPL).
-> Sumber desain: `docs/LEAP-2036_Modular_v2.md` §3. Angka skor: Bank Skenario (arsip v1 §C). 3 file di folder ini:
+> Sumber desain: `docs/workshop/LEAP-2036_Modular_v2.md` §3. Angka skor: Bank Skenario (`docs/arsip/LPPM-2_Sekolah-A_2hari_v1.md` §C). 3 file di folder ini:
 > - **`leap2036-build.gs`** — script: bikin Form + Sheet + hitung skor + CSV otomatis.
 > - **`kartu-skor.html`** — kartu kertas (fallback kalau sinyal mati).
 > - **`PANDUAN-SISTEM-DATA.md`** — file ini.

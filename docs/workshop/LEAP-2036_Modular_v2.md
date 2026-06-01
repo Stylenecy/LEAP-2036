@@ -60,7 +60,7 @@ Tiap sekolah = **kelas berbeda** → tiap sekolah jalani arc lengkapnya sendiri 
 # SISTEM SKOR PLAIN-LANGUAGE + PENANGKAPAN DATA PER-SISWA
 ## LEAP 2036 — versi padat 3 jam/hari (KKN STEM 2026, Kelompok 2)
 
-> Sumber skenario & ambang profil: `docs/_archive/LPPM-2_Sekolah-A_2hari_v1.md` (arsip) (Bank Skenario F1–F3 §C; aturan klasifikasi §B.2; rumus IFS §B.3; aturan clamp §B.0). Dokumen ini hanya menerjemahkan mekanik itu ke bahasa polos + menambah desain data per-siswa.
+> Sumber skenario & ambang profil: `docs/arsip/LPPM-2_Sekolah-A_2hari_v1.md` (arsip) (Bank Skenario F1–F3 §C; aturan klasifikasi §B.2; rumus IFS §B.3; aturan clamp §B.0). Dokumen ini hanya menerjemahkan mekanik itu ke bahasa polos + menambah desain data per-siswa.
 >
 > **Catatan istilah operator:** istilah rumus Sheet (IFS, SUMIF, SUMIFS, VLOOKUP, COUNTIFS, "kolom bantu") yang muncul di §3 adalah **KHUSUS operator skor (Syendhi)** — **tidak pernah diucapkan ke siswa.** Ke siswa selalu pakai bahasa polos di §1.
 
@@ -216,7 +216,7 @@ Di tab `Skor Siswa`: anggap `E`=Energi, `K`=Uang, `M`=Mental (sudah ter-jepit 0�
 ```
 > Cek dari atas, berhenti di kondisi pertama yang cocok ("yang pertama cocok, menang"). Hasilnya **selalu tepat 1 profil**, sama persis dengan hitungan manual papan tulis. Nama profil di rumus = **nama kanonik §2b** (jangan pakai variasi lain, biar sticker & CSV cocok).
 >
-> ⚠️ **Urutan baris 1 & 2 PENTING (koreksi 1 Juni):** *Pelari Tanpa Rem* dicek **sebelum** *Sukses-tapi-Tumbang*. Kalau dibalik (Sukses dulu), semua kasus Pelari (Uang≥115 **dan** Mental<85) langsung ketelan baris Sukses → profil "Pelari Tanpa Rem" **tak akan pernah keluar** untuk siapa pun (1 dari 7 profil mati). Pelari = kasus lebih spesifik (Energi TINGGI **juga**), jadi wajib dicek lebih dulu. Sudah benar di script `docs/data-system/leap2036-build.gs` + kartu cek §3C.
+> ⚠️ **Urutan baris 1 & 2 PENTING (koreksi 1 Juni):** *Pelari Tanpa Rem* dicek **sebelum** *Sukses-tapi-Tumbang*. Kalau dibalik (Sukses dulu), semua kasus Pelari (Uang≥115 **dan** Mental<85) langsung ketelan baris Sukses → profil "Pelari Tanpa Rem" **tak akan pernah keluar** untuk siapa pun (1 dari 7 profil mati). Pelari = kasus lebih spesifik (Energi TINGGI **juga**), jadi wajib dicek lebih dulu. Sudah benar di script `docs/sistem-data/leap2036-build.gs` + kartu cek §3C.
 
 **Langkah 5 — EKSPOR CSV.**
 Buat tab `EKSPOR` yang menarik kolom final. Lalu `File → Download → Comma-separated values (.csv)`:
@@ -321,7 +321,7 @@ Kartu Kejutan opsional dan berlaku **serempak, sama persis ke seluruh kelas** (b
 ---
 
 ### File terkait
-- Sumber skenario, perubahan poin, & ambang 7-profil: `docs/_archive/LPPM-2_Sekolah-A_2hari_v1.md` (arsip) (Bank Skenario F1.1–F3.2 §C; aturan klasifikasi §B.2; rumus IFS §B.3; aturan jepit/clamp §B.0; F2.4 net +10 §C).
+- Sumber skenario, perubahan poin, & ambang 7-profil: `docs/arsip/LPPM-2_Sekolah-A_2hari_v1.md` (arsip) (Bank Skenario F1.1–F3.2 §C; aturan klasifikasi §B.2; rumus IFS §B.3; aturan jepit/clamp §B.0; F2.4 net +10 §C).
 - State proyek: `PROJECT_MASTER.md`.
 
 ---
@@ -330,7 +330,7 @@ Kartu Kejutan opsional dan berlaku **serempak, sama persis ke seluruh kelas** (b
 
 # SPEC RINGKAS + TIMEBOX — Fitur Day-1 & Reveal (LEAP 2036, versi 3 jam/hari, bahasa polos)
 
-> Sumber konten: `docs/_archive/LPPM-2_Sekolah-A_2hari_v1.md` (arsip) (Bank Skenario, naskah fasilitator §3–§5, klasifikasi profil §B.2/B.3, template Surat §11b, aturan apresiasi §(d)). Di-reuse + disederhanakan bahasanya (poin +/−, bukan "delta").
+> Sumber konten: `docs/arsip/LPPM-2_Sekolah-A_2hari_v1.md` (arsip) (Bank Skenario, naskah fasilitator §3–§5, klasifikasi profil §B.2/B.3, template Surat §11b, aturan apresiasi §(d)). Di-reuse + disederhanakan bahasanya (poin +/−, bukan "delta").
 >
 > **3 sumber daya disebut polos: ENERGI · UANG · MENTAL** (semula Energi/Kapital/Kesehatan Mental). Mulai 100 tiap orang. **Aturan poin: tidak bisa kurang dari 0, tidak bisa lebih dari 200.**
 >
@@ -504,7 +504,7 @@ Ambang polos: **TINGGI = poin ≥ 115 · SEDANG = 85–114 · RENDAH = di bawah 
 - **Cadangan kertas:** "Kartu Skor Pribadi" (kolom: Kode, 5 Nilai, Tipe DISC, Tujuan, lalu tiap ronde tulis A/B + skor berjalan E/U/M, **+ 1 baris "Total akhir Fase 1"**) → dikumpulkan/difoto → input manual ke Sheet untuk CSV.
 - **Narasi skenario yang dibaca ke siswa wajib bebas jargon:** mis. di F1.5 ganti "investasi kecil di reksa dana" → "**sisihkan untuk ditabung & ditumbuhkan pelan-pelan**" (kata "reksa dana/investasi" tidak diucapkan tanpa padanan).
 
-**File sumber load-bearing:** `docs/_archive/LPPM-2_Sekolah-A_2hari_v1.md` (arsip) — Bank Skenario (F1.1–F1.5: F1.5 delta A `E+8/U−12/M+10`, B `E−3/U+15/M−3`; F3.1–F3.2), klasifikasi profil §B.2 + rumus IFS §B.3 (Creative Rebel butuh selisih≥35 **DAN** ≥115 **DAN** <85; Late Bloomer butuh ΔF3≥25 **DAN** TotalF1<290), naskah §3–§5 (Values/DISC/3-Lapis), template Surat §11b, aturan apresiasi §(d) butir 4.
+**File sumber load-bearing:** `docs/arsip/LPPM-2_Sekolah-A_2hari_v1.md` (arsip) — Bank Skenario (F1.1–F1.5: F1.5 delta A `E+8/U−12/M+10`, B `E−3/U+15/M−3`; F3.1–F3.2), klasifikasi profil §B.2 + rumus IFS §B.3 (Creative Rebel butuh selisih≥35 **DAN** ≥115 **DAN** <85; Late Bloomer butuh ΔF3≥25 **DAN** TotalF1<290), naskah §3–§5 (Values/DISC/3-Lapis), template Surat §11b, aturan apresiasi §(d) butir 4.
 
 ---
 
@@ -518,7 +518,7 @@ Ambang polos: **TINGGI = poin ≥ 115 · SEDANG = 85–114 · RENDAH = di bawah 
 > **Bahasa polos wajib** (tidak ada jargon — pakai "perubahan poin +/-", "poin tidak bisa kurang dari 0 / lebih dari 200", "pilih diam-diam", "Sifat/Nilai/Tujuan", "pemanasan gerak").
 > **3 baterai hidup:** ENERGI · UANG · MENTAL (mulai 100 tiap orang).
 > **Data per-siswa:** tiap siswa dapat KODE UNIK (A-01, A-02, ...) di blok skor; mulai ditangkap saat skenario pemanasan. Pilihan rahasia **wajib dikunci sebelum diskusi grup** (ini sumber data pribadi — kalau diisi setelah diskusi, datanya tercemar jadi ikut grup).
-> Sumber skenario di-reuse dari `docs/_archive/LPPM-2_Sekolah-A_2hari_v1.md` (arsip) (Bank Skenario; warm-up dari blok Briefing Mekanik).
+> Sumber skenario di-reuse dari `docs/arsip/LPPM-2_Sekolah-A_2hari_v1.md` (arsip) (Bank Skenario; warm-up dari blok Briefing Mekanik).
 
 ---
 
@@ -570,7 +570,7 @@ Kalau hari berjalan jauh lebih lambat dari rencana, pangkas dengan **urutan ini*
 
 ---
 
-**File sumber load-bearing:** `docs/_archive/LPPM-2_Sekolah-A_2hari_v1.md` (arsip) — warm-up "Begadang nonton vs tidur" (blok Briefing Mekanik, baris 56), 8 Tujuan Hidup (baris 53), naskah Nilai/DISC/3-Lapis (baris 50–52). State proyek: `PROJECT_MASTER.md`.
+**File sumber load-bearing:** `docs/arsip/LPPM-2_Sekolah-A_2hari_v1.md` (arsip) — warm-up "Begadang nonton vs tidur" (blok Briefing Mekanik, baris 56), 8 Tujuan Hidup (baris 53), naskah Nilai/DISC/3-Lapis (baris 50–52). State proyek: `PROJECT_MASTER.md`.
 
 ---
 
@@ -579,7 +579,7 @@ Kalau hari berjalan jauh lebih lambat dari rencana, pangkas dengan **urutan ini*
 
 > **Mulai 09.00 · Total konten 103 menit, selesai 10.43 · sisa ~77 menit cadangan tak terjadwal (jauh di bawah cap 180').**
 > **Tone:** optimistis–eksplorasi. Belum ada badai; ini fondasi keputusan yang konsekuensinya baru "panen" di fase berikutnya.
-> **Sumber skenario & poin +/−:** `docs/_archive/LPPM-2_Sekolah-A_2hari_v1.md` (arsip) §C (Bank Skenario F1.1–F1.5). Bahasa disederhanakan: istilah teknis → poin +/−.
+> **Sumber skenario & poin +/−:** `docs/arsip/LPPM-2_Sekolah-A_2hari_v1.md` (arsip) §C (Bank Skenario F1.1–F1.5). Bahasa disederhanakan: istilah teknis → poin +/−.
 > **3 baterai hidup:** ENERGI · UANG · MENTAL. Tiap siswa mulai dari **100 / 100 / 100**. Aturan paku mati: **poin tidak bisa kurang dari 0 atau lebih dari 200.**
 > **Skenario dipakai (4 terkuat):** F1.1 → F1.3 → F1.4 → F1.5. (F1.2 "Gap Year" = cadangan opsional bila waktu lebih.)
 > **Data per-siswa:** tiap siswa pakai KODE UNIK (A-01, A-02, …) yang sudah dibagikan di Modul Materi (Hari 1). Tiap ronde, tiap siswa pilih A/B **diam-diam (rahasia)** → masuk Google Form/Sheet ATAU ditulis di "Kartu Skor Pribadi". Inilah sumber data pribadi untuk DPL/laporan/skripsi.
@@ -669,7 +669,7 @@ Yang **TIDAK BOLEH** dipangkas dalam kondisi apa pun: pengumuman aturan poin 0�
 # MODUL FASE 2 — KRISIS (2029–2032)
 ## LEAP 2036 — Rundown Menit-per-Menit · KKN STEM 2026, Kelompok 2
 
-> **Sumber konten (reuse):** `docs/_archive/LPPM-2_Sekolah-A_2hari_v1.md` (arsip) — Bank Skenario Fase 2 (F2.1–F2.5), Kartu Kejutan (C.1–C.3), naskah penenangan, naskah transisi krisis, catatan keamanan emosi. Angka perubahan poin disalin dari Bank (sudah diterjemahkan ke bahasa polos). **Bila ada selisih angka, Bank Skenario yang menang.**
+> **Sumber konten (reuse):** `docs/arsip/LPPM-2_Sekolah-A_2hari_v1.md` (arsip) — Bank Skenario Fase 2 (F2.1–F2.5), Kartu Kejutan (C.1–C.3), naskah penenangan, naskah transisi krisis, catatan keamanan emosi. Angka perubahan poin disalin dari Bank (sudah diterjemahkan ke bahasa polos). **Bila ada selisih angka, Bank Skenario yang menang.**
 >
 > **3 baterai disebut polos: ENERGI · UANG · MENTAL.** Semua mulai 100. **Aturan paku mati: poin tidak bisa kurang dari 0, tidak bisa lebih dari 200** (kalau hitungan lewat batas → tulis 0 atau 200).
 >
@@ -720,14 +720,14 @@ Mulai **09.00** → selesai **11.06**. **126 ≤ 180.** Konten murni (tanpa isti
 
 Pangkas dari yang paling aman dulu, jangan sentuh pagar emosi. **Urutan pemangkasan:** (1) **SKIP total Kartu Kejutan** (blok 8, −8'; memang opsional by design). (2) **Potong pleno-share di Refleksi**, sisakan mini-jurnal 2' saja (−7'). (3) **Persingkat istirahat ke 8'** (−4') & potong pemanasan gerak + tayang papan di Pembukaan (−5'). (4) **Tiap skenario: potong diskusi grup ke 2'** dan ceritakan hasil dalam 1 kalimat (−2'/skenario). (5) Bila masih mepet, **turun ke 3 skenario** (buang F2.3 ATAU F2.4 — pertahankan F2.1 "PHK" + F2.2 "keluarga sakit" sebagai inti krisis; F2.4 lebih boleh dikorbankan daripada F2.2 karena F2.2 sudah menyentuh dilema bakti). **JANGAN PERNAH dipangkas:** 3 pagar aman + penenangan Maria (blok 2–3), pengulangan pagar sebelum F2.2/F2.4, standby tim keamanan emosi, mini-jurnal sebagai tempat lepas tegang, dan aturan poin tidak-pernah-minus. **Pilihan rahasia tetap dikunci sebelum diskusi** sekalipun mepet — itu data per-siswa untuk DPL. Dengan semua pangkasan, modul bisa turun ke ~85–95' tanpa merusak inti: tegang, aman, dan **data per-siswa tetap tertangkap tiap skenario** (pilih rahasia → Form/Kartu).
 
-**File sumber load-bearing:** `docs/_archive/LPPM-2_Sekolah-A_2hari_v1.md` (arsip) (Bank Skenario F2.1–F2.5; Kartu Kejutan/Chaos C.1–C.3; naskah penenangan & pagar aman; catatan keamanan emosi).
+**File sumber load-bearing:** `docs/arsip/LPPM-2_Sekolah-A_2hari_v1.md` (arsip) (Bank Skenario F2.1–F2.5; Kartu Kejutan/Chaos C.1–C.3; naskah penenangan & pagar aman; catatan keamanan emosi).
 
 ---
 
 # MODUL FASE 3 — PANEN (2033–2036) · LEAP 2036
 ## Rundown menit-per-menit · 1 hari workshop · versi padat 3 jam (KKN STEM 2026, Kelompok 2)
 
-> **Sumber konten (REUSE):** `docs/_archive/LPPM-2_Sekolah-A_2hari_v1.md` (arsip) — skenario terminal **F3.1 "Tawaran Puncak"** & **F3.2 "Titik Balik 2036"** (§b, baris 537–581), Resolusi Taruhan F2.5 (§a), tangga 7-Profil (§B.2/B.3, ambang 115/85/35-gap, ΔF3≥25), flow reveal (§B.5), papan keragaman (§B.6), template Surat (§11b). Angka perubahan poin diambil persis dari sana, tinggal disebut polos: **"perubahan poin (+/−)"**.
+> **Sumber konten (REUSE):** `docs/arsip/LPPM-2_Sekolah-A_2hari_v1.md` (arsip) — skenario terminal **F3.1 "Tawaran Puncak"** & **F3.2 "Titik Balik 2036"** (§b, baris 537–581), Resolusi Taruhan F2.5 (§a), tangga 7-Profil (§B.2/B.3, ambang 115/85/35-gap, ΔF3≥25), flow reveal (§B.5), papan keragaman (§B.6), template Surat (§11b). Angka perubahan poin diambil persis dari sana, tinggal disebut polos: **"perubahan poin (+/−)"**.
 >
 > **3 poin disebut polos: ENERGI · UANG · MENTAL.** Semua mulai 100 (dibawa dari modul sebelumnya). **Aturan: poin tidak bisa kurang dari 0, tidak bisa lebih dari 200.**
 >
@@ -807,7 +807,7 @@ Pangkas dari yang paling tidak merusak inti ke yang paling penting (jangan perna
 # MODUL FUN DAY (Hari Terakhir) — Rundown Menit-per-Menit
 ## LEAP 2036 — versi padat 3 jam/hari (KKN STEM 2026, Kelompok 2)
 
-> **Sumber konten (reuse, disederhanakan bahasanya):** `docs/_archive/LPPM-2_Sekolah-A_2hari_v1.md` (arsip) — Template Surat 2036 (§11b), skrip Reveal Profil + "papan keragaman" (§12), skrip Surprise Apresiasi (§13), skrip Closing 3-pesan (§14), tabel backup 3-cara (§E).
+> **Sumber konten (reuse, disederhanakan bahasanya):** `docs/arsip/LPPM-2_Sekolah-A_2hari_v1.md` (arsip) — Template Surat 2036 (§11b), skrip Reveal Profil + "papan keragaman" (§12), skrip Surprise Apresiasi (§13), skrip Closing 3-pesan (§14), tabel backup 3-cara (§E).
 >
 > **Posisi modul:** Ini **hari TERAKHIR**, sesudah Modul Fase 3 (skor akhir + reveal profil sudah dihitung & sebagian sudah ditampilkan kemarin). Maka Fun Day **TIDAK menjalankan skenario / pilih-rahasia baru** — data per-siswa sudah lengkap dari fase sebelumnya. Tugas data di sini cuma: **FINALISASI + INPUT/CSV + tampilkan sebaran**. (Lihat baris bertanda **[DATA]**.)
 >
@@ -862,7 +862,7 @@ Pangkas dengan urutan ini: **(1) Game #1 "Tebak Jalur Hidup"** boleh di-skip tot
 - 📊 **Setup data H-1 (Syendhi):** 1 Google Form (kode siswa *dropdown* + ronde + pilihan) → Google Sheet (Tabel Perubahan Poin dari Bank + saldo berjalan jepit 0–200 + kolom TotalF1 + rumus Profil) → tab EKSPOR → CSV. Detail Bagian 1 §3. **Uji 1 kelas dummy** sebelum hari-H. Fallback: cetak Kartu Skor Pribadi 1 lembar/siswa.
 - 🎓 **Peserta Agustus** = kelas 11 & 12 tahun ajaran baru (yang baru naik). Sapaan & contoh disesuaikan.
 - 🧯 **Prinsip anti-gagal:** kalau ada yang gagal (sinyal/waktu), TURUN ke katup aman / backup tanpa-internet — workshop tetap jalan. Sinyal = bonus, bukan syarat.
-- 🗃️ **Sumber skenario lengkap** (narasi + naskah penuh) = arsip `docs/_archive/LPPM-2_Sekolah-A_2hari_v1.md` (versi 4–5 jam, disupersede dokumen ini; poin & skenario sudah disalin ke modul).
+- 🗃️ **Sumber skenario lengkap** (narasi + naskah penuh) = arsip `docs/arsip/LPPM-2_Sekolah-A_2hari_v1.md` (versi 4–5 jam, disupersede dokumen ini; poin & skenario sudah disalin ke modul).
 
 ---
 *LEAP 2036 — Rundown Modular v2 · 31 Mei 2026 · KKN STEM 2026 Kelompok 2. Dibangun via workflow multi-agent (5 modul + 3 auditor adversarial: timing ≤180' / bahasa polos / data per-siswa). Anggaran ≤Rp 500k tanpa makanan dibahas terpisah — lihat `PROJECT_MASTER.md` §8.*

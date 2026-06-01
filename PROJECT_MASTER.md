@@ -1,7 +1,7 @@
 # PROJECT MASTER: KKN UKDW STEM 2026 — Kelompok 2
 
 > **Canonical STATE tracker** untuk SELURUH program KKN (Eyecare + Workshop SMA).
-> Detail desain Workshop SMA ada di **`docs/Project-Master-LEAP-2036.md`** (jangan duplikat di sini — file itu deep-design, file ini state/status).
+> Detail desain Workshop SMA ada di **`docs/workshop/Project-Master-LEAP-2036.md`** (jangan duplikat di sini — file itu deep-design, file ini state/status).
 > **Last synced: 2026-05-30.** Update tiap sesi (Universal Session Protocol).
 
 ---
@@ -26,7 +26,7 @@
 - 👥 Audience Agustus = tahun ajaran baru (peserta kelas 11–12 yang baru naik).
 - 🗣️ **Jargon bikin bingung** (delta/floor/clamp) → ganti bahasa manusia.
 - ⚠️ Random Event Card: Dex ga PD → kemungkinan disederhanakan/opsional.
-- 🎯 Arahan: kurangi kompleksitas, tetap keren + robust + executable. Sumber: `docs/Catatan Bahaya APL.txt`, `docs/Pertimbangan_31-Mei.txt`.
+- 🎯 Arahan: kurangi kompleksitas, tetap keren + robust + executable. Sumber: `docs/_internal/Catatan-Bahaya-APL.txt`, `docs/_internal/Pertimbangan_31-Mei.txt`.
 - ✅ **v2 SELESAI (31 Mei)** → **`docs/LEAP-2036_Modular_v2.md`** (~113k char). 5 modul harian (Materi 150' · Fase1 103' · Fase2 126' · Fase3 118' · FunDay 140' — semua ≤180') + Bagian Skor/Data + Fitur + **2 Config assembly** (A: 5-hari-1-SMA · B: 2-SMA). **Plain-language** (Kamus Istilah) · **data per-siswa → CSV** (Google Form/Sheet + Kartu Skor kertas, req DPL) · katup aman tiap blok · Event Card simpel+opsional · Fun Day non-juara. Workflow gen→audit→fix + cleanup manual. Doc lama diarsip → `docs/_archive/LPPM-2_Sekolah-A_2hari_v1.md`.
 
 **🆕 UPDATE 1 Juni — KKN-HUB v3 (polish + a11y + mobile + first-impression):** Web hub di-overhaul besar (audit 5-lensa workflow → 75 temuan → 12-step plan → implement → adversarial review).
@@ -37,7 +37,10 @@
 - **Bug fixes:** DPL tel: link digit-clean, timeline sort + un-cache, chat race guard + maxOutputTokens 1500 + MAX_TOKENS note, lsSet() private-mode-safe, tugas "KAMU" highlight dari getUser(), dead code removed.
 - **Security:** Gemini key **TETAP client-side** (keputusan Dex — tool sementara, tim gaptek). Dex action (free, opsional): restrict HTTP referrer ke `kknstem.vercel.app/*` di Google AI Studio. Lihat memory `kkn-hub-gemini-key-exposed`.
 - Lulus `node --check` + 4 state di-screenshot-verify (fresh/member × desktop/mobile). Adversarial review: 0 critical/high/medium, 10 low semua di-fix.
-- ✅ **COMMITTED `a4437cb` + DEPLOYED prod (1 Jun) → live di kknstem.vercel.app** (verified serving v3). Deploy via `vercel --prod` (no git remote — Vercel CLI linked).
+- ✅ **COMMITTED `a4437cb` + DEPLOYED prod (1 Jun) → live di kknstem.vercel.app** (verified serving v3). Deploy via `vercel --prod` (Vercel CLI linked).
+- ✅ **`docs/` dirapiin + commit `6815d0e` + redeploy (1 Jun):** canonical di root; `_internal/` (catatan mentah, gitignored, NON-publik); `referensi/` (PDF besar); `_archive/` (versi lama + Ide-Materi); `docs/README.md` index. `.gitignore` exclude `_internal/`/`.agent/`/`settings.local.json` utk repo PUBLIK. Web `data.js`: Dokumen list disinkron + kategori "Sistem Data Hari-H" + banner 1-Jun. Laporan grup Kelompok 2 (format DPL) dibuat.
+- ⏳ **GitHub:** gh CLI terinstall (2.93.0), **belum `gh auth login`** (Dex jalanin sendiri, interaktif) → lalu `gh repo create` + push. Repo = **PUBLIC** (keputusan Dex).
+- ⏳ **Drive:** upload subset team-shareable (`docs/` minus `_internal/`) → paste link Drive ke web (placeholder di halaman Dokumen).
 
 **⏸️ NEXT ACTIONS (urut):**
 1. ✅ DONE (30 Mei) — Reconcile dokumen: PROJECT_MASTER (ini) jadi canonical; LEAP master §2.3 APL confirmed + §7 banner constraint anggaran.
@@ -114,12 +117,16 @@
 | File | Isi | Status |
 |------|-----|--------|
 | **`PROJECT_MASTER.md`** (ini) | Canonical STATE seluruh KKN (Vision/Past/Present/Future + snapshot) | ✅ canonical |
-| `docs/Project-Master-LEAP-2036.md` | Deep-design Workshop LEAP 2036 (v2.0) — sumber NotebookLM | ✅ canonical (workshop) |
-| `docs/Proposal Workshop SMA Kelompok 2 - LEAP 2036-v3.md` | Proposal terbaru (28 Mei) | ✅ latest draft |
-| `docs/LEAP_2036_Strategic_Blueprint.pdf` | Blueprint PDF (export) | referensi |
-| `src/kkn-hub/` | Website + AI assistant (`kknstem.vercel.app`) | live; data.js perlu sync |
-| `last-progress_*.md` | Log sesi ber-tanggal (28-Mei_PPT = transkrip mentah) | histori |
+| **`docs/README.md`** | Peta semua dokumen + "mulai dari mana" per peran (entry point) | ✅ entry point |
+| `docs/workshop/` | Desain & proposal LEAP 2036 (Modular_v2 ⭐, Project-Master, Proposal-v3, NotebookLM, Simulator) | ✅ canonical |
+| `docs/sistem-data/` | Sistem skor siswa hari-H (Apps Script + kartu + panduan) | ✅ |
+| `docs/panduan-tim/` · `docs/info-program/` | Brief per orang + master info program | ✅ |
+| `docs/referensi/` · `docs/arsip/` · `docs/_internal/` 🔒 | Referensi besar · versi lama · catatan privat (non-publik) | — |
+| `src/kkn-hub/` | Website + AI assistant (`kknstem.vercel.app`) | live |
+| `last-progress_*.md` (root, gitignored) | Log sesi mentah | histori |
 | `Dex-Core.md` §13/§18 | Rollup lintas-proyek | cross-project |
+
+> 🗂️ **Struktur docs/ dirapikan 1 Juni** → folder ramah-manusia. Peta lengkap di `docs/README.md`.
 
 > ✅ **Reconcile:** Site `proposalPath` sudah dipoint ke **v3** (canonical proposal). File proposal un-versioned + v1/v2 dibiarkan sebagai arsip (jangan dihapus).
 
@@ -171,7 +178,7 @@
 - [x] ✅ **Rundown Modular v2 (3 jam/hari)** → `docs/LEAP-2036_Modular_v2.md` (31 Mei) — 5 modul + 2 Config assembly (A: 5-hari · B: 2-SMA). Supersede doc Sekolah A 4–5 jam (diarsip `docs/_archive/`).
 - [ ] **Fun Day — penanggung jawab?** Konfirm APL (desain sementara: student-driven + fasilitator ringan).
 - [ ] **Setup + uji data per-siswa** (Google Form/Sheet → CSV Energi/Uang/Mental/Profil, req DPL) — Syendhi, test 1 kelas dummy sebelum hari-H.
-- [ ] **Sinkron `docs/Skenario-Starter-Pack.md`** — taksonomi Profil lama + skenario crypto, tidak sinkron dgn kanonik. Update biar konsisten.
+- [ ] **Sinkron `docs/arsip/Skenario-Starter-Pack.md`** — taksonomi Profil lama + skenario crypto, tidak sinkron dgn kanonik (sudah diarsip 1 Jun). Update biar konsisten kalau dipakai lagi.
 - [ ] **LPPM final** pilih skema 1 vs 2 — tunggu konfirmasi.
 - [ ] **Konfirmasi SMA mitra** (SMA BOPKRI + 1 lagi, masih tentative).
 - [x] ✅ Repoint site proposalPath → v3 (30 Mei).
