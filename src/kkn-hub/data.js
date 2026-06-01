@@ -13,6 +13,27 @@ const KKN = {
   // ══ LATEST UPDATES (push signal — paling baru di atas) ══
   latestUpdates: [
     {
+      date: "2026-05-31",
+      title: "🔄 Workshop Dirombak v2 — Lebih Simpel, 3 Jam/Hari, Tiap Orang Ada Bagian",
+      desc: "Pasca update DPL (waktu cuma ~3 jam/hari), desain workshop dipadatkan & disederhanakan: bahasa polos (3 'baterai hidup': Energi/Uang/Mental), 5 modul harian yang bisa dirakit, plus sistem data per-siswa (permintaan DPL). 👉 Buka 'Proker SMA' untuk ringkasan, 'Tugas Tim' untuk USULAN peran tiap orang, atau 'Dokumen Drive' untuk baca lengkap. Bingung? Tanya AI di halaman 'Cari Info / AI' atau di grup WA.",
+      tag: "PENTING",
+      gotoPage: "tugas",
+    },
+    {
+      date: "2026-05-30",
+      title: "⚠️ Pembekalan KKN II — Constraint Anggaran Baru",
+      desc: "Anggaran workshop SMA dibatasi maks Rp 500.000 + TIDAK boleh ada anggaran makanan/konsumsi. Wajib siapkan backup plan (antisipasi sinyal kelas lemah → local server/offline). Anggaran lama (514k/703k pakai snack) sedang direvisi.",
+      tag: "PENTING",
+      gotoPage: "proker",
+    },
+    {
+      date: "2026-05-28",
+      title: "✅ Presentasi DPL Selesai — Desain LEAP 2036 Final (v2.0)",
+      desc: "Proposal LEAP 2036 sudah dipresentasikan ke DPL. Desain final di-lock: model HYBRID (silent vote + group discuss + jurnal refleksi), NO juara (parallel journeys per goal hidup), 2 skema pelaksanaan LPPM (5×1 hari ATAU split 2+3 hari). Fokus berikutnya: sempurnakan skema 2 (terutama Sekolah A 2 hari).",
+      tag: "DECISION",
+      gotoPage: "proker",
+    },
+    {
       date: "2026-05-24",
       title: "📂 Paket Lengkap Handover Tersedia",
       desc: "Asisten brief untuk Dhevina & Syendhi, skenario starter pack 15+ skenario, handover master, WA template — semua siap. Cek halaman Dokumen Drive.",
@@ -29,7 +50,7 @@ const KKN = {
     {
       date: "2026-05-24",
       title: "Halaman Tugas Tim Tersedia",
-      desc: "Tugas spesifik per anggota sudah dibreakdown. Cek bagianmu di halaman Tugas Tim.",
+      desc: "Tugas spesifik per anggota sudah dibreakdown. Lihat bagian masing-masing di halaman Tugas Tim.",
       tag: "NEW",
       gotoPage: "tugas",
     },
@@ -44,6 +65,34 @@ const KKN = {
 
   // ══ DECISION LOG (keputusan yang sudah fix) ══
   decisions: [
+    {
+      date: "2026-05-28",
+      topic: "Model Partisipasi Workshop",
+      decision: "HYBRID — kelompok untuk diskusi, silent individual vote untuk keputusan, jurnal refleksi individu tiap hari.",
+      reason: "Preserve personal agency + benefit peer learning + momen self-awareness ('aku silent vote A, tapi grup pilih B — kenapa aku ngalah?').",
+      status: "FIXED",
+    },
+    {
+      date: "2026-05-28",
+      topic: "Sistem Reward — NO Juara",
+      decision: "Tidak ada pemenang (individu maupun grup). Tiap kelompok punya goal hidup berbeda = parallel journeys, bukan competing teams. Hanya Surprise Apresiasi non-ranking untuk volunteer sharing.",
+      reason: "Workshop simulasi hidup yang punya 'pemenang' = kontradiksi filosofis (seakan ada 'hidup terbaik'). Core teaching justru: tiap pola keputusan punya trade-off.",
+      status: "FIXED",
+    },
+    {
+      date: "2026-05-28",
+      topic: "Skema Pelaksanaan (update LPPM)",
+      decision: "Siapkan DUA skema: LPPM-1 (5 hari × 1 SMA, 1 kelas) DAN LPPM-2 (split 2 hari Sekolah A + 3 hari Sekolah B). Develop LPPM-2 dulu; LPPM-1 = subset.",
+      reason: "LPPM clarify '1 kelompok = 1 kelas' = pendampingan multi-hari, bukan multi-SMA. Lokasi/bentuk final masih dikonfirmasi → siapkan keduanya.",
+      status: "FIXED",
+    },
+    {
+      date: "2026-05-28",
+      topic: "Group Formation & Day 1 Tools",
+      decision: "Kelompok dibentuk by Goal Hidup (8 pilihan, cap maks 5/grup). Day 1 pakai Values Exercise (5 Non-Negotiables + Card Sort) + DISC Assessment.",
+      reason: "Tim nyata terbentuk dari shared purpose, bukan shared personality. 3 layer identity (Tendency/Values/Goals) = teaching moment terdalam.",
+      status: "FIXED",
+    },
     {
       date: "2026-05-24",
       topic: "Tema Workshop SMA",
@@ -81,17 +130,18 @@ const KKN = {
     judul: "Workshop Simulasi Hidup 10 Tahun: Keputusanmu Hari Ini, Hidupmu 2036",
     brand: "LEAP 2036",
     brandExpand: "Life Experience & Action Planning",
-    tagline: "Black Mirror versi SMA — jalani 10 tahun keputusanmu dalam beberapa jam",
-    targetSiswa: "Siswa SMA Kelas 11 & 12",
-    durasi: "4–6 jam per service day (sesuai kesediaan SMA)",
-    metode: "Experiential Learning — Simulasi berbasis kartu keputusan",
-    proposalPath: "docs/Proposal-Workshop-SMA-Kelompok2.md",
+    tagline: "Hidupi 10 tahun keputusanmu — disimulasikan dalam beberapa hari, dengan bahasa simpel",
+    targetSiswa: "Siswa SMA Kelas 11 & 12 (Agustus = tahun ajaran baru)",
+    durasi: "v2: ~3 jam/hari (09.00–11.30/12.00). 5 modul harian yang bisa dirakit jadi 5-hari-1-SMA atau 2-SMA.",
+    metode: "Experiential learning — simulasi kartu keputusan. Tiap siswa punya 3 'baterai hidup': Energi · Uang · Mental. Bahasa polos (tanpa jargon), skor tiap siswa terekam untuk data DPL.",
+    proposalPath: "docs/LEAP-2036_Modular_v2.md",
     visi: "Memaksa siswa menyadari bahwa keputusan 'kecil' hari ini adalah *compound interest* bagi hidup mereka 10 tahun ke depan.",
     tujuan: [
       "Meningkatkan kesadaran siswa SMA tentang dampak jangka panjang dari pola keputusan harian mereka.",
       "Mengembangkan kemampuan pengambilan keputusan yang reflektif, sadar nilai, dan berorientasi masa depan.",
       "Membangun future literacy — kemampuan membayangkan, merencanakan, dan mempersiapkan diri untuk masa depan secara realistis.",
       "Mendorong siswa mengidentifikasi core values yang ingin mereka jadikan kompas hidup.",
+      "Mengembangkan kerja sama tim lintas-kepribadian via struktur kelompok dengan goal hidup berbeda.",
     ],
     mekanisme: {
       sumberDaya: ["Energi (100)", "Kapital/Uang (100)", "Kesehatan Mental (100)"],
@@ -100,27 +150,24 @@ const KKN = {
         { name: "Fase 2 — Krisis", years: "2029–2032", focus: "Karier, Relasi & Badai Pertama" },
         { name: "Fase 3 — Panen", years: "2033–2036", focus: "Konsekuensi & Refleksi" },
       ],
-      twist: "'Surat dari Diri 2036' — siswa menulis surat dari versi masa depan diri mereka berdasarkan pola keputusan selama simulasi.",
+      twist: "'Surat dari Diri 2036' — tiap siswa menulis surat dari versi masa depan dirinya berdasarkan pola keputusannya. Di akhir: tiap siswa & kelompok dapat 'Profil 2036'-nya (ditampilkan sebagai papan keragaman, BUKAN peringkat) + Surprise Apresiasi (semua dapat, bukan juara). Skor tiap siswa terekam → bisa diekspor jadi data (CSV) untuk DPL/laporan.",
     },
     rundown5h: [
-      { time: "08.00–08.30", duration: "30m", segmen: "Opening & Perkenalan", lead: "Semua" },
-      { time: "08.30–09.00", duration: "30m", segmen: "Briefing Mekanisme", lead: "Dex" },
-      { time: "09.00–10.00", duration: "60m", segmen: "FASE 1: Fondasi", lead: "Dhevina + Dex" },
-      { time: "10.00–10.15", duration: "15m", segmen: "Break", lead: "—" },
-      { time: "10.15–11.30", duration: "75m", segmen: "FASE 2: Krisis", lead: "Benediktus + Syendhi" },
-      { time: "11.30–12.15", duration: "45m", segmen: "FASE 3: Panen", lead: "Semua" },
-      { time: "12.15–12.45", duration: "30m", segmen: "Debrief & Refleksi", lead: "Dex" },
-      { time: "12.45–13.15", duration: "30m", segmen: "Surat dari Diri 2036", lead: "Maria + Theana" },
-      { time: "13.15–13.30", duration: "15m", segmen: "Closing & Dokumentasi", lead: "Semua" },
+      { time: "Modul 1", duration: "≤3 jam", segmen: "MATERI — kenalan + Nilai + DISC + 3-Lapis-Diri + bentuk kelompok (Goal Hidup) + briefing + 1 pemanasan", lead: "Dex + Semua" },
+      { time: "Modul 2", duration: "≤3 jam", segmen: "FASE 1 Fondasi (2026–2028) — 4 keputusan awal (sekolah/karier/uang) + refleksi", lead: "Dhevina (Lead)" },
+      { time: "Modul 3", duration: "≤3 jam", segmen: "FASE 2 Krisis (2029–2032) — keputusan badai + kartu kejutan (opsional) + keamanan emosi", lead: "Benediktus (Lead) + Maria (emosi)" },
+      { time: "Modul 4", duration: "≤3 jam", segmen: "FASE 3 Panen (2033–2036) — hitung skor + reveal Profil 2036 + mulai Surat 2036", lead: "Dex + Syendhi (data)" },
+      { time: "Modul 5", duration: "≤3 jam", segmen: "FUN DAY — selesai Surat + games + galeri + Surprise Apresiasi + foto (digerakkan siswa)", lead: "Semua + Theana (dok)" },
     ],
     sumberDayaAwal: { energi: 100, kapital: 100, mental: 100 },
     profil2036: [
-      { emoji: "⚡", name: "The Burnout Achiever", desc: "Karier tinggi, mental hancur — sukses tapi exhausted" },
-      { emoji: "💚", name: "The Balanced Builder", desc: "Stabil di semua aspek — slow but sustainable" },
-      { emoji: "🌊", name: "The Late Bloomer", desc: "Sempat krisis, bangkit di fase akhir" },
-      { emoji: "💡", name: "The Creative Rebel", desc: "Jalur tidak konvensional, impact besar" },
-      { emoji: "🔥", name: "The Survivor", desc: "Selamat dari banyak crisis, resilient" },
-      { emoji: "🦅", name: "The Visionary", desc: "Risk-taker yang berhasil — semua aspek tinggi" },
+      { emoji: "💚", name: "The Balanced Builder", desc: "3 modal stabil menengah-tinggi — tidak menonjol di satu sisi" },
+      { emoji: "⚡", name: "The Burnout Achiever", desc: "Kapital tinggi, Energi & Mental rendah — sukses karier tapi tubuh & mental rusak" },
+      { emoji: "🌊", name: "The Late Bloomer", desc: "Krisis di fase 1–2, bangkit di fase 3 — kehilangan momentum awal" },
+      { emoji: "💡", name: "The Creative Rebel", desc: "Jalur tidak konvensional, dampak besar — risiko tinggi, tidak linear" },
+      { emoji: "🧘", name: "The Steady Sage", desc: "Kesehatan Mental tinggi, modal lain modest — hidup tenang, ambisi terbatas" },
+      { emoji: "🔥", name: "The Hustler Maverick", desc: "Energi & Kapital tinggi, Mental volatile — eksploitasi diri demi target" },
+      { emoji: "🧭", name: "The Reflective Wanderer", desc: "Eksplorasi tanpa akumulasi besar — pengalaman kaya, stabilitas rendah" },
     ],
   },
 
@@ -136,7 +183,8 @@ const KKN = {
       kategori: "Dokumen Proposal & Materi",
       files: [
         { name: "Proposal Workshop SMA", file: "Proposal-Workshop-SMA-Kelompok2.md", desc: "Proposal LEAP 2036 lengkap untuk DPL", priority: "high" },
-        { name: "Skenario Starter Pack", file: "Skenario-Starter-Pack.md", desc: "15+ skenario draft per fase + template Surat 2036", priority: "high" },
+        { name: "🌟 Workshop LEAP 2036 — Rundown v2 (BACA INI DULU)", file: "LEAP-2036_Modular_v2.md", desc: "Desain workshop TERBARU & terlengkap: 5 modul harian (3 jam/hari) + skenario + sistem data per-siswa + naskah fasilitator. Versi paling update — pakai ini.", priority: "high" },
+        { name: "Skenario Starter Pack (arsip)", file: "Skenario-Starter-Pack.md", desc: "15+ skenario draft per fase + template Surat 2036 (referensi lama)", priority: "low" },
       ],
     },
     {
@@ -170,54 +218,54 @@ const KKN = {
       prodi: "Sistem Informasi",
       emoji: "⚡",
       color: "cyan",
-      perWorkshop: ["MC utama / koordinator hari-H", "Sistem skor live (Google Sheets dashboard)", "Briefing mekanisme di pembukaan", "Lead debrief & refleksi sesi"],
-      preWorkshop: ["Maintain KKN-HUB website", "Finalisasi proposal & PPT untuk DPL", "Decision matrix (skenario per fase)", "Setup Google Form data collection"],
-      status: "ACTIVE",
-    },
-    {
-      anggota: "Syendhi Reswara S.",
-      prodi: "Informatika",
-      emoji: "💻",
-      color: "purple",
-      perWorkshop: ["Co-lead Fase 2 (Krisis)", "Operator dashboard skor live di proyektor", "Backup teknis (proyektor, audio, koneksi)"],
-      preWorkshop: ["Setup Google Sheets template scoring system", "Test alur teknis sebelum hari-H"],
-      status: "PENDING — minta konfirmasi",
+      perWorkshop: ["MC & koordinator hari-H (perekat acara)", "Briefing aturan main / mekanik simulasi", "Bridge Talk '3-Lapis-Diri' (Sifat–Nilai–Tujuan)", "Pimpin reveal Profil 2036 & penutup"],
+      preWorkshop: ["Rakit & rawat KKN-HUB + dokumen workshop", "Susun rundown final (5 modul) + materi", "Bantu Syendhi siapkan template sistem data"],
+      status: "Koordinator",
     },
     {
       anggota: "Dhevina Putri Agustya",
       prodi: "Manajemen",
       emoji: "📊",
       color: "orange",
-      perWorkshop: ["Lead Fase 1 (Fondasi) — skenario finansial & karier awal", "Banker event di simulasi", "Bantu hitung modal Kapital/Uang siswa"],
-      preWorkshop: ["Buat 5-7 skenario finansial untuk Fase 1", "Riset insight finansial sederhana untuk briefing"],
-      status: "PENDING — minta konfirmasi",
+      perWorkshop: ["LEAD Modul Fase 1 (Fondasi) — pandu keputusan finansial & karier awal", "Banker simulasi (bantu atur poin Uang)"],
+      preWorkshop: ["Validasi 4 skenario Fase 1 dari sisi finansial (masuk akal & relatable?)", "Siapkan 1 insight finansial singkat untuk briefing"],
+      status: "Usulan — minta konfirmasi",
     },
     {
       anggota: "Benediktus Satria T.",
       prodi: "Kedokteran",
       emoji: "🩺",
       color: "green",
-      perWorkshop: ["Lead Fase 2 (Krisis) — handle burnout & krisis kesehatan event", "Brief insight medis tentang stres & mental health"],
-      preWorkshop: ["Buat 5-7 skenario kesehatan untuk Fase 2", "Siapkan brief singkat soal burnout & sleep debt"],
-      status: "PENDING — minta konfirmasi",
+      perWorkshop: ["LEAD Modul Fase 2 (Krisis) — pandu keputusan badai (burnout, sakit, relasi)", "Brief medis singkat: stres/burnout (1–2 menit)"],
+      preWorkshop: ["⭐ KONFIRMASI (butuh sudut Kedokteran): cek skenario Fase 2 sisi kesehatan — realistis & aman secara emosi?", "Siapkan 1 brief singkat soal stres/burnout/kurang tidur"],
+      status: "Usulan — minta konfirmasi",
     },
     {
       anggota: "Maria Nadira Dosinaen",
       prodi: "Kedokteran",
       emoji: "🩺",
       color: "green",
-      perWorkshop: ["Co-lead segmen 'Surat dari Diri 2036'", "Fasilitator kelompok kecil", "Emotional support protocol jika ada siswa terdampak"],
-      preWorkshop: ["Buat template 'Surat dari Diri 2036'", "Riset protokol emotional safety untuk experiential learning"],
-      status: "PENDING — minta konfirmasi",
+      perWorkshop: ["LEAD Keamanan Emosi — standby saat Fase 2 (skenario berat)", "Co-lead segmen 'Surat dari Diri 2036'"],
+      preWorkshop: ["⭐ KONFIRMASI (butuh sudut Kedokteran): susun protokol aman sederhana kalau ada siswa terdampak emosi", "Bantu pastikan bahasa skenario berat tetap aman untuk siswa SMA"],
+      status: "Usulan — minta konfirmasi",
+    },
+    {
+      anggota: "Syendhi Reswara S.",
+      prodi: "Informatika",
+      emoji: "💻",
+      color: "purple",
+      perWorkshop: ["OPERATOR Data & Skor — jalankan Google Form/Sheet, pastikan skor tiap siswa kerekam → CSV untuk DPL", "Backup teknis (proyektor, koneksi, papan tulis kalau sinyal mati)"],
+      preWorkshop: ["Setup + uji sistem data per-siswa (template dibantu Dex — tinggal pasang)", "Test alur 1 kelas dummy sebelum hari-H"],
+      status: "Usulan — minta konfirmasi",
     },
     {
       anggota: "Theana Amabel K.",
       prodi: "Kedokteran",
       emoji: "🩺",
       color: "green",
-      perWorkshop: ["Co-lead segmen 'Surat dari Diri 2036'", "Fasilitator kelompok kecil", "Dokumentasi foto/video selama workshop"],
-      preWorkshop: ["Bantu Maria buat template Surat 2036", "Siapkan checklist dokumentasi"],
-      status: "PENDING — minta konfirmasi",
+      perWorkshop: ["Dokumentasi foto/video (santai & fleksibel)", "Bantu galeri di Fun Day"],
+      preWorkshop: ["Desain Kartu Skor + sticker + sertifikat — template dibantu AI/Dex, tinggal finalisasi", "(Lagi magang → beban dibuat paling ringan & fleksibel; ambil yang sempat)"],
+      status: "Usulan — fleksibel (magang)",
     },
   ],
 
@@ -231,7 +279,7 @@ const KKN = {
   ],
 
   contacts: [
-    { role: "DPL", nama: "dr. Loury Priiskila, M.Biomed.", phone: "628139070-9672", phoneDisplay: "+62 813-9070-9672", note: "Dosen Pembimbing Lapangan" },
+    { role: "DPL", nama: "dr. Loury Priiskila, M.Biomed.", phone: "6281390709672", phoneDisplay: "+62 813-9070-9672", note: "Dosen Pembimbing Lapangan" },
     { role: "APL 1", nama: "Eleonora Bintang Dahayu P", phone: "6285817756217", phoneDisplay: "+62 858-1775-6217", note: "Asisten Pembimbing Lapangan" },
     { role: "APL 2", nama: "Carolus Yasser Rombebunga", phone: "6285254253035", phoneDisplay: "+62 852-5425-3035", note: "Asisten Pembimbing Lapangan" },
   ],
@@ -406,13 +454,13 @@ const KKN = {
   ],
 
   proker: {
-    status: "brainstorm",
-    lastUpdate: "2026-05-19",
+    status: "archived",
+    lastUpdate: "2026-05-28",
     openQuestions: [
-      "Berapa sesi yang tersedia untuk workshop SMA? (1 atau 2 sesi per sekolah?)",
-      "Ada constraint tema dari DPL/LPPM? Misal harus berkaitan dengan kesehatan atau STEM?",
-      "Data collection untuk skripsi — perlu approval formal LPPM, atau cukup izin DPL?",
-      "Lokasi SMA mana yang sudah fixed? Penting untuk planning logistik.",
+      "✅ TERJAWAB — Berapa hari/sesi? → Multi-hari: 5 hari (LPPM-1) atau split 2+3 hari (LPPM-2), 1 kelompok mendampingi 1 kelas.",
+      "✅ TERJAWAB — Constraint tema? → Workshop softskill bebas; LEAP 2036 dipilih sebagai komplemen 'penglihatan masa depan' vs SO Eyecare 'penglihatan fisik'.",
+      "✅ TERJAWAB — Data collection skripsi? → Lewat instrumen workshop (pre/post-test, reflection, Profil 2036) dengan consent; koordinasi DPL/LPPM.",
+      "⏳ PARSIAL — Lokasi SMA? → Tentative SMA BOPKRI + 1 lagi; final menunggu konfirmasi LPPM.",
     ],
     rekomendasiKombinasi: [
       {
@@ -447,7 +495,7 @@ const KKN = {
           manajemen: { who: "Dhevina", desc: "Banker + market maker: atur supply/demand token, manipulasi market sesuai skenario (jual 'validasi murah' dengan konsekuensi tersembunyi). Ini peran paling central — Manajemen shine paling kuat di sini." },
           kedokteran: { who: "Benediktus · Maria · Theana", desc: "Regulator Kewarasan: potong poin kesehatan mental siswa saat mereka over-invest di validasi sosial. Di akhir sesi, berikan brief singkat dampak psikologis validasi sosial berlebihan (cortisol, anxiety, burnout)." },
           informatika: { who: "Syendhi", desc: "Dashboard bursa live di proyektor — bisa Google Sheets update real-time. Juga jelasin momen 'Algorithmic Crash' dari sisi teknis: inilah yang sebenarnya terjadi di algoritma medsos setiap hari." },
-          si: { who: "Dex (kamu)", desc: "System designer + data collector: rancang mekanisme bursa, setup sistem token, collect data anonim tentang keputusan siswa (risk-averse vs FOMO) untuk laporan KKN atau skripsi." },
+          si: { who: "Dex", desc: "System designer + data collector: rancang mekanisme bursa, setup sistem token, collect data anonim tentang keputusan siswa (risk-averse vs FOMO) untuk laporan KKN atau skripsi." },
         },
         pros: [
           "Paling anti-mainstream dari semua ide — belum ada SMA di Indonesia yang punya workshop seperti ini",
@@ -480,7 +528,7 @@ const KKN = {
           kedokteran: { who: "Benediktus · Maria · Theana", desc: "LEAD ROLE: brief tentang hubungan screen time → miopi fisik, dopamin → anxiety, sleep deprivation → kognisi. Kuasai sesi pembuka dan penutup. Ini adalah momen paling natural FK shine di luar SO Eyecare." },
           manajemen: { who: "Dhevina", desc: "ROI Hidup: bantu siswa kalkulasi kebiasaan buruk sebagai 'hutang jangka panjang' vs kebiasaan baik sebagai 'investasi compound'. Frame semuanya dalam bahasa finansial yang konkret." },
           informatika: { who: "Syendhi", desc: "Jelasin bagaimana algoritma medsos dirancang untuk maximize dopamin hits — dan kenapa itu merugikan jangka panjang. Boleh demo singkat data screen time dari settings HP." },
-          si: { who: "Dex (kamu)", desc: "Design mekanik 'Future Blind Auction' + setup collect data anonim via Google Form dalam sesi. Data: habits digital terburuk siswa, goals terbesar, apa yang mereka pilih untuk sacrifice." },
+          si: { who: "Dex", desc: "Design mekanik 'Future Blind Auction' + setup collect data anonim via Google Form dalam sesi. Data: habits digital terburuk siswa, goals terbesar, apa yang mereka pilih untuk sacrifice." },
         },
         pros: [
           "SATU-SATUNYA ide yang terhubung langsung ke SO Eyecare — narrative arc 'penglihatan fisik → penglihatan masa depan' sangat cohesive",
@@ -512,7 +560,7 @@ const KKN = {
           kedokteran: { who: "Benediktus · Maria · Theana", desc: "Kurator health events dalam simulasi: burnout card, anxiety event, sleep deprivation consequences. Juga stand by sebagai support kalau ada siswa yang terdampak emosional — protocol harus disiapkan sebelumnya." },
           manajemen: { who: "Dhevina", desc: "Kurator financial events: hutang pendidikan, gaji vs gaya hidup, sunk cost fallacy, keputusan investasi impulsif. Narasikan konsekuensi finansial dari tiap pilihan dengan jelas." },
           informatika: { who: "Syendhi", desc: "Sistem scoring + randomizer: bisa pakai dadu, kartu, atau simple spreadsheet. Pastikan mekanik randomizer berjalan smooth agar tidak ada downtime selama simulasi." },
-          si: { who: "Dex (kamu)", desc: "Dashboard visualisasi state tiap pemain di proyektor. Desain sistem 'Surat dari Diri 2036': kumpulkan input keputusan siswa dan generate narasi personalised per surat (bisa manual atau AI-assisted)." },
+          si: { who: "Dex", desc: "Dashboard visualisasi state tiap pemain di proyektor. Desain sistem 'Surat dari Diri 2036': kumpulkan input keputusan siswa dan generate narasi personalised per surat (bisa manual atau AI-assisted)." },
         },
         pros: [
           "Paling emotionally impactful dari semua ide — 'Surat dari Diri 2036' adalah twist yang genuinely genius",
@@ -543,7 +591,7 @@ const KKN = {
         sesiIdeal: 1,
         roles: {
           informatika: { who: "Syendhi", desc: "STAR ROLE: jelasin cara algoritma content recommendation bekerja (collaborative filtering, engagement loop, echo chamber). Demo langsung kalau bisa — tunjukkan 1 interaction = 1 sinyal ke algoritma." },
-          si: { who: "Dex (kamu)", desc: "Live polling + data visualisasi di proyektor (Mentimeter, Slido, atau Google Forms). Aggregate jawaban anonim siswa → tunjukkan pattern kolektif real-time." },
+          si: { who: "Dex", desc: "Live polling + data visualisasi di proyektor (Mentimeter, Slido, atau Google Forms). Aggregate jawaban anonim siswa → tunjukkan pattern kolektif real-time." },
           manajemen: { who: "Dhevina", desc: "Attention economy: perhatian siswa adalah produk yang dijual ke pengiklan. Jelasin model bisnis medsos dalam bahasa yang konkret dan tidak abstrak." },
           kedokteran: { who: "Benediktus · Maria · Theana", desc: "Dampak biologis: brief tentang dopamin, serotonin, cortisol dalam loop medsos — kecemasan, gangguan tidur, FOMO dari perspektif neuroscience yang accessible." },
         },
@@ -574,7 +622,7 @@ const KKN = {
         sesiIdeal: 1,
         roles: {
           informatika: { who: "Syendhi", desc: "STAR ROLE: lead demo OSINT (Google Dorks, reverse image search, public profile analysis). Perlu genuinely bisa demo teknik OSINT basic. Kalau demo ini gagal atau awkward, impact seluruh sesi hilang." },
-          si: { who: "Dex (kamu)", desc: "Co-investigator: bantu Syendhi saat demo live. Setup sistem informed consent untuk siswa relawan + collect insights dari diskusi sebagai data laporan." },
+          si: { who: "Dex", desc: "Co-investigator: bantu Syendhi saat demo live. Setup sistem informed consent untuk siswa relawan + collect insights dari diskusi sebagai data laporan." },
           manajemen: { who: "Dhevina", desc: "Bedah 'personal brand' ketiga kandidat dari perspektif bisnis/HR: kalau kamu HRD, profil mana yang kamu hire dan kenapa? Apa yang recruiter pertama kali lihat?" },
           kedokteran: { who: "Benediktus · Maria · Theana", desc: "Aspek psikologis: motivasi di balik oversharing di medsos, digital narcissism, anxiety terkait personal branding yang berlebihan." },
         },
@@ -608,7 +656,7 @@ const KKN = {
           kedokteran: { who: "Benediktus · Maria · Theana", desc: "Health Resource Manager: kelola 'stamina points' tiap tim. Kalau stamina habis = tim tersebut 'terinfeksi'. Brief tentang burnout sebagai ancaman karir nyata di balik gameplay." },
           manajemen: { who: "Dhevina", desc: "Resource allocation + negosiasi: distribusi 'survival resources' (koneksi, modal, waktu) antar tim, kelola trading dan deal." },
           informatika: { who: "Syendhi", desc: "Technology challenges: tim bisa unlock resource tambahan kalau bisa solve tech problem sederhana. Track infection spreading." },
-          si: { who: "Dex (kamu)", desc: "Game master: track semua status tim di proyektor, timing seluruh sesi, dan pastikan simulasi berjalan smooth. Optional: scoring system sederhana." },
+          si: { who: "Dex", desc: "Game master: track semua status tim di proyektor, timing seluruh sesi, dan pastikan simulasi berjalan smooth. Optional: scoring system sederhana." },
         },
         pros: [
           "Paling fun secara energi dari semua ide — gamified sepenuhnya, tidak ada momen membosankan",
@@ -639,7 +687,7 @@ const KKN = {
           kedokteran: { who: "Benediktus · Maria · Theana", desc: "Open dan close sesi dari perspektif psikologis: brief tentang fear of failure, perfectionism culture di pendidikan Indonesia, dan cara process grief of unmet expectations. Stand by untuk emotional spillover." },
           manajemen: { who: "Dhevina", desc: "Reframe kegagalan: 'gagal = ROI negatif yang bisa di-redirect'. Berikan contoh konkret pivot karir yang berhasil dari kegagalan awal — bukan motivasi klise, tapi data nyata." },
           informatika: { who: "Syendhi", desc: "Setup scheduled email system: bantu siswa set Google Forms + email otomatis yang akan terkirim 3 bulan kemudian. Mungkin perlu demo singkat cara setup-nya." },
-          si: { who: "Dex (kamu)", desc: "Dokumentasi sesi + optional: collect tema umum dari surat (anonim) untuk insight tentang ketakutan terbesar siswa SMA 2026 — data unik untuk laporan." },
+          si: { who: "Dex", desc: "Dokumentasi sesi + optional: collect tema umum dari surat (anonim) untuk insight tentang ketakutan terbesar siswa SMA 2026 — data unik untuk laporan." },
         },
         pros: [
           "Paling emotionally unique dari semua ide — tidak ada workshop SMA yang seperti ini",
@@ -669,7 +717,7 @@ const KKN = {
         sesiIdeal: 1,
         roles: {
           informatika: { who: "Syendhi", desc: "Co-juri teknis + brief awal: apa itu prompt, kenapa kata-kata yang tepat menghasilkan output sangat berbeda. Jelasin dari perspektif teknis cara AI language model bekerja." },
-          si: { who: "Dex (kamu)", desc: "Juri teknis utama + setup tools. Pilih platform AI yang accessible untuk semua (Gemini free tier). Desain rubrik penilaian yang objektif dan fair sebelum sesi." },
+          si: { who: "Dex", desc: "Juri teknis utama + setup tools. Pilih platform AI yang accessible untuk semua (Gemini free tier). Desain rubrik penilaian yang objektif dan fair sebelum sesi." },
           kedokteran: { who: "Benediktus · Maria · Theana", desc: "Juri konten: apakah output AI akurat dan relevan secara kesehatan? Konteks SO Eyecare bisa jadi tema task ('buat kampanye kesehatan mata untuk remaja')" },
           manajemen: { who: "Dhevina", desc: "Juri bisnis: apakah output bisa diaplikasikan nyata? Aspek persuasiveness dan market fit dari konten yang dihasilkan AI." },
         },
@@ -702,7 +750,7 @@ const KKN = {
           kedokteran: { who: "Benediktus · Maria · Theana", desc: "LEAD ROLE: neurobiologi impulsivitas dan pengambilan keputusan di bawah tekanan sosial. Brief: apa yang terjadi di otak saat seseorang 'ikut-ikutan' vs saat resist peer pressure." },
           informatika: { who: "Syendhi", desc: "QR code voting system real-time — pakai Mentimeter atau Slido untuk voting anonim yang aggregate live di proyektor." },
           manajemen: { who: "Dhevina", desc: "Decision theory: sunk cost fallacy dalam keputusan impulsif, mob mentality dari sisi game theory, kenapa rational decision-making breakdown dalam situasi sosial." },
-          si: { who: "Dex (kamu)", desc: "Desain rekonstruksi kasus (riset kasus nyata atau buat kasus fiktif yang believable). Collect data voting untuk insight laporan." },
+          si: { who: "Dex", desc: "Desain rekonstruksi kasus (riset kasus nyata atau buat kasus fiktif yang believable). Collect data voting untuk insight laporan." },
         },
         pros: [
           "Hyper-relevan lokal Yogyakarta — tidak ada workshop yang pernah ada seperti ini",
@@ -732,7 +780,7 @@ const KKN = {
         sesiIdeal: 1,
         roles: {
           informatika: { who: "Syendhi", desc: "Jelasin technical landscape: AI apa yang sudah replace pekerjaan apa, dan kenapa secara teknis. Data konkret, bukan spekulasi atau fear-mongering." },
-          si: { who: "Dex (kamu)", desc: "Demo live 'AI assessment': masukkan profil siswa ke AI, tunjukkan outputnya di proyektor. Collect data anonim tentang ketakutan karir siswa." },
+          si: { who: "Dex", desc: "Demo live 'AI assessment': masukkan profil siswa ke AI, tunjukkan outputnya di proyektor. Collect data anonim tentang ketakutan karir siswa." },
           manajemen: { who: "Dhevina", desc: "Career strategy: skills economy, cara re-skill/up-skill, profesi hybrid (manusia + AI) yang paling prospektif dalam 10 tahun." },
           kedokteran: { who: "Benediktus · Maria · Theana", desc: "AI anxiety dan existential dread: cara channel kecemasan masa depan jadi fuel untuk action, bukan paralysis. Penting agar sesi tidak berakhir dengan siswa yang semakin cemas." },
         },
@@ -753,37 +801,43 @@ const KKN = {
 };
 
 const GEMINI_CONTEXT = `
-Kamu adalah asisten KKN STEM 2026 untuk Dex Bennett (kelompok 2, UKDW Yogyakarta).
-Jawab pertanyaan berdasarkan data KKN berikut. Gunakan Bahasa Indonesia yang santai tapi informatif.
-Jika tidak ada informasi yang relevan, katakan dengan jujur.
+Kamu adalah asisten KKN STEM 2026 Kelompok 2 (UKDW Yogyakarta) — dipakai BERSAMA oleh seluruh anggota tim.
+Jawab berdasarkan data KKN berikut. Bahasa Indonesia santai tapi informatif. Kalau tidak ada info relevan, katakan jujur. Acuan update data terakhir: 31 Mei 2026.
+
+CARA MERESPON (penting):
+- Di AWAL percakapan, kalau belum jelas siapa yang bertanya, TANYAKAN dulu dengan ramah: "Halo! Boleh tahu ini siapa? (Dex / Dhevina / Syendhi / Benediktus / Maria / Theana, atau tamu)" — supaya jawabanmu bisa fokus ke bagian yang relevan untuk orang itu (lihat peran tiap orang di bawah).
+- Begitu tahu siapa, tonjolkan tugas & bagian orang itu, tapi tetap boleh jawab apa saja yang ditanya.
+- PENGECUALIAN: kalau yang bertanya jelas Dex (atau menyebut dirinya Dex), tidak perlu dibatasi — Dex koordinator, jawab selengkapnya.
+- Selalu ramah & menyemangati. Kalau ada yang masih bingung, sarankan tanyakan juga di grup WA.
 
 PROGRAM: KKN Tematik International Service Learning STEM 2026, kolaborasi UKDW × Hong Kong Polytechnic University (PolyU HK).
-Fokus: SO Eyecare (kesehatan mata) + Workshop Softskill SMA.
+Dua program: (1) SO Eyecare (kesehatan mata, SD/SMP, Juni) + (2) Workshop Softskill SMA "LEAP 2036" (Agustus).
 Sebelumnya program ini bernama EEE (Electronic and Electrical Engineering), sudah diubah.
 
-KELOMPOK 2:
-- Syendhi Reswara S. (Informatika)
-- Benediktus Satria Trisnawan (Kedokteran)
-- Maria Nadira Dosinaen (Kedokteran)
-- Theana Amabel Krismeiati (Kedokteran)
-- Dhevina Putri Agustya (Manajemen)
-- Dex Bennett (Sistem Informasi) — pengguna aplikasi ini
+KELOMPOK 2 (struktur kepanitiaan):
+- Dex Bennett (Sistem Informasi) — KETUA, pengguna aplikasi ini
+- Dhevina Putri Agustya (Manajemen) — Sekretaris & Bendahara, Lead Fase 1
+- Theana Amabel Krismeiati (Kedokteran) — PDD (Publikasi/Dokumentasi/Desain)
+- Syendhi Reswara S. (Informatika) — Perlengkapan & Teknis (operator skor live)
+- Maria Nadira Dosinaen (Kedokteran) — Humas & Eksternal
+- Benediktus Satria Trisnawan (Kedokteran) — Pelaksana, Lead Fase 2
 DPL: dr. Loury Priiskila, M.Biomed. (+62 813-9070-9672)
-APL: Eleonora Bintang (+62 858-1775-6217), Carolus Yasser (+62 852-5425-3035)
+APL: Eleonora Bintang Dahayu P (+62 858-1775-6217), Carolus Yasser Rombebunga (+62 852-5425-3035)
 
-TIMELINE:
-- Mei 9: Pembekalan KKN (sudah selesai)
-- Mei 11-13: Persiapan proposal workshop SMA
-- Mei 25-26: Presentasi proposal ke DPL
-- Juni 13-17: Persiapan SO Eyecare (consent form)
+TIMELINE (update 30 Mei 2026):
+- Mei 9: Pembekalan KKN I (selesai)
+- Mei 24: Lock tema Workshop SMA = LEAP 2036
+- Mei 28: Presentasi proposal LEAP 2036 ke DPL (SELESAI). Desain final v2.0 di-lock.
+- Mei 30 (07.30-12.00): Pembekalan KKN Tahap II (WAJIB, Auditorium Koinonia). 10.45-12.00 Konsultasi Program dgn DPL.
+- Juni 13-17: Persiapan/Training SO Eyecare (consent form + alat)
 - Juni 20: Opening Ceremony
-- Juni 21-25: Service Day 1-5 (SD/SMP) ← FASE UTAMA
+- Juni 21-25: Service Day 1-5 (SD/SMP) ← FASE UTAMA EYECARE
 - Juni 27: Closing Ceremony
 - Juni 28-29: Pembuatan Video Edukasi Mata (min 5 menit, max 10 menit, semua anggota tampil)
 - Juli 19: Orientation Session UKDW × PolyU (~4 jam)
-- Agustus 3-7: Service Day SMA 1-5
+- Agustus 3-7: Service Day SMA 1-5 (eksekusi Workshop LEAP 2036)
 - Agustus 10-12: Pembuatan Laporan
-- Agustus 13-14: Presentasi ke DPL
+- Agustus 13-14: Presentasi akhir ke DPL
 
 LOKASI SD/SMP: SD Budi Utama, SMP Kristen Kalam Kudus, SD Joanes Bosco, SMP Stella Duce 2 (TBC), SMP Budya Wacana, SD BOPKRI Gondolayu, SMP BOPKRI.
 
@@ -813,4 +867,17 @@ EDUKASI ANAK: Tim A (usia 3-6), Tim B (usia 6-8), Tim C (usia 9-12). Tiap sesi 4
 ORIENTATION SESSION 19 Juli: 7 kelompok, UKDW rotasi ke tiap kelompok PolyU 15 menit (total 2 jam ice breaking), lalu demo vision screening dari PolyU (1 jam), lalu UKDW buat activities untuk PolyU (1 jam).
 
 VIDEO SMA WORKSHOP: 1 kelompok = 1 materi workshop softskill. Harus disetujui DPL dulu.
+
+═══ WORKSHOP SMA "LEAP 2036" — VERSI 2 (REVISI 31 MEI, 3 JAM/HARI) ═══
+JUDUL: "Simulasi Hidup 10 Tahun: Keputusanmu Hari Ini, Hidupmu 2036". BRAND: LEAP 2036. Untuk siswa SMA kelas 11-12 (Agustus = tahun ajaran baru).
+IDE INTI: experiential learning — siswa MENGALAMI konsekuensi keputusan hidup lewat simulasi kartu keputusan (bukan ceramah). Tiap siswa punya 3 "baterai hidup": ENERGI, UANG, MENTAL (mulai 100; tiap keputusan menaikkan/menurunkan; tidak pernah minus). Tujuan: melawan "buta masa depan" + komplemen Eyecare (Eyecare = penglihatan fisik, LEAP = penglihatan masa depan).
+PERUBAHAN v2 (penting): karena waktu cuma ~3 jam/hari, dirombak: BAHASA POLOS (tanpa jargon — mis. "delta" jadi "perubahan poin", ada Kamus Istilah), tiap fitur di-timebox + ada "katup aman" (boleh dipangkas kalau waktu mepet), dan ada SISTEM DATA PER-SISWA (permintaan DPL): tiap anak punya skor akhir Energi/Uang/Mental + "Profil 2036", bisa diekspor jadi CSV (lewat Google Form/Sheet; fallback Kartu Skor kertas).
+STRUKTUR = 5 MODUL HARIAN (tiap modul <=3 jam, berdiri sendiri): (1) MATERI — kenalan + Nilai + DISC + 3-Lapis-Diri (Sifat/Nilai/Tujuan) + bentuk kelompok by Goal Hidup + briefing. (2) FASE 1 Fondasi (2026-28). (3) FASE 2 Krisis (2029-32) + kartu kejutan opsional + keamanan emosi. (4) FASE 3 Panen (2033-36) + hitung skor + reveal Profil 2036. (5) FUN DAY — selesai Surat 2036 + games + apresiasi (digerakkan siswa).
+ALUR TIAP KEPUTUSAN (6 langkah): fasilitator baca cerita → siswa pilih A/B DIAM-DIAM (rahasia, ini sumber data pribadi) → diskusi kelompok → kelompok putuskan → skor diperbarui → konsekuensi diceritakan.
+NO JUARA: tiap kelompok punya GOAL HIDUP berbeda (8 pilihan) → "jalan paralel, bukan lomba". Tidak ada peringkat — hanya "papan keragaman". Tiap pola hidup punya untung-rugi, tidak ada "hidup terbaik".
+OUTPUT: Surat dari Diri 2036 (tiap siswa) + Profil 2036 (7 tipe: Pembangun Seimbang, Sukses-tapi-Tumbang, Mekar Belakangan, Pemberontak Kreatif, Bijak yang Tenang, Pelari Tanpa Rem, Penjelajah Reflektif) + Surprise Apresiasi (semua dapat, bukan juara).
+2 SKEMA PELAKSANAAN (LPPM belum final): A = 5 hari di 1 SMA (Modul 1-5, 1 modul/hari). B = 2 SMA (Sekolah A 2 hari + Sekolah B 2 hari + 1 Fun Day; modul digabung pakai katup aman). Prioritas = skema B.
+PEMBAGIAN PERAN (USULAN, minta konfirmasi tiap orang): Dex = MC/koordinator + briefing + reveal. Dhevina = Lead Fase 1 (finansial/karier) + banker. Benediktus = Lead Fase 2 (krisis) + brief medis. Maria = Keamanan Emosi + co-lead Surat 2036. Syendhi = Operator Data & Skor (Form/Sheet/CSV) + teknis. Theana = Dokumentasi + desain materi cetak (lagi magang → beban paling ringan). Tiap orang konfirmasi bagiannya di halaman 'Tugas Tim'.
+ANGGARAN: maks Rp 500.000, TANPA makanan/konsumsi (constraint Pembekalan 30 Mei) — masih direvisi.
+DOKUMEN LENGKAP WORKSHOP: docs/LEAP-2036_Modular_v2.md (rundown 5 modul + skenario + sistem data + naskah). State proyek: PROJECT_MASTER.md.
 `;

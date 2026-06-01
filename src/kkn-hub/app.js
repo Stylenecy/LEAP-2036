@@ -4,28 +4,179 @@ const navItems = document.querySelectorAll('.nav-item');
 
 function showPage(id) {
   pages.forEach(p => p.classList.remove('active'));
-  navItems.forEach(n => n.classList.remove('active'));
+  navItems.forEach(n => { n.classList.remove('active'); n.removeAttribute('aria-current'); });
   const page = document.getElementById('page-' + id);
   const nav = document.querySelector(`.nav-item[data-page="${id}"]`);
   if (page) { page.classList.add('active'); renderPage(id); }
-  if (nav) nav.classList.add('active');
-  localStorage.setItem('kkn-page', id);
+  if (nav) { nav.classList.add('active'); nav.setAttribute('aria-current', 'page'); }
+  lsSet('kkn-page', id);
 }
 
 navItems.forEach(item => {
-  item.addEventListener('click', () => {
-    showPage(item.dataset.page);
-    closeSidebar();
+  const go = () => { showPage(item.dataset.page); closeSidebar(); };
+  item.addEventListener('click', go);
+  item.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); }
   });
 });
 
 function toggleSidebar() {
-  document.getElementById('sidebar').classList.toggle('open');
-  document.getElementById('overlay').classList.toggle('show');
+  const sb = document.getElementById('sidebar');
+  const open = sb.classList.toggle('open');
+  document.getElementById('overlay').classList.toggle('show', open);
+  const burger = document.getElementById('hamburger');
+  if (burger) burger.setAttribute('aria-expanded', String(open));
+  document.body.style.overflow = open ? 'hidden' : '';
+  syncSidebarInert();
+  if (open) { const first = sb.querySelector('.nav-item'); if (first) first.focus(); }
 }
 function closeSidebar() {
   document.getElementById('sidebar')?.classList.remove('open');
   document.getElementById('overlay')?.classList.remove('show');
+  const burger = document.getElementById('hamburger');
+  if (burger) burger.setAttribute('aria-expanded', 'false');
+  document.body.style.overflow = '';
+  syncSidebarInert();
+}
+/* Keep the off-canvas mobile drawer out of the tab order / a11y tree when closed;
+   desktop sidebar is always-visible so stays interactive. */
+function syncSidebarInert() {
+  const sb = document.getElementById('sidebar');
+  if (!sb) return;
+  const mobile = window.matchMedia('(max-width:700px)').matches;
+  if (mobile && !sb.classList.contains('open')) sb.setAttribute('inert', '');
+  else sb.removeAttribute('inert');
+}
+
+/* ── localStorage safe write (private mode / quota) ── */
+function lsSet(k, v) {
+  try { localStorage.setItem(k, v); return true; } catch { return false; }
+}
+
+/* ── USER (lightweight personalization, no backend) ── */
+function getUser() { try { return localStorage.getItem('kkn-user') || ''; } catch { return ''; } }
+function firstName(full) { return (full || '').split(' ')[0]; }
+function setUser(n) {
+  if (!lsSet('kkn-user', n)) showToast('Browser memblok penyimpanan (mode privat?)', 'warn');
+  updateTopbarUser();
+  renderDashboard();
+}
+function clearUser() {
+  try { localStorage.removeItem('kkn-user'); } catch {}
+  updateTopbarUser();
+  renderDashboard();
+}
+function updateTopbarUser() {
+  const el = document.getElementById('tb-user');
+  if (!el) return;
+  const me = getUser();
+  el.textContent = (me && me !== 'Tamu') ? '👤 ' + firstName(me) : '⚡ Klp. 2';
+}
+function myDocsHtml(me) {
+  const fn = firstName(me);
+  const docs = [];
+  (KKN.dokumenKelompok || []).forEach(c => (c.files || []).forEach(f => {
+    if (f.forPerson && fn && fn.startsWith(f.forPerson)) docs.push(f);
+  }));
+  if (!docs.length) return '';
+  return `<div class="mt-sec"><div class="mt-sec-title">Dokumen untukmu</div>${docs.map(f =>
+    `<div class="mt-doc">📄 ${f.name}</div>`).join('')}</div>`;
+}
+function renderMyTask(me) {
+  if (!me) {
+    return `
+      <div class="mytask">
+        <div class="mt-eyebrow">Selamat datang</div>
+        <div class="mt-welcome-title">Kamu siapa?</div>
+        <div class="mt-welcome-sub">Pilih namamu — biar HUB langsung nunjukin tugas &amp; dokumenmu di halaman ini.</div>
+        <div class="mt-picker">
+          ${(KKN.taskAssignments || []).map(p => `
+            <button class="mt-pick" onclick="setUser('${escAttr(p.anggota)}')"><span aria-hidden="true">${p.emoji}</span> ${firstName(p.anggota)}</button>`).join('')}
+        </div>
+        <div class="mt-guest">Cuma lihat-lihat? <button class="linkbtn" onclick="setUser('Tamu')">Lanjut sebagai tamu</button></div>
+      </div>`;
+  }
+  const tdata = (KKN.taskAssignments || []).find(x => x.anggota === me);
+  if (!tdata) {
+    return `
+      <div class="mytask">
+        <div class="mt-head"><div class="mt-eyebrow">Mode tamu</div><button class="linkbtn" onclick="clearUser()">pilih nama</button></div>
+        <div class="mt-title">Selamat datang 👋</div>
+        <div class="mt-role">Jelajahi info KKN lewat menu atau tombol cepat di bawah.</div>
+        <div class="mt-actions">
+          <button class="btn btn-primary btn-sm" onclick="showPage('proker')">Lihat Proker SMA →</button>
+          <button class="btn btn-ghost btn-sm" onclick="showPage('search')">🤖 Tanya AI</button>
+        </div>
+      </div>`;
+  }
+  const preWorkshopPhase = today() < parseDate('2026-08-03');
+  return `
+    <div class="mytask">
+      <div class="mt-head">
+        <div class="mt-eyebrow">Tugasmu · Workshop SMA (Agustus)</div>
+        <button class="linkbtn" onclick="clearUser()">ganti orang</button>
+      </div>
+      <div class="mt-title"><span aria-hidden="true">${tdata.emoji}</span> Halo, ${firstName(tdata.anggota)} 👋</div>
+      <div class="mt-role">${tdata.prodi} · <span class="mt-status">${tdata.status}</span></div>
+      ${preWorkshopPhase ? `<div class="mt-note"><span aria-hidden="true">📌</span> Fokus terdekat masih <strong>SO Eyecare (Juni)</strong> — langkah berikutnya ada di kartu situasi di bawah &amp; halaman Prosedur. Bagian ini untuk <strong>Workshop SMA (Agustus)</strong>.</div>` : ''}
+      <div class="mt-sec">
+        <div class="mt-sec-title">Saat workshop (Agustus)</div>
+        <ul>${tdata.perWorkshop.map(x => `<li>${x}</li>`).join('')}</ul>
+      </div>
+      ${tdata.preWorkshop && tdata.preWorkshop.length ? `
+      <div class="mt-sec">
+        <div class="mt-sec-title">Sebelum workshop</div>
+        <ul>${tdata.preWorkshop.map(x => `<li>${x}</li>`).join('')}</ul>
+      </div>` : ''}
+      ${myDocsHtml(me)}
+      <div class="mt-actions">
+        <button class="btn btn-primary btn-sm" onclick="showPage('tugas')">Lihat semua tugas →</button>
+        <button class="btn btn-ghost btn-sm" onclick="showPage('search')">🤖 Tanya AI</button>
+      </div>
+    </div>`;
+}
+
+/* ── MODAL (focus-managed, Escape-closable) ── */
+let _lastFocus = null;
+function openModal(title, bodyHtml) {
+  closeModal();
+  _lastFocus = document.activeElement;
+  const m = document.createElement('div');
+  m.className = 'modal';
+  m.id = 'app-modal';
+  m.setAttribute('role', 'dialog');
+  m.setAttribute('aria-modal', 'true');
+  m.setAttribute('aria-label', title);
+  m.innerHTML = `
+    <div class="modal-card">
+      <div class="modal-head">
+        <div class="modal-title">${title}</div>
+        <button class="modal-close" aria-label="Tutup" onclick="closeModal()">✕</button>
+      </div>
+      <div>${bodyHtml}</div>
+    </div>`;
+  m.addEventListener('click', e => { if (e.target === m) closeModal(); });
+  document.body.appendChild(m);
+  document.body.style.overflow = 'hidden';
+  setBgInert(true);
+  const closeBtn = m.querySelector('.modal-close');
+  if (closeBtn) closeBtn.focus();
+}
+function closeModal() {
+  const m = document.getElementById('app-modal');
+  if (m) m.remove();
+  setBgInert(false);
+  document.body.style.overflow = '';
+  if (_lastFocus && _lastFocus.focus) { _lastFocus.focus(); _lastFocus = null; }
+}
+/* Make everything behind an open modal non-interactive (enforces aria-modal). */
+function setBgInert(on) {
+  ['main', 'topbar', 'overlay'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) { if (on) el.setAttribute('inert', ''); else el.removeAttribute('inert'); }
+  });
+  const sb = document.getElementById('sidebar');
+  if (sb) { if (on) sb.setAttribute('inert', ''); else syncSidebarInert(); }
 }
 
 function renderPage(id) {
@@ -117,6 +268,7 @@ function getSituation(t) {
       'Pelajari 10 prosedur vision screening (halaman Prosedur)',
       'Kerjakan semua item checklist persiapan',
       'Pahami peran UKDW: translasi & support komunikasi, bukan operator alat',
+      'Ingat: Funduscopy (alat no. 10) RESTRICTED — hanya mahasiswa PolyU HK yang boleh operasikan',
       'Pantau update dari DPL/APL di WhatsApp grup',
       'Konfirmasi jadwal training SO Eyecare (13–19 Juni)',
     ],
@@ -156,7 +308,8 @@ function getSituation(t) {
       actions: [
         `Cek rotasi tim hari ini (Service Day ${day}) di tabel Rotasi`,
         'Briefing pagi bersama tim PolyU sebelum mulai screening',
-        'Peran kamu: translasi in-class + support komunikasi anak-anak',
+        'Peran UKDW: translasi in-class + support komunikasi anak-anak',
+        'Funduscopy (alat no. 10) RESTRICTED — jangan operasikan, itu hanya untuk PolyU HK',
         'Catat hal penting di halaman Catatan',
         'Tanyakan ke APL jika ada prosedur yang tidak jelas saat lapangan',
       ],
@@ -209,6 +362,12 @@ function renderDashboard() {
   const t = today();
   const sit = getSituation(t);
 
+  updateTopbarUser();
+
+  // My Task card (personalized)
+  const mtEl = document.getElementById('my-task-card');
+  if (mtEl) mtEl.innerHTML = renderMyTask(getUser());
+
   // Latest Update Banner
   const lubEl = document.getElementById('latest-update-banner');
   if (lubEl && KKN.latestUpdates && KKN.latestUpdates.length) {
@@ -225,7 +384,7 @@ function renderDashboard() {
         <div class="lub-content">
           <div class="lub-meta">
             <span class="lub-date">📡 Update ${fmtDate(parseDate(latest.date))}</span>
-            ${KKN.latestUpdates.length > 1 ? `<span class="lub-more" onclick="showAllUpdates()">+ ${KKN.latestUpdates.length - 1} update lainnya</span>` : ''}
+            ${KKN.latestUpdates.length > 1 ? `<button class="linkbtn" onclick="showAllUpdates()">+ ${KKN.latestUpdates.length - 1} update lainnya</button>` : ''}
           </div>
           <div class="lub-title">${latest.title}</div>
           <div class="lub-desc">${latest.desc}</div>
@@ -279,7 +438,7 @@ function renderDashboard() {
           <div class="qc-name">${c.nama.split(',')[0]}</div>
           <div class="qc-phone">${c.phoneDisplay}</div>
         </div>
-        <a href="tel:+${c.phone}" class="btn btn-ghost btn-sm" style="flex-shrink:0;padding:5px 9px">📞</a>
+        <a href="tel:+${c.phone.replace(/[^0-9]/g,'')}" class="btn btn-ghost btn-sm" aria-label="Telepon ${c.nama.split(',')[0]}" style="flex-shrink:0">📞</a>
       </div>`).join('');
   }
 
@@ -298,7 +457,7 @@ function renderDashboard() {
       ctEl.innerHTML = `
         <div style="display:flex;justify-content:space-between;margin-bottom:10px">
           <span style="font-size:12px;color:var(--t2)">${done}/${KKN.checklist.length} selesai</span>
-          <span style="font-size:11px;color:var(--indigo);cursor:pointer" onclick="showPage('checklist')">Lihat semua →</span>
+          <button class="linkbtn" onclick="showPage('checklist')">Lihat semua →</button>
         </div>
         ${show.map(c => `
           <div class="ct-item">
@@ -329,8 +488,7 @@ function renderDashboard() {
 /* ── TIMELINE / GANTT ── */
 function renderTimeline() {
   const el = document.getElementById('gantt-body');
-  if (!el || el.dataset.rendered) return;
-  el.dataset.rendered = '1';
+  if (!el) return;
 
   const START = parseDate('2026-05-09');
   const END = parseDate('2026-08-14');
@@ -340,7 +498,7 @@ function renderTimeline() {
   const colorMap = { cyan:'g-cyan', indigo:'g-indigo', purple:'g-violet', orange:'g-orange', green:'g-green', violet:'g-violet', gold:'g-gold', red:'g-rose', rose:'g-rose' };
 
   let html = '';
-  KKN.timeline.forEach(ev => {
+  [...KKN.timeline].sort((a, b) => parseDate(a.start) - parseDate(b.start)).forEach(ev => {
     const s = parseDate(ev.start);
     const e = parseDate(ev.end);
     const left = Math.max(0, daysBetween(START, s) / TOTAL * 100);
@@ -386,7 +544,7 @@ function renderTeam() {
       <div class="member-card${m.isMe ? ' me' : ''}">
         <div class="avatar ${colorCls[m.color] || 'av-indigo'}">${m.emoji}</div>
         <div>
-          <div class="m-name">${m.nama}${m.isMe ? ' <span class="badge b-indigo" style="font-size:10px">Kamu</span>' : ''}</div>
+          <div class="m-name">${m.nama}${m.isMe ? ' <span class="badge b-indigo" style="font-size:10px">Ketua</span>' : ''}</div>
           <div class="m-prodi">${m.prodi}</div>
           <div style="margin-top:6px">
             <span class="badge ${m.gender === 'Pria' ? 'b-violet' : 'b-orange'}" style="font-size:10px">${m.gender}</span>
@@ -396,7 +554,7 @@ function renderTeam() {
   });
   html += '</div>';
 
-  html += '<div class="gap"><div class="ph2">DPL & APL</div></div>';
+  html += '<div class="gap"><div class="ph2" role="heading" aria-level="2">DPL & APL</div></div>';
   html += '<div class="gap-sm" style="display:flex;flex-direction:column;gap:10px">';
   KKN.contacts.forEach(c => {
     html += `
@@ -408,12 +566,12 @@ function renderTeam() {
           <div class="c-phone">${c.phoneDisplay}</div>
           <div style="font-size:11px;color:var(--t3);margin-top:2px">${c.note}</div>
         </div>
-        <a href="tel:+${c.phone}" class="btn btn-ghost btn-sm">📞 Hubungi</a>
+        <a href="tel:+${c.phone.replace(/[^0-9]/g,'')}" class="btn btn-ghost btn-sm" aria-label="Telepon ${c.nama}">📞 Hubungi</a>
       </div>`;
   });
   html += '</div>';
 
-  html += '<div class="gap"><div class="ph2">Teman di Kelompok Lain</div></div>';
+  html += '<div class="gap"><div class="ph2" role="heading" aria-level="2">Teman di Kelompok Lain</div></div>';
   html += '<div class="gap-sm g2">';
   KKN.friendGroups.forEach(f => {
     html += `
@@ -454,7 +612,7 @@ function renderProsedur() {
 
   html += `
     <div class="gap">
-      <div class="ph2">Rotasi Tim per Service Day</div>
+      <div class="ph2" role="heading" aria-level="2">Rotasi Tim per Service Day</div>
       <div class="gap-sm">
         <table class="rot-table">
           <thead><tr><th>Hari</th><th>Vision Screening (VS)</th><th>Education (Edu)</th></tr></thead>
@@ -468,7 +626,7 @@ function renderProsedur() {
 
   html += `
     <div class="gap">
-      <div class="ph2">Pembagian Tim Edukasi</div>
+      <div class="ph2" role="heading" aria-level="2">Pembagian Tim Edukasi</div>
       <div class="gap-sm g3">`;
   KKN.eduTeams.forEach(e => {
     html += `
@@ -487,7 +645,7 @@ function renderProsedur() {
 function getCheckState() {
   try { return JSON.parse(localStorage.getItem('kkn-checks') || '{}'); } catch { return {}; }
 }
-function setCheckState(s) { localStorage.setItem('kkn-checks', JSON.stringify(s)); }
+function setCheckState(s) { lsSet('kkn-checks', JSON.stringify(s)); }
 
 function renderChecklist() {
   const el = document.getElementById('checklist-body');
@@ -548,7 +706,7 @@ function resetChecklist() {
 function getNotes() {
   try { return JSON.parse(localStorage.getItem('kkn-notes') || '[]'); } catch { return []; }
 }
-function saveNotes(n) { localStorage.setItem('kkn-notes', JSON.stringify(n)); }
+function saveNotes(n) { lsSet('kkn-notes', JSON.stringify(n)); }
 
 function renderNotes() {
   const el = document.getElementById('notes-list');
@@ -603,7 +761,7 @@ function initSearch() {
   KKN.procedures.forEach(p => corpus.push({ category: 'Prosedur', title: p.name + ' — ' + p.en, body: p.desc + '. Alat: ' + p.alat, tags: p.restricted ? 'restricted PolyU' : '' }));
   KKN.timeline.forEach(e => corpus.push({ category: 'Timeline', title: e.label, body: `${e.start} sampai ${e.end}. Fase: ${e.phase}`, tags: 'jadwal tanggal' }));
   KKN.locations.sdSmp.forEach(l => corpus.push({ category: 'Lokasi', title: l.nama, body: `Jenjang: ${l.jenjang}. ${l.confirmed ? 'Sudah dikonfirmasi.' : 'Belum dikonfirmasi (TBC).'}`, tags: 'sekolah lokasi' }));
-  KKN.team.forEach(m => corpus.push({ category: 'Tim', title: m.nama, body: `Prodi: ${m.prodi}. Gender: ${m.gender}. ${m.isMe ? 'Ini kamu!' : ''}`, tags: 'anggota kelompok' }));
+  KKN.team.forEach(m => corpus.push({ category: 'Tim', title: m.nama, body: `Prodi: ${m.prodi}. Gender: ${m.gender}. ${m.isMe ? 'Ketua kelompok.' : ''}`, tags: 'anggota kelompok' }));
   KKN.contacts.forEach(c => corpus.push({ category: 'Kontak', title: c.role + ' — ' + c.nama, body: `Kontak: ${c.phoneDisplay}. ${c.note}`, tags: 'DPL APL kontak' }));
 
   fuse = new Fuse(corpus, {
@@ -624,7 +782,7 @@ function initSearch() {
 
   out.innerHTML = '<div style="font-size:12px;color:var(--t3);margin-bottom:10px">Pertanyaan umum:</div>' +
     KKN.faq.slice(0, 6).map(f => `
-      <div class="sr-item" onclick="this.classList.toggle('sr-expanded')">
+      <div class="sr-item" role="button" tabindex="0" onclick="this.classList.toggle('sr-expanded')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.classList.toggle('sr-expanded')}">
         <div class="sr-cat">FAQ</div>
         <div class="sr-title">${f.q}</div>
         <div class="sr-body">${f.a}</div>
@@ -639,7 +797,7 @@ function initSearch() {
       return;
     }
     out.innerHTML = results.map(r => `
-      <div class="sr-item" onclick="this.classList.toggle('sr-expanded')">
+      <div class="sr-item" role="button" tabindex="0" onclick="this.classList.toggle('sr-expanded')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.classList.toggle('sr-expanded')}">
         <div class="sr-cat">${r.item.category}</div>
         <div class="sr-title">${r.item.title}</div>
         <div class="sr-body">${r.item.body}</div>
@@ -650,8 +808,8 @@ function initSearch() {
 function escAttr(s) { return s.replace(/'/g, '&#39;').replace(/"/g, '&quot;'); }
 
 /* ── GEMINI AI Q&A ── */
-function getApiKey() { return localStorage.getItem('kkn-gemini-key') || GEMINI_DEFAULT_KEY || ''; }
-function setApiKey(k) { localStorage.setItem('kkn-gemini-key', k); }
+function getApiKey() { try { return localStorage.getItem('kkn-gemini-key') || GEMINI_DEFAULT_KEY || ''; } catch { return GEMINI_DEFAULT_KEY || ''; } }
+function setApiKey(k) { lsSet('kkn-gemini-key', k); }
 
 function saveApiKey() {
   const inp = document.getElementById('api-key-input');
@@ -668,23 +826,26 @@ function toggleApiKey() {
 }
 
 let chatHistory = [];
+let chatSending = false;
 
 function appendChat(role, text) {
   const box = document.getElementById('chat-box');
-  if (!box) return;
+  if (!box) return null;
   const isEmpty = box.querySelector('.chat-empty');
   if (isEmpty) isEmpty.remove();
   const el = document.createElement('div');
   el.className = 'cmsg ' + role;
   const content = role === 'ai' ? md(text) : escHtml(text);
   el.innerHTML = `
-    <div class="cavatar">${role === 'ai' ? '🤖' : '🧑'}</div>
+    <div class="cavatar" aria-hidden="true">${role === 'ai' ? '🤖' : '🧑'}</div>
     <div class="cbubble">${content}</div>`;
   box.appendChild(el);
   box.scrollTop = box.scrollHeight;
+  return el;
 }
 
 async function sendChat() {
+  if (chatSending) return;
   const inp = document.getElementById('chat-input');
   const btn = document.getElementById('chat-send');
   if (!inp) return;
@@ -694,12 +855,13 @@ async function sendChat() {
   const apiKey = getApiKey();
   if (!apiKey) { showToast('Masukkan API Key Gemini dulu!', 'warn'); return; }
 
+  chatSending = true;
   inp.value = '';
   appendChat('user', q);
   chatHistory.push({ role: 'user', parts: [{ text: q }] });
 
   if (btn) btn.disabled = true;
-  appendChat('ai', '⏳ Sedang berpikir...');
+  const loadingEl = appendChat('ai', '⏳ Sedang berpikir...');
 
   try {
     const body = {
@@ -708,7 +870,7 @@ async function sendChat() {
         { role: 'model', parts: [{ text: 'Saya siap membantu menjawab pertanyaan seputar KKN STEM 2026 Kelompok 2.' }] },
         ...chatHistory,
       ],
-      generationConfig: { temperature: 0.7, maxOutputTokens: 800 },
+      generationConfig: { temperature: 0.7, maxOutputTokens: 1500 },
     };
 
     const MODELS = ['gemini-2.5-flash-lite', 'gemini-2.0-flash-lite', 'gemini-flash-lite-latest', 'gemini-2.5-flash'];
@@ -722,29 +884,31 @@ async function sendChat() {
       if (!data.error) break;
     }
 
-    const box = document.getElementById('chat-box');
-    const lastMsg = box?.lastElementChild;
-    if (lastMsg) lastMsg.remove();
+    if (loadingEl) loadingEl.remove();
 
     if (data.error) throw new Error(data.error.message);
-    const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || 'Tidak ada respons.';
-    appendChat('ai', reply);
+    const cand = data.candidates?.[0];
+    const reply = cand?.content?.parts?.[0]?.text || 'Tidak ada respons.';
+    const truncated = cand?.finishReason === 'MAX_TOKENS';
+    appendChat('ai', reply + (truncated ? '\n\n*(jawaban dipotong — tanya lanjutan untuk sisanya)*' : ''));
     chatHistory.push({ role: 'model', parts: [{ text: reply }] });
   } catch (err) {
-    const box = document.getElementById('chat-box');
-    const lastMsg = box?.lastElementChild;
-    if (lastMsg) lastMsg.remove();
+    if (loadingEl) loadingEl.remove();
     appendChat('ai', '❌ Error: ' + err.message + '. Cek API key dan koneksi internet.');
     chatHistory.pop();
   } finally {
+    chatSending = false;
     if (btn) btn.disabled = false;
   }
 }
 
+const CHAT_EMPTY_HTML = `Tanyakan apapun soal KKN STEM 2026...<br><br>Contoh:<br>"Apa yang harus aku lakukan saat service day?"<br>"Jelaskan prosedur cover test"<br>"Kapan deadline video edukasi?"<br>"Tim mana yang pegang alat funduscopy?"`;
+
 function clearChat() {
+  if (chatSending) return;
   chatHistory = [];
   const box = document.getElementById('chat-box');
-  if (box) box.innerHTML = '<div class="chat-empty">Tanyakan apapun soal KKN STEM 2026...</div>';
+  if (box) box.innerHTML = `<div class="chat-empty">${CHAT_EMPTY_HTML}</div>`;
 }
 
 /* ── PROKER SMA ── */
@@ -766,15 +930,6 @@ function renderProker() {
   function ideaCard(idea, compact) {
     const tc = tierColor[idea.tier];
     const sourceBadge = idea.source === 'Claude' ? 'b-indigo' : idea.source === 'ChatGPT' ? 'b-green' : idea.source === 'Gemini' ? 'b-cyan' : 'b-orange';
-
-    const rolesHtml = Object.entries(idea.roles).map(([key, r]) => `
-      <div style="display:flex;gap:12px;padding:11px 14px;border-bottom:1px solid var(--border);align-items:flex-start">
-        <div style="min-width:150px;flex-shrink:0">
-          <div class="badge ${prodiColor[key] ? 'b-' + prodiColor[key] : 'b-gray'}" style="font-size:10.5px">${prodiLabel[key]}</div>
-          <div style="font-size:11px;color:var(--t2);margin-top:4px;font-weight:500">${r.who}</div>
-        </div>
-        <div style="font-size:13px;color:var(--t2);line-height:1.6;flex:1">${r.desc}</div>
-      </div>`).join('').replace(/border-bottom:1px solid var\(--border\)([^}]*}[^<]*<\/div>[^<]*<\/div>[^<]*<\/div>[^<]*<\/div>[^<]*)$/, 'border-bottom:none$1');
 
     const prosHtml = idea.pros.map(p => `<div style="display:flex;gap:8px;margin-bottom:7px;font-size:13px"><span style="color:var(--green);margin-top:1px;flex-shrink:0">✓</span><span style="color:var(--t2);line-height:1.55">${p}</span></div>`).join('');
     const consHtml = idea.cons.map(c => `<div style="display:flex;gap:8px;margin-bottom:7px;font-size:13px"><span style="color:var(--rose);margin-top:1px;flex-shrink:0">✕</span><span style="color:var(--t2);line-height:1.55">${c}</span></div>`).join('');
@@ -836,7 +991,7 @@ function renderProker() {
         </div>
 
         ${footerParts.length ? `<div class="g2" style="gap:14px;padding-top:14px;border-top:1px solid var(--border)">${footerParts.join('')}</div>` : ''}
-        ${idea.catatan ? `<div class="alert a-warn" style="margin-top:14px;margin-bottom:0"><span class="alert-icon">📌</span><div>${idea.catatan}</div></div>` : ''}
+        ${idea.catatan ? `<div class="alert a-warn" style="margin-top:14px;margin-bottom:0"><span class="alert-icon" aria-hidden="true">📌</span><div>${idea.catatan}</div></div>` : ''}
       </div>`;
   }
 
@@ -844,10 +999,10 @@ function renderProker() {
 
   // Open Questions
   html += `
-    <div class="alert a-warn" style="margin-bottom:20px">
-      <span class="alert-icon">🔄</span>
+    <div class="alert a-info" style="margin-bottom:20px">
+      <span class="alert-icon" aria-hidden="true">🗄️</span>
       <div>
-        <strong>Status: Brainstorm in Progress</strong> — Ide belum dipilih final. Sebelum lanjut, perlu jawab pertanyaan berikut ke DPL:
+        <strong>Arsip Brainstorm</strong> — Tema final sudah dipilih: <strong>LEAP 2036 (Simulasi Hidup 10 Tahun)</strong>. Ide-ide di bawah adalah riwayat pertimbangan. Pertanyaan awal sudah terjawab:
         <ul style="margin-top:8px;padding-left:18px">
           ${p.openQuestions.map(q => `<li style="margin-bottom:4px">${q}</li>`).join('')}
         </ul>
@@ -856,7 +1011,7 @@ function renderProker() {
 
   // Recommended Combos
   html += `
-    <div class="ph2" style="margin-bottom:14px">🎯 Rekomendasi Kombinasi 2 Sesi</div>
+    <div class="ph2" role="heading" aria-level="2" style="margin-bottom:14px">🎯 Rekomendasi Kombinasi 2 Sesi</div>
     <div class="g2" style="gap:14px;margin-bottom:32px">`;
 
   p.rekomendasiKombinasi.forEach(combo => {
@@ -882,13 +1037,13 @@ function renderProker() {
   html += `</div>`;
 
   // Gold ideas
-  html += `<div class="ph2" style="margin-bottom:16px">⭐⭐ GOLD — Paling Layak Dieksekusi</div>`;
+  html += `<div class="ph2" role="heading" aria-level="2" style="margin-bottom:16px">⭐⭐ GOLD — Paling Layak Dieksekusi</div>`;
   p.ideas.filter(i => i.tier === 'gold').forEach(idea => {
     html += ideaCard(idea, false);
   });
 
   // Silver ideas
-  html += `<div class="ph2" style="margin-top:32px;margin-bottom:16px">⭐ SILVER — Worth Considering</div>`;
+  html += `<div class="ph2" role="heading" aria-level="2" style="margin-top:32px;margin-bottom:16px">⭐ SILVER — Worth Considering</div>`;
   html += `<div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">`;
   const silverIdeas = p.ideas.filter(i => i.tier === 'silver');
   if (silverIdeas.length % 2 !== 0) {
@@ -907,7 +1062,7 @@ function renderProker() {
   }
 
   // Situasional ideas
-  html += `<div class="ph2" style="margin-top:32px;margin-bottom:16px">🤔 Situasional — Perlu Kondisi Khusus</div>`;
+  html += `<div class="ph2" role="heading" aria-level="2" style="margin-top:32px;margin-bottom:16px">🤔 Situasional — Perlu Kondisi Khusus</div>`;
   html += `<div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">`;
   p.ideas.filter(i => i.tier === 'situasional').forEach(idea => { html += ideaCard(idea, true); });
   html += `</div>`;
@@ -998,14 +1153,14 @@ function renderProkerFinal() {
       </div>
 
       <div class="pf-section">
-        <div class="pf-section-title">📅 Rundown 5 Jam (Tentative)</div>
+        <div class="pf-section-title">📅 Rundown 5 Hari (Skema LPPM-1)</div>
         <table class="pf-table">
           <thead><tr><th>Waktu</th><th>Durasi</th><th>Segmen</th><th>Lead</th></tr></thead>
           <tbody>
             ${p.rundown5h.map(r => `<tr><td>${r.time}</td><td>${r.duration}</td><td>${r.segmen}</td><td>${r.lead}</td></tr>`).join('')}
           </tbody>
         </table>
-        <div class="pf-note">📝 Rundown dapat disesuaikan jadi 4 atau 6 jam sesuai kesediaan SMA.</div>
+        <div class="pf-note">📝 Skema LPPM-1 = 5 hari × 1 SMA. Skema LPPM-2 = split 2 hari (Sekolah A) + 3 hari (Sekolah B). Durasi 4–6 jam/hari sesuai kesediaan SMA.</div>
       </div>
 
       <div class="pf-cta">
@@ -1025,7 +1180,7 @@ function renderDecisionLog() {
 
   el.innerHTML = `
     <div class="dlog-section">
-      <div class="ph2" style="margin-top:32px">📚 Decision Log — Keputusan yang Sudah Fix</div>
+      <div class="ph2" role="heading" aria-level="2" style="margin-top:32px">📚 Decision Log — Keputusan yang Sudah Fix</div>
       <div class="dlog-list">
         ${decisions.map(d => `
           <div class="dlog-item">
@@ -1040,34 +1195,34 @@ function renderDecisionLog() {
           </div>`).join('')}
       </div>
     </div>
-    <div class="ph2" style="margin-top:32px">💡 Riwayat Brainstorm Ide (Arsip)</div>
+    <div class="ph2" role="heading" aria-level="2" style="margin-top:32px">💡 Riwayat Brainstorm Ide (Arsip)</div>
     <div class="psub">Ide-ide dari brainstorm 4 AI yang sudah dipertimbangkan sebelum keputusan final.</div>`;
 }
 
 /* ── TUGAS TIM ── */
 function renderTugas() {
   const el = document.getElementById('tugas-body');
-  if (!el || el.dataset.rendered) return;
-  el.dataset.rendered = '1';
+  if (!el) return;
   const tasks = KKN.taskAssignments || [];
   if (!tasks.length) { el.innerHTML = '<div class="alert a-info">Belum ada tugas yang dibagikan.</div>'; return; }
 
+  const me = getUser();
   const colorCls = { cyan:'av-cyan', purple:'av-violet', orange:'av-gold', green:'av-green' };
 
   el.innerHTML = `
     <div class="alert a-info" style="margin-bottom:20px">
-      <span class="alert-icon">👋</span>
-      <div><strong>Cek bagianmu di bawah.</strong> Tiap orang punya tugas spesifik untuk Workshop SMA. Kalau ada yang nggak cocok atau mau diadjust — kasih tau di grup ya.</div>
+      <span class="alert-icon" aria-hidden="true">👋</span>
+      <div><strong>Pembagian tugas (usulan) per anggota.</strong> Tiap orang punya bagian masing-masing untuk Workshop SMA. Status "usulan" = tinggal di-iya-kan atau diadjust. Kalau ada yang kurang cocok atau mau ditukar, konfirmasi/diskusi di grup WA ya. 🙌</div>
     </div>
     <div class="tugas-grid">
       ${tasks.map(t => {
-        const isMe = t.anggota === 'Dex Bennett';
+        const isMe = t.anggota === me;
         return `
         <div class="tugas-card${isMe ? ' me' : ''}">
           <div class="tugas-head">
-            <div class="tugas-avatar ${colorCls[t.color] || 'av-indigo'}">${t.emoji}</div>
+            <div class="tugas-avatar ${colorCls[t.color] || 'av-indigo'}" aria-hidden="true">${t.emoji}</div>
             <div>
-              <div class="tugas-nama">${t.anggota}${isMe ? ' <span class="tugas-me">YOU</span>' : ''}</div>
+              <div class="tugas-nama">${t.anggota}${isMe ? '<span class="tugas-me">KAMU</span>' : ''}</div>
               <div class="tugas-prodi">${t.prodi}</div>
             </div>
             <span class="tugas-status tugas-st-${t.status.toLowerCase().includes('active') ? 'active' : 'pending'}">${t.status}</span>
@@ -1085,14 +1240,20 @@ function renderTugas() {
       }).join('')}
     </div>
     <div class="alert a-warn" style="margin-top:20px">
-      <span class="alert-icon">📝</span>
+      <span class="alert-icon" aria-hidden="true">📝</span>
       <div><strong>Status PENDING</strong> berarti tugas masih draft Dex — perlu konfirmasi langsung dari yang bersangkutan. Tugas bisa di-shuffle sesuai preferensi.</div>
     </div>`;
 }
 
 function showAllUpdates() {
   const updates = KKN.latestUpdates || [];
-  alert(updates.map(u => `[${u.tag}] ${u.date}\n${u.title}\n${u.desc}`).join('\n\n━━━━━━━━━━\n\n'));
+  const body = updates.map(u => `
+    <div class="modal-update">
+      <div class="mu-date">${u.tag} · ${fmtDate(parseDate(u.date))}</div>
+      <div class="mu-title">${u.title}</div>
+      <div class="mu-desc">${u.desc}</div>
+    </div>`).join('');
+  openModal('Semua Update', body);
 }
 
 /* ── DOKUMEN DRIVE ── */
@@ -1111,14 +1272,14 @@ function renderDokumen() {
 
   let html = `
     <div class="alert a-info" style="margin-bottom:20px">
-      <span class="alert-icon">💾</span>
+      <span class="alert-icon" aria-hidden="true">💾</span>
       <div>
         <strong>Semua file ini ada di Google Drive kelompok.</strong> Download yang sesuai tugasmu.
         File <code>.md</code> bisa di-convert ke Word/Docs dengan AI — copy paste isi-nya ke ChatGPT/Claude/Gemini dan minta convert.
       </div>
     </div>
     <div class="alert a-warn" style="margin-bottom:24px">
-      <span class="alert-icon">🔗</span>
+      <span class="alert-icon" aria-hidden="true">🔗</span>
       <div><strong>Link Drive:</strong> <code>(Dex isi link Drive setelah upload)</code> — sementara, file ada di folder lokal Dex.</div>
     </div>`;
 
@@ -1147,7 +1308,7 @@ function renderDokumen() {
 /* ── INIT ── */
 document.addEventListener('DOMContentLoaded', () => {
   const apiKeyInp = document.getElementById('api-key-input');
-  if (apiKeyInp) { const k = getApiKey(); if (k) { apiKeyInp.value = k; apiKeyInp.type = 'password'; } }
+  if (apiKeyInp) { let k = ''; try { k = localStorage.getItem('kkn-gemini-key') || ''; } catch {} if (k) { apiKeyInp.value = k; apiKeyInp.type = 'password'; } }
 
   const chatInp = document.getElementById('chat-input');
   if (chatInp) chatInp.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendChat(); } });
@@ -1155,6 +1316,18 @@ document.addEventListener('DOMContentLoaded', () => {
   const noteInp = document.getElementById('note-input');
   if (noteInp) noteInp.addEventListener('keydown', e => { if (e.key === 'Enter' && e.ctrlKey) { e.preventDefault(); addNote(); } });
 
-  const saved = localStorage.getItem('kkn-page') || 'dashboard';
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      if (document.getElementById('app-modal')) { closeModal(); return; }
+      closeSidebar();
+    }
+  });
+
+  updateTopbarUser();
+  syncSidebarInert();
+  window.addEventListener('resize', syncSidebarInert);
+
+  let saved = 'dashboard';
+  try { saved = localStorage.getItem('kkn-page') || 'dashboard'; } catch {}
   showPage(saved);
 });
