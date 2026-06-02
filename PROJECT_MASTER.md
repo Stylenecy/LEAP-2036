@@ -20,7 +20,7 @@
 **📋 NEXT TODO (urut prioritas):**
 
 *A. Workshop SMA (LEAP 2036):*
-1. **Submit proposal final ke DPL** (sebelum ~21 Juni) — anggaran udah patuh, tinggal kirim. PPT bisa di-generate via `workshop/NotebookLM-Prompt-PPT-DPL.md`.
+1. 🟡 **Submit proposal final ke DPL** — **Dex lapor "udah kukirim" (1 Jun malam)**; ⚠️ konfirmasi item persisnya pas balik (proposal final? laporan grup? upload Drive?) + tunggu respons/feedback DPL. PPT via `workshop/NotebookLM-Prompt-PPT-DPL.md` kalau diminta.
 2. **Syendhi: setup + uji sistem data** — paste `sistem-data/leap2036-build.gs` → Run → test 1 kelas dummy sebelum hari-H.
 3. **Tim putuskan:** F2.5 payoff (+20 Uang utk yg Berhasil, opsional) + Kartu Chaos mana dipakai (set `CONFIG.chaosPlayed`).
 4. **Konfirmasi ke APL:** penanggung jawab Fun Day · skema LPPM final (1 vs 2) · SMA mitra (BOPKRI + 1).
