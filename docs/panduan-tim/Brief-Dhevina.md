@@ -67,52 +67,36 @@ APL malam 27 Mei kirim WA: kemungkinan skema sebenarnya = **1 SMA × 5 hari** (b
 | 4 | Surat 2036 medium | **Digital** — siswa ngetik di HP, auto-generate PDF, shareable via WA. Konsisten dengan vibe Kahoot/app, no logistik cetak |
 | 5 | Web hosting | **Vercel subdomain** (`kknstem.vercel.app` atau `leap2036.vercel.app`). NO custom domain berbayar |
 
-### 📊 Rancangan Anggaran — Per 1 Workshop (40 siswa)
+### 📊 Rancangan Anggaran — FINAL (≤ Rp 500.000, tanpa makanan)
 
-| Item | Hitungan | Total |
-|------|----------|-------|
-| **Sticker custom** (jasa order: Rp 2k/kertas isi 6 sticker) | 40 ÷ 6 = 7 kertas × Rp 2.000 | **Rp 14.000** |
-| **Snack ringan** (sachet, brand lokal: Rp 15k = 10 sachet) | 40 ÷ 10 = 4 pack × Rp 15.000 | **Rp 60.000** |
-| **Sertifikat digital** (PDF Canva, broadcast WA) | desain 1x, distribusi otomatis | **Rp 0** |
-| **Surat 2036 digital** (auto-PDF dari app/Form, share link) | output via teknologi | **Rp 0** |
-| **Banner** | drop — siswa pegang HP, identitas digital | **Rp 0** |
-| **Domain web** | pakai Vercel subdomain | **Rp 0** |
-| **Cetak dokumen formal ke sekolah** (proposal/surat izin/MoU) | administratif | **Rp 20.000** |
-| **Buffer transport & print kecil** | safety net per workshop | **Rp 30.000** |
-| **TOTAL per 1 workshop** | | **Rp 124.000** |
+> ⚠️ Revisi **1 Juni** sesuai constraint DPL (Pembekalan KKN II): maks Rp 500k, **NOL konsumsi/snack**. Versi lama (5 SMA / Rp 620k + snack Rp300k) **USANG — jangan dipakai.** RAB resmi: `workshop/Proposal-LEAP-2036-v3.md` §3.1.6 + `workshop/Project-Master-LEAP-2036.md` §7. Ringkas:
 
-### 📈 Total Anggaran 5 SMA
+| No | Item | Jumlah |
+|----|------|--------|
+| 1 | Cetak Kartu Skor Pribadi (B/W) | Rp 50.000 |
+| 2 | Cetak template Surat 2036 (B/W) | Rp 45.000 |
+| 3 | Name tag / kartu kode siswa | Rp 15.000 |
+| 4 | Sticky note + kertas plano (Papan Keragaman) | Rp 35.000 |
+| 5 | Spidol 3 warna + marker | Rp 50.000 |
+| 6 | Laminasi kartu *reusable* | Rp 105.000 |
+| 7 | Cetak poster pos | Rp 30.000 |
+| 8 | Sticker custom LEAP 2036 | Rp 28.000 |
+| 9 | Sertifikat partisipasi cetak | Rp 20.000 |
+| 10 | Amplop apresiasi + isi simbolik (non-makanan) | Rp 32.000 |
+| 11 | Cetak dokumen formal (2 SMA) | Rp 40.000 |
+| 12 | Tisu travel pack | Rp 20.000 |
+| 13 | Buffer operasional | Rp 30.000 |
+|    | **TOTAL** | **Rp 500.000** |
 
-| Komponen | Hitungan | Total |
-|----------|----------|-------|
-| 5 workshop × Rp 124.000 | replicate scope unit | Rp 620.000 |
-| **TOTAL DIAJUKAN KE LPPM** | | **Rp 620.000** |
+**Beda dari versi lama:** snack Rp300k dihapus (dilarang) · apresiasi cash → non-material (sticker/sertifikat/gantungan) · strategi *reusable* (laminasi cetak sekali, pakai 2 SMA + Fun Day). Air minum: bawa sendiri / dari sekolah.
 
-**Benchmark defensibility:**
-- Eye Care SMA Stero (proposal precedent KKN STEM tahun lalu, didanai LPPM) = **Rp 600.000** untuk 5 hari di 1 SMA.
-- LEAP 2036 = **Rp 620.000** untuk 1 hari × 5 SMA. **Hampir persis sama dengan baseline.** Sangat masuk akal untuk di-approve LPPM.
-
-### 📝 Format untuk Masuk ke Proposal v2 — Section "3.1.c Rancangan Anggaran"
-
-Susun tabel anggaran di proposal mengikuti format Contoh Eye Care:
-
-```
-| No | Uraian | Volume | Satuan | Harga Satuan | Jumlah |
-|----|--------|--------|--------|--------------|--------|
-| 1  | Sticker custom LEAP 2036 (1 kertas isi 6 sticker) | 35 | kertas | Rp 2.000 | Rp 70.000 |
-| 2  | Snack ringan sachet (Rp 15k = 10 sachet) | 20 | pack | Rp 15.000 | Rp 300.000 |
-| 3  | Cetak dokumen formal (proposal, surat izin, MoU) | 5 | SMA | Rp 20.000 | Rp 100.000 |
-| 4  | Buffer transport & operasional tak terduga | 5 | SMA | Rp 30.000 | Rp 150.000 |
-|    | **TOTAL** |  |  |  | **Rp 620.000** |
-```
-
-(Note: jumlah sticker di tabel = 35 kertas karena 7 × 5 SMA. Aku revisi dari hitungan per-workshop tadi.)
+**Tugas kamu (banker/finance):** pegang catatan realisasi belanja vs RAB ini, simpan semua nota, jaga total tetap **≤ Rp 500.000** saat eksekusi.
 
 ### 🎁 Filosofi Reward (untuk masuk ke section "3.1.b Sasaran" atau "Indikator Keberhasilan")
 
 Workshop **TIDAK MENGGUNAKAN sistem pemenang/juara**. Alasan filosofis (silakan masukkan ke proposal sebagai dasar metodologi):
 
-> "Sistem reward berbasis kompetisi bertentangan dengan core teaching workshop ini, yaitu bahwa setiap pola keputusan hidup memiliki konsekuensi unik dengan trade-off yang berbeda. Memberikan hadiah kepada 'pemenang' akan mengimplikasikan bahwa ada satu pola hidup yang lebih unggul dari yang lain — pesan yang secara langsung kontra-produktif terhadap tujuan reflektif workshop. Sebagai pengganti, semua peserta menerima apresiasi setara (sticker, snack, sertifikat digital, Surat dari Diri 2036) sebagai bentuk pengakuan atas partisipasi reflektif mereka. Highlight 'Refleksi Terbaik' di sesi closing diberikan sebagai momen apresiasi non-material untuk siswa dengan refleksi paling otentik, bukan sebagai juara."
+> "Sistem reward berbasis kompetisi bertentangan dengan core teaching workshop ini, yaitu bahwa setiap pola keputusan hidup memiliki konsekuensi unik dengan trade-off yang berbeda. Memberikan hadiah kepada 'pemenang' akan mengimplikasikan bahwa ada satu pola hidup yang lebih unggul dari yang lain — pesan yang secara langsung kontra-produktif terhadap tujuan reflektif workshop. Sebagai pengganti, semua peserta menerima apresiasi setara (sticker, sertifikat, gantungan simbolik non-makanan, Surat dari Diri 2036) sebagai bentuk pengakuan atas partisipasi reflektif mereka. Highlight 'Refleksi Terbaik' di sesi closing diberikan sebagai momen apresiasi non-material untuk siswa dengan refleksi paling otentik, bukan sebagai juara."
 
 ### ✅ Checklist Dhevina untuk Proposal v2 (di rumah)
 

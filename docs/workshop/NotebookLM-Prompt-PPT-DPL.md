@@ -12,14 +12,11 @@
 
 Upload file berikut ke NotebookLM sebagai sumber:
 
-1. ✅ **WAJIB:** `docs/Project-Master-LEAP-2036.md` (sumber utama, comprehensive)
-2. 🟡 Opsional (untuk konteks tambahan kalau NotebookLM butuh elaborasi):
-   - `docs/Proposal Workshop SMA Kelompok 2 - LEAP 2036-v2.md`
-   - `docs/v2-patches.md`
-   - `docs/Skenario-Starter-Pack.md`
+1. ✅ **WAJIB:** `docs/workshop/Project-Master-LEAP-2036.md` (sumber utama, comprehensive) + `docs/workshop/Proposal-LEAP-2036-v3.md` (proposal & RAB final)
+2. 🟡 Opsional (konteks tambahan): `docs/workshop/LEAP-2036_Modular_v2.md` (rundown detail)
 3. ⛔ JANGAN upload:
-   - `.agent/Dex-Core.md` (info internal Dex, bukan untuk publikasi)
-   - `docs/Catatan APL & DPL.txt` (komunikasi informal internal)
+   - `docs/_internal/*` (catatan internal Dex, bukan untuk publikasi)
+   - `docs/info-program/Catatan-APL-DPL.txt` (komunikasi informal internal)
    - `docs/Catatan Bahaya APL.txt` (info politik internal, sensitif)
    - `docs/Asisten-Brief_*.md` (panduan tim internal, bukan presentasi)
 
@@ -111,21 +108,20 @@ SLIDE 11 — RUNDOWN LPPM-2: SPLIT 2 + 3 HARI DI 2 SMA
 - Sekolah B Day B3: Fase 3 + Showcase + Closing.
 - Note kunci di bawah: same core content, scaled durasi. Bukan "appetizer vs main course."
 
-SLIDE 12 — ANGGARAN: LPPM-1 (5 hari × 1 SMA)
-- Tabel anggaran lengkap dengan kolom: No | Uraian | Volume | Satuan | Harga Satuan | Jumlah.
-- 6 item: Sticker custom (Rp 14k), Snack sachet 5 hari (Rp 300k), Cetak dokumen formal (Rp 20k), Buffer transport (Rp 30k), Surprise Apresiasi 3 volunteer × Rp 25k (Rp 75k), DISC Assessment buffer (Rp 75k).
-- TOTAL: Rp 514.000.
-- Note di footer: Defensible vs precedent Eye Care Rp 600k LPPM (di bawah baseline).
+SLIDE 12 — ANGGARAN: RAB FINAL (≤ Rp 500.000, TANPA makanan)
+- Tabel anggaran lengkap kolom: No | Uraian | Volume | Satuan | Harga Satuan | Jumlah (13 item — ambil dari Proposal-LEAP-2036-v3 §3.1.6).
+- Highlight: Cetak Kartu Skor (Rp 50k) + Surat 2036 (Rp 45k); Laminasi kartu reusable (Rp 105k) + poster pos (Rp 30k); Spidol (Rp 50k) + sticky/plano Papan Keragaman (Rp 35k); Apresiasi non-material — sticker (Rp 28k) + sertifikat (Rp 20k) + amplop simbolik (Rp 32k); Cetak dokumen formal 2 SMA (Rp 40k) + name tag (Rp 15k); tisu (Rp 20k) + buffer (Rp 30k).
+- TOTAL: Rp 500.000 (tepat di cap DPL, NOL konsumsi/makanan).
+- Note footer: di bawah precedent Eye Care Rp 600k; berlaku untuk kedua skema karena item reusable dipakai ulang lintas SMA.
 
-SLIDE 13 — ANGGARAN: LPPM-2 (2+3 hari × 2 SMA)
-- Tabel anggaran lengkap kolom: No | Uraian | Sekolah A | Sekolah B | Sub-Total.
-- 7 item dengan breakdown per sekolah.
-- Sub-Total Sekolah A: Rp 356.500. Sub-Total Sekolah B: Rp 346.500.
-- TOTAL: Rp 703.000.
-- Note di footer: 17% di atas baseline Eye Care, masih defensible untuk scope 2 SMA.
+SLIDE 13 — STRATEGI ANGGARAN (kenapa pas ≤500k tanpa makanan)
+- Snack Rp 300k di-drop (dilarang DPL) → air minum bawa sendiri/dari sekolah.
+- Apresiasi cash → diganti NON-material (sticker/sertifikat/gantungan), sama rata, konsisten no-juara.
+- Reusable-first: kartu keputusan/kejutan/tokoh dilaminasi SEKALI → dipakai 2 SMA + Fun Day.
+- Backup kertas (Kartu Skor + template Surat cetak + Papan Keragaman manual) sudah DIBIAYAI → workshop tetap jalan kalau sinyal/proyektor mati.
 
 SLIDE 14 — STRATEGI EFISIENSI & SUMBER PENDANAAN
-- Bullet substantif: (a) Sertifikat digital (no print cost), (b) Surat 2036 auto-PDF (no logistik cetak), (c) Web hosting Vercel subdomain (no domain berbayar), (d) NO reward/hadiah pemenang (filosofis), (e) Banner fisik tidak digunakan.
+- Bullet substantif: (a) Output utama digital (sertifikat & Surat 2036 auto-PDF) — cetak hanya cadangan seperlunya, (b) Web hosting Vercel subdomain (no domain berbayar), (c) NO reward/hadiah pemenang (filosofis), (d) Banner fisik tidak digunakan (identitas via sticker + interface digital).
 - Sumber pendanaan: kombinasi LPPM UKDW (primer) + dana mandiri kelompok (backup jika LPPM dipotong).
 - 1 kalimat closing: Anggaran dirancang untuk maximum impact per rupiah dengan strategi digitalisasi luaran.
 
@@ -159,7 +155,7 @@ SLIDE 18 — PENUTUP, JADWAL, & PERMOHONAN MASUKAN
 - Kontak: Dex Bennett (Ketua) sebagai koordinator komunikasi utama.
 
 LARANGAN KETAT (HAL-HAL YANG TIDAK BOLEH MUNCUL DI PPT):
-- JANGAN buat slide khusus daftar pustaka lengkap (cukup mention 2–3 nama kunci inline: Hershfield 2011, Kolb 1984, Miller 2018). Daftar lengkap di proposal v2.
+- JANGAN buat slide khusus daftar pustaka lengkap (cukup mention 2–3 nama kunci inline: Hershfield 2011, Kolb 1984, Miller 2018). Daftar lengkap di proposal v3.
 - JANGAN buat slide timeline build aplikasi 10 minggu detail per minggu — DPL tidak butuh roadmap teknis.
 - JANGAN expose dinamika internal tim ("3 anggota silent," dll) — info ini internal Kelompok 2.
 - JANGAN tampilkan stack teknis (Next.js, Supabase, Vercel) dalam detail teknis — cukup mention "platform web modern dengan progressive enhancement 3-layer." 
@@ -253,7 +249,7 @@ Setelah NotebookLM export ke Google Slides, lakukan polish manual:
 | Slide 9 | Buat tabel komparatif jadi side-by-side visual (bukan vertikal stacked) |
 | Slide 12 & 13 | Highlight total anggaran dengan box berwarna emas untuk emphasis |
 | Slide 17 | Color-code probabilitas (rendah=hijau, medium=kuning, tinggi=merah) di tabel risiko |
-| Slide 18 | Tambahkan QR code link ke proposal v2 / website KKN-HUB jika DPL mau eksplorasi lanjut |
+| Slide 18 | Tambahkan QR code link ke proposal v3 / website KKN-HUB jika DPL mau eksplorasi lanjut |
 | Semua slide | Cek konsistensi font, ukuran, dan alignment |
 | Speaker notes | Isi speaker notes untuk slide 5, 6, 8, 10, 11 dengan talking points kunci |
 

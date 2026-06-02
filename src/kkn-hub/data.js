@@ -30,7 +30,7 @@ const KKN = {
     {
       date: "2026-05-30",
       title: "⚠️ Pembekalan KKN II — Constraint Anggaran Baru",
-      desc: "Anggaran workshop SMA dibatasi maks Rp 500.000 + TIDAK boleh ada anggaran makanan/konsumsi. Wajib siapkan backup plan (antisipasi sinyal kelas lemah → local server/offline). Anggaran lama (514k/703k pakai snack) sedang direvisi.",
+      desc: "Anggaran workshop SMA dibatasi maks Rp 500.000 + TIDAK boleh ada anggaran makanan/konsumsi. Wajib siapkan backup plan (sinyal kelas lemah → kertas/offline). ✅ Update 1 Juni: RAB sudah difinalkan = Rp 500.000 tanpa makanan (snack di-drop, apresiasi non-material, kartu reusable + cadangan kertas).",
       tag: "PENTING",
       gotoPage: "proker",
     },
@@ -895,6 +895,6 @@ NO JUARA: tiap kelompok punya GOAL HIDUP berbeda (8 pilihan) → "jalan paralel,
 OUTPUT: Surat dari Diri 2036 (tiap siswa) + Profil 2036 (7 tipe: Pembangun Seimbang, Sukses-tapi-Tumbang, Mekar Belakangan, Pemberontak Kreatif, Bijak yang Tenang, Pelari Tanpa Rem, Penjelajah Reflektif) + Surprise Apresiasi (semua dapat, bukan juara).
 2 SKEMA PELAKSANAAN (LPPM belum final): A = 5 hari di 1 SMA (Modul 1-5, 1 modul/hari). B = 2 SMA (Sekolah A 2 hari + Sekolah B 2 hari + 1 Fun Day; modul digabung pakai katup aman). Prioritas = skema B.
 PEMBAGIAN PERAN (USULAN, minta konfirmasi tiap orang): Dex = MC/koordinator + briefing + reveal. Dhevina = Lead Fase 1 (finansial/karier) + banker. Benediktus = Lead Fase 2 (krisis) + brief medis. Maria = Keamanan Emosi + co-lead Surat 2036. Syendhi = Operator Data & Skor (Form/Sheet/CSV) + teknis. Theana = Dokumentasi + desain materi cetak (lagi magang → beban paling ringan). Tiap orang konfirmasi bagiannya di halaman 'Tugas Tim'.
-ANGGARAN: maks Rp 500.000, TANPA makanan/konsumsi (constraint Pembekalan 30 Mei) — masih direvisi.
+ANGGARAN: RAB FINAL = Rp 500.000, TANPA makanan/konsumsi (constraint Pembekalan 30 Mei). Snack di-drop; apresiasi non-material (sticker/sertifikat/gantungan); strategi reusable (laminasi kartu sekali, pakai 2 SMA); backup kertas (Kartu Skor + Surat cetak) sudah dibiayai. Detail RAB di Proposal-v3 §3.1.6 / Project-Master §7.
 DOKUMEN LENGKAP WORKSHOP: docs/LEAP-2036_Modular_v2.md (rundown 5 modul + skenario + sistem data + naskah). State proyek: PROJECT_MASTER.md.
 `;

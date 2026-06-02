@@ -6,6 +6,23 @@
 
 ---
 
+## ⏸️ RESUME HERE — pause 1 Juni 2026 (malam)
+
+**Sesi 1 Juni (besar) — DONE:**
+- ✅ KKN-HUB v3: dashboard personal (pilih nama → tugas), WCAG AA, mobile-safe, polish. Live `kknstem.vercel.app`.
+- ✅ Sistem data per-siswa → `docs/sistem-data/` (Apps Script auto Form+Sheet+Profil+CSV, kartu cetak, panduan). Logika di-test. **Bug bonus difix: profil "Pelari Tanpa Rem" tadinya unreachable → urutan IFS dibetulin.**
+- ✅ `docs/` dirombak → 7 folder ramah-manusia + `README.md` entry point. Konsolidasi (Ide-Materi 3→1, Handover→README, hapus dup Proposal-v1).
+- ✅ **GitHub PUBLIC**: https://github.com/Stylenecy/LEAP-2036 (push via GCM). ✅ Drive folder di-wire ke web.
+- ✅ Laporan grup Kelompok 2 (format DPL) dibuat.
+
+**NEXT (pas balik):**
+1. ✅ **DONE (1 Jun, sesi-2) — Revisi anggaran ≤Rp500k tanpa makanan.** RAB tunggal **Rp 500.000** (snack Rp300k di-drop, apresiasi non-material, strategi reusable laminasi, backup kertas dibiayai). Disinkron via workflow: `workshop/Proposal-LEAP-2036-v3.md` §3.1.6 + `workshop/Project-Master-LEAP-2036.md` §7 + `panduan-tim/Brief-Dhevina.md` + `workshop/NotebookLM-Prompt-PPT-DPL.md` + `data.js`. Total verified = 500k, sweep stale bersih.
+2. ❓ **Contributor GitHub** — repo nunjukin 3 author: Stylenecy `<dex.bennett28>`, Dex Bennett `<ezranhmry@gmail.com>` (email Kak Ezra, dari 2 commit awal!), + Claude (trailer). Dex pertimbangkan: rewrite history → 1 author + buang trailer + force-push biar email Ezra hilang dari repo publik. **Tunggu keputusan Dex.** (Going forward: JANGAN tambah `Co-Authored-By: Claude` di repo ini.)
+
+**Open/blockers:** ~~anggaran~~ ✅ beres. LPPM belum pilih skema 1 vs 2. SMA mitra tentative. Key Gemini publik (sengaja; opsi restrict referrer). F2.5 payoff + Kartu Chaos belum diputuskan tim. Proposal final tinggal submit (anggaran udah patuh).
+
+---
+
 ## 0. STATUS SNAPSHOT (30 Mei 2026)
 
 **Dua program paralel:**
@@ -15,7 +32,7 @@
 **Status terkini:**
 - Workshop SMA: konsep **LOCKED** = LEAP 2036 (desain v2.0, 28 Mei). Presentasi proposal ke DPL **28 Mei DONE**.
 - ⚠️ **CONSTRAINT BARU — Pembekalan KKN II (30 Mei):** anggaran **max Rp 500.000** + **NO anggaran makanan** + wajib **backup plan** (antisipasi sinyal kelas lemah → local server/offline).
-  - → **Revisi anggaran PENDING.** Skema lama (Rp 514k LPPM-1 / Rp 703k LPPM-2) **langgar** constraint: 514k > 500k, dan dua-duanya tumpu **snack Rp 300k** (= makanan, sekarang dilarang). Harus dirampingkan.
+  - → ✅ **Revisi anggaran DONE (1 Jun).** RAB tunggal **Rp 500.000** tanpa makanan (snack Rp300k di-drop, apresiasi non-material, reusable laminasi). Skema lama 514k/703k+snack disupersede. Detail Proposal-v3 §3.1.6 / Project-Master §7.
 - **Fokus aktif (per arahan LPPM/APL):** sempurnakan **skema LPPM-2** (split 2+3 hari), **terutama Sekolah A (2 hari)**.
 - LPPM **belum final** memilih skema (LPPM-1 vs LPPM-2) → tetap siapkan keduanya.
 
@@ -41,7 +58,7 @@
 - ✅ **`docs/` dirapiin + commit `6815d0e` + redeploy (1 Jun):** canonical di root; `_internal/` (catatan mentah, gitignored, NON-publik); `referensi/` (PDF besar); `_archive/` (versi lama + Ide-Materi); `docs/README.md` index. `.gitignore` exclude `_internal/`/`.agent/`/`settings.local.json` utk repo PUBLIK. Web `data.js`: Dokumen list disinkron + kategori "Sistem Data Hari-H" + banner 1-Jun. Laporan grup Kelompok 2 (format DPL) dibuat.
 - ✅ **`docs/` dirombak total + commit `ce9d8e2` + redeploy (1 Jun):** 7 folder ramah-manusia (`workshop/ sistem-data/ panduan-tim/ info-program/ referensi/ arsip/ _internal/`). Konsolidasi: Ide-Materi 3→1, Handover→README, hapus Proposal-v1 (dup), arsipkan Skenario-Starter (model lama). `docs/README.md` = entry point (onboarding per-peran + prompt md→Docs). Semua path-ref disinkron (data.js/PROJECT_MASTER/CLAUDE/PANDUAN/LEAP-modular). docx kelompok lain di-exclude dari repo publik.
 - ✅ **GitHub (1 Jun):** pushed → **https://github.com/Stylenecy/LEAP-2036** (PUBLIC, portofolio). Remote `origin`, branch `main` @ `ce9d8e2`. Auth via Git Credential Manager (gh CLI terinstall tapi tak ke-auth). `_internal/`/`.agent/`(current)/`settings.local.json`/docx-kelompok-lain di-exclude dari tree; key Gemini sengaja tetap (keputusan Dex).
-- ⏳ **Drive:** Dex upload `docs/` (minus `_internal/`) sendiri → nanti paste link Drive → wire ke web (placeholder halaman Dokumen) + redeploy.
+- ✅ **Drive (1 Jun):** Dex upload `docs/` → folder Drive di-wire ke web (`meta.driveFolderUrl`, tombol "buka folder Drive" di halaman Dokumen) + README. Commit `6be81da`, redeployed, verified live.
 
 **⏸️ NEXT ACTIONS (urut):**
 1. ✅ DONE (30 Mei) — Reconcile dokumen: PROJECT_MASTER (ini) jadi canonical; LEAP master §2.3 APL confirmed + §7 banner constraint anggaran.
@@ -51,7 +68,7 @@
 5. ✅ DONE (1 Jun) — **Commit (`a4437cb`) + deploy prod** KKN-HUB v3 → live `kknstem.vercel.app` (verified).
 6. ✅ DONE (1 Jun) — **Sistem data per-siswa dibangun** → `docs/data-system/`: (a) `leap2036-build.gs` Apps Script (paste→run→auto-bikin Google Form + Sheet; skor running-clamp 0–200 + Profil 2036 via JS + ekspor CSV; delta asli dari Bank Skenario), (b) `kartu-skor.html` print fallback, (c) `PANDUAN-SISTEM-DATA.md` panduan Syendhi. Logika di-test (semua pass). **Syendhi tinggal: paste script → setup → uji 1 kelas dummy.**
    - 🐞 **Fix bawaan:** profil **Pelari Tanpa Rem** sebelumnya *unreachable* (urutan IFS doc: Sukses dicek dulu → telan semua kasus Pelari). Sudah dibetulkan (Pelari dicek dulu) di script + `LEAP-2036_Modular_v2.md` (IFS §3 Langkah 4, cheat §3C + reveal) + panduan. Sekarang 7 profil semua bisa keluar.
-7. ⏳ Revisi anggaran ≤ Rp 500k tanpa makanan + tulis backup plan. ← **next**
+7. ✅ DONE (1 Jun) — Revisi anggaran ≤ Rp 500k tanpa makanan (RAB Rp500.000, disinkron semua file). Backup plan kertas sudah dibiayai + tertulis di RAB.
 8. ⏳ (opsional, free) Dex: restrict Gemini key by HTTP referrer di Google AI Studio (`kknstem.vercel.app/*`).
 9. ⏳ Tim: putuskan F2.5 payoff (+20 Uang utk yg Berhasil, opsional) + Kartu Chaos mana yang dipakai (set di `CONFIG.chaosPlayed`).
 
@@ -174,7 +191,7 @@
 
 ## 8. OPEN THREADS / PENDING
 
-- [ ] **Revisi anggaran** ≤ Rp 500k, **tanpa makanan** (drop/ganti snack Rp 300k). Update LEAP master §7 + proposal + data.js.
+- [x] ✅ **Revisi anggaran** ≤ Rp 500k, **tanpa makanan** (1 Jun) — RAB Rp500.000, snack di-drop, apresiasi non-material, reusable. Disinkron: Proposal-v3 §3.1.6, Project-Master §7, Brief-Dhevina, NotebookLM prompt, data.js.
 - [ ] **Backup plan** sinyal lemah (local server / Canvas Lite offline / kartu fisik) — tulis eksplisit di proposal.
 - [x] ✅ **Rundown Modular v2 (3 jam/hari)** → `docs/LEAP-2036_Modular_v2.md` (31 Mei) — 5 modul + 2 Config assembly (A: 5-hari · B: 2-SMA). Supersede doc Sekolah A 4–5 jam (diarsip `docs/_archive/`).
 - [ ] **Fun Day — penanggung jawab?** Konfirm APL (desain sementara: student-driven + fasilitator ringan).

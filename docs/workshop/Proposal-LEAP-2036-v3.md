@@ -118,7 +118,7 @@ Pada skenario ini, tim Kelompok 2 mendampingi 1 kelas di Sekolah A selama 2 hari
 | Estimasi total siswa terdampak | 30–40 | 60–80 |
 | Kedalaman per siswa | Tinggi | Bervariasi (Sekolah A ringkas, Sekolah B medium) |
 | *Bonding* tim-siswa | Sangat kuat | Sedang per sekolah |
-| Total anggaran | Rp 514.000 | Rp 703.000 |
+| Total anggaran | ≤ Rp 500.000 (RAB tunggal, tanpa makanan) | ≤ Rp 500.000 (RAB tunggal, tanpa makanan) |
 
 Kedua skenario telah dirancang lengkap dengan *rundown* harian, alokasi anggaran terperinci, dan strategi mitigasi risiko spesifik (lihat sub-bagian 3.1.6, 3.1.10, dan dokumentasi internal). Tim Kelompok 2 siap melaksanakan skenario manapun sesuai keputusan final LPPM.
 
@@ -206,48 +206,34 @@ Sebagai pengganti sistem pemenang, di sesi *Showcase Reflection* pada Day terakh
 
 #### **3.1.6 Rancangan Anggaran**
 
-##### **3.1.6.a Skema LPPM-1 — 5 Hari di 1 SMA**
+Mengikuti arahan Pembekalan KKN Tahap II (30 Mei 2026), anggaran dibatasi **maksimal Rp 500.000** dan **tanpa alokasi konsumsi/makanan**. RAB di bawah disusun untuk **konfigurasi prioritas (2 SMA + 1 Fun Day)**, dengan strategi memaksimalkan barang *reusable* (cetak/laminasi sekali, dipakai lintas sekolah) dan menekan biaya habis-pakai melalui fotokopi hitam-putih.
 
 | No | Uraian | Volume | Satuan | Harga Satuan | Jumlah |
 |----|--------|--------|--------|--------------|--------|
-| 1 | Sticker custom LEAP 2036 (1 lembar isi 6 sticker, jasa cetak) | 7 | lembar | Rp 2.000 | Rp 14.000 |
-| 2 | Snack ringan sachet (40 siswa × 5 hari = 200 sachet, 1 pack = 10 sachet) | 20 | pack | Rp 15.000 | Rp 300.000 |
-| 3 | Cetak dokumen formal (proposal cetak, surat izin, MoU) | 1 | SMA | Rp 20.000 | Rp 20.000 |
-| 4 | Buffer transport & operasional 5 hari | 1 | paket | Rp 30.000 | Rp 30.000 |
-| 5 | Surprise Apresiasi Volunteer Sharing (e-money/cash) | 3 | volunteer | Rp 25.000 | Rp 75.000 |
-| 6 | DISC Assessment buffer (versi premium jika diperlukan) | 1 | paket | Rp 75.000 | Rp 75.000 |
-|  | **TOTAL ANGGARAN SKEMA LPPM-1** |  |  |  | **Rp 514.000** |
+| 1 | Cetak Kartu Skor Pribadi (B/W A4, ±2 kartu/lembar) | 100 | lembar | Rp 500 | Rp 50.000 |
+| 2 | Cetak template "Surat dari Diri 2036" (B/W A4) | 90 | lembar | Rp 500 | Rp 45.000 |
+| 3 | Name tag / kartu kode siswa | 2 | paket | Rp 7.500 | Rp 15.000 |
+| 4 | Sticky note + kertas plano (Papan Keragaman 7 Profil) | 2 | paket | Rp 17.500 | Rp 35.000 |
+| 5 | Spidol 3 warna (Energi/Uang/Mental) + marker fasilitator | 2 | set | Rp 25.000 | Rp 50.000 |
+| 6 | Laminasi kartu *reusable* (Kartu Kejutan, Hasil, Tokoh 2036, Kamus + Kartu Cek 7-baris) | 35 | lembar | Rp 3.000 | Rp 105.000 |
+| 7 | Cetak poster pos (8 Tujuan Hidup, DISC, header 7 Profil) | 1 | set | Rp 30.000 | Rp 30.000 |
+| 8 | Sticker custom LEAP 2036 (1 lembar isi 6 sticker) | 14 | lembar | Rp 2.000 | Rp 28.000 |
+| 9 | Sertifikat partisipasi cetak (apresiasi volunteer sharing, A4) | 8 | lembar | Rp 2.500 | Rp 20.000 |
+| 10 | Amplop apresiasi + isi simbolik non-makanan (gantungan/pin) | 8 | amplop | Rp 4.000 | Rp 32.000 |
+| 11 | Cetak dokumen formal (proposal cetak, surat izin, MoU) | 2 | SMA | Rp 20.000 | Rp 40.000 |
+| 12 | Tisu travel pack (support sesi reflektif, **bukan** konsumsi) | 4 | pack | Rp 5.000 | Rp 20.000 |
+| 13 | Buffer operasional tak terduga (2 SMA) | 1 | paket | Rp 30.000 | Rp 30.000 |
+|  | **TOTAL ANGGARAN** |  |  |  | **Rp 500.000** |
 
-##### **3.1.6.b Skema LPPM-2 — Split 2+3 Hari di 2 SMA**
+##### **3.1.6.a Strategi Efisiensi & Catatan**
 
-| No | Uraian | Sekolah A (2 hari) | Sekolah B (3 hari) | Sub-Total |
-|----|--------|-------------------|-------------------|-----------|
-| 1 | Sticker custom (1 lembar = 6 sticker) | Rp 14.000 | Rp 14.000 | Rp 28.000 |
-| 2 | Snack ringan sachet (40 siswa) | Rp 120.000 (8 pack) | Rp 180.000 (12 pack) | Rp 300.000 |
-| 3 | Cetak dokumen formal | Rp 20.000 | Rp 20.000 | Rp 40.000 |
-| 4 | Buffer transport & operasional | Rp 15.000 | Rp 20.000 | Rp 35.000 |
-| 5 | Surprise Apresiasi (3 volunteer × Rp 25k per sekolah) | Rp 75.000 | Rp 75.000 | Rp 150.000 |
-| 6 | DISC Assessment buffer (shared) | Rp 75.000 | — | Rp 75.000 |
-| 7 | Cetak materi Card Sort Values (30 cards × 2 set) | Rp 37.500 | Rp 37.500 | Rp 75.000 |
-|  | **Sub-Total per Sekolah** | **Rp 356.500** | **Rp 346.500** |  |
-|  | **TOTAL ANGGARAN SKEMA LPPM-2** |  |  | **Rp 703.000** |
+* **Nol biaya konsumsi/makanan** — sesuai arahan DPL; air minum dibawa mandiri peserta atau disediakan sekolah.
+* **Reusable-first:** kartu keputusan/kejutan/tokoh dilaminasi **sekali** lalu dipakai ulang di 2 SMA + Fun Day (No. 6) → biaya per-sekolah ditekan signifikan.
+* **Apresiasi non-material & non-juara:** Surprise Apresiasi untuk volunteer sharing berupa sertifikat + sticker + gantungan simbolik (No. 8–10) yang **sama rata**, bukan hadiah uang dan bukan untuk "refleksi terbaik" — konsisten dengan filosofi *no-juara*.
+* **Backup no-tech sudah dibiayai:** Kartu Skor kertas (No. 1), template Surat cetak (No. 2), dan Papan Keragaman manual (No. 4–5) memastikan workshop tetap berjalan penuh bila sinyal/proyektor mati — Google Form/Sheet hanya jalur **utama**, bukan satu-satunya.
+* Luaran "Surat dari Diri 2036" & sertifikat utama tetap diproduksi **digital (PDF auto-generated)**; cetakan di atas hanya cadangan seperlunya. Hosting via **Vercel** (`kknstem.vercel.app`) — nol biaya domain. *Banner* fisik tidak digunakan (identitas via *sticker* + interface digital).
 
-##### **3.1.6.c Strategi Efisiensi & Sumber Pendanaan**
-
-Rancangan anggaran ini menerapkan strategi efisiensi berikut yang berlaku untuk kedua skema:
-
-* Sertifikat partisipasi diterbitkan dalam bentuk **digital (PDF)** yang didistribusikan via grup WhatsApp/email — meniadakan biaya cetak per peserta.
-* Luaran "Surat dari Diri 2036" diproduksi dalam format **digital auto-generated**, dapat disimpan atau dicetak mandiri oleh siswa.
-* Platform web workshop menggunakan **hosting Vercel** dengan *subdomain* resmi (`kknstem.vercel.app`) — meniadakan biaya domain tahunan.
-* Tidak terdapat alokasi biaya untuk *reward* pemenang. Surprise Apresiasi pada *Showcase Reflection* di Day terakhir merupakan bentuk apresiasi non-*ranking* atas keberanian berbagi refleksi.
-* *Banner* fisik tidak digunakan — identitas visual workshop dideliver melalui *sticker* dan *interface* digital di proyektor.
-
-**Sumber pendanaan:** Anggaran kegiatan diajukan kepada LPPM UKDW dalam skema pengabdian masyarakat KKN STEM 2026, mengikuti *precedent* program KKN STEM Eyecare 2024/2025 yang memperoleh pendanaan Rp 600.000 dari LPPM. Apabila pendanaan LPPM tidak terpenuhi secara penuh, kekurangan akan ditanggung secara mandiri oleh anggota kelompok melalui sistem iuran proporsional sebagai komitmen pelaksanaan program.
-
-**Benchmark defensibility:**
-
-* Skema LPPM-1 (Rp 514.000) — di bawah baseline *precedent* Eye Care Rp 600.000.
-* Skema LPPM-2 (Rp 703.000) — 17% di atas baseline, masih defensible karena scope mencakup 2 SMA.
+**Sumber pendanaan:** diajukan kepada LPPM UKDW (skema pengabdian masyarakat KKN STEM 2026). Total **Rp 500.000 berada di dalam batas** yang ditetapkan dan **di bawah** *precedent* program Eye Care (Rp 600.000). Apabila pendanaan LPPM tidak terpenuhi penuh, kekurangan ditanggung mandiri oleh anggota melalui iuran proporsional.
 
 #### **3.1.7 Indikator Keberhasilan Program**
 
