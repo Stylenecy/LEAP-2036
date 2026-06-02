@@ -2,24 +2,39 @@
 
 > **Canonical STATE tracker** untuk SELURUH program KKN (Eyecare + Workshop SMA).
 > Detail desain Workshop SMA ada di **`docs/workshop/Project-Master-LEAP-2036.md`** (jangan duplikat di sini — file itu deep-design, file ini state/status).
-> **Last synced: 2026-05-30.** Update tiap sesi (Universal Session Protocol).
+> **Last synced: 2026-06-01 (sesi-2).** Update tiap sesi (Universal Session Protocol).
 
 ---
 
-## ⏸️ RESUME HERE — pause 1 Juni 2026 (malam)
+## ⏸️ RESUME HERE — update 1 Juni 2026 (sesi-2 malam)
 
-**Sesi 1 Juni (besar) — DONE:**
-- ✅ KKN-HUB v3: dashboard personal (pilih nama → tugas), WCAG AA, mobile-safe, polish. Live `kknstem.vercel.app`.
-- ✅ Sistem data per-siswa → `docs/sistem-data/` (Apps Script auto Form+Sheet+Profil+CSV, kartu cetak, panduan). Logika di-test. **Bug bonus difix: profil "Pelari Tanpa Rem" tadinya unreachable → urutan IFS dibetulin.**
-- ✅ `docs/` dirombak → 7 folder ramah-manusia + `README.md` entry point. Konsolidasi (Ide-Materi 3→1, Handover→README, hapus dup Proposal-v1).
-- ✅ **GitHub PUBLIC**: https://github.com/Stylenecy/LEAP-2036 (push via GCM). ✅ Drive folder di-wire ke web.
-- ✅ Laporan grup Kelompok 2 (format DPL) dibuat.
+**Sesi 1 Juni — SEMUA DONE:**
+- ✅ KKN-HUB **v3** (dashboard personal pilih-nama→tugas, WCAG AA, mobile-safe) — live `kknstem.vercel.app`.
+- ✅ Sistem data per-siswa `docs/sistem-data/` (Apps Script Form+Sheet+Profil+CSV, kartu cetak, panduan; di-test; fix bug profil "Pelari" unreachable).
+- ✅ `docs/` dirombak 7 folder + `README.md` entry point (konsolidasi: Ide-Materi 3→1, Handover→README, hapus dup).
+- ✅ **GitHub PUBLIC** `github.com/Stylenecy/LEAP-2036` + Drive di-wire ke web.
+- ✅ **Anggaran revisi ≤Rp500k tanpa makanan** — RAB **Rp 500.000** (snack drop, apresiasi non-material, reusable), disinkron 5 file + verified.
+- ✅ **`panduan-tim/Anggaran-Rinci-LEAP-2036.md`** — penjelasan rinci anggaran buat seisi kelompok (per-item: kenapa, buat apa, harga).
+- ✅ **Contributor repo dibersihin** — history rewrite → **1 author Stylenecy** `<dex.bennett28>`; email Kak Ezra + trailer Claude hilang; force-pushed (`c65781d`). ⚠️ JANGAN tambah Claude co-author lagi.
 
-**NEXT (pas balik):**
-1. ✅ **DONE (1 Jun, sesi-2) — Revisi anggaran ≤Rp500k tanpa makanan.** RAB tunggal **Rp 500.000** (snack Rp300k di-drop, apresiasi non-material, strategi reusable laminasi, backup kertas dibiayai). Disinkron via workflow: `workshop/Proposal-LEAP-2036-v3.md` §3.1.6 + `workshop/Project-Master-LEAP-2036.md` §7 + `panduan-tim/Brief-Dhevina.md` + `workshop/NotebookLM-Prompt-PPT-DPL.md` + `data.js`. Total verified = 500k, sweep stale bersih.
-2. ❓ **Contributor GitHub** — repo nunjukin 3 author: Stylenecy `<dex.bennett28>`, Dex Bennett `<ezranhmry@gmail.com>` (email Kak Ezra, dari 2 commit awal!), + Claude (trailer). Dex pertimbangkan: rewrite history → 1 author + buang trailer + force-push biar email Ezra hilang dari repo publik. **Tunggu keputusan Dex.** (Going forward: JANGAN tambah `Co-Authored-By: Claude` di repo ini.)
+**📋 NEXT TODO (urut prioritas):**
 
-**Open/blockers:** ~~anggaran~~ ✅ beres. LPPM belum pilih skema 1 vs 2. SMA mitra tentative. Key Gemini publik (sengaja; opsi restrict referrer). F2.5 payoff + Kartu Chaos belum diputuskan tim. Proposal final tinggal submit (anggaran udah patuh).
+*A. Workshop SMA (LEAP 2036):*
+1. **Submit proposal final ke DPL** (sebelum ~21 Juni) — anggaran udah patuh, tinggal kirim. PPT bisa di-generate via `workshop/NotebookLM-Prompt-PPT-DPL.md`.
+2. **Syendhi: setup + uji sistem data** — paste `sistem-data/leap2036-build.gs` → Run → test 1 kelas dummy sebelum hari-H.
+3. **Tim putuskan:** F2.5 payoff (+20 Uang utk yg Berhasil, opsional) + Kartu Chaos mana dipakai (set `CONFIG.chaosPlayed`).
+4. **Konfirmasi ke APL:** penanggung jawab Fun Day · skema LPPM final (1 vs 2) · SMA mitra (BOPKRI + 1).
+
+*B. Eyecare (program Juni — lebih dekat!):*
+5. **13–19 Juni: Training SO Eyecare (WAJIB).** 13–17 Juni consent form sekolah.
+6. **20 Juni Opening · 21–25 Service Days SD/SMP · 27 Closing · 28–29 Video edukasi** (semua tampil).
+
+*C. Opsional / kecil:*
+7. Re-upload `docs/panduan-tim/` ke Drive (file anggaran-rinci baru belum ke-upload).
+8. Restrict Gemini key by referrer (`kknstem.vercel.app/*`) di Google AI Studio.
+9. GitHub: set description + topics (butuh `gh auth login`, atau ketik di github.com).
+
+**Blockers (eksternal):** LPPM belum pilih skema · SMA mitra tentative. Selebihnya jalan.
 
 ---
 
