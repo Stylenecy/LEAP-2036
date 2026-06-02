@@ -42,6 +42,7 @@
 ### `panduan-tim/` — brief peran + komunikasi ✅
 | File | Isi |
 |------|-----|
+| 💰 `Anggaran-Rinci-LEAP-2036.md` | Penjelasan rinci RAB Rp500k — tiap item: kenapa beli, buat apa, harga dari mana. **Dibaca bareng seisi kelompok.** |
 | `Brief-Dhevina.md` | Brief tugas Dhevina + konsep finansial + script Fase 1. |
 | `Brief-Syendhi.md` | Brief tugas Syendhi + checklist alat H-1. *(Bagian "setup Google Sheets manual" sudah digantikan `sistem-data/PANDUAN-SISTEM-DATA.md`.)* |
 | `Template-Pesan-WA.md` | Template pesan WA siap pakai (sebagian sebut event yang sudah lewat — sesuaikan). |

@@ -207,6 +207,7 @@ const KKN = {
     {
       kategori: "Brief Tim & Komunikasi",
       files: [
+        { name: "💰 Anggaran Rinci (BACA BARENG)", file: "panduan-tim/Anggaran-Rinci-LEAP-2036.md", desc: "Penjelasan tiap rupiah RAB Rp500k: kenapa beli, buat apa, harga dari mana. Buat dikulik seisi kelompok.", priority: "high" },
         { name: "Brief untuk Dhevina (Manajemen)", file: "panduan-tim/Brief-Dhevina.md", desc: "Tugas, script, materi belajar — Lead Fase 1", priority: "high", forPerson: "Dhevina" },
         { name: "Brief untuk Syendhi (Informatika)", file: "panduan-tim/Brief-Syendhi.md", desc: "Tugas + checklist alat. (Setup data → lihat Panduan Sistem Data)", priority: "high", forPerson: "Syendhi" },
         { name: "Template Pesan WA", file: "panduan-tim/Template-Pesan-WA.md", desc: "Template pesan grup & DM siap copy-paste", priority: "medium" },
