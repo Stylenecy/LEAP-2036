@@ -63,7 +63,7 @@ Dalam rangka menjawab tantangan tersebut, tim KKN STEM Kelompok 2 akan menyeleng
 **Bagi Siswa SMA:**
 
 1. Memiliki gambaran konkret tentang konsekuensi berbagai pilihan hidup melalui pengalaman simulasi yang aman.
-2. Mengembangkan *self-awareness* dan kemampuan refleksi diri melalui aktivitas Values Exercise, DISC Assessment, dan jurnal refleksi harian.
+2. Mengembangkan *self-awareness* dan kemampuan refleksi diri melalui aktivitas Values Exercise, kuis kecenderungan gaya (terinspirasi DISC, dinilai-sendiri), dan jurnal refleksi harian.
 3. Mendapatkan pengalaman belajar yang memorable dan berbeda dari format pembelajaran konvensional.
 4. Memperoleh artefak personal berupa "Surat dari Diri 2036" sebagai memorial refleksi yang dapat dibaca ulang di masa mendatang.
 
@@ -112,10 +112,10 @@ Seluruh luaran di atas dirancang **setara dan tanpa pemeringkatan**: program ini
 
 Hasil pelaksanaan workshop akan dipublikasikan melalui beragam kanal media sebagai bentuk diseminasi dampak program dan akuntabilitas kepada *stakeholder* pengabdian masyarakat:
 
-* **Media Sosial Resmi Kelompok 2 KKN STEM 2026** — Postingan Instagram berupa *teaser* pra-pelaksanaan, *daily highlights* selama workshop berlangsung, serta *recap* pasca-program (estimasi 5–10 postingan per SMA mitra).
-* **Konten Video Pendek (Reels/TikTok)** — Dokumentasi singkat 30–60 detik berisi cuplikan momen kunci workshop, testimoni siswa, dan visualisasi profil masa depan 2036 (2–3 video per SMA mitra).
+* **Media Sosial Resmi Kelompok 2 KKN STEM 2026** — Postingan Instagram berupa *teaser* pra-pelaksanaan, beberapa *daily highlight* selama workshop, serta *recap* pasca-program (jumlah menyesuaikan kapasitas dokumentasi tim).
+* **Konten Video Pendek (Reels/TikTok)** — Dokumentasi singkat 30–60 detik berisi cuplikan momen kunci dan visualisasi profil 2036 (minimal 1 video *recap* per sekolah, *best-effort* sesuai kapasitas tim).
 * **Video Kompilasi Profil 2036** — Video kompilasi anonim yang memvisualisasikan distribusi profil hasil simulasi seluruh peserta sebagai bentuk refleksi kolektif program.
-* **Artikel Pengabdian Masyarakat** — Penyusunan artikel pengabdian masyarakat sebagai luaran tertulis untuk diunggah ke kanal resmi LPPM UKDW dan/atau website Program Studi.
+* **Draf Artikel/Narasi Pengabdian** — Penyusunan **draf** artikel/narasi pengabdian masyarakat sebagai luaran tertulis, yang **diajukan** ke LPPM UKDW untuk dipertimbangkan publikasinya di kanal resmi (keputusan unggah berada pada LPPM).
 * **Laporan Diseminasi ke SMA Mitra** — Penyerahan dokumen ringkasan agregat sebaran profil siswa kepada pihak SMA mitra (Guru BK dan Wakasek Kesiswaan).
 * **Halaman Web Dedicated** — Pemutakhiran website KKN-HUB Kelompok 2 (`kknstem.vercel.app`) dengan halaman khusus "Proker SMA" yang memuat informasi program dan dokumentasi.
 
@@ -218,7 +218,7 @@ Setiap *goal hidup* dibatasi maksimum 5 peserta untuk menjaga keseimbangan distr
 
 Pada Day 1 (Foundation Day), peserta menjalani tiga aktivitas *self-discovery* yang membentuk tiga lapis identitas mereka untuk digunakan sebagai bahan refleksi sepanjang simulasi:
 
-1. **Tendency Layer (DISC Assessment)** — Asesmen DISC online untuk mengidentifikasi kecenderungan kepribadian (Dominance/Influence/Steadiness/Conscientiousness). Hasil DISC diframing eksplisit sebagai *tendency*, bukan *destiny* — workshop selanjutnya menguji apakah keputusan peserta konsisten dengan kecenderungan mereka atau terdapat penyimpangan signifikan.
+1. **Tendency Layer (Kuis Kecenderungan Gaya)** — Kuis singkat **dinilai-sendiri oleh siswa** yang terinspirasi kerangka DISC (Dominance/Influence/Steadiness/Conscientiousness) untuk mengenali kecenderungan gaya pribadi — **bukan asesmen kepribadian formal/klinis**, melainkan bahan refleksi. Hasilnya diframing eksplisit sebagai *tendency*, bukan *destiny* — workshop selanjutnya menguji apakah keputusan peserta konsisten dengan kecenderungannya.
 2. **Values Layer (Card Sort Values + "5 Non-Negotiables")** — Aktivitas eksplorasi nilai personal melalui kartu *sort* berisi 30 *values* universal. Peserta memilih top 5 nilai yang paling penting bagi mereka dan menuliskan "5 hal yang tidak akan saya kompromikan dalam hidup."
 3. **Goals Layer (Goal Hidup Kelompok)** — Goal hidup yang dipilih saat *group formation* menjadi lapis identitas ketiga yang berfungsi sebagai kompas keputusan kelompok sepanjang simulasi.
 
@@ -289,7 +289,7 @@ Mengikuti arahan Pembekalan KKN Tahap II (30 Mei 2026), anggaran dibatasi **maks
 * **Reusable-first:** kartu keputusan/kejutan/tokoh dilaminasi **sekali** lalu dipakai ulang lintas hari dan hingga 2 SMA (No. 6) → biaya per-sekolah ditekan signifikan.
 * **Apresiasi non-material & non-juara:** Surprise Apresiasi untuk volunteer sharing berupa sertifikat + sticker + gantungan simbolik (No. 8–10) yang **sama rata**, bukan hadiah uang dan bukan untuk "refleksi terbaik" — konsisten dengan filosofi *no-juara*.
 * **Backup no-tech sudah dibiayai:** Kartu Skor kertas (No. 1), template Surat cetak (No. 2), dan Papan Keragaman manual (No. 4–5) memastikan workshop tetap berjalan penuh bila sinyal/proyektor mati — Google Form/Sheet hanya jalur **utama**, bukan satu-satunya.
-* Luaran "Surat dari Diri 2036" & sertifikat utama tetap diproduksi **digital (PDF auto-generated)**; cetakan di atas hanya cadangan seperlunya. Hosting via **Vercel** (`kknstem.vercel.app`) — nol biaya domain. *Banner* fisik tidak digunakan (identitas via *sticker* + interface digital).
+* Artefak yang **dijamin** untuk tiap siswa adalah **"Surat dari Diri 2036" tulisan tangan/cetak** (sudah dibiayai, No. 2); versi **digital (PDF auto-generated)** diproduksi sebagai nilai tambah bila alur data berjalan lancar. Hosting via **Vercel** (`kknstem.vercel.app`) — nol biaya domain. *Banner* fisik tidak digunakan (identitas via *sticker* + interface digital).
 
 **Sumber pendanaan:** diajukan kepada LPPM UKDW (skema pengabdian masyarakat KKN STEM 2026). Total **Rp 500.000 berada di dalam batas** yang ditetapkan dan **di bawah** *precedent* program Eye Care (Rp 600.000). Apabila pendanaan LPPM tidak terpenuhi penuh, kekurangan ditanggung mandiri oleh anggota melalui iuran proporsional.
 
@@ -299,12 +299,12 @@ Untuk melakukan standarisasi evaluasi dampak program, dirumuskan parameter indik
 
 | No | Indikator | Target Kuantitatif |
 |----|-----------|-------------------|
-| 1 | Tingkat kehadiran penuh peserta (mengikuti seluruh hari workshop) | ≥80% peserta terdaftar |
+| 1 | Tingkat kehadiran peserta (mengikuti mayoritas hari) | ≥75% peserta hadir minimal 4 dari 5 hari (atau mayoritas sesi pada skema lebih pendek) |
 | 2 | Tingkat penyelesaian luaran "Surat dari Diri 2036" oleh peserta | ≥70% peserta hadir |
 | 3 | Peningkatan skor pemahaman peserta (pre vs post-test; kuesioner *future-literacy* 8–10 butir paralel) | ≥50% peserta menunjukkan peningkatan skor |
 | 4 | Tingkat partisipasi aktif peserta dalam sesi *debrief* (menyebutkan minimal 1 *insight* konkret) | ≥50% peserta hadir |
 | 5 | Keragaman jalur hasil simulasi (sebaran Profil 2036, terukur dari ekspor CSV) | Sebaran mencakup ≥4 dari 7 profil |
-| 6 | Tingkat keberlangsungan kelompok (tetap fungsional sampai hari terakhir) | ≥80% kelompok bertahan fungsional |
+| 6 | Keberlangsungan kelompok (≥3 anggota aktif & menuntaskan keputusan kolektif tiap fase) | ≥80% kelompok bertahan fungsional |
 | 7 | Kelengkapan dokumentasi visual program (foto, video, data sebaran profil) | 100% sesi terdokumentasi |
 | 8 | Penyerahan dokumen luaran ringkasan agregat kepada pihak SMA mitra | 100% SMA mitra menerima |
 
@@ -317,7 +317,7 @@ Validitas data hasil kegiatan diverifikasi melalui instrumen-instrumen berikut:
 | Pra-Workshop | Kuesioner *baseline* digital (Google Form) — mengukur *future literacy* awal | File ekspor CSV per SMA |
 | Pra-Workshop | Surat izin pelaksanaan dari pihak SMA mitra | Dokumen bertanda tangan kepala sekolah |
 | Selama Workshop | Daftar hadir fisik bercap sekolah per hari | Dokumen daftar hadir per sesi |
-| Selama Workshop (Day 1) | Hasil DISC Assessment per peserta | Spreadsheet tipe DISC per siswa |
+| Selama Workshop (Day 1) | Rekap kuis kecenderungan gaya (self-report) | Spreadsheet self-report kecenderungan per siswa |
 | Selama Workshop (Day 1) | Output Card Sort Values per peserta | Foto/scan kartu top 5 *values* per siswa |
 | Selama Workshop | Sistem skor *live* Google Sheets (skor kelompok + skor individu) | File ekspor CSV dengan *timestamp* |
 | Selama Workshop | *Reflection journal* harian peserta | Arsip digital atau scan tulisan |
@@ -328,7 +328,9 @@ Validitas data hasil kegiatan diverifikasi melalui instrumen-instrumen berikut:
 | Pasca-Workshop | Rekapitulasi distribusi profil "2036" peserta (kelompok + individu) | Grafik dan tabel agregat |
 | Pasca-Workshop | Laporan pengabdian masyarakat komprehensif | Dokumen PDF + presentasi ke LPPM |
 
-Kuesioner pra- dan pasca-workshop memakai **butir paralel** (8–10 item, skala Likert) yang mengukur dimensi yang sama (kesadaran konsekuensi jangka panjang, kejelasan nilai inti, kesiapan merencanakan masa depan), sehingga selisih *pre/post* valid diperbandingkan dan mendukung Indikator No. 3.
+Kuesioner pra- dan pasca-workshop memakai **butir paralel buatan tim** (8–10 item, skala Likert; bukan instrumen terstandardisasi) yang mengukur dimensi yang sama (kesadaran konsekuensi jangka panjang, kejelasan nilai inti, kesiapan merencanakan masa depan), sehingga selisih *pre/post* dapat dibaca sebagai **gambaran deskriptif** perubahan kesadaran (bukan klaim psikometrik) dan mendukung Indikator No. 3.
+
+**Catatan kapasitas pengumpulan:** instrumen **inti** (kuesioner *baseline*/*post-test*, daftar hadir, rekap skor *live*/CSV, Surat 2036, laporan akhir) dikumpulkan menyeluruh; instrumen **pelengkap** (foto Card Sort Values, jurnal refleksi harian) diarsipkan secara **sampel/selektif** sesuai kapasitas tim yang juga menjadi fasilitator — tidak harus dari seluruh peserta.
 
 Seluruh data hasil verifikasi diarsipkan dalam Google Drive kelompok dan akan dilampirkan dalam laporan akhir KKN STEM 2026.
 
@@ -347,36 +349,26 @@ Untuk menjamin efektivitas pengorganisasian program, anggota Kelompok 2 dibagi k
 
 Seluruh anggota juga berperan sebagai **fasilitator dan pendamping** selama sesi simulasi berlangsung, dengan rotasi tugas mengikuti kebutuhan dinamis per fase dan per hari workshop. Struktur kepanitiaan ini berada di bawah supervisi langsung Dosen Pembimbing Lapangan (DPL) **dr. Loury Priiskila, M.Biomed.** dan Asisten Pembimbing Lapangan (APL) Kelompok 2.
 
-#### **3.1.10 Rencana Kegiatan — Rundown Harian**
+#### **3.1.10 Rencana Kegiatan — Rundown**
 
-##### **Rundown Skema LPPM-1 (5 Hari di 1 SMA)**
+Konten workshop disusun sebagai **lima modul harian** yang masing-masing dirancang muat dalam slot **setengah hari (~3 jam)**. Tiap modul berdiri sendiri (modular) sehingga dapat dirakit ke skema manapun tanpa mengubah esensi.
 
-| Hari | Tema Hari | Konten Inti |
-|------|-----------|-------------|
-| **Day 1** | **Foundation Day** | Opening + Konsep *Future Blindness* + Values Exercise + DISC Assessment + Group Formation by Goal Hidup + *Mechanic Briefing* + Mini *Warm-up* Skenario + *Reflection Journal* |
-| **Day 2** | **Fase 1 — Fondasi (2026–2028)** | 7–10 skenario pendidikan dan karier awal dengan alur silent vote → group discussion → consensus → reveal, diakhiri *reflection journal* individu |
-| **Day 3** | **Fase 2 — Krisis (2029–2032)** | 8–12 skenario krisis (PHK, *burnout*, *toxic relationship*, kesempatan besar) + *Random Event Cards* acak per kelompok + *reflection journal* individu |
-| **Day 4** | **Fase 3 — Panen (2033–2036)** | Skenario terminal akumulatif + kalkulasi skor akhir + Reveal Profil 2036 kelompok dan individu + mulai penulisan Surat 2036 |
-| **Day 5** | **Showcase Day** | Finalisasi Surat 2036 + distribusi PDF + *Gallery Walk* hasil kelompok + *Showcase Reflection* (3–4 volunteer sharing) + Surprise Apresiasi + Foto kelas + *Collective Vision Board* + Closing |
+| Modul | Durasi | Konten Inti | Lead |
+|-------|--------|-------------|------|
+| **Modul 1 — Materi & Fondasi Diri** | ≤3 jam | Perkenalan + konsep *Future Blindness* + Values Exercise + DISC + "3 Lapis Diri" + pembentukan kelompok (Goal Hidup) + *briefing* mekanik + 1 skenario pemanasan | Dex + semua |
+| **Modul 2 — Fase 1: Fondasi (2026–2028)** | ≤3 jam | **4–5 skenario** keputusan awal (sekolah / karier / uang) + refleksi | Dhevina |
+| **Modul 3 — Fase 2: Krisis (2029–2032)** | ≤3 jam | **4–5 skenario** "badai" (*burnout*, sakit, relasi) + Kartu Kejutan (opsional) + protokol keamanan emosi | Benediktus + Maria |
+| **Modul 4 — Fase 3: Panen (2033–2036)** | ≤3 jam | **2–3 skenario** terminal + hitung skor + *reveal* Profil 2036 + mulai Surat 2036 | Dex + Syendhi |
+| **Modul 5 — Fun Day** | ≤3 jam | Selesaikan Surat 2036 + *games* + *gallery walk* + *Showcase Reflection* + Surprise Apresiasi + foto | Semua + Theana |
 
-##### **Rundown Skema LPPM-2 (Split 2+3 Hari)**
+**Pemetaan ke dua skema:**
 
-**Sekolah A — 2 Hari (Compressed):**
+* **Skema LPPM-1 (5 hari, 1 SMA):** satu modul per hari (Modul 1 → 2 → 3 → 4 → 5). Versi paling lega untuk kedalaman refleksi.
+* **Skema LPPM-2 (2 hari Sekolah A + 3 hari Sekolah B):** modul digabung dengan mekanisme **"katup aman"** (bagian non-esensial dipangkas terjadwal bila waktu mepet):
+  * *Sekolah A (2 hari):* Hari 1 = Modul 1 + inti Modul 2; Hari 2 = Modul 3 + 4 + penutup singkat ala Modul 5.
+  * *Sekolah B (3 hari):* Hari 1 = Modul 1 + 2; Hari 2 = Modul 3; Hari 3 = Modul 4 + 5.
 
-| Hari | Tema | Konten Inti |
-|------|------|-------------|
-| **Day A1** | **Foundation + Fase 1 Compressed** | Values Exercise *lite* + DISC *lite* + Group Formation + *Mechanic Briefing* + Fase 1 (4–5 skenario padat) + *Reflection Journal* |
-| **Day A2** | **Fase 2 + Fase 3 + Showcase** | Fase 2 (4–5 skenario padat + *Random Event Cards* singkat) + Fase 3 (Skor akhir + Reveal Profil) + Surat 2036 + *Showcase Reflection* + Surprise Apresiasi + Closing |
-
-**Sekolah B — 3 Hari (Full-Medium):**
-
-| Hari | Tema | Konten Inti |
-|------|------|-------------|
-| **Day B1** | **Foundation + Fase 1** | Versi lengkap Day 1 dan Day 2 LPPM-1 dikombinasikan dalam 1 hari (Values + DISC penuh + Group Formation + *Mechanic Briefing* + Fase 1 6–7 skenario) |
-| **Day B2** | **Fase 2 (Krisis)** | Fase 2 penuh (8–10 skenario + *Random Event Cards*) + Group *debrief* krisis + *Reflection Journal* |
-| **Day B3** | **Fase 3 + Showcase + Closing** | Fase 3 (4–5 skenario) + Reveal Profil 2036 + Surat 2036 + *Gallery Walk* + *Showcase Reflection* + Surprise Apresiasi + Closing |
-
-*Rundown ini dirancang untuk slot **setengah hari (~3 jam/hari, ±150 menit konten inti + buffer)** sesuai jatah waktu dari LPPM (Notul DPL 30 Mei 2026). Tiap modul telah dihitung muat dalam slot tersebut dengan mekanisme "katup aman" (pemangkasan terjadwal bila waktu mepet), dan dapat disesuaikan sedikit sesuai konfirmasi resmi pihak SMA mitra masing-masing.*
+> *Jumlah skenario per fase (**4–5** di Fase 1 dan 2, **2–3** di Fase 3) sengaja dijaga **realistis** agar tuntas dalam ~3 jam dengan alur 6-langkah per skenario (lihat 3.1.5.a) — tidak dipadatkan berlebihan. Bila waktu sekolah lebih panjang dari 3 jam, jumlah skenario dapat ditambah; bila lebih mepet, "katup aman" memangkasnya tanpa menghilangkan inti.*
 
 #### **3.1.11 Teknis Pelaksanaan Program dan Prosedur Kerja**
 
@@ -390,7 +382,7 @@ Untuk menjamin pelaksanaan program berjalan secara sistematis dan dapat dipertan
 
 ##### **2. Pelaksanaan Simulasi (*Execution Phase*)**
 
-* **Registrasi dan Pra-Kondisi:** Siswa melakukan pendaftaran kehadiran fisik dan pengisian instrumen kuesioner singkat pra-workshop. Peserta kemudian menjalani aktivitas Day 1 Foundation (Values Exercise, DISC Assessment, Group Formation).
+* **Registrasi dan Pra-Kondisi:** Siswa melakukan pendaftaran kehadiran fisik dan pengisian instrumen kuesioner singkat pra-workshop. Peserta kemudian menjalani aktivitas Day 1 Foundation (Values Exercise, kuis kecenderungan gaya, Group Formation).
 * **Sistem Sumber Daya Peserta:** Setiap kelompok (dan setiap individu paralel) mendapatkan modal awal 100 Energi, 100 Kapital, dan 100 Kesehatan Mental yang dikelola sepanjang simulasi.
 * **Protokol Alur Simulasi:** Simulasi dijalankan secara kronologis melalui tiga fase (Fondasi → Krisis → Panen) dengan alur per skenario yang mengikuti enam tahapan baku (lihat sub-bagian 3.1.5.a).
 
