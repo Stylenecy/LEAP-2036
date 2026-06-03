@@ -136,12 +136,11 @@ Menindaklanjuti instruksi resmi LPPM UKDW seputar Pembekalan KKN Tahap II (30 Me
 | 5 | Laminasi kartu reusable | 35 lembar | Rp 3.000 | Rp 105.000 | reusable |
 | 6 | Cetak poster pos | 1 set | Rp 30.000 | Rp 30.000 | reusable |
 | 7 | Stiker Custom LEAP 2036 (apresiasi semua peserta) | 14 lembar | Rp 2.000 | Rp 28.000 | habis-pakai |
-| 8 | Sertifikat partisipasi cetak (apresiasi) | 8 lembar | Rp 2.500 | Rp 20.000 | habis-pakai |
-| 9 | Hadiah apresiasi (amplop + gantungan/pin non-makanan) | 10 buah | Rp 4.700 | Rp 47.000 | habis-pakai |
-| 10 | Cetak dokumen formal (proposal/izin/MoU) | 2 SMA | Rp 20.000 | Rp 40.000 | habis-pakai |
-| 11 | Tisu | 4 pack | Rp 5.000 | Rp 20.000 | habis-pakai |
-| 12 | Buffer operasional tak terduga | 1 paket | Rp 30.000 | Rp 30.000 | cadangan |
-| **-** | **TOTAL ANGGARAN (berlaku untuk kedua skema)** |  |  | **Rp 500.000** |  |
+| 8 | Hadiah apresiasi (amplop + gantungan/pin non-makanan) | 10 buah | Rp 4.700 | Rp 47.000 | habis-pakai |
+| 9 | Cetak dokumen formal (proposal/izin/MoU) | 2 SMA | Rp 20.000 | Rp 40.000 | habis-pakai |
+| 10 | Tisu | 4 pack | Rp 5.000 | Rp 20.000 | habis-pakai |
+| 11 | Buffer operasional tak terduga | 1 paket | Rp 30.000 | Rp 30.000 | cadangan |
+| **-** | **TOTAL ANGGARAN (berlaku untuk kedua skema)** |  |  | **Rp 480.000** |  |
 
 ##### 
 
@@ -150,7 +149,8 @@ Menindaklanjuti instruksi resmi LPPM UKDW seputar Pembekalan KKN Tahap II (30 Me
 * **Penerbitan Sertifikat Digital:** Sertifikat diolah melalui sistem otomatis berbasis web dan didistribusikan dalam bentuk berkas PDF guna menekan ongkos cetak.  
 * **Sistem Surat Digital:** Luaran utama "Surat dari Diri 2036" diproses secara digital auto-generated melalui interaksi sistem pangkalan data kelompok.  
 * **Bebas Biaya Server Web:** Website KKN-HUB Kelompok 2 menggunakan skema *free-tier hosting* Vercel (kknstem.vercel.app) tanpa biaya domain tahunan.  
-* **Efisiensi Identifikasi Peserta:** Kode unik siswa ditulis langsung pada Kartu Skor Pribadi (No. 1), sehingga *name tag* terpisah ditiadakan dan dananya dialihkan ke hadiah apresiasi (No. 9) — sesuai masukan APL.  
+* **Efisiensi Identifikasi Peserta:** Kode unik siswa ditulis langsung pada Kartu Skor Pribadi (No. 1), sehingga *name tag* terpisah ditiadakan dan dananya dialihkan ke hadiah apresiasi (No. 8) — sesuai masukan APL.  
+* **Sertifikat Tanpa Biaya Cetak:** Sertifikat partisipasi untuk seluruh peserta diterbitkan **digital (PDF, gratis)** dan dibagikan via WhatsApp/email — tidak ada alokasi cetak di RAB.  
 * **Sumber Dana:** Permohonan pendanaan diajukan kepada LPPM UKDW dengan merujuk pada histori pendanaan KKN STEM Eye care tahun sebelumnya sebesar Rp 600.000,-. Apabila disetujui di bawah pagu ajuan atau mengalami kendala anggaran, sisa pemenuhan biaya akan ditanggung melalui iuran mandiri terbagi rata di antara anggota kelompok sebagai wujud komitmen pengabdian.
 
 5. **Metodologi Workshop**
