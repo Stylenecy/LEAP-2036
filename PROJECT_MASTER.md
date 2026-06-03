@@ -6,7 +6,13 @@
 
 ---
 
-## ⏸️ RESUME HERE — update 1 Juni 2026 (sesi-2 malam)
+## ⏸️ RESUME HERE — update 3 Juni 2026
+
+**🆕 Sesi 2–3 Juni — DONE:**
+- ✅ **AI web FIXED** — serverless proxy `api/chat.js`, key di Vercel env `GEMINI_KEY` (TIDAK di repo → ga bisa leak/di-disable lagi). Key lama (leaked) dihapus. Live + tested.
+- ✅ **UI matte black** — ganti palette ungu → neutral `#0d0d0f` (komplain tim beres).
+- ✅ **Proposal FINAL `workshop/Proposal-LEAP-2036-v4.md`** — perfeksi v3 + realism pass + gabung revisi Dhevina + audit + usul APL. **Keputusan Dex:** no Lembar Pengesahan · no-juara cukup lisan ke APL (proposal statement singkat) · name tag→apresiasi (usul Eleonora) · sertifikat = digital gratis. **RAB = Rp 480.000 (11 item).**
+- ⏳ **PENDING:** Dex putusin pangkas 3 item RAB (laminasi 105k→17k · poster pos −30k · papan keragaman 35k→10k) → lalu Dhevina finalin di Docs → submit. Detail di Pt.5 bawah.
 
 **Sesi 1 Juni — SEMUA DONE:**
 - ✅ KKN-HUB **v3** (dashboard personal pilih-nama→tugas, WCAG AA, mobile-safe) — live `kknstem.vercel.app`.
@@ -40,7 +46,7 @@
 - ✅ **Proposal DIPERFEKSI (2 Jun)** via workflow audit 4-lensa → 17 edit di `workshop/Proposal-LEAP-2036-v3.md`: **(blocker)** justifikasi no-juara 3-argumen grounded (Markus&Nurius, Kolb) · durasi 4–6 jam → ~3 jam · framing "Eyecare" diperbaiki (Eye Care = peer program, bukan payung). **(major)** Lembar Pengesahan · konsistensi RAB 2-skema (angka Rp500k TAK diubah) · indikator realistis (≥60%→≥50%, 100%→≥80%) · sitasi APA (UNESCO/Markus in-text) · tabel Jadwal Kegiatan · profil 7 nama Indonesia kanonik. Residual sweep bersih, total RAB tetap Rp500.000.
 - ✅ **AI web FIXED (2 Jun)** — Dex kasih key baru; dibikin **serverless proxy** `src/kkn-hub/api/chat.js` (key di Vercel env `GEMINI_KEY`, **tidak lagi di client/repo** → ga bisa leak/di-disable lagi). Key lama dihapus dari `data.js`. Live + tested ("Oke"). Override manual masih ada.
 - ✅ **UI matte black (2 Jun)** — palette ungu → neutral matte black (`--bg #0d0d0f` dst), accent dipertahankan. Komplain "ungu ganggu" beres. (Polish ui-ux skill lanjut bisa.)
-- ✅ **Proposal FINAL = `workshop/Proposal-LEAP-2036-v4.md`** (commit `037d44f`, 2-3 Jun). v4 = revisi Dhevina + SEMUA audit + usul APL diaplikasikan. **Keputusan Dex:** Lembar Pengesahan TIDAK dipakai · justifikasi no-juara cukup LISAN ke APL (proposal cuma statement apresiasi singkat). **Usul APL Eleonora diapply:** name tag dihapus (kode ditulis di Kartu Skor) → dana ke hadiah apresiasi (No.9 Rp47k). **Audit applied:** durasi 4-6 jam→~3 jam, typo 2023→2033, indikator dikasih target terukur, DISC→kuis self-report (bukan asesmen formal), profil Indonesia, tanggal 30 Mei, media best-effort, Eye Care = peer program. RAB tetap **Rp 500.000** (12 item). v3 (versiku, ada pengesahan+no-juara panjang) = superseded. **→ Dhevina tinggal samain di Google Docs / convert ulang v4.md → submit.**
+- ✅ **Proposal FINAL = `workshop/Proposal-LEAP-2036-v4.md`** (commit `037d44f`, 2-3 Jun). v4 = revisi Dhevina + SEMUA audit + usul APL diaplikasikan. **Keputusan Dex:** Lembar Pengesahan TIDAK dipakai · justifikasi no-juara cukup LISAN ke APL (proposal cuma statement apresiasi singkat). **Usul APL Eleonora diapply:** name tag dihapus (kode ditulis di Kartu Skor) → dana ke hadiah apresiasi (No.9 Rp47k). **Audit applied:** durasi 4-6 jam→~3 jam, typo 2023→2033, indikator dikasih target terukur, DISC→kuis self-report (bukan asesmen formal), profil Indonesia, tanggal 30 Mei, media best-effort, Eye Care = peer program. RAB → **Rp 480.000** (11 item; sertifikat = digital/gratis, baris cetak sertifikat dihapus per Dex). v3 (versiku) = superseded. **⏳ PENDING keputusan Dex (3 Jun, dia mau off):** dia bingung 3 item RAB, udah aku jelasin + kasih opsi pangkas — **Laminasi kartu (105k → print biasa ~17k), Poster pos (cut kalau sekolah ada proyektor, −30k), Papan Keragaman (sticky+plano → plano+spidol aja, 35k → ~10k)**. Belum diputus mana yang dipangkas. **→ Habis Dex putusin trim, Dhevina finalin di Google Docs (samain manual / convert ulang `v4.md`) → submit ke APL/DPL.**
 - ❓ Cek apa yang "udah kukirim" Dex (1 Jun) + feedback DPL.
 
 ---
