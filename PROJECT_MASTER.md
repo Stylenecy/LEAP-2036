@@ -38,8 +38,9 @@
 
 **🆕 PT.5 APL + tim (2 Jun) — `docs/_internal/Catatan-Bahaya-APL.txt`:**
 - ✅ **Proposal DIPERFEKSI (2 Jun)** via workflow audit 4-lensa → 17 edit di `workshop/Proposal-LEAP-2036-v3.md`: **(blocker)** justifikasi no-juara 3-argumen grounded (Markus&Nurius, Kolb) · durasi 4–6 jam → ~3 jam · framing "Eyecare" diperbaiki (Eye Care = peer program, bukan payung). **(major)** Lembar Pengesahan · konsistensi RAB 2-skema (angka Rp500k TAK diubah) · indikator realistis (≥60%→≥50%, 100%→≥80%) · sitasi APA (UNESCO/Markus in-text) · tabel Jadwal Kegiatan · profil 7 nama Indonesia kanonik. Residual sweep bersih, total RAB tetap Rp500.000.
-- 🔴 **AI web MASIH MATI** — key Gemini di-blokir Google (*"reported as leaked"*). **WAJIB Dex: rotate key di Google AI Studio → update `data.js:1` + redeploy + restrict referrer.** (Aku ga bisa — akun Google Dex.) **← next paling urgent abis proposal.**
-- 🎨 Tim komplain **background ungu ganggu** → UI tweak (pending).
+- ✅ **AI web FIXED (2 Jun)** — Dex kasih key baru; dibikin **serverless proxy** `src/kkn-hub/api/chat.js` (key di Vercel env `GEMINI_KEY`, **tidak lagi di client/repo** → ga bisa leak/di-disable lagi). Key lama dihapus dari `data.js`. Live + tested ("Oke"). Override manual masih ada.
+- ✅ **UI matte black (2 Jun)** — palette ungu → neutral matte black (`--bg #0d0d0f` dst), accent dipertahankan. Komplain "ungu ganggu" beres. (Polish ui-ux skill lanjut bisa.)
+- 🟡 **Review proposal Dhevina** (`docs/workshop/Revisi Proposal...by-Dhevina.md`) — prosanya bagus + rundown 5-modul 3-jam (lebih clean dari v3), TAPI masih kurang: no-juara TIPIS (1 paragraf — APL nanya, butuh kuat), durasi kontradiksi (4-6 jam vs modul <3 jam), framing Eyecare, belum ada Lembar Pengesahan, RAB dilabel "LPPM-1" doang, profil Inggris, tanggal 28 Mei, indikator naratif (ga terukur). **v3 di repo udah punya semua fix itu** → opsi: gabung jadi 1 final. Tunggu keputusan Dex.
 - ❓ Cek apa yang "udah kukirim" Dex (1 Jun) + feedback DPL.
 
 ---
