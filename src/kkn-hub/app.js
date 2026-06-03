@@ -852,8 +852,7 @@ async function sendChat() {
   const q = inp.value.trim();
   if (!q) return;
 
-  const apiKey = getApiKey();
-  if (!apiKey) { showToast('Masukkan API Key Gemini dulu!', 'warn'); return; }
+  const overrideKey = getApiKey(); // hanya terisi kalau user paste key sendiri; default '' -> lewat proxy /api/chat
 
   chatSending = true;
   inp.value = '';
@@ -873,15 +872,24 @@ async function sendChat() {
       generationConfig: { temperature: 0.7, maxOutputTokens: 1500 },
     };
 
-    const MODELS = ['gemini-2.5-flash-lite', 'gemini-2.0-flash-lite', 'gemini-flash-lite-latest', 'gemini-2.5-flash'];
     let res, data;
-    for (const model of MODELS) {
-      res = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`,
-        { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }
-      );
+    if (overrideKey) {
+      // Power-user: pakai key sendiri, panggil Google langsung.
+      const MODELS = ['gemini-2.5-flash-lite', 'gemini-2.0-flash-lite', 'gemini-flash-lite-latest', 'gemini-2.5-flash'];
+      for (const model of MODELS) {
+        res = await fetch(
+          `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${overrideKey}`,
+          { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }
+        );
+        data = await res.json();
+        if (!data.error) break;
+      }
+    } else {
+      // Default: lewat serverless proxy (key aman di server Vercel, tidak di client).
+      res = await fetch('/api/chat', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body)
+      });
       data = await res.json();
-      if (!data.error) break;
     }
 
     if (loadingEl) loadingEl.remove();

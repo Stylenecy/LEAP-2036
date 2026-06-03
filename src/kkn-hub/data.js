@@ -1,4 +1,5 @@
-const GEMINI_DEFAULT_KEY = 'AIzaSyCOgaP1r6vNsszVdqMFdo64E5uzw_LEmVM';
+// Key Gemini dipindah ke server (Vercel env GEMINI_KEY) lewat /api/chat — TIDAK lagi di client (biar tidak ke-leak/di-disable Google). Override manual masih bisa via UI.
+const GEMINI_DEFAULT_KEY = '';
 
 const KKN = {
   meta: {

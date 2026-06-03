@@ -2,12 +2,13 @@
 
 /* ── ROOT ── */
 :root {
-  --bg:       #07071c;
-  --surface:  #0c0c28;
-  --card:     #111130;
-  --card-h:   #17173c;
-  --border:   #1e1e50;
-  --border-h: #2e2e72;
+  /* Matte black neutral palette (refresh 2-Jun) — no purple tint, easy on eyes */
+  --bg:       #0d0d0f;
+  --surface:  #141417;
+  --card:     #1a1a1e;
+  --card-h:   #232328;
+  --border:   #2a2a30;
+  --border-h: #3a3a42;
 
   --indigo:   #818cf8;
   --indigo-d: rgba(129,140,248,.12);
@@ -24,9 +25,9 @@
   --orange:   #fb923c;
   --orange-d: rgba(251,146,60,.10);
 
-  --text:  #f0f0ff;
-  --t2:    #b4b4e0;
-  --t3:    #8b8bc0;
+  --text:  #f4f4f5;
+  --t2:    #b6b6bd;
+  --t3:    #8a8a93;
 
   --sw: 240px;
   --r:  12px;
