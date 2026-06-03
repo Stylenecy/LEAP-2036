@@ -36,6 +36,12 @@
 
 **Blockers (eksternal):** LPPM belum pilih skema · SMA mitra tentative. Selebihnya jalan.
 
+**🆕 PT.5 APL + tim (2 Jun) — `docs/_internal/Catatan-Bahaya-APL.txt`:**
+- ✅ **Proposal DIPERFEKSI (2 Jun)** via workflow audit 4-lensa → 17 edit di `workshop/Proposal-LEAP-2036-v3.md`: **(blocker)** justifikasi no-juara 3-argumen grounded (Markus&Nurius, Kolb) · durasi 4–6 jam → ~3 jam · framing "Eyecare" diperbaiki (Eye Care = peer program, bukan payung). **(major)** Lembar Pengesahan · konsistensi RAB 2-skema (angka Rp500k TAK diubah) · indikator realistis (≥60%→≥50%, 100%→≥80%) · sitasi APA (UNESCO/Markus in-text) · tabel Jadwal Kegiatan · profil 7 nama Indonesia kanonik. Residual sweep bersih, total RAB tetap Rp500.000.
+- 🔴 **AI web MASIH MATI** — key Gemini di-blokir Google (*"reported as leaked"*). **WAJIB Dex: rotate key di Google AI Studio → update `data.js:1` + redeploy + restrict referrer.** (Aku ga bisa — akun Google Dex.) **← next paling urgent abis proposal.**
+- 🎨 Tim komplain **background ungu ganggu** → UI tweak (pending).
+- ❓ Cek apa yang "udah kukirim" Dex (1 Jun) + feedback DPL.
+
 ---
 
 ## 0. STATUS SNAPSHOT (30 Mei 2026)

@@ -10,15 +10,45 @@
 
 ---
 
+## **LEMBAR PENGESAHAN**
+
+| Komponen | Keterangan |
+|----------|------------|
+| **Judul Kegiatan** | Workshop Simulasi Hidup 10 Tahun: Keputusanmu Hari Ini, Hidupmu 2036 (LEAP 2036) |
+| **Program** | KKN Tematik International Service Learning STEM 2026 — Kelompok 2 (UKDW × Hong Kong PolyU) |
+| **Ketua Pelaksana** | Dex Bennett — NIM 72230663 (Prodi Sistem Informasi) |
+| **Jumlah Anggota** | 6 orang |
+| **Lokasi & Waktu** | SMA mitra, Yogyakarta — 3–7 Agustus 2026 |
+| **Total Biaya** | Rp 500.000 (sumber: LPPM UKDW) |
+
+Yogyakarta, _____ Agustus 2026
+
+| Ketua Pelaksana, | Menyetujui, Dosen Pembimbing Lapangan, |
+|:---:|:---:|
+| &nbsp; | &nbsp; |
+| &nbsp; | &nbsp; |
+| **Dex Bennett** | **dr. Loury Priiskila, M.Biomed.** |
+| NIM. 72230663 | NIDN. ____________________ |
+
+Mengetahui,
+Ketua/Koordinator LPPM Universitas Kristen Duta Wacana
+
+&nbsp;
+
+(_______________________________)
+NIDN. ____________________
+
+---
+
 ## **BAB I — PENDAHULUAN**
 
 ### **1.1 Latar Belakang**
 
 Siswa SMA, khususnya kelas 11 dan 12, berada di persimpangan krusial dalam kehidupan mereka. Mereka menghadapi tekanan pengambilan keputusan besar seperti pemilihan jurusan, pilihan karier, gaya hidup, dan nilai-nilai yang akan membentuk siapa mereka di usia dewasa, namun seringkali tanpa benar-benar merasakan konsekuensi nyata dari pilihan tersebut. Fenomena ini memicu terjadinya *"future blindness"* (kebutaan masa depan), yaitu ketidakmampuan menghubungkan keputusan hari ini dengan dampaknya 5–10 tahun ke depan (Hershfield, 2011). Akibatnya, banyak remaja membuat keputusan berdasarkan tekanan sosial, tren sesaat, atau sekadar menghindari konflik jangka pendek, bukan berdasarkan refleksi yang sadar terhadap nilai dan tujuan hidup mereka.
 
-Pendekatan konvensional dalam workshop *soft skill* (seminar motivasi satu arah, presentasi karier, sesi BK normatif) umumnya bersifat satu arah dan terbukti kurang efektif karena siswa hanya mendengar tanpa merasakan langsung. Intervensi dini yang terstruktur dan terasa sangat diperlukan — mencegah kesalahan dalam pengambilan keputusan hidup secara *experiential* lebih efektif daripada menangani dampaknya di kemudian hari. Hal ini sejalan dengan program KKN STEM Eyecare yang telah lebih dahulu berjalan: jika program Eyecare berfokus pada "penglihatan fisik" siswa melalui deteksi dan koreksi miopia, maka program workshop ini berfokus pada penguatan "penglihatan masa depan" siswa.
+Pendekatan konvensional dalam workshop *soft skill* (seminar motivasi satu arah, presentasi karier, sesi BK normatif) umumnya bersifat satu arah dan terbukti kurang efektif karena siswa hanya mendengar tanpa merasakan langsung. Intervensi dini yang terstruktur dan terasa sangat diperlukan — mencegah kesalahan dalam pengambilan keputusan hidup secara *experiential* lebih efektif daripada menangani dampaknya di kemudian hari. Program ini melengkapi portofolio pengabdian KKN STEM Kelompok 2 di samping program Eye Care (kesehatan mata) yang berjalan terpisah; bila program Eye Care menyasar kesehatan penglihatan fisik siswa, Workshop ini menyasar penguatan "penglihatan masa depan" (*future literacy*) dan kesiapan pengambilan keputusan mereka.
 
-Dalam rangka menjawab tantangan tersebut, tim KKN STEM Kelompok 2 akan menyelenggarakan program berupa workshop interaktif berbasis *experiential learning* (Kolb, 1984). Melalui simulasi yang terstruktur, siswa akan diajak mengalami konsekuensi dari pilihan hidup mereka secara aman dalam rentang waktu beberapa hari, guna meningkatkan *future literacy* (Miller, 2018) dan kesiapan mental mereka dalam merencanakan masa depan. Workshop ini dirancang dengan model partisipasi hybrid yang memadukan diskusi kelompok kecil dengan pengambilan keputusan individu, sehingga peserta tidak hanya belajar tentang konsekuensi keputusan, tetapi juga tentang dinamika sosial yang mempengaruhi keputusan tersebut di dunia nyata.
+Dalam rangka menjawab tantangan tersebut, tim KKN STEM Kelompok 2 akan menyelenggarakan program berupa workshop interaktif berbasis *experiential learning* (Kolb, 1984). Melalui simulasi yang terstruktur, siswa akan diajak mengalami konsekuensi dari pilihan hidup mereka secara aman dalam rentang waktu beberapa hari, guna meningkatkan *future literacy* — kompetensi esensial abad ke-21 (Miller, 2018; UNESCO, 2020) — dan kesiapan mental mereka dalam merencanakan masa depan. Workshop ini dirancang dengan model partisipasi hybrid yang memadukan diskusi kelompok kecil dengan pengambilan keputusan individu, sehingga peserta tidak hanya belajar tentang konsekuensi keputusan, tetapi juga tentang dinamika sosial yang mempengaruhi keputusan tersebut di dunia nyata.
 
 ### **1.2 Tujuan Kegiatan**
 
@@ -45,7 +75,7 @@ Dalam rangka menjawab tantangan tersebut, tim KKN STEM Kelompok 2 akan menyeleng
 
 **Bagi Tim KKN STEM Kelompok 2:**
 
-1. Memperluas pengalaman lintas disiplin dalam mengelola pelayanan berbasis komunitas dan sistem penilaian *live*.
+1. Memperluas pengalaman lintas disiplin dalam mengelola pelayanan berbasis komunitas dan sistem rekap skor simulasi *live*.
 2. Memperkuat kompetensi kolaborasi antar prodi (Sistem Informasi, Informatika, Manajemen, Kedokteran) dalam konteks pengabdian masyarakat.
 
 ---
@@ -56,7 +86,7 @@ Dalam rangka menjawab tantangan tersebut, tim KKN STEM Kelompok 2 akan menyeleng
 
 Program ini menyasar civitas akademika di SMA tujuan KKN Tematik STEM 2026 dengan sasaran spesifik sebagai berikut:
 
-* **Sasaran Utama:** Siswa kelas 11 dan 12 di SMA tujuan, sebagai kelompok rentan yang sedang menghadapi persimpangan pengambilan keputusan karier dan hidup.
+* **Sasaran Utama:** Siswa kelas 11 dan 12 di SMA tujuan, sebagai kelompok rentan yang sedang menghadapi persimpangan pengambilan keputusan karier dan hidup. Pelaksanaan pada Agustus 2026 bertepatan dengan awal tahun ajaran baru, sehingga siswa yang dijangkau adalah mereka yang baru naik ke kelas 11–12 — momen yang relevan untuk refleksi arah masa depan.
 * **Sasaran Tambahan:** Guru Bimbingan Konseling (BK) dan Wakil Kepala Sekolah Kesiswaan, sebagai pendamping berkelanjutan siswa di sekolah pasca-program.
 
 ### **2.2 Luaran dan Spesifikasi Luaran**
@@ -74,7 +104,9 @@ Program ini diharapkan menghasilkan luaran sebagai berikut:
 * Terlaksananya Workshop Simulasi Hidup 10 Tahun secara interaktif menggunakan format "The Decision Engine" berbasis kartu keputusan dengan model partisipasi hybrid (kelompok dan individu).
 * Terdokumentasinya hasil refleksi tertulis siswa dalam bentuk "Surat dari Diri 2036" sebagai artefak personal.
 * Terdokumentasinya data evaluasi berupa kuesioner pra-workshop, pasca-workshop, dan rekapitulasi sebaran profil "2036" peserta (baik tingkat kelompok maupun individu).
-* Peningkatan pengalaman lintas disiplin mahasiswa KKN dalam mengelola pelayanan berbasis komunitas dan sistem penilaian *live*.
+* Peningkatan pengalaman lintas disiplin mahasiswa KKN dalam mengelola pelayanan berbasis komunitas dan sistem rekap skor simulasi *live*.
+
+Seluruh luaran di atas dirancang **setara dan tanpa pemeringkatan**: program ini secara sengaja tidak menghasilkan "pemenang" karena setiap profil dan pola keputusan siswa memiliki *trade-off* yang khas dan sama-sama valid (justifikasi lengkap pada sub-bagian 3.1.5.e).
 
 ### **2.3 Media Publikasi Luaran**
 
@@ -99,15 +131,15 @@ Hasil pelaksanaan workshop akan dipublikasikan melalui beragam kanal media sebag
 
 #### **3.1.2 Skenario Pelaksanaan Program**
 
-Berdasarkan komunikasi resmi dari LPPM UKDW melalui Asisten Pembimbing Lapangan (APL) pada tanggal 28 Mei 2026, Kelompok 2 diminta menyiapkan **dua skenario pelaksanaan** karena lokasi dan bentuk kegiatan final masih dalam proses konfirmasi. Kedua skenario telah dirancang dengan kualitas konten yang setara, namun memiliki karakter pengalaman yang berbeda.
+Berdasarkan komunikasi resmi dari LPPM UKDW melalui Asisten Pembimbing Lapangan (APL) seputar Pembekalan KKN Tahap II (30 Mei 2026), Kelompok 2 diminta menyiapkan **dua skenario pelaksanaan** karena lokasi dan bentuk kegiatan final masih dalam proses konfirmasi. Kedua skenario telah dirancang dengan kualitas konten yang setara, namun memiliki karakter pengalaman yang berbeda.
 
 ##### **Skema LPPM-1 — 5 Hari di 1 SMA, 1 Kelas yang Sama**
 
-Pada skenario ini, tim Kelompok 2 mendampingi 1 kelas yang sama di 1 SMA mitra selama 5 hari berturut-turut, dengan durasi 4–6 jam per hari sesuai kesediaan SMA. Total siswa terdampak diperkirakan 30–40 orang dengan kedalaman pengalaman yang tinggi karena pendampingan kontinu memungkinkan refleksi mendalam dan *bonding* tim-siswa yang kuat.
+Pada skenario ini, tim Kelompok 2 mendampingi 1 kelas yang sama di 1 SMA mitra selama 5 hari berturut-turut, dengan durasi **setengah hari (~3 jam) per hari** sesuai arahan Pembekalan DPL 30 Mei 2026 dan kesediaan SMA mitra. Total siswa terdampak diperkirakan 30–40 orang dengan kedalaman pengalaman yang tinggi karena pendampingan kontinu memungkinkan refleksi mendalam dan *bonding* tim-siswa yang kuat.
 
 ##### **Skema LPPM-2 — Split 2 Hari di Sekolah A + 3 Hari di Sekolah B**
 
-Pada skenario ini, tim Kelompok 2 mendampingi 1 kelas di Sekolah A selama 2 hari, kemudian melanjutkan ke Sekolah B untuk mendampingi 1 kelas selama 3 hari. Total siswa terdampak diperkirakan 60–80 orang. Konten workshop dirancang dengan struktur **same core, scaled durasi** — Sekolah A menerima versi *compressed* yang tetap utuh esensinya, Sekolah B menerima versi *full-medium* dengan eksplorasi lebih lebar. Kedua sekolah menerima pengalaman workshop yang lengkap dan tidak setengah-setengah.
+Pada skenario ini, tim Kelompok 2 mendampingi 1 kelas di Sekolah A selama 2 hari, kemudian melanjutkan ke Sekolah B untuk mendampingi 1 kelas selama 3 hari. Total siswa terdampak diperkirakan **±30–40 siswa per sekolah** (akumulasi ±60–70 orang, bergantung kelas yang ditunjuk masing-masing SMA). Konten workshop dirancang dengan struktur **same core, scaled durasi** — Sekolah A menerima versi *compressed* yang tetap utuh esensinya, Sekolah B menerima versi *full-medium* dengan eksplorasi lebih lebar. Kedua sekolah menerima pengalaman workshop yang lengkap dan tidak setengah-setengah.
 
 ##### **Perbandingan Kedua Skema**
 
@@ -115,21 +147,33 @@ Pada skenario ini, tim Kelompok 2 mendampingi 1 kelas di Sekolah A selama 2 hari
 |-------|-------------|--------------|
 | Jumlah SMA mitra | 1 | 2 |
 | Total hari pelaksanaan | 5 | 2 + 3 = 5 |
-| Estimasi total siswa terdampak | 30–40 | 60–80 |
+| Estimasi total siswa terdampak | 30–40 | ±30–40 per sekolah (±60–70 total) |
 | Kedalaman per siswa | Tinggi | Bervariasi (Sekolah A ringkas, Sekolah B medium) |
 | *Bonding* tim-siswa | Sangat kuat | Sedang per sekolah |
 | Total anggaran | ≤ Rp 500.000 (RAB tunggal, tanpa makanan) | ≤ Rp 500.000 (RAB tunggal, tanpa makanan) |
 
 Kedua skenario telah dirancang lengkap dengan *rundown* harian, alokasi anggaran terperinci, dan strategi mitigasi risiko spesifik (lihat sub-bagian 3.1.6, 3.1.10, dan dokumentasi internal). Tim Kelompok 2 siap melaksanakan skenario manapun sesuai keputusan final LPPM.
 
+Di luar kedua skema utama tersebut, varian konfigurasi lain yang sempat disampaikan DPL (misalnya 4 hari *service* + 1 Fun Day di 1 SMA, atau pendampingan beberapa kelas berbeda) dapat dirakit dari **lima modul harian yang sama** tanpa mengubah anggaran maupun esensi konten — konten disusun secara modular justru untuk mengakomodasi keputusan final LPPM.
+
 #### **3.1.3 Waktu Pelaksanaan**
 
 * **Periode Persiapan:** Mei – Juli 2026
-* **Periode Pelaksanaan:** 3–7 Agustus 2026 (mengikuti jadwal *Service Days* SMA mitra)
+* **Periode Pelaksanaan:** 3–7 Agustus 2026 (mengikuti jadwal *Service Days* SMA mitra). Untuk Skema LPPM-2, rentang 5 hari terbagi: **Sekolah A (2 hari pertama)** lalu **Sekolah B (3 hari berikutnya)**.
+
+**Jadwal Kegiatan:**
+
+| Tahap | Aktivitas | Waktu |
+|-------|-----------|-------|
+| Persiapan | Finalisasi proposal, perizinan SMA mitra, audiensi kelembagaan | Mei – Juni 2026 |
+| Pengembangan | Penyusunan instrumen digital (Form/Sheet) + uji beban *live scoring* + finalisasi materi cetak | Juni – Juli 2026 |
+| Pra-pelaksanaan | Penyebaran kuesioner *baseline* (H-1) | H-1 (Agustus 2026) |
+| Pelaksanaan | Workshop LEAP 2036 di SMA mitra | 3–7 Agustus 2026 |
+| Pelaporan | Rekap data, laporan kegiatan, publikasi & artikel ke LPPM | Agustus – September 2026 |
 
 #### **3.1.4 Tempat Pelaksanaan**
 
-Ruang Auditorium Pembelajaran, Aula Utama, atau Ruang Kelas yang ditunjuk oleh pihak SMA Tujuan KKN.
+Ruang kelas reguler kelas mitra (kapasitas ±30–40 siswa), dengan opsi ruang serbaguna bila sekolah menyediakan. Ruang dilengkapi proyektor bila tersedia — namun workshop tetap berjalan penuh tanpa proyektor (lihat *backup no-tech* pada sub-bagian 3.1.6.a).
 
 #### **3.1.5 Metodologi Workshop**
 
@@ -196,17 +240,31 @@ Simulasi makro didekomposisi secara kronologis ke dalam **tiga fase transisi sos
 
 * **Fase 1 — Fondasi (2026–2028): Pendidikan & Awal Karier** — Fase yang merekonstruksi transisi pasca-SMA dengan dilema seputar pilihan pendidikan tinggi, *side hustle*, organisasi, magang, investasi pertama, dan *lifestyle inflation*. *Tone*: optimistis, eksploratif, banyak opsi, konsekuensi belum berat.
 * **Fase 2 — Krisis (2029–2032): Karier, Relasi & Badai Pertama** — Fase paling intens yang menyimulasikan dinamika dewasa awal di bawah fluktuasi *VUCA* (PHK, krisis kesehatan keluarga, *burnout*, *toxic relationship*, kesempatan besar mendadak). Diperkaya dengan mekanik *Random Event Cards* yang dibagikan acak per kelompok untuk menguji *resilience*. *Tone*: tegang, dilematis.
-* **Fase 3 — Panen (2033–2036): Konsekuensi & Refleksi** — Fase terminasi di mana setiap kelompok dan individu "memanen" hasil akumulasi keputusan mereka. Skor akhir dikalkulasi via Google Sheets dan menghasilkan klasifikasi **Profil 2036** dengan taksonomi seperti *The Balanced Builder*, *The Burnout Achiever*, *The Late Bloomer*, *The Creative Rebel*, dan profil lainnya sesuai kombinasi skor. Sistem menegaskan tidak ada *ending* sempurna — setiap profil memiliki *trade-off* masing-masing.
+* **Fase 3 — Panen (2033–2036): Konsekuensi & Refleksi** — Fase terminasi di mana setiap kelompok dan individu "memanen" hasil akumulasi keputusan mereka. Skor akhir dikalkulasi via Google Sheets dan menghasilkan klasifikasi ke dalam **tujuh Profil 2036** — *Pembangun Seimbang* (Balanced Builder), *Sukses-tapi-Tumbang* (Burnout Achiever), *Mekar Belakangan* (Late Bloomer), *Pemberontak Kreatif* (Creative Rebel), *Penjelajah Reflektif* (Reflective Wanderer), *Bijak yang Tenang* (Steady Sage), dan *Pelari Tanpa Rem* (Hustler Maverick) — sesuai kombinasi skor. Sistem menegaskan tidak ada *ending* sempurna; setiap profil memiliki *trade-off* masing-masing. *(Catatan: 8 goal hidup adalah pilihan awal pembentukan kelompok — input; sedangkan 7 Profil 2036 adalah hasil akhir simulasi — output. Keduanya berbeda fungsi dan tidak berkorespondensi satu-satu.)*
 
-##### **3.1.5.e Filosofi "Parallel Journeys, Not Competing Teams"**
+##### **3.1.5.e Filosofi "Parallel Journeys, Not Competing Teams" — Justifikasi Desain Tanpa Juara**
 
-Workshop ini secara sengaja tidak menggunakan sistem pemenang atau juara, baik untuk individu maupun untuk kelompok. Keputusan ini merupakan komitmen filosofis: memberikan hadiah kepada "pemenang" akan mengimplikasikan bahwa ada satu pola hidup yang lebih unggul dari yang lain — pesan yang secara langsung kontra-produktif terhadap tujuan reflektif workshop. Setiap pola keputusan memiliki *trade-off* unik, dan tidak ada profil 2036 yang "lebih baik" dari profil lainnya.
+Workshop LEAP 2036 secara sengaja dan sadar **tidak menggunakan sistem pemenang, juara, atau peringkat** — baik untuk individu maupun kelompok. Keputusan ini bukan sekadar pilihan teknis, melainkan **komitmen pedagogis-filosofis** yang berada di inti desain program. Justifikasinya bertumpu pada tiga argumen yang saling menguatkan.
 
-Sebagai pengganti sistem pemenang, di sesi *Showcase Reflection* pada Day terakhir disediakan **Surprise Apresiasi** untuk volunteer yang berani membagikan refleksi terdalam mereka di depan kelas — bentuk apresiasi non-material atas keberanian berbagi, bukan untuk "refleksi terbaik."
+**Pertama, secara filosofis, "juara" adalah kontradiksi terhadap premis dasar workshop.** Premis LEAP 2036 adalah bahwa setiap siswa berangkat dari nilai (*values*) dan tujuan hidup (*goal hidup*) yang berbeda, sehingga mereka menempuh **jalan paralel, bukan satu lintasan lomba**. Delapan goal hidup yang ditawarkan (mulai dari *Creative Entrepreneur* hingga *Caregiver/Healer Path*) secara definisi mengukur keberhasilan dengan tolok ukur yang berlainan; membandingkannya dalam satu peringkat sama tidak masuk akalnya dengan melombakan ikan memanjat pohon melawan monyet. Hal ini berakar pada konsep *possible selves* (Markus & Nurius, 1986): setiap individu memproyeksikan diri masa depan yang berbeda, dan tidak ada satu *possible self* yang secara objektif lebih unggul dari yang lain. Tujuh Profil 2036 hasil simulasi — *Pembangun Seimbang* (Balanced Builder), *Sukses-tapi-Tumbang* (Burnout Achiever), *Mekar Belakangan* (Late Bloomer), *Pemberontak Kreatif* (Creative Rebel), *Penjelajah Reflektif* (Reflective Wanderer), *Bijak yang Tenang* (Steady Sage), dan *Pelari Tanpa Rem* (Hustler Maverick) — masing-masing memiliki *trade-off* yang khas dan **tidak ada satu pun yang secara objektif "lebih baik"** dari yang lain; yang ada hanyalah konsekuensi berbeda dari prioritas berbeda. Memberi hadiah kepada satu "pemenang" akan menyiratkan pesan terselubung bahwa **ada satu pola hidup yang paling unggul**, dan pesan itu justru kontra-produktif terhadap seluruh tujuan reflektif program. Sebuah simulasi yang mengajarkan bahwa "hidup tidak punya jawaban tunggal yang benar" tetapi diakhiri dengan mengumumkan "hidup terbaik" adalah kontradiksi diri yang merusak kredibilitas pesannya sendiri.
+
+**Kedua, secara pedagogis, kompetisi merusak justru kapasitas yang ingin kami bangun: kejujuran reflektif.** Luaran inti workshop ini — "Surat dari Diri 2036" dan sesi *Showcase Reflection* — menuntut siswa untuk jujur, rentan (*vulnerable*), dan berani membagikan keraguan serta penyesalan terdalam mereka. Dalam kerangka *Experiential Learning* (Kolb, 1984), pembelajaran transformatif lahir dari refleksi atas pengalaman, bukan dari mengalahkan orang lain. Kondisi psikologis yang memungkinkan kejujuran semacam ini adalah **rasa aman, bukan rasa terancam**. Begitu sebuah peringkat atau hadiah diperkenalkan, insentif siswa bergeser dari "merefleksikan keputusan yang paling jujur" menjadi "memilih jawaban yang paling menang" — dan refleksi otentik langsung mati. Siswa akan menyembunyikan pilihan yang dianggap "kalah", saling membandingkan diri secara horizontal, dan kehilangan keberanian berbagi kerentanan di depan kelas. Bahkan *silent vote* yang menjadi sumber data per-siswa akan terkontaminasi: siswa memilih untuk "menang", bukan untuk jujur. Dengan meniadakan juara, kami melindungi *psychological safety* yang menjadi prasyarat mutlak bagi pembelajaran transformatif. Inilah alasan apresiasi diberikan **atas keberanian berbagi, bukan atas kualitas refleksi** — keberanian dapat dimiliki siapa pun secara setara, sementara "refleksi terbaik" akan kembali menciptakan hierarki yang ingin kami hindari.
+
+**Ketiga, secara psikologis-etis, ketiadaan juara melindungi keamanan emosi dan memurnikan tujuan utama: agency dan refleksi terhadap diri sendiri.** Inti *future literacy* yang ingin dikembangkan adalah kesadaran siswa atas **pola keputusannya sendiri** — apakah ia digerakkan oleh kecenderungan (*tendency*), nilai (*values*), atau tujuan (*goals*) — dan bukan posisinya relatif terhadap teman sekelas. Memberi label "kalah" pada profil personal yang sensitif (misalnya seorang siswa yang berakhir di profil *Sukses-tapi-Tumbang*) di depan kelas berisiko menghakimi dan mempermalukan pada topik yang sangat personal: nilai dan jalan hidup. Karena itu, papan yang ditampilkan ke kelas adalah **"papan keragaman" (sebaran tujuh profil), bukan papan peringkat** — dengan semboyan kerja "tujuh jalur, nol juara, semua nyata." Skor dan profil personal tiap siswa diberikan secara **privat** (tidak diumumkan, tidak diurutkan), sehingga setiap profil dapat dibaca sebagai *cermin pola*, bukan *vonis* atau *kekalahan*. Tanpa peringkat, satu-satunya tolok ukur yang tersisa bagi siswa adalah **dirinya sendiri**: "Apakah keputusanku konsisten dengan nilai yang kupegang?" Pertanyaan inilah yang ingin kami tanamkan.
+
+Sebagai pengganti sistem pemenang, pada sesi *Showcase Reflection* di hari terakhir disediakan **Surprise Apresiasi** yang **sama rata** untuk setiap relawan yang berani membagikan refleksinya — apresiasi non-material atas **keberanian berbagi**, bukan atas "refleksi terbaik". Selain itu, setiap peserta tetap memperoleh artefak yang setara: "Surat dari Diri 2036", sertifikat partisipasi, dan sticker LEAP 2036.
+
+**Ringkasan alasan tanpa juara (poin presentasi):**
+
+* **Goal hidup berbeda → tolok ukur berbeda.** Tiap siswa/kelompok menempuh jalan paralel dengan tujuan yang berlainan; memeringkatnya adalah membandingkan hal-hal yang tidak sebanding (*possible selves*, Markus & Nurius, 1986).
+* **Tidak ada "hidup terbaik".** Tujuh Profil 2036 masing-masing punya *trade-off* unik; juara akan menyiratkan satu pola hidup paling unggul — justru pesan yang ingin kami bantah.
+* **Kompetisi membunuh kejujuran refleksi.** Luaran inti menuntut kerentanan; peringkat menggeser insentif dari "jujur" ke "menang" dan mematikan *psychological safety* (Kolb, 1984).
+* **Fokus pada diri sendiri, bukan pada teman sekelas.** Tanpa peringkat, tolok ukur satu-satunya adalah konsistensi siswa dengan nilainya sendiri — inti dari *future literacy*.
+* **Apresiasi tetap ada, tetapi setara.** Surprise Apresiasi diberikan sama rata atas keberanian berbagi; semua peserta mendapat artefak yang sama. "Tujuh jalur, nol juara, semua nyata."
 
 #### **3.1.6 Rancangan Anggaran**
 
-Mengikuti arahan Pembekalan KKN Tahap II (30 Mei 2026), anggaran dibatasi **maksimal Rp 500.000** dan **tanpa alokasi konsumsi/makanan**. RAB di bawah disusun untuk **konfigurasi prioritas (2 SMA + 1 Fun Day)**, dengan strategi memaksimalkan barang *reusable* (cetak/laminasi sekali, dipakai lintas sekolah) dan menekan biaya habis-pakai melalui fotokopi hitam-putih.
+Mengikuti arahan Pembekalan KKN Tahap II (30 Mei 2026), anggaran dibatasi **maksimal Rp 500.000** dan **tanpa alokasi konsumsi/makanan**. RAB tunggal di bawah berlaku untuk **kedua skema (LPPM-1 dan LPPM-2)** — barang *reusable* dicetak/dilaminasi sekali lalu dipakai lintas hari/sekolah, dan biaya habis-pakai ditekan melalui fotokopi hitam-putih.
 
 | No | Uraian | Volume | Satuan | Harga Satuan | Jumlah |
 |----|--------|--------|--------|--------------|--------|
@@ -228,7 +286,7 @@ Mengikuti arahan Pembekalan KKN Tahap II (30 Mei 2026), anggaran dibatasi **maks
 ##### **3.1.6.a Strategi Efisiensi & Catatan**
 
 * **Nol biaya konsumsi/makanan** — sesuai arahan DPL; air minum dibawa mandiri peserta atau disediakan sekolah.
-* **Reusable-first:** kartu keputusan/kejutan/tokoh dilaminasi **sekali** lalu dipakai ulang di 2 SMA + Fun Day (No. 6) → biaya per-sekolah ditekan signifikan.
+* **Reusable-first:** kartu keputusan/kejutan/tokoh dilaminasi **sekali** lalu dipakai ulang lintas hari dan hingga 2 SMA (No. 6) → biaya per-sekolah ditekan signifikan.
 * **Apresiasi non-material & non-juara:** Surprise Apresiasi untuk volunteer sharing berupa sertifikat + sticker + gantungan simbolik (No. 8–10) yang **sama rata**, bukan hadiah uang dan bukan untuk "refleksi terbaik" — konsisten dengan filosofi *no-juara*.
 * **Backup no-tech sudah dibiayai:** Kartu Skor kertas (No. 1), template Surat cetak (No. 2), dan Papan Keragaman manual (No. 4–5) memastikan workshop tetap berjalan penuh bila sinyal/proyektor mati — Google Form/Sheet hanya jalur **utama**, bukan satu-satunya.
 * Luaran "Surat dari Diri 2036" & sertifikat utama tetap diproduksi **digital (PDF auto-generated)**; cetakan di atas hanya cadangan seperlunya. Hosting via **Vercel** (`kknstem.vercel.app`) — nol biaya domain. *Banner* fisik tidak digunakan (identitas via *sticker* + interface digital).
@@ -243,10 +301,10 @@ Untuk melakukan standarisasi evaluasi dampak program, dirumuskan parameter indik
 |----|-----------|-------------------|
 | 1 | Tingkat kehadiran penuh peserta (mengikuti seluruh hari workshop) | ≥80% peserta terdaftar |
 | 2 | Tingkat penyelesaian luaran "Surat dari Diri 2036" oleh peserta | ≥70% peserta hadir |
-| 3 | Peningkatan skor pemahaman peserta tentang dampak jangka panjang keputusan (pre vs post-test) | ≥60% peserta menunjukkan peningkatan |
+| 3 | Peningkatan skor pemahaman peserta (pre vs post-test; kuesioner *future-literacy* 8–10 butir paralel) | ≥50% peserta menunjukkan peningkatan skor |
 | 4 | Tingkat partisipasi aktif peserta dalam sesi *debrief* (menyebutkan minimal 1 *insight* konkret) | ≥50% peserta hadir |
-| 5 | Konsistensi keputusan kelompok dengan goal hidup yang dipilih (*internal coherence*) | ≥60% keputusan kelompok selaras |
-| 6 | Tingkat keberlangsungan kelompok (kelompok tetap fungsional sampai hari terakhir) | 100% kelompok complete program |
+| 5 | Keragaman jalur hasil simulasi (sebaran Profil 2036, terukur dari ekspor CSV) | Sebaran mencakup ≥4 dari 7 profil |
+| 6 | Tingkat keberlangsungan kelompok (tetap fungsional sampai hari terakhir) | ≥80% kelompok bertahan fungsional |
 | 7 | Kelengkapan dokumentasi visual program (foto, video, data sebaran profil) | 100% sesi terdokumentasi |
 | 8 | Penyerahan dokumen luaran ringkasan agregat kepada pihak SMA mitra | 100% SMA mitra menerima |
 
@@ -269,6 +327,8 @@ Validitas data hasil kegiatan diverifikasi melalui instrumen-instrumen berikut:
 | Pasca-Workshop | Dokumentasi visual (foto, video, *Gallery Walk* display) | Folder Google Drive terorganisir |
 | Pasca-Workshop | Rekapitulasi distribusi profil "2036" peserta (kelompok + individu) | Grafik dan tabel agregat |
 | Pasca-Workshop | Laporan pengabdian masyarakat komprehensif | Dokumen PDF + presentasi ke LPPM |
+
+Kuesioner pra- dan pasca-workshop memakai **butir paralel** (8–10 item, skala Likert) yang mengukur dimensi yang sama (kesadaran konsekuensi jangka panjang, kejelasan nilai inti, kesiapan merencanakan masa depan), sehingga selisih *pre/post* valid diperbandingkan dan mendukung Indikator No. 3.
 
 Seluruh data hasil verifikasi diarsipkan dalam Google Drive kelompok dan akan dilampirkan dalam laporan akhir KKN STEM 2026.
 
@@ -316,7 +376,7 @@ Seluruh anggota juga berperan sebagai **fasilitator dan pendamping** selama sesi
 | **Day B2** | **Fase 2 (Krisis)** | Fase 2 penuh (8–10 skenario + *Random Event Cards*) + Group *debrief* krisis + *Reflection Journal* |
 | **Day B3** | **Fase 3 + Showcase + Closing** | Fase 3 (4–5 skenario) + Reveal Profil 2036 + Surat 2036 + *Gallery Walk* + *Showcase Reflection* + Surprise Apresiasi + Closing |
 
-*Rundown ini dapat disesuaikan durasinya antara 4 hingga 6 jam per hari sesuai konfirmasi resmi dari pihak SMA mitra masing-masing.*
+*Rundown ini dirancang untuk slot **setengah hari (~3 jam/hari, ±150 menit konten inti + buffer)** sesuai jatah waktu dari LPPM (Notul DPL 30 Mei 2026). Tiap modul telah dihitung muat dalam slot tersebut dengan mekanisme "katup aman" (pemangkasan terjadwal bila waktu mepet), dan dapat disesuaikan sedikit sesuai konfirmasi resmi pihak SMA mitra masing-masing.*
 
 #### **3.1.11 Teknis Pelaksanaan Program dan Prosedur Kerja**
 
@@ -370,4 +430,4 @@ UNESCO. (2020). *Futures literacy: An essential competency for the 21st century*
 
 ---
 
-*Proposal Versi 3.0 | Disusun: 28 Mei 2026 | Kelompok 2 KKN Tematik International Service Learning STEM 2026 | Universitas Kristen Duta Wacana × Hong Kong Polytechnic University*
+*Proposal Versi 3.0 | Disusun: 28 Mei 2026, revisi terakhir: 3 Juni 2026 | Kelompok 2 KKN Tematik International Service Learning STEM 2026 | Universitas Kristen Duta Wacana × Hong Kong Polytechnic University*
