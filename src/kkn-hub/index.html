@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#0d0d0f">
-<title>KKN HUB — STEM 2026 · Kelompok 2</title>
+<meta name="theme-color" content="#08080a">
+<title>KKN HUB — STEM 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
 </head>
@@ -19,7 +19,7 @@
 <header id="topbar">
   <button id="hamburger" aria-label="Buka menu" aria-expanded="false" aria-controls="sidebar" onclick="toggleSidebar()">☰</button>
   <span class="tb-title">KKN <span>HUB</span></span>
-  <span class="tb-klp" id="tb-user">⚡ Klp. 2</span>
+  <span class="tb-klp" id="tb-user">KKN STEM</span>
 </header>
 <div id="overlay" onclick="closeSidebar()"></div>
 
@@ -28,12 +28,13 @@
   <div class="sb-logo">
     <div class="app-name">KKN <span>HUB</span></div>
     <div class="app-sub">STEM 2026 · UKDW × PolyU HK</div>
-    <div class="klp-tag"><span aria-hidden="true">⚡</span> Kelompok 2</div>
+    <div class="klp-tag"><span aria-hidden="true">✦</span> KKN STEM 2026 · Semua Tim</div>
   </div>
 
   <nav aria-label="Menu utama">
     <div class="nav-sec">Untukmu</div>
     <div class="nav-item active" data-page="dashboard" role="button" tabindex="0"><span class="ni" aria-hidden="true">🏠</span> Dashboard</div>
+    <div class="nav-item" data-page="eyecare" role="button" tabindex="0"><span class="ni" aria-hidden="true">👁️</span> Eye Care</div>
     <div class="nav-item" data-page="tugas" role="button" tabindex="0"><span class="ni" aria-hidden="true">📋</span> Tugasku</div>
     <div class="nav-item" data-page="search" role="button" tabindex="0"><span class="ni" aria-hidden="true">🤖</span> Tanya AI / Cari</div>
 
@@ -52,7 +53,7 @@
     <div class="nav-item" data-page="notes" role="button" tabindex="0"><span class="ni" aria-hidden="true">📝</span> Catatan</div>
   </nav>
 
-  <div class="sb-footer">Kelompok 2 · dr. Loury Priiskila</div>
+  <div class="sb-footer">DPL: dr. Loury Priiskila</div>
 </aside>
 
 <!-- ══ MAIN ══ -->
@@ -60,66 +61,84 @@
 
   <!-- ─── DASHBOARD ─── -->
   <div id="page-dashboard" class="page active">
-    <div class="dash-head">
-      <div class="left">
-        <h1 class="title">KKN HUB</h1>
-        <div class="sub">STEM 2026 · UKDW × PolyU HK · Kelompok 2</div>
+    <div class="dash-stack">
+
+      <!-- 1 · WELCOME HERO (untuk SEMUA orang) -->
+      <section class="welcome-hero" aria-label="Selamat datang">
+        <div class="wh-eyebrow">KKN STEM 2026 · UKDW × PolyU HK</div>
+        <h1 class="wh-title">Selamat datang <span aria-hidden="true">👋</span></h1>
+        <p class="wh-sub">Ini <strong>Hub KKN STEM 2026</strong> — pusat info buat <strong>semua tim</strong>. Satu tempat untuk program <strong>Eye Care</strong> (±59 anak, 3 tim besar) dan <strong>Workshop SMA</strong>. Siapapun kamu, semua yang kamu butuhin ada di sini.</p>
+        <div class="wh-chips">
+          <span class="wh-chip"><span aria-hidden="true">👁️</span> Eye Care · 3 tim</span>
+          <span class="wh-chip"><span aria-hidden="true">🚀</span> Workshop SMA</span>
+          <span class="wh-chip"><span aria-hidden="true">🌐</span> Liaison PolyU HK</span>
+        </div>
+      </section>
+
+      <!-- 2 · EYE CARE SPOTLIGHT (co-equal, front-and-center) -->
+      <section id="ec-spotlight" class="ec-spotlight" aria-label="Eye Care spotlight"></section>
+
+      <!-- 3 · NAV WAYFINDING (dismissible one-time hint) -->
+      <div id="nav-hint" class="navhint" role="note" aria-label="Petunjuk navigasi" hidden>
+        <span class="navhint-ic" aria-hidden="true">🧭</span>
+        <div class="navhint-txt">
+          <span class="nh-mobile"><strong>Ketuk ☰ di pojok atas</strong> — semua halaman (Eye Care, Tim, Timeline, dll) ada di menu situ.</span>
+          <span class="nh-desktop"><strong>Lihat menu di kiri</strong> — semua halaman (Eye Care, Tim, Timeline, dll) ada di sidebar itu.</span>
+        </div>
+        <button class="navhint-x" aria-label="Tutup petunjuk" onclick="dismissNavHint()">✕</button>
       </div>
-    </div>
 
-    <!-- Personalized task card / name picker -->
-    <div id="my-task-card"></div>
+      <!-- 4 · LATEST UPDATE BANNER -->
+      <div id="latest-update-banner" class="lub-wrap"></div>
 
-    <!-- Quick actions -->
-    <div class="qa-grid">
-      <button class="qa" onclick="showPage('tugas')"><span class="qa-icon" aria-hidden="true">📋</span><span class="qa-label">Tugasku</span><span class="qa-sub">bagian tiap orang</span></button>
-      <button class="qa" onclick="showPage('search')"><span class="qa-icon" aria-hidden="true">🤖</span><span class="qa-label">Tanya AI</span><span class="qa-sub">tanya apa saja</span></button>
-      <button class="qa" onclick="showPage('proker')"><span class="qa-icon" aria-hidden="true">🎯</span><span class="qa-label">Proker SMA</span><span class="qa-sub">LEAP 2036</span></button>
-      <button class="qa" onclick="showPage('dokumen')"><span class="qa-icon" aria-hidden="true">📂</span><span class="qa-label">Dokumen</span><span class="qa-sub">file Drive</span></button>
-    </div>
+      <!-- 5 · WORKSHOP SMA · KELOMPOK 2 (personalisasi) -->
+      <section aria-label="Untukmu — Workshop SMA Kelompok 2">
+        <div class="ios-sec-head">
+          <h2 class="ios-sec-title">Untukmu</h2>
+          <span class="ios-sec-note">· Workshop SMA · Kelompok 2</span>
+        </div>
+        <!-- Personalized task card / name picker -->
+        <div id="my-task-card"></div>
+        <!-- Quick actions -->
+        <div class="qa-grid" style="margin-top:var(--ios-gap)">
+          <button class="qa" style="--qa:var(--cyan)" onclick="showPage('tugas')"><span class="qa-icon" aria-hidden="true">📋</span><span class="qa-label">Tugasku</span><span class="qa-sub">bagian tiap orang</span></button>
+          <button class="qa" style="--qa:var(--violet)" onclick="showPage('search')"><span class="qa-icon" aria-hidden="true">🤖</span><span class="qa-label">Tanya AI</span><span class="qa-sub">tanya apa saja</span></button>
+          <button class="qa" style="--qa:var(--green)" onclick="showPage('proker')"><span class="qa-icon" aria-hidden="true">🎯</span><span class="qa-label">Proker SMA</span><span class="qa-sub">LEAP 2036</span></button>
+          <button class="qa" style="--qa:var(--gold)" onclick="showPage('dokumen')"><span class="qa-icon" aria-hidden="true">📂</span><span class="qa-label">Dokumen</span><span class="qa-sub">file Drive</span></button>
+        </div>
+      </section>
 
-    <!-- Two parallel programs -->
-    <div class="tp-grid">
-      <button class="tp-card" style="--accent:var(--orange)" onclick="showPage('prosedur')">
-        <div class="tp-when">Juni 2026</div>
-        <div class="tp-name"><span aria-hidden="true">👁️</span> SO Eyecare</div>
-        <div class="tp-desc">Vision screening + edukasi mata (SD/SMP). Prosedur & rotasi tim.</div>
-      </button>
-      <button class="tp-card" style="--accent:var(--green)" onclick="showPage('proker')">
-        <div class="tp-when">Agustus 2026</div>
-        <div class="tp-name"><span aria-hidden="true">🚀</span> Workshop SMA</div>
-        <div class="tp-desc">LEAP 2036 — simulasi hidup 10 tahun. Rundown & peran tim.</div>
-      </button>
-    </div>
-
-    <!-- Urgent checklist + countdown -->
-    <div class="g2" style="align-items:start">
-      <div class="check-teaser">
-        <div class="sec-label">Persiapan Mendesak</div>
-        <div id="check-teaser-items"></div>
+      <!-- 6 · SITUATION BRIEF + CHECKLIST + CONTACTS + PROGRESS -->
+      <div class="g2" style="align-items:start">
+        <div id="situation-card" class="situation-card"></div>
+        <div class="check-teaser">
+          <div class="sec-label">Persiapan Mendesak</div>
+          <div id="check-teaser-items"></div>
+        </div>
       </div>
-      <div id="countdown-widget" class="countdown-widget"></div>
+
+      <div class="alert a-warn">
+        <span class="alert-icon" aria-hidden="true">⚠️</span>
+        <div><strong>Program dinamis:</strong> jadwal sering berubah mendadak — selalu pantau update dari DPL/APL di grup WA.</div>
+      </div>
+
+      <!-- Quick contacts -->
+      <div class="card card-sm">
+        <div class="sec-label">Quick Contact</div>
+        <div id="quick-contacts"></div>
+      </div>
+
+      <!-- Overall progress -->
+      <div class="card card-sm" id="dash-progress"></div>
+
     </div>
+  </div>
 
-    <!-- Latest update -->
-    <div id="latest-update-banner" class="lub-wrap gap"></div>
-
-    <!-- Phase-aware situation brief -->
-    <div class="gap"><div id="situation-card" class="situation-card"></div></div>
-
-    <div class="alert a-warn gap-sm">
-      <span class="alert-icon" aria-hidden="true">⚠️</span>
-      <div><strong>Program dinamis:</strong> jadwal sering berubah mendadak — selalu pantau update dari DPL/APL di grup WA.</div>
-    </div>
-
-    <!-- Quick contacts -->
-    <div class="card card-sm gap">
-      <div class="sec-label">Quick Contact</div>
-      <div id="quick-contacts"></div>
-    </div>
-
-    <!-- Overall progress -->
-    <div class="gap" id="dash-progress"></div>
+  <!-- ─── EYE CARE (fokus bersama) ─── -->
+  <div id="page-eyecare" class="page">
+    <h1 class="ph1">Eye Care</h1>
+    <div class="psub">Program bersama semua anak KKN STEM — 3 tim besar &amp; rosternya (cari namamu!)</div>
+    <div id="eyecare-body">Memuat...</div>
   </div>
 
   <!-- ─── TIMELINE ─── -->
@@ -153,18 +172,18 @@
       <div class="gap-sm g2">
         <div class="card">
           <div class="badge b-cyan" style="margin-bottom:10px">Fase 1 — Persiapan</div>
-          <div style="font-size:13px;color:var(--t2)">9 Mei – 19 Juni 2026</div>
-          <div style="font-size:12px;color:var(--t2);margin-top:6px">Pembekalan, persiapan proposal SMA, online coaching PolyU, pengumpulan consent form sekolah.</div>
+          <div style="font-size:13px;color:var(--t2)">9 Mei – 18 Juli 2026</div>
+          <div style="font-size:12px;color:var(--t2);margin-top:6px">Pembekalan, presentasi proposal SMA, online coaching PolyU, training SO Eyecare.</div>
         </div>
         <div class="card">
           <div class="badge b-orange" style="margin-bottom:10px">Fase 2 — SO Eyecare SD/SMP</div>
-          <div style="font-size:13px;color:var(--t2)">20–27 Juni 2026</div>
-          <div style="font-size:12px;color:var(--t2);margin-top:6px">Opening Ceremony, 5 Service Days di SD/SMP, Closing Ceremony.</div>
+          <div style="font-size:13px;color:var(--t2)">20–27 Juli 2026 · <span style="color:var(--t3)">tentatif</span></div>
+          <div style="font-size:12px;color:var(--t2);margin-top:6px">Opening Ceremony, 5 Service Days di SD/SMP (SD1 = 21 Juli), Closing Ceremony. <strong>Fokus bersama semua anak KKN.</strong></div>
         </div>
         <div class="card">
           <div class="badge b-violet" style="margin-bottom:10px">Fase 3 — Pasca & Orientasi</div>
-          <div style="font-size:13px;color:var(--t2)">28 Juni – 31 Juli 2026</div>
-          <div style="font-size:12px;color:var(--t2);margin-top:6px">Pembuatan video edukasi, penyusunan proposal SMA, Orientation Session 19 Juli.</div>
+          <div style="font-size:13px;color:var(--t2)">19–31 Juli 2026</div>
+          <div style="font-size:12px;color:var(--t2);margin-top:6px">Orientation Session 19 Juli, pembuatan video edukasi, penyusunan proposal SMA.</div>
         </div>
         <div class="card">
           <div class="badge b-green" style="margin-bottom:10px">Fase 4 — Workshop SMA</div>
@@ -207,7 +226,7 @@
 
     <div class="g2">
       <div class="card">
-        <div class="card-title"><span aria-hidden="true">🏫</span> SD/SMP — SO Eyecare (Juni 2026)</div>
+        <div class="card-title"><span aria-hidden="true">🏫</span> SD/SMP — SO Eyecare (Juli 2026 · tentatif)</div>
         <div id="loc-sdSmp"></div>
       </div>
       <div class="card">
@@ -223,7 +242,7 @@
     <div class="gap">
       <h2 class="ph2">Orientation Session</h2>
       <div class="card gap-sm">
-        <div class="card-title"><span aria-hidden="true">📍</span> 19 Juli 2026 — Lokasi TBC</div>
+        <div class="card-title"><span aria-hidden="true">📍</span> 19 Juli 2026 — Lokasi menyusul</div>
         <table class="itbl">
           <tr><td>Peserta</td><td>Mahasiswa UKDW + Mahasiswa PolyU HK</td></tr>
           <tr><td>Format</td><td>7 kelompok masing-masing pihak</td></tr>
@@ -283,7 +302,7 @@
       <h2 class="ph2" style="margin-bottom:14px"><span aria-hidden="true">🔍</span> Smart Search</h2>
       <div class="search-wrap">
         <span class="s-icon" aria-hidden="true">🔍</span>
-        <input type="text" id="search-input" aria-label="Cari info KKN" placeholder="Cari... cth: 'funduscopy', 'jadwal juni', 'peran UKDW'">
+        <input type="text" id="search-input" aria-label="Cari info KKN" placeholder="Cari... cth: 'funduscopy', 'jadwal juli', 'tim eyecare', 'nama temanmu'">
       </div>
       <div class="search-results" id="search-results"></div>
     </div>
@@ -348,7 +367,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="loc-item">
         <span class="loc-badge ${l.jenjang === 'SD' ? 'lb-sd' : 'lb-smp'}">${l.jenjang}</span>
         <span style="flex:1">${l.nama}</span>
-        ${!l.confirmed ? '<span class="badge b-gray" style="font-size:10px">TBC</span>' : ''}
+        ${!l.confirmed ? '<span class="badge b-gray" style="font-size:10px">belum fix</span>' : ''}
       </div>`).join('');
   }
   const smaEl = document.getElementById('loc-sma');

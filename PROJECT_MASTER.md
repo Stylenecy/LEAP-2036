@@ -2,11 +2,53 @@
 
 > **Canonical STATE tracker** untuk SELURUH program KKN (Eyecare + Workshop SMA).
 > Detail desain Workshop SMA ada di **`docs/workshop/Project-Master-LEAP-2036.md`** (jangan duplikat di sini — file itu deep-design, file ini state/status).
-> **Last synced: 2026-06-01 (sesi-2).** Update tiap sesi (Universal Session Protocol).
+> **Last synced: 2026-06-04.** Update tiap sesi (Universal Session Protocol).
 
 ---
 
-## ⏸️ RESUME HERE — update 4 Juni 2026
+## ⏸️ RESUME HERE — update 9 Juni 2026
+
+**🔴 TEMUAN BESAR — EYECARE GESER JUNI → JULI (web + state stale):**
+- Sumber: `assets/Pembagian Team Screening Eyecare.pdf` (4 Jun) → header **"Service Day 1-5 : 21 - 24(27) Juli 2026"**. Bukan Juni.
+- → Seluruh blok Eyecare di web (`data.js` timeline + `getSituation()` di `app.js` + GEMINI_CONTEXT + FAQ) MASIH JUNI = **stale**. PROJECT_MASTER §0/§4 lama juga Juni → kontradiksi dgn §RESUME 4-Jun (yg sudah tulis "21–24(27) Juli"). §4 di bawah sudah dibetulin (lihat tabel FUTURE).
+- ⚠️ **JANGAN langsung patch tanggal web** — cuma shift Eyecare→Juli yg PDF-proven; **SD5 24-vs-25 Juli ambigu** + tanggal turunan (Orientation, SMA, video) belum confirmed. **Tunggu konfirmasi APL dulu** (lihat Tanya-APL).
+- → **`docs/_internal/Tanya-APL_9-Jun-2026.md`** = 13 pertanyaan siap-kirim ke APL (Eleonora/Yasser), urut blocker. Kirim ASAP.
+
+**🆕 4 pertanyaan Dex (9 Jun) — JAWABAN:**
+1. **Seleksi koor — emang ada?** Ya. Origin = `Catatan-Bahaya-APL.txt` **Pt.6** (APL resmi: Eyecare = 1 kepengurusan besar, 1 ketua + pengurus divisi). Berkembang 4 Jun → koor per tim. **Siapa kepilih = belum confirmed** → Tanya-APL #C. KONTRADIKSI "1 kepengurusan besar" vs "koor per tim" belum direkonsiliasi.
+2. **Syendhi udah dikasih akses?** Web SUDAH wired (pilih nama → dokumen `forPerson: Syendhi` = PANDUAN + .gs muncul). Friksi: hub belum deep-link file (cuma label) → pakai link GitHub langsung. **Draft WA siap: `docs/_internal/WA-Syendhi_9-Jun-2026.md`.** Gap yg Dex tutup: cek izin folder Drive Syendhi + ping personal. (Tugasnya = sistem skor Workshop Agustus, bukan Eyecare.)
+3. **Training 13-19 Juni — sumber buat tanya APL:** "13-19 Juni" KELIRU/asumsi internal — ga ada di slide LPPM resmi (13-17 Juni cuma Consent Form). Eyecare geser Juli → training kemungkinan ikut. → Tanya-APL #E (sumber lengkap di file).
+4. **Website bisa disambi?** Ya — vanilla JS data-driven, page baru Eye Care = additive 0-risk (~2-3 jam). Tapi fix tanggal Juni→Juli = hati-hati (`getSituation()` highest-coupling) + **blocked nunggu APL**. ⏳ PENDING keputusan Dex: scope rebrand hub (all-KKN vs tetap Klp-2 + section Eye Care).
+
+**🆕 Team Eyecare CONFIRMED (PDF 4 Jun) — 3 tim besar campur lintas-kelompok:**
+- **Team A (20):** Dex #12, Dhevina #11, Benediktus #8, Maria #9, Theana #10 (+ 15 lain).
+- **Team B (20):** Febby #10, Hans #16, Bintang #11, Samuel #18 (+ lain).
+- **Team C (19):** **Syendhi #3**, Dave #14, Raphael Felio #10, Alvin Gracio #15 (+ lain).
+- Roster lengkap di PDF. (Catatan: 3 tim besar ini ≠ sub-rotasi harian VS/Edu A/B/C — jangan dikonflasikan di web.)
+
+**🆕 Sesi 9 Jun — DONE:** 2 workflow (recon 5-agen + build 5-agen).
+- (1) `docs/_internal/Tanya-APL_9-Jun-2026.md` (13 Q) + (2) `docs/_internal/WA-Syendhi_9-Jun-2026.md` dibikin. (3) §4 FUTURE Juni→Juli. (4) memory `kkn-eyecare-juli-shift`.
+- (5) **🌐 WEB DIBUILD** (Dex pilih visi "hub buat SEMUA anak KKN, fokus bersama=Eyecare"): page baru **👁️ Eye Care** (3 tim, 59 nama dari PDF, Dex=Ketua, kartu liaison PolyU, highlight Klp-2 + Syendhi/Team C, koor=belum ada) + **live countdown** (anchor SD1 21 Juli, auto-decrement) + **reminder lucu** (funReminder per-bucket) + **AI di-update** (GEMINI: Dex=Ketua keseluruhan, 3 tim, Juli tentatif, stamp 9 Jun) + getSituation Juni→Juli (tentatif) + banner 9-Jun + search corpus. Model Juni lama TIDAK dihapus (relabel arsip). `node --check` clean app.js+data.js. Reviewer adversarial 4-lensa: 0 critical/high, low-fix diterapkan (placeholder juni→juli, member-card static, koor Bahasa, reminder prep-nudge, tentatif chip). **⏳ BELUM deploy** (nunggu Dex eyeball + acc → `vercel --prod`). **BELUM commit.**
+- (6) **🎨 VISUAL RESTYLE** (Dex pilih: Glass+Aurora di atas fondasi Modern Dark · font **Space Grotesk + DM Sans** · intensitas "restyle berani"). Via design pack `ui-ux-pro-max-skill-main`. `style.css` direstyle: token Modern Dark (bg #08080a, surface berlapis, aksen #5E6AD2 glow, easing cubic-bezier(.16,1,.3,1), skala elevasi) + glass frosted (sidebar/topbar/card, `backdrop-filter` + fallback `@supports`) + aurora CSS-only (`body::before` mesh-gradient halus, drift 40s gated `prefers-reduced-motion`) + fonts swap. Kontras AA diverif (body 15.5:1, t3 5.6:1 worst-case). Brace balanced 446/446, 0 Inter leftover, 11/11 selektor utuh. **Juga de-highlight** page Eye Care (Dex malu di-spotlight): kartu "Dex=Ketua" gede→netral "Koordinasi & Liaison PolyU", badge/glow nama Dex + border-biru Klp-2 + legend "Syendhi sendiri" DIHAPUS → roster rata. Preview di-deploy (belum prod).
+- (7) **📱 iOS REDESIGN (gede-gedean, Dex minta — restyle ke-1 dirasa "barely berubah")**: full iOS design language (semua aset kartu rounded sendiri `--r-lg:20px`, gap konsisten `--ios-gap:16px`, ga ada yang lengket, iOS list-row + chevron, badge pill) + tombol vibrant tactile (gradient+glow, `:active scale(.97)`) + quick-action jadi colorful icon-tile (cyan/violet/green/gold). **Dashboard IA dirombak** biar welcoming buat SEMUA (bukan kesan Klp-2 only): urutan baru = Welcome hero (semua tim) → nav-hint (guide ke navbar, dismissible localStorage `kkn-navhint`, copy beda desktop/mobile) → **Eye Care spotlight** (countdown SD1 21 Juli + CTA "cari timmu", front-and-center) → update banner → section berlabel "Untukmu · Workshop SMA · Kelompok 2" (name-picker turun ke sini) → situation/contacts/progress. `countdown-widget` lama dihapus, di-merge ke `ec-spotlight`. **Shell rebrand** Klp-2→all-KKN (title, tb-user "KKN STEM", klp-tag "Semua Tim", footer "DPL: dr. Loury", dash-sub). `node --check` clean, brace 497/497, 8/8 getElementById target ada, navhint wired. Dead CSS lama (.tp-grid/.cd-*/.countdown-widget) ditinggal (harmless). Preview di-deploy (belum prod).
+- (8) **🔍 AUDIT PRE-PROD (4 lensa adversarial: JS/regression · CSS/visual/mobile · data/konten · a11y/UX)** → verdict PASS / PASS-w-fixes ×2 / PASS, **0 critical/blocker**. Data 100% (roster 59 match PDF, tanggal Juli tentatif, AI ga nyebut Juni). **9 fix diterapkan:** kontras `.ec-cd-lbl` (t2→text, lolos AA), **reorder nav-hint ke bawah ec-spotlight** (Eye Care ga ke-fold lagi), **buang backdrop-filter dari `.card`** (perf mobile, blur tetap di sidebar/topbar/modal), tap-target 44px (hamburger/navhint-x/📞), qa-grid 2-col @900px, checklist urgent "Mendesak—" (cue non-warna), buang `role="timer"` (double-announce SR), promote h2 (spotlight+Untukmu), "TBC"→"belum fix/menyusul". `node --check` clean, brace 499/499 verified. Preview re-deploy. **BELUM prod, BELUM commit.**
+- **NEXT:** Dex kirim Tanya-APL + WA Syendhi · eyeball preview final → **"gas prod"** → commit (no Claude co-author) + `vercel --prod` · post-APL: fix tanggal final (SD5 24v25). Sisa LOW opsional (dead CSS .tp-*/.countdown-widget ~30 baris, "Smart Search" jargon) — ga blocker.
+
+---
+
+## Update 4 Juni 2026 — Dex = Ketua + struktur 3 tim
+
+**🔴🆕 4 Juni — STRUKTUR KKN BERUBAH BESAR (rapat semua APL, no DPL):**
+- **DEX = KETUA keseluruhan KKN STEM 2026** — bukan cuma mimpin Workshop Kelompok 2 lagi. Handle **3 tim/sekolah Eye Care** + jadi **perantara LANGSUNG ke supervisor & mahasiswa Hong Kong PolyU**. (Dex sendiri nyebut: keputusan "pinter tapi budu, ga salah tapi kocak".)
+- **Eye Care screening = 3 TIM besar** (Service Days **21–24(27) Juli 2026**) = 3 sekolah/lokasi terpisah:
+  - **Team A** (20 org): **Dex** di sini (+ Dhevina, Benediktus, Maria, Theana — tim Kelompok 2 mostly).
+  - **Team B** (20): Febby, Hans, Samuel, Bintang, dll.
+  - **Team C** (19): Syendhi, Dave, Raphael Felio, dll.
+- **Koor per tim** (usul Dex biar beban kebagi, ga kelabakan solo). Seleksi jalan: tiap sisi kirim 3 nama → diskusi (difasilitasi APL **Yasser**). Spek koor (Yasser): *"tahan banting, tahan pressure, sat set, adaptive."* **Nominasi Dex: Dave Aryanda Agape (SI — PALING dipercaya) · Hans Gunawan (SI) · Febby Margareta Singgih (SI).**
+- **PDD division** lagi rekrut: butuh **9 org (incl 1 koor)**; terisi 3 (Raphael Felio Bagaskara · Bintang Putri Maharani · Leonardo Andrean); **6 slot kosong** (siapa cepat dia dapat).
+- **🌐 WEBSITE scope MELEBAR:** KKN-HUB (`kknstem.vercel.app`) ga cuma Kelompok 2 lagi — perlu **1–2 bagian buat Eye Care + koordinasi Poly-U**. ⏳ FUTURE WORK, belum mulai.
+- **APL/DPL roster:** Klp **1–5** → DPL dr. Loury Priiskila M.Biomed · APL **Eleonora Bintang Dahayu P + Carolus Yasser Rombebunga**. Klp **6–10** → DPL Willy Sudiarto Raharjo S.Kom M.Cs · APL Agnes Valentina + Aodellas Magosiang. (Dex = Klp 2 → Eleonora + Yasser.)
+- Sumber: `assets/Pembagian Kelompok KKN Tematik STEM 2026.pdf` + `assets/Pembagian Team Screening Eyecare.pdf`.
 
 **🆕 Sesi 2–3 Juni — DONE:**
 - ✅ **AI web FIXED** — serverless proxy `api/chat.js`, key di Vercel env `GEMINI_KEY` (TIDAK di repo → ga bisa leak/di-disable lagi). Key lama (leaked) dihapus. Live + tested.
@@ -35,9 +77,9 @@
 3. **Tim putuskan:** F2.5 payoff (+20 Uang utk yg Berhasil, opsional) + Kartu Chaos mana dipakai (set `CONFIG.chaosPlayed`).
 4. **Konfirmasi ke APL:** penanggung jawab Fun Day · skema LPPM final (1 vs 2) · SMA mitra (BOPKRI + 1).
 
-*B. Eyecare (program Juni — lebih dekat!):*
-5. **13–19 Juni: Training SO Eyecare (WAJIB).** 13–17 Juni consent form sekolah.
-6. **20 Juni Opening · 21–25 Service Days SD/SMP · 27 Closing · 28–29 Video edukasi** (semua tampil).
+*B. Eyecare — ⚠️ SUPERSEDED, lihat §RESUME 9 Jun (geser ke JULI):*
+5. ~~13–19 Juni Training~~ → **Juli (TBC)**, tanya APL. Consent form ~13-17 Juni (TBC).
+6. ~~20-28 Juni~~ → **Service Days 21–24(27) Juli** (PDF). Opening/closing/video ikut Juli (TBC). Detail: `Tanya-APL_9-Jun-2026.md`.
 
 *C. Opsional / kecil:*
 7. Re-upload `docs/panduan-tim/` ke Drive (file anggaran-rinci baru belum ke-upload).
@@ -148,15 +190,18 @@
 | Periode | Milestone | Program |
 |---------|-----------|---------|
 | 30 Mei | Pembekalan II + Konsultasi DPL | Umum |
-| Sebelum 21 Juni | Submit proposal Workshop SMA final ke DPL + checklist persiapan (14 item) | SMA |
-| 13–19 Juni | Training penggunaan alat SO Eyecare (WAJIB) | Eyecare |
-| 20 Juni | Opening Ceremony | Eyecare |
-| 21–25 Juni | **Service Days SD/SMP** (5 hari) | Eyecare |
-| 27 Juni | Closing Ceremony | Eyecare |
-| 28–29 Juni | Video Edukasi Mata (5–10 mnt, semua anggota tampil) | Eyecare |
-| 19 Juli | Orientation Session UKDW × PolyU (~4 jam) | Umum |
+| ✅ ~7 Juni | Submit proposal Workshop SMA final ke APL (deadline APL Min 7 Jun) — DONE | SMA |
+| ⚠️ ~Juli (TBC) | Training alat SO Eyecare (WAJIB) — jadwal lama "13–19 Juni" **KELIRU**, tanya APL | Eyecare |
+| ~13–17 Juni? (TBC) | Consent Form sekolah — apakah tetap Juni atau geser? tanya APL | Eyecare |
+| 20 Juli? (TBC) | Opening Ceremony | Eyecare |
+| **21–24(27) Juli** | **Service Days SD/SMP** — PDF "Service Day 1-5 : 21-24(27) Juli 2026" (SD5 **24 vs 25 ambigu** → tanya APL) | Eyecare |
+| 27 Juli? (TBC) | Closing Ceremony | Eyecare |
+| ~akhir Juli (TBC) | Video Edukasi Mata (5–10 mnt, semua anggota tampil) | Eyecare |
+| 19 Juli? (TBC) | Orientation Session UKDW × PolyU (~4 jam) — vs "Online Coaching Juni"? tanya APL | Umum |
 | **3–7 Agustus** | **Service Days SMA — eksekusi Workshop LEAP 2036** | SMA |
 | 10–14 Agustus | Laporan kegiatan + presentasi akhir ke DPL | Umum |
+
+> ⚠️ **Tanggal Eyecare digeser JUNI→JULI** per `assets/Pembagian Team Screening Eyecare.pdf` (4 Jun). Yang ber-**(TBC)** belum dikonfirmasi nilai barunya — lihat `docs/_internal/Tanya-APL_9-Jun-2026.md`. Jangan patch web sebelum APL konfirmasi.
 
 **Build app LEAP 2036 (stretch, Layer 3):** timeline 10 minggu 26 Mei → 3 Agustus (detail di LEAP master §11.4).
 

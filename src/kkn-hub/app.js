@@ -70,7 +70,7 @@ function updateTopbarUser() {
   const el = document.getElementById('tb-user');
   if (!el) return;
   const me = getUser();
-  el.textContent = (me && me !== 'Tamu') ? '👤 ' + firstName(me) : '⚡ Klp. 2';
+  el.textContent = (me && me !== 'Tamu') ? '👤 ' + firstName(me) : 'KKN STEM';
 }
 function myDocsHtml(me) {
   const fn = firstName(me);
@@ -118,7 +118,7 @@ function renderMyTask(me) {
       </div>
       <div class="mt-title"><span aria-hidden="true">${tdata.emoji}</span> Halo, ${firstName(tdata.anggota)} 👋</div>
       <div class="mt-role">${tdata.prodi} · <span class="mt-status">${tdata.status}</span></div>
-      ${preWorkshopPhase ? `<div class="mt-note"><span aria-hidden="true">📌</span> Fokus terdekat masih <strong>SO Eyecare (Juni)</strong> — langkah berikutnya ada di kartu situasi di bawah &amp; halaman Prosedur. Bagian ini untuk <strong>Workshop SMA (Agustus)</strong>.</div>` : ''}
+      ${preWorkshopPhase ? `<div class="mt-note"><span aria-hidden="true">📌</span> Fokus bersama terdekat = <strong>SO Eyecare (Juli — tentatif)</strong>. Cek timmu (A/B/C) di halaman <strong>Eye Care</strong>. Bagian ini khusus <strong>Workshop SMA (Agustus)</strong>, urusan Kelompok 2.</div>` : ''}
       <div class="mt-sec">
         <div class="mt-sec-title">Saat workshop (Agustus)</div>
         <ul>${tdata.perWorkshop.map(x => `<li>${x}</li>`).join('')}</ul>
@@ -183,6 +183,7 @@ function renderPage(id) {
   if (id === 'dashboard') renderDashboard();
   else if (id === 'timeline') renderTimeline();
   else if (id === 'team') renderTeam();
+  else if (id === 'eyecare') renderEyecare();
   else if (id === 'prosedur') renderProsedur();
   else if (id === 'checklist') renderChecklist();
   else if (id === 'notes') renderNotes();
@@ -259,21 +260,26 @@ function md(raw) {
 
 /* ── DASHBOARD — PHASE BRIEFS ── */
 function getSituation(t) {
-  if (t < parseDate('2026-06-13')) return {
+  // CATATAN TANGGAL: Eyecare digeser Juni → JULI 2026. Hanya SD1 = 21 Juli yang pasti;
+  // opening/closing/akhir-SD masih tentatif (nunggu konfirmasi APL). Gate dipindah ke Juli,
+  // brief fase Eyecare diberi catatan "tentatif". Struktur logika sengaja dijaga tetap sama.
+  const TENTATIF = '🕓 Tanggal Eyecare tentatif — nunggu konfirmasi APL (SD1 = 21 Juli pasti, sisanya bisa geser)';
+  if (t < parseDate('2026-07-13')) return {
     color: 'var(--indigo)', border: 'var(--indigo)', glow: 'rgba(129,140,248,.08)',
     tag: 'Fase 1 · Persiapan',
     title: 'Persiapan Menuju Service Day',
     sub: 'Kamu masih punya waktu untuk siap sepenuhnya sebelum program dimulai.',
     actions: [
+      'Cek pembagian Team Eyecare (A/B/C) — cari namamu di halaman Eye Care',
       'Pelajari 10 prosedur vision screening (halaman Prosedur)',
       'Kerjakan semua item checklist persiapan',
       'Pahami peran UKDW: translasi & support komunikasi, bukan operator alat',
       'Ingat: Funduscopy (alat no. 10) RESTRICTED — hanya mahasiswa PolyU HK yang boleh operasikan',
       'Pantau update dari DPL/APL di WhatsApp grup',
-      'Konfirmasi jadwal training SO Eyecare (13–19 Juni)',
+      TENTATIF,
     ],
   };
-  if (t < parseDate('2026-06-20')) return {
+  if (t < parseDate('2026-07-20')) return {
     color: 'var(--violet)', border: 'var(--violet)', glow: 'rgba(192,132,252,.08)',
     tag: 'Fase 1 · Training SO Eyecare',
     title: 'Minggu Training — Paling Krusial',
@@ -282,11 +288,12 @@ function getSituation(t) {
       'Ikuti sesi training SO Eyecare bersama tim PolyU',
       'Pelajari alur 10 prosedur — tanyakan yang tidak jelas sekarang',
       'Ingat: Funduscopy (no. 10) RESTRICTED ke PolyU HK only',
-      'Cek pembagian peran tim di tabel Rotasi (halaman Prosedur)',
+      'Pastikan kamu tahu masuk Team A/B/C yang mana (halaman Eye Care)',
       'Siapkan seragam, ID card, dan perlengkapan lapangan',
+      TENTATIF,
     ],
   };
-  if (t < parseDate('2026-06-21')) return {
+  if (t < parseDate('2026-07-21')) return {
     color: 'var(--gold)', border: 'var(--gold)', glow: 'rgba(251,191,36,.08)',
     tag: 'Hari Ini · Opening Ceremony',
     title: 'Hari H — Opening Ceremony',
@@ -294,24 +301,25 @@ function getSituation(t) {
     actions: [
       'Hadir di Opening Ceremony tepat waktu',
       'Catat titik kumpul dan jadwal Service Day 1 besok',
-      'Cek rotasi tim untuk hari pertama di halaman Prosedur',
+      'Cek timmu (A/B/C) & temanmu di halaman Eye Care',
       'Pastikan semua item checklist sudah tercentang',
+      TENTATIF,
     ],
   };
-  if (t <= parseDate('2026-06-27')) {
-    const day = Math.min(5, Math.max(1, daysBetween(parseDate('2026-06-21'), t) + 1));
+  if (t <= parseDate('2026-07-27')) {
+    const day = Math.min(5, Math.max(1, daysBetween(parseDate('2026-07-21'), t) + 1));
     return {
       color: 'var(--orange)', border: 'var(--orange)', glow: 'rgba(251,146,60,.08)',
       tag: `Fase 2 · Service Day ${day} dari 5`,
       title: 'SO Eyecare Sedang Berlangsung',
       sub: 'Fokus, jaga stamina, dan support komunikasi dengan anak-anak.',
       actions: [
-        `Cek rotasi tim hari ini (Service Day ${day}) di tabel Rotasi`,
+        `Service Day ${day} — gabung bersama timmu (A/B/C, lihat halaman Eye Care)`,
         'Briefing pagi bersama tim PolyU sebelum mulai screening',
         'Peran UKDW: translasi in-class + support komunikasi anak-anak',
         'Funduscopy (alat no. 10) RESTRICTED — jangan operasikan, itu hanya untuk PolyU HK',
         'Catat hal penting di halaman Catatan',
-        'Tanyakan ke APL jika ada prosedur yang tidak jelas saat lapangan',
+        TENTATIF,
       ],
     };
   }
@@ -321,10 +329,9 @@ function getSituation(t) {
     title: 'Produksi Konten & Persiapan SMA',
     sub: 'Video edukasi + proposal SMA harus selesai sebelum Agustus.',
     actions: [
-      'Video edukasi mata 5–10 menit — semua anggota wajib tampil — 28–29 Juni',
+      'Video edukasi mata 5–10 menit — semua anggota wajib tampil (~28–29 Juli, tentatif)',
       'Susun proposal workshop SMA — harus disetujui DPL sebelum dimulai',
-      'Persiapan Orientation Session PolyU HK (19 Juli)',
-      'Siapkan materi interactive games untuk mahasiswa PolyU (~1 jam)',
+      'Workshop SMA (Agustus) = urusan Kelompok 2 per-tim',
       'Tulis laporan refleksi pribadi dari fase SD/SMP',
     ],
   };
@@ -357,12 +364,68 @@ function getSituation(t) {
   };
 }
 
+/* ── FUN COUNTDOWN REMINDER ──
+   Pesan ringan & lucu yang berganti ikut "bucket" sisa hari. Deterministik per-hari
+   (pakai today() sebagai seed) biar tidak flicker tiap re-render, tapi tetap recompute
+   dari tanggal asli. Bahasa Indonesia, warm, tasteful — bukan cringe. */
+function funReminder(daysLeft, label) {
+  let bucket;
+  if (daysLeft === 0) bucket = [
+    `Hari-H ${label}! Tarik napas, senyum, kamu udah siap 💪`,
+    `Ini dia harinya. Semangat ya — kamu bisa! 🔥`,
+    `Gas! Hari ini ${label}. Jangan lupa sarapan dulu 🍙`,
+  ];
+  else if (daysLeft === 1) bucket = [
+    `H-1! Siapin barang dari sekarang biar besok santai 🎒`,
+    `Tinggal tidur sekali lagi 😴 Besok hari besar!`,
+    `Besok hari-H. Cas HP, cas semangat juga ya ⚡`,
+  ];
+  else if (daysLeft <= 3) bucket = [
+    `Tinggal ${daysLeft} hari — mulai cek-cek persiapan ya 👀`,
+    `${daysLeft} hari lagi, makin dekat nih. Tetap tenang 🌿`,
+    `H-${daysLeft}! Pelan-pelan beresin checklist 📋`,
+  ];
+  else if (daysLeft <= 7) bucket = [
+    `Seminggu lagi! Waktunya pemanasan pelan-pelan 🌤️`,
+    `${daysLeft} hari lagi — masih sempat nyicil persiapan 🙂`,
+    `H-${daysLeft}, jangan lupa istirahat yang cukup ya 💤`,
+  ];
+  else if (daysLeft <= 30) bucket = [
+    `${daysLeft} hari lagi. Santai dulu, nikmati prosesnya ☕`,
+    `Masih ${daysLeft} hari — pelan tapi pasti 🐢`,
+    `H-${daysLeft}. Nyicil sedikit tiap hari, nanti enteng 🌱`,
+  ];
+  else bucket = [
+    `Masih ${daysLeft} hari — pas buat baca-baca prosedur dulu pelan-pelan 📖`,
+    `H-${daysLeft}. Masih lama, tapi cek timmu (A/B/C) di Eye Care dari sekarang yuk 👀`,
+    `${daysLeft} hari lagi. Santai, tapi kenalan sama tim nggak ada salahnya 🌱`,
+  ];
+  const seed = Math.floor(today().getTime() / 86400000);
+  return bucket[seed % bucket.length];
+}
+
+/* ── NAV WAYFINDING HINT (one-time, dismissible) ── */
+function navHintDismissed() {
+  try { return localStorage.getItem('kkn-navhint') === '1'; } catch { return false; }
+}
+function dismissNavHint() {
+  lsSet('kkn-navhint', '1');
+  const el = document.getElementById('nav-hint');
+  if (el) el.hidden = true;
+}
+function initNavHint() {
+  const el = document.getElementById('nav-hint');
+  if (!el) return;
+  el.hidden = navHintDismissed();
+}
+
 /* ── DASHBOARD ── */
 function renderDashboard() {
   const t = today();
   const sit = getSituation(t);
 
   updateTopbarUser();
+  initNavHint();
 
   // My Task card (personalized)
   const mtEl = document.getElementById('my-task-card');
@@ -408,24 +471,44 @@ function renderDashboard() {
       </ul>`;
   }
 
-  // Countdown widget
-  const milestones = [
-    { date: '2026-06-21', label: 'Service Day 1', color: 'var(--orange)' },
-    { date: '2026-07-19', label: 'Orientation Session', color: 'var(--violet)' },
-    { date: '2026-08-03', label: 'Service Day SMA 1', color: 'var(--green)' },
-    { date: '2026-08-14', label: 'Presentasi ke DPL', color: 'var(--cyan)' },
-  ];
-  const next = milestones.find(m => parseDate(m.date) >= t) || milestones[milestones.length - 1];
-  const daysLeft = Math.max(0, daysBetween(t, parseDate(next.date)));
-
-  const cdEl = document.getElementById('countdown-widget');
-  if (cdEl) {
-    cdEl.innerHTML = `
-      <div class="sec-label">Hitung Mundur</div>
-      <div class="cd-days" style="color:${next.color}">${daysLeft}</div>
-      <div class="cd-label">hari lagi</div>
-      <div class="cd-event">menuju <strong>${next.label}</strong></div>
-      <div class="cd-date">${fmtDate(parseDate(next.date))}</div>`;
+  // ── EYE CARE SPOTLIGHT (countdown merged in) ──
+  // Service Day 1 = 21 Juli = anchor utama (pasti). Recompute dari tanggal asli (t) tiap render.
+  // Kalau SD1 sudah lewat, jatuh ke milestone berikutnya biar angka tetap bermakna.
+  const ecEl = document.getElementById('ec-spotlight');
+  if (ecEl) {
+    const ecInfo = KKN.eyecareInfo || {};
+    const ecMilestones = [
+      { date: '2026-07-21', label: 'Service Day 1 Eye Care', tentatif: false },
+      { date: '2026-08-03', label: 'Service Day SMA 1', tentatif: false },
+      { date: '2026-08-14', label: 'Presentasi ke DPL', tentatif: false },
+    ];
+    const ecNext = ecMilestones.find(m => parseDate(m.date) >= t) || ecMilestones[ecMilestones.length - 1];
+    const ecDays = Math.max(0, daysBetween(t, parseDate(ecNext.date)));
+    const serviceDays = ecInfo.serviceDays || '21 – 24(27) Juli 2026';
+    const totalPeserta = ecInfo.totalPeserta || 59;
+    ecEl.innerHTML = `
+      <div class="ec-sp-inner">
+        <div class="ec-sp-top">
+          <div style="min-width:0">
+            <div class="ec-sp-eyebrow"><span aria-hidden="true">👁️</span> Fokus Bersama Semua Tim KKN</div>
+            <h2 class="ec-sp-title">SO Eye Care 2026</h2>
+            <div class="ec-sp-desc">Vision screening + edukasi mata untuk anak SD/SMP, kolaborasi UKDW × Hong Kong PolyU. Melibatkan <strong>±${totalPeserta} anak</strong> dalam 3 tim besar (A · B · C).</div>
+          </div>
+          <div class="ec-sp-cd">
+            <div class="ec-cd-num">${ecDays}</div>
+            <div class="ec-cd-lbl">${ecDays === 0 ? 'HARI INI 🎉' : 'hari menuju ' + ecNext.label}</div>
+          </div>
+        </div>
+        <div class="ec-sp-meta">
+          <span class="badge b-orange">🗓️ Service Day ${serviceDays}</span>
+          <span class="badge b-gray" style="font-size:10.5px">tentatif · nunggu konfirmasi APL</span>
+        </div>
+        <div class="ec-sp-actions">
+          <button class="btn btn-primary" onclick="showPage('eyecare')"><span aria-hidden="true">👁️</span> Cari timmu (A/B/C)</button>
+          <button class="btn btn-ghost" onclick="showPage('timeline')">Lihat timeline</button>
+        </div>
+        <div class="ec-sp-reminder">${funReminder(ecDays, ecNext.label)}</div>
+      </div>`;
   }
 
   // Quick contacts
@@ -462,7 +545,7 @@ function renderDashboard() {
         ${show.map(c => `
           <div class="ct-item">
             <div class="ct-dot" style="background:${c.urgent ? 'var(--rose)' : 'var(--border-h)'}"></div>
-            <span style="flex:1;font-size:13px">${c.text}</span>
+            <span style="flex:1;font-size:13px">${c.urgent ? '<strong>Mendesak — </strong>' : ''}${c.text}</span>
           </div>`).join('')}`;
     }
   }
@@ -544,7 +627,7 @@ function renderTeam() {
       <div class="member-card${m.isMe ? ' me' : ''}">
         <div class="avatar ${colorCls[m.color] || 'av-indigo'}">${m.emoji}</div>
         <div>
-          <div class="m-name">${m.nama}${m.isMe ? ' <span class="badge b-indigo" style="font-size:10px">Ketua</span>' : ''}</div>
+          <div class="m-name">${m.nama}${m.isMe ? ' <span class="badge b-indigo" style="font-size:10px">Ketua KKN STEM</span>' : ''}</div>
           <div class="m-prodi">${m.prodi}</div>
           <div style="margin-top:6px">
             <span class="badge ${m.gender === 'Pria' ? 'b-violet' : 'b-orange'}" style="font-size:10px">${m.gender}</span>
@@ -582,6 +665,99 @@ function renderTeam() {
       </div>`;
   });
   html += '</div>';
+
+  el.innerHTML = html;
+}
+
+/* ── EYE CARE (fokus bersama semua anak KKN STEM) ── */
+function renderEyecare() {
+  const el = document.getElementById('eyecare-body');
+  if (!el || el.dataset.rendered) return;
+  el.dataset.rendered = '1';
+
+  const info = KKN.eyecareInfo || {};
+  const teams = KKN.eyecareTeams || [];
+  const badgeCls = { indigo: 'b-indigo', violet: 'b-violet', cyan: 'b-cyan', orange: 'b-orange', green: 'b-green', gold: 'b-gold' };
+  const avCls = { indigo: 'av-indigo', violet: 'av-violet', cyan: 'av-cyan', orange: 'av-gold', green: 'av-green', gold: 'av-gold' };
+  const varName = { indigo: 'var(--indigo)', violet: 'var(--violet)', cyan: 'var(--cyan)', orange: 'var(--orange)', green: 'var(--green)', gold: 'var(--gold)' };
+
+  // ── HERO ──
+  let html = `
+    <div class="card card-accent-l" style="border-left-color:var(--orange);margin-bottom:18px">
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px">
+        <span class="badge b-orange">👁️ Fokus Bersama Semua Anak KKN STEM</span>
+        <span class="badge b-gray" style="font-size:10.5px">tentatif · nunggu konfirmasi APL</span>
+      </div>
+      <div class="ph1" style="font-size:24px;margin-bottom:6px">SO Eyecare 2026</div>
+      <div style="font-size:13px;color:var(--t2);line-height:1.6;margin-bottom:14px">
+        Skrining penglihatan &amp; edukasi kesehatan mata untuk anak SD/SMP, kolaborasi UKDW × Hong Kong PolyU.
+        Ini program yang melibatkan <strong>semua</strong> anak KKN STEM — siapapun bisa cek timnya di sini.
+      </div>
+      <div class="g3" style="gap:12px">
+        <div class="card card-sm" style="padding:14px">
+          <div class="sec-label" style="margin-bottom:6px">🗓️ Service Day 1–5</div>
+          <div style="font-size:16px;font-weight:800;color:var(--orange);letter-spacing:-.3px">${info.serviceDays || '21 – 24(27) Juli 2026'}</div>
+          <div style="font-size:11px;color:var(--t3);margin-top:5px;line-height:1.45">${info.serviceDaysNote || 'SD1 = 21 Juli (pasti). Tanggal akhir tentatif.'}</div>
+        </div>
+        <div class="card card-sm" style="padding:14px">
+          <div class="sec-label" style="margin-bottom:6px">👥 Total Peserta</div>
+          <div style="font-size:16px;font-weight:800;color:var(--indigo);letter-spacing:-.3px">${info.totalPeserta || 59} orang</div>
+          <div style="font-size:11px;color:var(--t3);margin-top:5px;line-height:1.45">3 tim besar lintas-kelompok: A (20) · B (20) · C (19)</div>
+        </div>
+        <div class="card card-sm" style="padding:14px">
+          <div class="sec-label" style="margin-bottom:6px">🧭 Koordinator Tim</div>
+          <div style="font-size:16px;font-weight:800;color:var(--t2);letter-spacing:-.3px">Belum ada</div>
+          <div style="font-size:11px;color:var(--t3);margin-top:5px;line-height:1.45">${info.koorNote || 'Belum diumumkan — nunggu konfirmasi APL.'}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:18px">
+      <div style="display:flex;gap:14px;align-items:flex-start">
+        <div class="avatar av-indigo" aria-hidden="true">🌐</div>
+        <div style="flex:1;min-width:0">
+          <div style="font-weight:700;font-size:14px;margin-bottom:4px">Koordinasi &amp; Liaison PolyU</div>
+          <div style="font-size:12.5px;color:var(--t2);line-height:1.6">Komunikasi dengan supervisor &amp; mahasiswa Hong Kong PolyU dikoordinasikan lewat ketua KKN STEM. Jadwal &amp; teknis menyusul — pantau update di sini.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert a-warn" style="margin-bottom:22px">
+      <span class="alert-icon" aria-hidden="true">🕓</span>
+      <div>${info.tentatifNote || 'Semua tanggal Eyecare bersifat tentatif/TBC — bisa berubah, pantau update dari APL/DPL.'}</div>
+    </div>
+
+    <div class="alert a-info" style="margin-bottom:22px">
+      <span class="alert-icon" aria-hidden="true">🔍</span>
+      <div>Cari namamu di daftar tiap tim di bawah — atau pakai <strong>Smart Search</strong> kalau bingung kamu masuk tim mana.</div>
+    </div>`;
+
+  // ── TEAM CARDS ──
+  teams.forEach(team => {
+    html += `
+      <div class="gap">
+        <div class="flex-sb" style="margin-bottom:12px;gap:10px;flex-wrap:wrap;align-items:center">
+          <h2 class="ph2" style="margin:0">${team.team}</h2>
+          <div style="display:flex;gap:6px;flex-wrap:wrap">
+            <span class="badge ${badgeCls[team.color] || 'b-indigo'}">${team.count} orang</span>
+            <span class="badge b-gray" style="font-size:10.5px">Koor: ${(team.koor && team.koor !== 'TBC') ? team.koor : 'belum ada'}</span>
+          </div>
+        </div>
+        <div class="g2" style="gap:10px">`;
+    (team.roster || []).forEach(m => {
+      html += `
+          <div class="member-card member-card--static" style="padding:12px">
+            <div class="avatar ${avCls[team.color] || 'av-indigo'}" aria-hidden="true" style="width:36px;height:36px;font-size:14px;font-weight:700">${m.no}</div>
+            <div style="min-width:0;flex:1">
+              <div class="m-name" style="font-size:13px">${m.nama}</div>
+              <div class="m-prodi" style="font-size:11.5px">${m.prodi} · ${m.gender}</div>
+            </div>
+          </div>`;
+    });
+    html += `
+        </div>
+      </div>`;
+  });
 
   el.innerHTML = html;
 }
@@ -761,7 +937,13 @@ function initSearch() {
   KKN.procedures.forEach(p => corpus.push({ category: 'Prosedur', title: p.name + ' — ' + p.en, body: p.desc + '. Alat: ' + p.alat, tags: p.restricted ? 'restricted PolyU' : '' }));
   KKN.timeline.forEach(e => corpus.push({ category: 'Timeline', title: e.label, body: `${e.start} sampai ${e.end}. Fase: ${e.phase}`, tags: 'jadwal tanggal' }));
   KKN.locations.sdSmp.forEach(l => corpus.push({ category: 'Lokasi', title: l.nama, body: `Jenjang: ${l.jenjang}. ${l.confirmed ? 'Sudah dikonfirmasi.' : 'Belum dikonfirmasi (TBC).'}`, tags: 'sekolah lokasi' }));
-  KKN.team.forEach(m => corpus.push({ category: 'Tim', title: m.nama, body: `Prodi: ${m.prodi}. Gender: ${m.gender}. ${m.isMe ? 'Ketua kelompok.' : ''}`, tags: 'anggota kelompok' }));
+  KKN.team.forEach(m => corpus.push({ category: 'Tim', title: m.nama, body: `Prodi: ${m.prodi}. Gender: ${m.gender}. ${m.isMe ? 'Ketua keseluruhan KKN STEM.' : ''}`, tags: 'anggota kelompok' }));
+  (KKN.eyecareTeams || []).forEach(team => (team.roster || []).forEach(m => corpus.push({
+    category: 'Eye Care',
+    title: `${m.nama} — ${team.team}`,
+    body: `Masuk ${team.team} Eyecare. Prodi: ${m.prodi}. Gender: ${m.gender}.${m.isDex ? ' Ketua keseluruhan KKN STEM + liaison PolyU.' : m.klp2 ? ' Anggota Kelompok 2.' : ''} Service Day Eyecare: ${(KKN.eyecareInfo && KKN.eyecareInfo.serviceDays) || '21 – 24(27) Juli 2026'} (tentatif).`,
+    tags: `eyecare ${team.team} screening tim ${m.prodi}`,
+  })));
   KKN.contacts.forEach(c => corpus.push({ category: 'Kontak', title: c.role + ' — ' + c.nama, body: `Kontak: ${c.phoneDisplay}. ${c.note}`, tags: 'DPL APL kontak' }));
 
   fuse = new Fuse(corpus, {

@@ -15,6 +15,13 @@ const KKN = {
   // ══ LATEST UPDATES (push signal — paling baru di atas) ══
   latestUpdates: [
     {
+      date: "2026-06-09",
+      title: "👁️ Halaman Eye Care Baru — Cek Timmu! + Jadwal Geser ke Juli",
+      desc: "Eyecare sekarang 3 tim besar (A/B/C, total 59 orang lintas-kelompok) — buka halaman 'Eye Care' buat lihat kamu masuk tim mana. ⚠️ Service Day digeser ke JULI (Service Day 1 = 21 Juli; tanggal lain masih tentatif, nunggu konfirmasi APL). Hitung mundur di Dashboard sekarang ngikutin tanggal asli. Koordinator tiap tim belum diumumkan.",
+      tag: "NEW",
+      gotoPage: "eyecare",
+    },
+    {
       date: "2026-06-01",
       title: "✨ Hub Diperbarui + Sistem Data Skor Siap",
       desc: "Tampilan hub dirapikan & dipermudah: buka → pilih namamu → langsung muncul tugasmu + dokumenmu. Sistem data per-siswa juga sudah jadi (Google Form + Sheet skor otomatis → Profil 2036 → CSV untuk DPL). Cek 'Dokumen Drive' bagian 'Sistem Data Hari-H'. Syendhi tinggal pasang & uji.",
@@ -328,17 +335,17 @@ const KKN = {
     { id: "pembekalan", label: "Pembekalan KKN", start: "2026-05-09", end: "2026-05-09", phase: "persiapan", color: "cyan", done: true },
     { id: "persiapan-proposal", label: "Persiapan Proposal Workshop SMA", start: "2026-05-11", end: "2026-05-13", phase: "persiapan", color: "cyan", done: true },
     { id: "presentasi-proposal", label: "Presentasi Proposal ke DPL", start: "2026-05-25", end: "2026-05-26", phase: "persiapan", color: "cyan", done: false },
-    { id: "persiapan-so", label: "Persiapan SO Eyecare (Consent Form)", start: "2026-06-13", end: "2026-06-17", phase: "eyecare", color: "purple", done: false },
-    { id: "opening", label: "Opening Ceremony", start: "2026-06-20", end: "2026-06-20", phase: "eyecare", color: "green", done: false },
-    { id: "sd1", label: "Service Day 1", start: "2026-06-21", end: "2026-06-21", phase: "eyecare", color: "orange", done: false, isServiceDay: true },
-    { id: "sd2", label: "Service Day 2", start: "2026-06-22", end: "2026-06-22", phase: "eyecare", color: "orange", done: false, isServiceDay: true },
-    { id: "sd3", label: "Service Day 3", start: "2026-06-23", end: "2026-06-23", phase: "eyecare", color: "orange", done: false, isServiceDay: true },
-    { id: "sd4", label: "Service Day 4", start: "2026-06-24", end: "2026-06-24", phase: "eyecare", color: "orange", done: false, isServiceDay: true },
-    { id: "sd5", label: "Service Day 5", start: "2026-06-25", end: "2026-06-25", phase: "eyecare", color: "orange", done: false, isServiceDay: true },
-    { id: "closing", label: "Closing Ceremony", start: "2026-06-27", end: "2026-06-27", phase: "eyecare", color: "green", done: false },
-    { id: "video", label: "Pembuatan Video Edukasi Mata", start: "2026-06-28", end: "2026-06-29", phase: "pasca", color: "purple", done: false },
-    { id: "penyusunan", label: "Penyusunan Proposal SMA", start: "2026-06-24", end: "2026-07-01", phase: "sma", color: "cyan", done: false },
+    // ⚠️ Eyecare DIGESER Juni → JULI 2026 (tentatif/TBC, nunggu konfirmasi APL). Hanya SD1 = 21 Juli yang pasti.
     { id: "orientation", label: "Orientation Session UKDW × PolyU", start: "2026-07-19", end: "2026-07-19", phase: "orientasi", color: "purple", done: false },
+    { id: "opening", label: "Opening Ceremony Eyecare (TBC)", start: "2026-07-20", end: "2026-07-20", phase: "eyecare", color: "green", done: false },
+    { id: "sd1", label: "Service Day 1 Eyecare", start: "2026-07-21", end: "2026-07-21", phase: "eyecare", color: "orange", done: false, isServiceDay: true },
+    { id: "sd2", label: "Service Day 2 (TBC)", start: "2026-07-22", end: "2026-07-22", phase: "eyecare", color: "orange", done: false, isServiceDay: true },
+    { id: "sd3", label: "Service Day 3 (TBC)", start: "2026-07-23", end: "2026-07-23", phase: "eyecare", color: "orange", done: false, isServiceDay: true },
+    { id: "sd4", label: "Service Day 4 (TBC)", start: "2026-07-24", end: "2026-07-24", phase: "eyecare", color: "orange", done: false, isServiceDay: true },
+    { id: "sd5", label: "Service Day 5 (TBC)", start: "2026-07-25", end: "2026-07-25", phase: "eyecare", color: "orange", done: false, isServiceDay: true },
+    { id: "closing", label: "Closing Ceremony Eyecare (TBC)", start: "2026-07-27", end: "2026-07-27", phase: "eyecare", color: "green", done: false },
+    { id: "video", label: "Pembuatan Video Edukasi Mata (TBC)", start: "2026-07-28", end: "2026-07-29", phase: "pasca", color: "purple", done: false },
+    { id: "penyusunan", label: "Penyusunan Proposal SMA (Kelompok 2)", start: "2026-07-01", end: "2026-07-15", phase: "sma", color: "cyan", done: false },
     { id: "persiapan-sma", label: "Persiapan Service Day SMA", start: "2026-07-30", end: "2026-07-31", phase: "sma", color: "cyan", done: false },
     { id: "sma-1", label: "Service Day SMA 1–5", start: "2026-08-03", end: "2026-08-07", phase: "sma", color: "orange", done: false, isServiceDay: true },
     { id: "laporan", label: "Pembuatan Laporan Kegiatan", start: "2026-08-10", end: "2026-08-12", phase: "akhir", color: "cyan", done: false },
@@ -366,17 +373,112 @@ const KKN = {
     { day: "Service Day 5", vs: "B+SO2 & C+SO1", edu: "A" },
   ],
 
+  // ⚠️ MODEL LAMA (Juni) — DIARSIPKAN, jangan dihapus. Rotasi A/B/C + SO1/SO2 versi Juni
+  // sebelum Eyecare direorganisasi jadi 3 tim besar (Team A/B/C) di Juli. Masih dipakai
+  // halaman Prosedur sebagai referensi mekanik rotasi VS/Edu. Tim besar yang LIVE =
+  // KKN.eyecareTeams di bawah.
   eduTeams: [
     { team: "Tim A", usia: "3–6 tahun", note: "Anak TK/SD kelas 1" },
     { team: "Tim B", usia: "6–8 tahun", note: "SD kelas 1–2" },
     { team: "Tim C", usia: "9–12 tahun", note: "SD kelas 3–6" },
   ],
 
+  // ══ EYECARE — 3 TIM BESAR (sumber: Pembagian Team Screening Eyecare.pdf) ══
+  // FOKUS BERSAMA semua anak KKN STEM. Total 59 orang lintas-kelompok.
+  // Service Day 1-5 = 21 - 24(27) Juli 2026 (tentatif — nunggu konfirmasi APL).
+  // Flag: isDex = Dex Bennett (Ketua keseluruhan KKN STEM). klp2 = anggota Kelompok 2.
+  eyecareInfo: {
+    serviceDays: "21 – 24(27) Juli 2026",
+    serviceDaysNote: "Service Day 1 = 21 Juli (pasti). Tanggal akhir (24 vs 27 Juli) masih tentatif — nunggu konfirmasi APL.",
+    tentatif: true,
+    tentatifNote: "Semua tanggal Eyecare bersifat tentatif/TBC — bisa berubah, selalu pantau update dari APL/DPL.",
+    totalPeserta: 59,
+    polyuLiaison: "Dex Bennett = Ketua keseluruhan KKN STEM 2026 + liaison langsung ke supervisor & mahasiswa Hong Kong PolyU.",
+    koorNote: "Koordinator tiap tim (koor) belum diumumkan — masih TBC, nunggu konfirmasi APL.",
+  },
+
+  eyecareTeams: [
+    {
+      team: "Team A", count: 20, koor: "TBC", color: "indigo",
+      roster: [
+        { no: 1, nama: "Devon Benedict Christopher", prodi: "Biologi", gender: "Pria" },
+        { no: 2, nama: "Jimmy Christian", prodi: "Informatika", gender: "Pria" },
+        { no: 3, nama: "James Henry Wijaya", prodi: "Kedokteran", gender: "Pria" },
+        { no: 4, nama: "Lora Melita Ardana", prodi: "Kedokteran", gender: "Wanita" },
+        { no: 5, nama: "Taufeniliati", prodi: "Kedokteran", gender: "Wanita" },
+        { no: 6, nama: "Rachel Gina Octavia", prodi: "Sistem Informasi", gender: "Wanita" },
+        { no: 7, nama: "Leonardo Andrean", prodi: "Informatika", gender: "Pria" },
+        { no: 8, nama: "Benediktus Satria Trisnawan", prodi: "Kedokteran", gender: "Pria", klp2: true },
+        { no: 9, nama: "Maria Nadira Dosinaen", prodi: "Kedokteran", gender: "Wanita", klp2: true },
+        { no: 10, nama: "Theana Amabel Krismeiati", prodi: "Kedokteran", gender: "Wanita", klp2: true },
+        { no: 11, nama: "Dhevina Putri Agustya", prodi: "Manajemen", gender: "Wanita", klp2: true },
+        { no: 12, nama: "Dex Bennett", prodi: "Sistem Informasi", gender: "Pria", klp2: true, isDex: true },
+        { no: 13, nama: "Virya Candra Dharmawan", prodi: "Arsitektur", gender: "Pria" },
+        { no: 14, nama: "Benyamin Prasetya Putra Ramayana", prodi: "Informatika", gender: "Pria" },
+        { no: 15, nama: "Alexia Dominique Ika Nugraha", prodi: "Kedokteran", gender: "Wanita" },
+        { no: 16, nama: "Hayu Muninggar Atnawandani Baskoro", prodi: "Kedokteran", gender: "Wanita" },
+        { no: 17, nama: "Beatrice Budiman", prodi: "Manajemen", gender: "Wanita" },
+        { no: 18, nama: "Daniko Sutopo", prodi: "Sistem Informasi", gender: "Pria" },
+        { no: 19, nama: "Ceraphine Putri Pustikasari", prodi: "Biologi", gender: "Wanita" },
+        { no: 20, nama: "Andriano Kurniawan Ladjeba", prodi: "Informatika", gender: "Pria" },
+      ],
+    },
+    {
+      team: "Team B", count: 20, koor: "TBC", color: "violet",
+      roster: [
+        { no: 1, nama: "Amarya Try Nugraha Seno Putra", prodi: "Kedokteran", gender: "Pria" },
+        { no: 2, nama: "Agata Gita Hervena", prodi: "Kedokteran", gender: "Wanita" },
+        { no: 3, nama: "Rafael Christovius Chandra", prodi: "Pendidikan Bahasa Inggris", gender: "Pria" },
+        { no: 4, nama: "Jovan Marllen Yulianto", prodi: "Sistem Informasi", gender: "Pria" },
+        { no: 5, nama: "Galih Pramana Chandra Prasetya", prodi: "Informatika", gender: "Pria" },
+        { no: 6, nama: "Gregorius Daniel Jodan Perminas", prodi: "Informatika", gender: "Pria" },
+        { no: 7, nama: "Dayang Christine Agung Putri", prodi: "Kedokteran", gender: "Wanita" },
+        { no: 8, nama: "Hilda Ruth Bealy", prodi: "Kedokteran", gender: "Wanita" },
+        { no: 9, nama: "Hosea Yeashe Retsoneka", prodi: "Pendidikan Bahasa Inggris", gender: "Pria" },
+        { no: 10, nama: "Febby Margareta Singgih", prodi: "Sistem Informasi", gender: "Wanita" },
+        { no: 11, nama: "Bintang Putri Maharani", prodi: "Arsitektur", gender: "Wanita" },
+        { no: 12, nama: "Rainie Fanita Chrisabel Hadisantoso", prodi: "Informatika", gender: "Wanita" },
+        { no: 13, nama: "Tara Tirtanata", prodi: "Informatika", gender: "Wanita" },
+        { no: 14, nama: "Giovanno Surya Honesto", prodi: "Kedokteran", gender: "Pria" },
+        { no: 15, nama: "Nicholas Adriel Pinzon", prodi: "Kedokteran", gender: "Pria" },
+        { no: 16, nama: "Hans Gunawan", prodi: "Sistem Informasi", gender: "Pria" },
+        { no: 17, nama: "Jhosua Agilva Bima Lazy", prodi: "Arsitektur", gender: "Pria" },
+        { no: 18, nama: "Samuel Natanael", prodi: "Informatika", gender: "Pria" },
+        { no: 19, nama: "Leonardo Michael Mulyono", prodi: "Kedokteran", gender: "Pria" },
+        { no: 20, nama: "Eileen", prodi: "Kedokteran", gender: "Wanita" },
+      ],
+    },
+    {
+      team: "Team C", count: 19, koor: "TBC", color: "cyan",
+      roster: [
+        { no: 1, nama: "Kayla Shifra Marshelya", prodi: "Kedokteran", gender: "Wanita" },
+        { no: 2, nama: "Nabila Mutiara Azahra", prodi: "Pendidikan Bahasa Inggris", gender: "Wanita" },
+        { no: 3, nama: "Syendhi Reswara. S", prodi: "Informatika", gender: "Pria", klp2: true },
+        { no: 4, nama: "Fritz Ardian Abimanyu", prodi: "Kedokteran", gender: "Pria" },
+        { no: 5, nama: "Gabriella Natama Sinaga", prodi: "Kedokteran", gender: "Wanita" },
+        { no: 6, nama: "Mahanani Yekti Putri Sion Warsito", prodi: "Kedokteran", gender: "Wanita" },
+        { no: 7, nama: "Zalfa Habib Kasim", prodi: "Pendidikan Bahasa Inggris", gender: "Pria" },
+        { no: 8, nama: "Yesha Victoria Atmaja", prodi: "Sistem Informasi", gender: "Wanita" },
+        { no: 9, nama: "Catur Wibowo Aji", prodi: "Arsitektur", gender: "Pria" },
+        { no: 10, nama: "Raphael Felio Bagaskara", prodi: "Informatika", gender: "Pria" },
+        { no: 11, nama: "Jessica Karen Roberth", prodi: "Kedokteran", gender: "Wanita" },
+        { no: 12, nama: "Rhema El Vera Prasetya", prodi: "Kedokteran", gender: "Wanita" },
+        { no: 13, nama: "Tirsa Deby Budiman", prodi: "Pendidikan Bahasa Inggris", gender: "Wanita" },
+        { no: 14, nama: "Dave Aryanda Agape", prodi: "Sistem Informasi", gender: "Pria" },
+        { no: 15, nama: "Alvin Gracio Wijaya", prodi: "Biologi", gender: "Pria" },
+        { no: 16, nama: "Revaldo Fransisco Hohary", prodi: "Informatika", gender: "Pria" },
+        { no: 17, nama: "Jovan Jayalaksana", prodi: "Kedokteran", gender: "Pria" },
+        { no: 18, nama: "Joy Aurel Prudentia Putri", prodi: "Kedokteran", gender: "Wanita" },
+        { no: 19, nama: "Kezia Putri Rajani", prodi: "Manajemen", gender: "Wanita" },
+      ],
+    },
+  ],
+
   checklist: [
     { id: "c1", text: "Konfirmasi masuk Tim A, B, atau C", category: "Tim", urgent: true },
     { id: "c2", text: "Ikuti training penggunaan alat dari PolyU (WAJIB hadir)", category: "Training", urgent: true },
     { id: "c3", text: "Pastikan proposal workshop SMA sudah disetujui DPL", category: "Akademik", urgent: true },
-    { id: "c4", text: "Data Consent Form sekolah sudah dikumpulkan (13–17 Juni)", category: "Administrasi", urgent: false },
+    { id: "c4", text: "Cek pembagian Team Eyecare (A/B/C) — cari namamu di halaman Eye Care", category: "Tim", urgent: true },
     { id: "c5", text: "Siapkan fisik dan mental — 5 service days berturut-turut", category: "Persiapan Diri", urgent: false },
     { id: "c6", text: "Simpan kontak DPL: dr. Loury Priiskila +62 813-9070-9672", category: "Kontak", urgent: false },
     { id: "c7", text: "Simpan kontak APL 1: Eleonora Bintang +62 858-1775-6217", category: "Kontak", urgent: false },
@@ -385,15 +487,15 @@ const KKN = {
     { id: "c10", text: "Pelajari materi edukasi sesuai kelompok usia yang ditangani", category: "Materi", urgent: false },
     { id: "c11", text: "Siapkan bahan ice-breaking untuk Orientation Session 19 Juli", category: "Orientation", urgent: false },
     { id: "c12", text: "Mulai diskusi topik workshop softskill untuk SMA dengan kelompok", category: "Workshop SMA", urgent: false },
-    { id: "c13", text: "Video edukasi mata — pastikan semua anggota bisa tampil 28–29 Juni", category: "Video", urgent: false },
+    { id: "c13", text: "Video edukasi mata — pastikan semua anggota bisa tampil (~28–29 Juli, tentatif)", category: "Video", urgent: false },
     { id: "c14", text: "Online coaching dengan HK PolyU (jadwal tentative — pantau info)", category: "Koordinasi", urgent: false },
   ],
 
   faq: [
     {
       q: "Kapan service day pertama?",
-      a: "Service Day 1 adalah 21 Juni 2026. Sebelumnya ada Opening Ceremony pada 20 Juni 2026.",
-      tags: ["jadwal", "service day", "tanggal"],
+      a: "Service Day 1 Eyecare adalah 21 Juli 2026 (Opening Ceremony sehari sebelumnya, ~20 Juli — tentatif). Rangkaian Service Day 1-5 = 21 – 24(27) Juli 2026. Catatan: tanggal akhir (24 vs 27 Juli) masih tentatif/TBC — nunggu konfirmasi APL. Eyecare sebelumnya direncanakan Juni, lalu DIGESER ke Juli.",
+      tags: ["jadwal", "service day", "tanggal", "juli", "eyecare"],
     },
     {
       q: "Siapa saja anggota kelompok 2?",
@@ -427,12 +529,17 @@ const KKN = {
     },
     {
       q: "Apa itu SO Eyecare?",
-      a: "SO Eyecare adalah nama program kolaborasi UKDW × PolyU HK ini. Program ini menggantikan program sebelumnya (EEE / Electronic and Electrical Engineering). Fokusnya adalah skrining penglihatan dan edukasi kesehatan mata untuk anak SD dan SMP di Yogyakarta.",
-      tags: ["SO Eyecare", "program", "pengertian"],
+      a: "SO Eyecare adalah nama program kolaborasi UKDW × PolyU HK ini, dan jadi FOKUS BERSAMA semua anak KKN STEM. Program ini menggantikan program sebelumnya (EEE / Electronic and Electrical Engineering). Fokusnya: skrining penglihatan + edukasi kesehatan mata untuk anak SD dan SMP di Yogyakarta. Peserta dibagi jadi 3 tim besar lintas-kelompok: Team A (20), Team B (20), Team C (19) — total 59 orang. Jadwal Service Day digeser ke Juli 2026 (tentatif). Lihat halaman 'Eye Care' untuk roster tiap tim.",
+      tags: ["SO Eyecare", "program", "pengertian", "team A B C", "eyecare"],
+    },
+    {
+      q: "Aku masuk Team Eyecare yang mana? (Team A/B/C)",
+      a: "Eyecare 2026 dibagi jadi 3 tim besar lintas-kelompok. Buka halaman 'Eye Care' lalu cari namamu di roster — atau ketik namamu di Smart Search. Anggota Kelompok 2 tersebar: Team A = Dex (Ketua keseluruhan KKN STEM), Dhevina, Benediktus, Maria, Theana. Team C = Syendhi. Koordinator tiap tim (koor) masih TBC — nunggu konfirmasi APL.",
+      tags: ["team", "team A", "team B", "team C", "pembagian", "eyecare", "roster"],
     },
     {
       q: "Berapa durasi video edukasi mata?",
-      a: "Video Edukasi Mata dibuat setelah Service Days SD/SMP (28–29 Juni). Durasi minimal 5 menit, maksimal 10 menit. Seluruh anggota kelompok wajib tampil dalam video.",
+      a: "Video Edukasi Mata dibuat setelah Service Days SD/SMP (~28–29 Juli — tentatif, ikut jadwal Eyecare yang digeser ke Juli). Durasi minimal 5 menit, maksimal 10 menit. Seluruh anggota kelompok wajib tampil dalam video.",
       tags: ["video", "edukasi", "durasi", "syarat"],
     },
     {
@@ -442,12 +549,12 @@ const KKN = {
     },
     {
       q: "Maksud kode A, B, C, SO1, SO2 di tabel rotasi itu apa?",
-      a: "Kode-kode itu adalah singkatan pembagian sub-tim saat service days:\n\n• A, B, C = sub-tim dari mahasiswa UKDW\n• SO1, SO2 = sub-grup dari mahasiswa PolyU HK (SO = Supporting Officer / sub-officer dari pihak Hong Kong)\n\nJadi 'A+SO1' artinya sub-tim UKDW A bekerja bersama sub-grup PolyU SO1 sebagai satu tim Vision Screening (VS) di hari itu.\n\nContoh baca tabel di Service Day 1:\n• Vision Screening: Tim (A+SO1) pergi ke satu sekolah, dan Tim (B+SO2) pergi ke sekolah lain — jadi ada DUA tim VS yang beroperasi bersamaan di sekolah berbeda.\n• Education: Tim C mengisi sesi edukasi kesehatan mata di kelas.\n\nSetiap service day, peran A/B/C berotasi sehingga semua punya pengalaman di kedua tugas (VS dan Edu). Tim UKDW A, B, C belum diumumkan siapa isinya — akan dikonfirmasi saat briefing/training.",
+      a: "Kode-kode itu adalah singkatan pembagian sub-tim saat service days:\n\n• A, B, C = sub-tim dari mahasiswa UKDW\n• SO1, SO2 = sub-grup dari mahasiswa PolyU HK (SO = Supporting Officer / sub-officer dari pihak Hong Kong)\n\nJadi 'A+SO1' artinya sub-tim UKDW A bekerja bersama sub-grup PolyU SO1 sebagai satu tim Vision Screening (VS) di hari itu.\n\nContoh baca tabel di Service Day 1:\n• Vision Screening: Tim (A+SO1) pergi ke satu sekolah, dan Tim (B+SO2) pergi ke sekolah lain — jadi ada DUA tim VS yang beroperasi bersamaan di sekolah berbeda.\n• Education: Tim C mengisi sesi edukasi kesehatan mata di kelas.\n\nSetiap service day, peran A/B/C berotasi sehingga semua punya pengalaman di kedua tugas (VS dan Edu).\n\nCatatan: tabel rotasi di atas adalah mekanik versi awal (Juni). Untuk pembagian tim Eyecare 2026 yang LIVE, peserta sekarang sudah dibagi jadi 3 tim besar lintas-kelompok — Team A (20), Team B (20), Team C (19). Lihat roster lengkap di halaman 'Eye Care'. Koordinator tiap tim masih TBC.",
       tags: ["rotasi", "tim", "SO1", "SO2", "A B C", "service day", "kode", "pembagian"],
     },
     {
       q: "Di sekolah mana saja kita bertugas?",
-      a: "Untuk program SO Eyecare (Juni): SD Budi Utama, SMP Kristen Kalam Kudus, SD Joanes Bosco, SMP Stella Duce 2 (TBC), SMP Budya Wacana, SD BOPKRI Gondolayu, SMP BOPKRI. Untuk Workshop SMA (Agustus): 2 SMA (tentative, salah satunya SMA BOPKRI).",
+      a: "Untuk program SO Eyecare (Juli — tentatif): SD Budi Utama, SMP Kristen Kalam Kudus, SD Joanes Bosco, SMP Stella Duce 2 (TBC), SMP Budya Wacana, SD BOPKRI Gondolayu, SMP BOPKRI. Untuk Workshop SMA (Agustus): 2 SMA (tentative, salah satunya SMA BOPKRI).",
       tags: ["lokasi", "sekolah", "SD", "SMP"],
     },
     {
@@ -820,8 +927,8 @@ const KKN = {
 };
 
 const GEMINI_CONTEXT = `
-Kamu adalah asisten KKN STEM 2026 Kelompok 2 (UKDW Yogyakarta) — dipakai BERSAMA oleh seluruh anggota tim.
-Jawab berdasarkan data KKN berikut. Bahasa Indonesia santai tapi informatif. Kalau tidak ada info relevan, katakan jujur. Acuan update data terakhir: 31 Mei 2026.
+Kamu adalah asisten KKN STEM 2026 (UKDW Yogyakarta) — info hub yang dipakai BERSAMA oleh SEMUA anak KKN STEM, bukan cuma satu kelompok.
+Jawab berdasarkan data KKN berikut. Bahasa Indonesia santai tapi informatif. Kalau tidak ada info relevan, katakan jujur. Acuan update data terakhir: 9 Juni 2026.
 
 CARA MERESPON (penting):
 - Di AWAL percakapan, kalau belum jelas siapa yang bertanya, TANYAKAN dulu dengan ramah: "Halo! Boleh tahu ini siapa? (Dex / Dhevina / Syendhi / Benediktus / Maria / Theana, atau tamu)" — supaya jawabanmu bisa fokus ke bagian yang relevan untuk orang itu (lihat peran tiap orang di bawah).
@@ -830,11 +937,18 @@ CARA MERESPON (penting):
 - Selalu ramah & menyemangati. Kalau ada yang masih bingung, sarankan tanyakan juga di grup WA.
 
 PROGRAM: KKN Tematik International Service Learning STEM 2026, kolaborasi UKDW × Hong Kong Polytechnic University (PolyU HK).
-Dua program: (1) SO Eyecare (kesehatan mata, SD/SMP, Juni) + (2) Workshop Softskill SMA "LEAP 2036" (Agustus).
+Dua program: (1) SO Eyecare (kesehatan mata, SD/SMP) = FOKUS BERSAMA semua anak KKN STEM, dijadwalkan JULI 2026 (tentatif, nunggu konfirmasi APL) + (2) Workshop Softskill SMA "LEAP 2036" = urusan tim kecil per-kelompok (Kelompok 2), Agustus 2026.
 Sebelumnya program ini bernama EEE (Electronic and Electrical Engineering), sudah diubah.
 
-KELOMPOK 2 (struktur kepanitiaan):
-- Dex Bennett (Sistem Informasi) — KETUA, pengguna aplikasi ini
+═══ EYECARE = 3 TIM BESAR (FOKUS BERSAMA) ═══
+Peserta Eyecare 2026 dibagi jadi 3 tim besar LINTAS-KELOMPOK (bukan per-kelompok): Team A (20 orang), Team B (20 orang), Team C (19 orang) — total 59 orang.
+- Dex Bennett (Sistem Informasi) = KETUA KESELURUHAN KKN STEM 2026 (3 tim Eye Care A/B/C + liaison langsung ke supervisor & mahasiswa Hong Kong PolyU). Dex ada di Team A. Bukan cuma ketua Kelompok 2 — dia ketua keseluruhan.
+- Anggota Kelompok 2 tersebar: Team A = Dex, Dhevina, Benediktus, Maria, Theana. Team C = Syendhi.
+- Contoh anggota lain: Team A juga ada Rachel Gina, Daniko, Beatrice. Team B ada Hans Gunawan (Kelompok 6), Febby Margareta. Team C ada Dave Aryanda Agape (Kelompok 9), Kayla Shifra.
+- Service Day Eyecare 1-5 = 21 – 24(27) Juli 2026. Service Day 1 = 21 Juli (pasti). Tanggal akhir (24 vs 27 Juli) masih tentatif. Koordinator (koor) tiap tim belum diumumkan (TBC). Roster lengkap ada di halaman 'Eye Care' di hub ini.
+
+KELOMPOK 2 (struktur kepanitiaan workshop SMA — tim kecil):
+- Dex Bennett (Sistem Informasi) — KETUA keseluruhan KKN STEM (juga koordinator Kelompok 2), pengguna aplikasi ini
 - Dhevina Putri Agustya (Manajemen) — Sekretaris & Bendahara, Lead Fase 1
 - Theana Amabel Krismeiati (Kedokteran) — PDD (Publikasi/Dokumentasi/Desain)
 - Syendhi Reswara S. (Informatika) — Perlengkapan & Teknis (operator skor live)
@@ -843,20 +957,20 @@ KELOMPOK 2 (struktur kepanitiaan):
 DPL: dr. Loury Priiskila, M.Biomed. (+62 813-9070-9672)
 APL: Eleonora Bintang Dahayu P (+62 858-1775-6217), Carolus Yasser Rombebunga (+62 852-5425-3035)
 
-TIMELINE (update 30 Mei 2026):
+TIMELINE (update 9 Juni 2026 — tanggal Eyecare digeser Juni → JULI, masih tentatif/nunggu konfirmasi APL):
 - Mei 9: Pembekalan KKN I (selesai)
 - Mei 24: Lock tema Workshop SMA = LEAP 2036
 - Mei 28: Presentasi proposal LEAP 2036 ke DPL (SELESAI). Desain final v2.0 di-lock.
-- Mei 30 (07.30-12.00): Pembekalan KKN Tahap II (WAJIB, Auditorium Koinonia). 10.45-12.00 Konsultasi Program dgn DPL.
-- Juni 13-17: Persiapan/Training SO Eyecare (consent form + alat)
-- Juni 20: Opening Ceremony
-- Juni 21-25: Service Day 1-5 (SD/SMP) ← FASE UTAMA EYECARE
-- Juni 27: Closing Ceremony
-- Juni 28-29: Pembuatan Video Edukasi Mata (min 5 menit, max 10 menit, semua anggota tampil)
+- Mei 30: Pembekalan KKN Tahap II (selesai).
 - Juli 19: Orientation Session UKDW × PolyU (~4 jam)
-- Agustus 3-7: Service Day SMA 1-5 (eksekusi Workshop LEAP 2036)
+- Juli 20: Opening Ceremony Eyecare (tentatif/TBC)
+- Juli 21-24(27): Service Day 1-5 Eyecare (SD/SMP) ← FASE UTAMA EYECARE, FOKUS BERSAMA. SD1=21 Juli pasti; tanggal akhir (24 vs 27) tentatif.
+- Juli 27: Closing Ceremony Eyecare (tentatif/TBC)
+- Juli ~28-29: Pembuatan Video Edukasi Mata (min 5 menit, max 10 menit, semua anggota tampil) — tentatif
+- Agustus 3-7: Service Day SMA 1-5 (eksekusi Workshop LEAP 2036) — urusan Kelompok 2
 - Agustus 10-12: Pembuatan Laporan
 - Agustus 13-14: Presentasi akhir ke DPL
+PENTING soal tanggal: HANYA "Eyecare digeser ke Juli" + "Service Day 1 = 21 Juli" yang sudah pasti. Tanggal lain di fase Eyecare (opening, closing, video, akhir SD) masih tentatif/inferensi — selalu bilang "tentatif, nunggu konfirmasi APL" kalau ditanya.
 
 LOKASI SD/SMP: SD Budi Utama, SMP Kristen Kalam Kudus, SD Joanes Bosco, SMP Stella Duce 2 (TBC), SMP Budya Wacana, SD BOPKRI Gondolayu, SMP BOPKRI.
 
@@ -879,7 +993,7 @@ ROTASI TIM SERVICE DAY:
 - "A+SO1" = UKDW sub-tim A + PolyU SO1 = satu tim Vision Screening bersama.
 - Setiap service day: DUA tim VS beroperasi serentak di sekolah berbeda + SATU tim Edu di kelas.
 - Rotasi: Day1: VS=(A+SO1)&(B+SO2), Edu=C | Day2: VS=(B+SO2)&(C+SO1), Edu=A | Day3: VS=(C+SO1)&(A+SO2), Edu=B | Day4: VS=(A+SO1)&(B+SO2), Edu=C | Day5: VS=(B+SO2)&(C+SO1), Edu=A
-- Siapa masuk tim A/B/C belum diumumkan, akan dikonfirmasi saat briefing/training.
+- CATATAN: rotasi A/B/C/SO1/SO2 di atas = mekanik versi awal (Juni). Pembagian tim Eyecare 2026 yang LIVE = 3 tim besar lintas-kelompok (Team A=20, Team B=20, Team C=19, total 59). Roster lengkap di halaman 'Eye Care'. Koordinator tiap tim masih TBC.
 
 EDUKASI ANAK: Tim A (usia 3-6), Tim B (usia 6-8), Tim C (usia 9-12). Tiap sesi 40 menit. Materi dari PolyU, UKDW terjemahkan.
 
