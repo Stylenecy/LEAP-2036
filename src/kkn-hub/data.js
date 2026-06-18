@@ -15,6 +15,13 @@ const KKN = {
   // ══ LATEST UPDATES (push signal — paling baru di atas) ══
   latestUpdates: [
     {
+      date: "2026-06-18",
+      title: "✅ Konfirmasi APL: Eyecare 21–25 Juli + Skenario Workshop 2+3",
+      desc: "APL konfirmasi: Eyecare = Juli (pasti), Service Day 1–5 = 21–25 Juli. Workshop SMA pakai skenario 2+3 (2 hari Sekolah A + 3 hari Sekolah B). Struktur Eyecare = 1 kepengurusan besar. PJ Fun Day = kelompok kita sendiri. Dana Rp500k boleh operasional (di luar hadiah). Sebagian tanggal masih TBC (training, orientation, dll) — nunggu info lanjutan.",
+      tag: "CONFIRMED",
+      gotoPage: "eyecare",
+    },
+    {
       date: "2026-06-09",
       title: "👁️ Halaman Eye Care Baru — Cek Timmu! + Jadwal Geser ke Juli",
       desc: "Eyecare sekarang 3 tim besar (A/B/C, total 59 orang lintas-kelompok) — buka halaman 'Eye Care' buat lihat kamu masuk tim mana. ⚠️ Service Day digeser ke JULI (Service Day 1 = 21 Juli; tanggal lain masih tentatif, nunggu konfirmasi APL). Hitung mundur di Dashboard sekarang ngikutin tanggal asli. Koordinator tiap tim belum diumumkan.",
@@ -335,14 +342,14 @@ const KKN = {
     { id: "pembekalan", label: "Pembekalan KKN", start: "2026-05-09", end: "2026-05-09", phase: "persiapan", color: "cyan", done: true },
     { id: "persiapan-proposal", label: "Persiapan Proposal Workshop SMA", start: "2026-05-11", end: "2026-05-13", phase: "persiapan", color: "cyan", done: true },
     { id: "presentasi-proposal", label: "Presentasi Proposal ke DPL", start: "2026-05-25", end: "2026-05-26", phase: "persiapan", color: "cyan", done: false },
-    // ⚠️ Eyecare DIGESER Juni → JULI 2026 (tentatif/TBC, nunggu konfirmasi APL). Hanya SD1 = 21 Juli yang pasti.
-    { id: "orientation", label: "Orientation Session UKDW × PolyU", start: "2026-07-19", end: "2026-07-19", phase: "orientasi", color: "purple", done: false },
+    // Eyecare = JULI 2026. Service Days 21-25 confirmed (APL 18 Jun). Sisanya (training, opening, closing, dll) masih TBC.
+    { id: "orientation", label: "Orientation Session UKDW × PolyU (TBC)", start: "2026-07-19", end: "2026-07-19", phase: "orientasi", color: "purple", done: false },
     { id: "opening", label: "Opening Ceremony Eyecare (TBC)", start: "2026-07-20", end: "2026-07-20", phase: "eyecare", color: "green", done: false },
     { id: "sd1", label: "Service Day 1 Eyecare", start: "2026-07-21", end: "2026-07-21", phase: "eyecare", color: "orange", done: false, isServiceDay: true },
-    { id: "sd2", label: "Service Day 2 (TBC)", start: "2026-07-22", end: "2026-07-22", phase: "eyecare", color: "orange", done: false, isServiceDay: true },
-    { id: "sd3", label: "Service Day 3 (TBC)", start: "2026-07-23", end: "2026-07-23", phase: "eyecare", color: "orange", done: false, isServiceDay: true },
-    { id: "sd4", label: "Service Day 4 (TBC)", start: "2026-07-24", end: "2026-07-24", phase: "eyecare", color: "orange", done: false, isServiceDay: true },
-    { id: "sd5", label: "Service Day 5 (TBC)", start: "2026-07-25", end: "2026-07-25", phase: "eyecare", color: "orange", done: false, isServiceDay: true },
+    { id: "sd2", label: "Service Day 2", start: "2026-07-22", end: "2026-07-22", phase: "eyecare", color: "orange", done: false, isServiceDay: true },
+    { id: "sd3", label: "Service Day 3", start: "2026-07-23", end: "2026-07-23", phase: "eyecare", color: "orange", done: false, isServiceDay: true },
+    { id: "sd4", label: "Service Day 4", start: "2026-07-24", end: "2026-07-24", phase: "eyecare", color: "orange", done: false, isServiceDay: true },
+    { id: "sd5", label: "Service Day 5", start: "2026-07-25", end: "2026-07-25", phase: "eyecare", color: "orange", done: false, isServiceDay: true },
     { id: "closing", label: "Closing Ceremony Eyecare (TBC)", start: "2026-07-27", end: "2026-07-27", phase: "eyecare", color: "green", done: false },
     { id: "video", label: "Pembuatan Video Edukasi Mata (TBC)", start: "2026-07-28", end: "2026-07-29", phase: "pasca", color: "purple", done: false },
     { id: "penyusunan", label: "Penyusunan Proposal SMA (Kelompok 2)", start: "2026-07-01", end: "2026-07-15", phase: "sma", color: "cyan", done: false },
@@ -385,16 +392,16 @@ const KKN = {
 
   // ══ EYECARE — 3 TIM BESAR (sumber: Pembagian Team Screening Eyecare.pdf) ══
   // FOKUS BERSAMA semua anak KKN STEM. Total 59 orang lintas-kelompok.
-  // Service Day 1-5 = 21 - 24(27) Juli 2026 (tentatif — nunggu konfirmasi APL).
+  // Service Day 1-5 = 21-25 Juli 2026 (confirmed APL 18 Jun).
   // Flag: isDex = Dex Bennett (Ketua keseluruhan KKN STEM). klp2 = anggota Kelompok 2.
   eyecareInfo: {
-    serviceDays: "21 – 24(27) Juli 2026",
-    serviceDaysNote: "Service Day 1 = 21 Juli (pasti). Tanggal akhir (24 vs 27 Juli) masih tentatif — nunggu konfirmasi APL.",
-    tentatif: true,
-    tentatifNote: "Semua tanggal Eyecare bersifat tentatif/TBC — bisa berubah, selalu pantau update dari APL/DPL.",
+    serviceDays: "21 – 25 Juli 2026",
+    serviceDaysNote: "Service Day 1-5 = 21-25 Juli 2026 (confirmed APL 18 Jun). Tanggal lain (training, opening, closing, orientation, video) masih TBC — nunggu info lanjutan.",
+    tentatifSebagian: true,
+    tentatifNote: "Service Days 21-25 Juli sudah confirmed. Tanggal lain (training, opening, closing, orientation, video, SMA mitra) masih TBC — pantau update.",
     totalPeserta: 59,
     polyuLiaison: "Dex Bennett = Ketua keseluruhan KKN STEM 2026 + liaison langsung ke supervisor & mahasiswa Hong Kong PolyU.",
-    koorNote: "Koordinator tiap tim (koor) belum diumumkan — masih TBC, nunggu konfirmasi APL.",
+    koorNote: "Struktur Eyecare = 1 kepengurusan besar (confirmed APL 18 Jun). Detail pembagian peran masih diskusi.",
   },
 
   eyecareTeams: [
@@ -494,7 +501,7 @@ const KKN = {
   faq: [
     {
       q: "Kapan service day pertama?",
-      a: "Service Day 1 Eyecare adalah 21 Juli 2026 (Opening Ceremony sehari sebelumnya, ~20 Juli — tentatif). Rangkaian Service Day 1-5 = 21 – 24(27) Juli 2026. Catatan: tanggal akhir (24 vs 27 Juli) masih tentatif/TBC — nunggu konfirmasi APL. Eyecare sebelumnya direncanakan Juni, lalu DIGESER ke Juli.",
+      a: "Service Day 1 Eyecare = 21 Juli 2026. Service Day 1-5 = 21-25 Juli 2026 (confirmed APL 18 Jun). Opening Ceremony (~20 Juli), training, orientation, closing, dan video masih TBC — nunggu info lanjutan APL. Eyecare sebelumnya direncanakan Juni, lalu DIGESER ke Juli.",
       tags: ["jadwal", "service day", "tanggal", "juli", "eyecare"],
     },
     {
@@ -529,12 +536,12 @@ const KKN = {
     },
     {
       q: "Apa itu SO Eyecare?",
-      a: "SO Eyecare adalah nama program kolaborasi UKDW × PolyU HK ini, dan jadi FOKUS BERSAMA semua anak KKN STEM. Program ini menggantikan program sebelumnya (EEE / Electronic and Electrical Engineering). Fokusnya: skrining penglihatan + edukasi kesehatan mata untuk anak SD dan SMP di Yogyakarta. Peserta dibagi jadi 3 tim besar lintas-kelompok: Team A (20), Team B (20), Team C (19) — total 59 orang. Jadwal Service Day digeser ke Juli 2026 (tentatif). Lihat halaman 'Eye Care' untuk roster tiap tim.",
+      a: "SO Eyecare adalah nama program kolaborasi UKDW × PolyU HK ini, dan jadi FOKUS BERSAMA semua anak KKN STEM. Program ini menggantikan program sebelumnya (EEE / Electronic and Electrical Engineering). Fokusnya: skrining penglihatan + edukasi kesehatan mata untuk anak SD dan SMP di Yogyakarta. Peserta dibagi jadi 3 tim besar lintas-kelompok: Team A (20), Team B (20), Team C (19) — total 59 orang. Service Day 1-5 = 21-25 Juli 2026 (confirmed). Tanggal lain (training, orientation, dll) masih TBC. Struktur Eyecare = 1 kepengurusan besar. Lihat halaman 'Eye Care' untuk roster tiap tim.",
       tags: ["SO Eyecare", "program", "pengertian", "team A B C", "eyecare"],
     },
     {
       q: "Aku masuk Team Eyecare yang mana? (Team A/B/C)",
-      a: "Eyecare 2026 dibagi jadi 3 tim besar lintas-kelompok. Buka halaman 'Eye Care' lalu cari namamu di roster — atau ketik namamu di Smart Search. Anggota Kelompok 2 tersebar: Team A = Dex (Ketua keseluruhan KKN STEM), Dhevina, Benediktus, Maria, Theana. Team C = Syendhi. Koordinator tiap tim (koor) masih TBC — nunggu konfirmasi APL.",
+      a: "Eyecare 2026 dibagi jadi 3 tim besar lintas-kelompok. Buka halaman 'Eye Care' lalu cari namamu di roster — atau ketik namamu di Smart Search. Anggota Kelompok 2 tersebar: Team A = Dex (Ketua keseluruhan KKN STEM), Dhevina, Benediktus, Maria, Theana. Team C = Syendhi. Struktur Eyecare = 1 kepengurusan besar (confirmed). Detail peran masih diskusi internal.",
       tags: ["team", "team A", "team B", "team C", "pembagian", "eyecare", "roster"],
     },
     {
@@ -544,17 +551,17 @@ const KKN = {
     },
     {
       q: "Kapan orientation session?",
-      a: "Orientation Session UKDW × PolyU HK berlangsung pada 19 Juli 2026, durasi sekitar 4 jam. Sesi ini terdiri dari: ice-breaking UKDW dengan mahasiswa PolyU (~2 jam, 7 kelompok, rotasi 15 menit/kelompok), demo vision screening oleh PolyU (~1 jam), dan interactive games/activities dari UKDW untuk PolyU (~1 jam).",
+      a: "Orientation Session UKDW × PolyU HK direncanakan ~19 Juli 2026, durasi sekitar 4 jam (masih tentatif — nunggu konfirmasi APL). Sesi ini terdiri dari: ice-breaking UKDW dengan mahasiswa PolyU (~2 jam, 7 kelompok, rotasi 15 menit/kelompok), demo vision screening oleh PolyU (~1 jam), dan interactive games/activities dari UKDW untuk PolyU (~1 jam).",
       tags: ["orientation session", "19 juli", "PolyU", "ice breaking"],
     },
     {
       q: "Maksud kode A, B, C, SO1, SO2 di tabel rotasi itu apa?",
-      a: "Kode-kode itu adalah singkatan pembagian sub-tim saat service days:\n\n• A, B, C = sub-tim dari mahasiswa UKDW\n• SO1, SO2 = sub-grup dari mahasiswa PolyU HK (SO = Supporting Officer / sub-officer dari pihak Hong Kong)\n\nJadi 'A+SO1' artinya sub-tim UKDW A bekerja bersama sub-grup PolyU SO1 sebagai satu tim Vision Screening (VS) di hari itu.\n\nContoh baca tabel di Service Day 1:\n• Vision Screening: Tim (A+SO1) pergi ke satu sekolah, dan Tim (B+SO2) pergi ke sekolah lain — jadi ada DUA tim VS yang beroperasi bersamaan di sekolah berbeda.\n• Education: Tim C mengisi sesi edukasi kesehatan mata di kelas.\n\nSetiap service day, peran A/B/C berotasi sehingga semua punya pengalaman di kedua tugas (VS dan Edu).\n\nCatatan: tabel rotasi di atas adalah mekanik versi awal (Juni). Untuk pembagian tim Eyecare 2026 yang LIVE, peserta sekarang sudah dibagi jadi 3 tim besar lintas-kelompok — Team A (20), Team B (20), Team C (19). Lihat roster lengkap di halaman 'Eye Care'. Koordinator tiap tim masih TBC.",
+      a: "Kode-kode itu adalah singkatan pembagian sub-tim saat service days:\n\n• A, B, C = sub-tim dari mahasiswa UKDW\n• SO1, SO2 = sub-grup dari mahasiswa PolyU HK (SO = Supporting Officer / sub-officer dari pihak Hong Kong)\n\nJadi 'A+SO1' artinya sub-tim UKDW A bekerja bersama sub-grup PolyU SO1 sebagai satu tim Vision Screening (VS) di hari itu.\n\nContoh baca tabel di Service Day 1:\n• Vision Screening: Tim (A+SO1) pergi ke satu sekolah, dan Tim (B+SO2) pergi ke sekolah lain — jadi ada DUA tim VS yang beroperasi bersamaan di sekolah berbeda.\n• Education: Tim C mengisi sesi edukasi kesehatan mata di kelas.\n\nSetiap service day, peran A/B/C berotasi sehingga semua punya pengalaman di kedua tugas (VS dan Edu).\n\nCatatan: tabel rotasi di atas adalah mekanik versi awal (Juni). Untuk pembagian tim Eyecare 2026 yang LIVE, peserta sekarang sudah dibagi jadi 3 tim besar lintas-kelompok — Team A (20), Team B (20), Team C (19). Lihat roster lengkap di halaman 'Eye Care'. Struktur = 1 kepengurusan besar (confirmed).",
       tags: ["rotasi", "tim", "SO1", "SO2", "A B C", "service day", "kode", "pembagian"],
     },
     {
       q: "Di sekolah mana saja kita bertugas?",
-      a: "Untuk program SO Eyecare (Juli — tentatif): SD Budi Utama, SMP Kristen Kalam Kudus, SD Joanes Bosco, SMP Stella Duce 2 (TBC), SMP Budya Wacana, SD BOPKRI Gondolayu, SMP BOPKRI. Untuk Workshop SMA (Agustus): 2 SMA (tentative, salah satunya SMA BOPKRI).",
+      a: "Untuk program SO Eyecare (21-25 Juli): SD Budi Utama, SMP Kristen Kalam Kudus, SD Joanes Bosco, SMP Stella Duce 2 (TBC), SMP Budya Wacana, SD BOPKRI Gondolayu, SMP BOPKRI. Untuk Workshop SMA (Agustus, skenario 2+3): 2 SMA (mash tentative, salah satunya SMA BOPKRI — sisanya TBC, nunggu konfirmasi APL).",
       tags: ["lokasi", "sekolah", "SD", "SMP"],
     },
     {
@@ -937,7 +944,7 @@ CARA MERESPON (penting):
 - Selalu ramah & menyemangati. Kalau ada yang masih bingung, sarankan tanyakan juga di grup WA.
 
 PROGRAM: KKN Tematik International Service Learning STEM 2026, kolaborasi UKDW × Hong Kong Polytechnic University (PolyU HK).
-Dua program: (1) SO Eyecare (kesehatan mata, SD/SMP) = FOKUS BERSAMA semua anak KKN STEM, dijadwalkan JULI 2026 (tentatif, nunggu konfirmasi APL) + (2) Workshop Softskill SMA "LEAP 2036" = urusan tim kecil per-kelompok (Kelompok 2), Agustus 2026.
+Dua program: (1) SO Eyecare (kesehatan mata, SD/SMP) = FOKUS BERSAMA semua anak KKN STEM, JULI 2026 — Service Day 1-5 = 21-25 Juli (confirmed) — (2) Workshop Softskill SMA "LEAP 2036" = urusan tim kecil per-kelompok (Kelompok 2), Agustus 2026.
 Sebelumnya program ini bernama EEE (Electronic and Electrical Engineering), sudah diubah.
 
 ═══ EYECARE = 3 TIM BESAR (FOKUS BERSAMA) ═══
@@ -945,7 +952,7 @@ Peserta Eyecare 2026 dibagi jadi 3 tim besar LINTAS-KELOMPOK (bukan per-kelompok
 - Dex Bennett (Sistem Informasi) = KETUA KESELURUHAN KKN STEM 2026 (3 tim Eye Care A/B/C + liaison langsung ke supervisor & mahasiswa Hong Kong PolyU). Dex ada di Team A. Bukan cuma ketua Kelompok 2 — dia ketua keseluruhan.
 - Anggota Kelompok 2 tersebar: Team A = Dex, Dhevina, Benediktus, Maria, Theana. Team C = Syendhi.
 - Contoh anggota lain: Team A juga ada Rachel Gina, Daniko, Beatrice. Team B ada Hans Gunawan (Kelompok 6), Febby Margareta. Team C ada Dave Aryanda Agape (Kelompok 9), Kayla Shifra.
-- Service Day Eyecare 1-5 = 21 – 24(27) Juli 2026. Service Day 1 = 21 Juli (pasti). Tanggal akhir (24 vs 27 Juli) masih tentatif. Koordinator (koor) tiap tim belum diumumkan (TBC). Roster lengkap ada di halaman 'Eye Care' di hub ini.
+- Service Day Eyecare 1-5 = 21-25 Juli 2026 (confirmed APL 18 Jun). Struktur = 1 kepengurusan besar (confirmed). Detail peran masih diskusi. Roster lengkap ada di halaman 'Eye Care' di hub ini.
 
 KELOMPOK 2 (struktur kepanitiaan workshop SMA — tim kecil):
 - Dex Bennett (Sistem Informasi) — KETUA keseluruhan KKN STEM (juga koordinator Kelompok 2), pengguna aplikasi ini
@@ -957,20 +964,20 @@ KELOMPOK 2 (struktur kepanitiaan workshop SMA — tim kecil):
 DPL: dr. Loury Priiskila, M.Biomed. (+62 813-9070-9672)
 APL: Eleonora Bintang Dahayu P (+62 858-1775-6217), Carolus Yasser Rombebunga (+62 852-5425-3035)
 
-TIMELINE (update 9 Juni 2026 — tanggal Eyecare digeser Juni → JULI, masih tentatif/nunggu konfirmasi APL):
+TIMELINE (update 18 Juni 2026 — Service Day Eyecare 21-25 Juli confirmed; sisanya TBC):
 - Mei 9: Pembekalan KKN I (selesai)
 - Mei 24: Lock tema Workshop SMA = LEAP 2036
 - Mei 28: Presentasi proposal LEAP 2036 ke DPL (SELESAI). Desain final v2.0 di-lock.
 - Mei 30: Pembekalan KKN Tahap II (selesai).
 - Juli 19: Orientation Session UKDW × PolyU (~4 jam)
 - Juli 20: Opening Ceremony Eyecare (tentatif/TBC)
-- Juli 21-24(27): Service Day 1-5 Eyecare (SD/SMP) ← FASE UTAMA EYECARE, FOKUS BERSAMA. SD1=21 Juli pasti; tanggal akhir (24 vs 27) tentatif.
+- Juli 21-25: Service Day 1-5 Eyecare (SD/SMP) ← FASE UTAMA EYECARE, FOKUS BERSAMA (confirmed APL 18 Jun).
 - Juli 27: Closing Ceremony Eyecare (tentatif/TBC)
 - Juli ~28-29: Pembuatan Video Edukasi Mata (min 5 menit, max 10 menit, semua anggota tampil) — tentatif
 - Agustus 3-7: Service Day SMA 1-5 (eksekusi Workshop LEAP 2036) — urusan Kelompok 2
 - Agustus 10-12: Pembuatan Laporan
 - Agustus 13-14: Presentasi akhir ke DPL
-PENTING soal tanggal: HANYA "Eyecare digeser ke Juli" + "Service Day 1 = 21 Juli" yang sudah pasti. Tanggal lain di fase Eyecare (opening, closing, video, akhir SD) masih tentatif/inferensi — selalu bilang "tentatif, nunggu konfirmasi APL" kalau ditanya.
+PENTING soal tanggal: Service Day 1-5 = 21-25 Juli 2026 SUDAH confirmed (per APL 18 Jun). Tanggal lain (opening, closing, video, orientation, training, consent form, SMA mitra) masih tentatif — selalu bilang "masih TBC, nunggu info lanjutan APL" kalau ditanya. Eyecare digeser Juni → Juli (confirmed).
 
 LOKASI SD/SMP: SD Budi Utama, SMP Kristen Kalam Kudus, SD Joanes Bosco, SMP Stella Duce 2 (TBC), SMP Budya Wacana, SD BOPKRI Gondolayu, SMP BOPKRI.
 
@@ -993,7 +1000,7 @@ ROTASI TIM SERVICE DAY:
 - "A+SO1" = UKDW sub-tim A + PolyU SO1 = satu tim Vision Screening bersama.
 - Setiap service day: DUA tim VS beroperasi serentak di sekolah berbeda + SATU tim Edu di kelas.
 - Rotasi: Day1: VS=(A+SO1)&(B+SO2), Edu=C | Day2: VS=(B+SO2)&(C+SO1), Edu=A | Day3: VS=(C+SO1)&(A+SO2), Edu=B | Day4: VS=(A+SO1)&(B+SO2), Edu=C | Day5: VS=(B+SO2)&(C+SO1), Edu=A
-- CATATAN: rotasi A/B/C/SO1/SO2 di atas = mekanik versi awal (Juni). Pembagian tim Eyecare 2026 yang LIVE = 3 tim besar lintas-kelompok (Team A=20, Team B=20, Team C=19, total 59). Roster lengkap di halaman 'Eye Care'. Koordinator tiap tim masih TBC.
+- CATATAN: rotasi A/B/C/SO1/SO2 di atas = mekanik versi awal (Juni). Pembagian tim Eyecare 2026 yang LIVE = 3 tim besar lintas-kelompok (Team A=20, Team B=20, Team C=19, total 59). Roster lengkap di halaman 'Eye Care'. Struktur = 1 kepengurusan besar (confirmed APL 18 Jun).
 
 EDUKASI ANAK: Tim A (usia 3-6), Tim B (usia 6-8), Tim C (usia 9-12). Tiap sesi 40 menit. Materi dari PolyU, UKDW terjemahkan.
 

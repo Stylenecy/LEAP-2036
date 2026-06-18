@@ -2,11 +2,28 @@
 
 > **Canonical STATE tracker** untuk SELURUH program KKN (Eyecare + Workshop SMA).
 > Detail desain Workshop SMA ada di **`docs/workshop/Project-Master-LEAP-2036.md`** (jangan duplikat di sini — file itu deep-design, file ini state/status).
-> **Last synced: 2026-06-04.** Update tiap sesi (Universal Session Protocol).
+> **Last synced: 2026-06-18.** Update tiap sesi (Universal Session Protocol).
 
 ---
 
-## ⏸️ RESUME HERE — update 9 Juni 2026
+## ⏸️ RESUME HERE — update 18 Juni 2026 (jawaban APL dari Dex — §Tanya-APL terjawab)
+
+**✅ JAWABAN DEX DARI 13 PERTANYAAN TANYA-APL (18 Jun):**
+- **A. Juli ✅** — Eyecare = Juli, confirmed.
+- **B. 25 Juli ✅** — SD5 = 25 Juli (anggap aja 25). → **Service Days = 21–25 Juli 2026**.
+- **C. 1 kepengurusan besar ✅** — Struktur final = 1 kepengurusan besar (bukan koor per tim). Seleksi koor? gak dibahas.
+- **D. 2+3 ✅** — Skenario Workshop SMA = 2 hari Sekolah A + 3 hari Sekolah B ("kocak banget, gas aja").
+- **E–J. ❌ Belum ada kepastian** — Training, Consent Form, Orientation, Opening/Closing, Video, SMA mitra — semua masih TBC/tentatif.
+- **K. PJ Fun Day = kita sendiri ✅** — Bukan APL/DPL, kelompok yang pegang.
+- **L. Rp500k operasional ✅** — Udah sesuai Pt.7 Catatan-Bahaya-APL (boleh dipake operasional, di luar hadiah).
+- **M. Eyecare→Workshop ✅** — Iya, confirmed.
+- **Syendhi:** WA-nya **belum dikirim** (kelompok bajingan gaada yang peduli).
+
+**→ Web perlu di-patch:** SD5 → 25 Juli fixed, `tentatif` diturunkan levelnya (sebagian confirmed). Tanya-APL bisa di-mark answered. WA-Syendhi masih pending (human action).
+
+---
+
+## ⏸️ RESUME — update 9 Juni 2026 (superseded, lihat 18-Jun di atas)
 
 **🔴 TEMUAN BESAR — EYECARE GESER JUNI → JULI (web + state stale):**
 - Sumber: `assets/Pembagian Team Screening Eyecare.pdf` (4 Jun) → header **"Service Day 1-5 : 21 - 24(27) Juli 2026"**. Bukan Juni.
@@ -31,8 +48,9 @@
 - (5) **🌐 WEB DIBUILD** (Dex pilih visi "hub buat SEMUA anak KKN, fokus bersama=Eyecare"): page baru **👁️ Eye Care** (3 tim, 59 nama dari PDF, Dex=Ketua, kartu liaison PolyU, highlight Klp-2 + Syendhi/Team C, koor=belum ada) + **live countdown** (anchor SD1 21 Juli, auto-decrement) + **reminder lucu** (funReminder per-bucket) + **AI di-update** (GEMINI: Dex=Ketua keseluruhan, 3 tim, Juli tentatif, stamp 9 Jun) + getSituation Juni→Juli (tentatif) + banner 9-Jun + search corpus. Model Juni lama TIDAK dihapus (relabel arsip). `node --check` clean app.js+data.js. Reviewer adversarial 4-lensa: 0 critical/high, low-fix diterapkan (placeholder juni→juli, member-card static, koor Bahasa, reminder prep-nudge, tentatif chip). **⏳ BELUM deploy** (nunggu Dex eyeball + acc → `vercel --prod`). **BELUM commit.**
 - (6) **🎨 VISUAL RESTYLE** (Dex pilih: Glass+Aurora di atas fondasi Modern Dark · font **Space Grotesk + DM Sans** · intensitas "restyle berani"). Via design pack `ui-ux-pro-max-skill-main`. `style.css` direstyle: token Modern Dark (bg #08080a, surface berlapis, aksen #5E6AD2 glow, easing cubic-bezier(.16,1,.3,1), skala elevasi) + glass frosted (sidebar/topbar/card, `backdrop-filter` + fallback `@supports`) + aurora CSS-only (`body::before` mesh-gradient halus, drift 40s gated `prefers-reduced-motion`) + fonts swap. Kontras AA diverif (body 15.5:1, t3 5.6:1 worst-case). Brace balanced 446/446, 0 Inter leftover, 11/11 selektor utuh. **Juga de-highlight** page Eye Care (Dex malu di-spotlight): kartu "Dex=Ketua" gede→netral "Koordinasi & Liaison PolyU", badge/glow nama Dex + border-biru Klp-2 + legend "Syendhi sendiri" DIHAPUS → roster rata. Preview di-deploy (belum prod).
 - (7) **📱 iOS REDESIGN (gede-gedean, Dex minta — restyle ke-1 dirasa "barely berubah")**: full iOS design language (semua aset kartu rounded sendiri `--r-lg:20px`, gap konsisten `--ios-gap:16px`, ga ada yang lengket, iOS list-row + chevron, badge pill) + tombol vibrant tactile (gradient+glow, `:active scale(.97)`) + quick-action jadi colorful icon-tile (cyan/violet/green/gold). **Dashboard IA dirombak** biar welcoming buat SEMUA (bukan kesan Klp-2 only): urutan baru = Welcome hero (semua tim) → nav-hint (guide ke navbar, dismissible localStorage `kkn-navhint`, copy beda desktop/mobile) → **Eye Care spotlight** (countdown SD1 21 Juli + CTA "cari timmu", front-and-center) → update banner → section berlabel "Untukmu · Workshop SMA · Kelompok 2" (name-picker turun ke sini) → situation/contacts/progress. `countdown-widget` lama dihapus, di-merge ke `ec-spotlight`. **Shell rebrand** Klp-2→all-KKN (title, tb-user "KKN STEM", klp-tag "Semua Tim", footer "DPL: dr. Loury", dash-sub). `node --check` clean, brace 497/497, 8/8 getElementById target ada, navhint wired. Dead CSS lama (.tp-grid/.cd-*/.countdown-widget) ditinggal (harmless). Preview di-deploy (belum prod).
-- (8) **🔍 AUDIT PRE-PROD (4 lensa adversarial: JS/regression · CSS/visual/mobile · data/konten · a11y/UX)** → verdict PASS / PASS-w-fixes ×2 / PASS, **0 critical/blocker**. Data 100% (roster 59 match PDF, tanggal Juli tentatif, AI ga nyebut Juni). **9 fix diterapkan:** kontras `.ec-cd-lbl` (t2→text, lolos AA), **reorder nav-hint ke bawah ec-spotlight** (Eye Care ga ke-fold lagi), **buang backdrop-filter dari `.card`** (perf mobile, blur tetap di sidebar/topbar/modal), tap-target 44px (hamburger/navhint-x/📞), qa-grid 2-col @900px, checklist urgent "Mendesak—" (cue non-warna), buang `role="timer"` (double-announce SR), promote h2 (spotlight+Untukmu), "TBC"→"belum fix/menyusul". `node --check` clean, brace 499/499 verified. Preview re-deploy. **BELUM prod, BELUM commit.**
-- **NEXT:** Dex kirim Tanya-APL + WA Syendhi · eyeball preview final → **"gas prod"** → commit (no Claude co-author) + `vercel --prod` · post-APL: fix tanggal final (SD5 24v25). Sisa LOW opsional (dead CSS .tp-*/.countdown-widget ~30 baris, "Smart Search" jargon) — ga blocker.
+- (8) **🔍 AUDIT PRE-PROD (4 lensa adversarial: JS/regression · CSS/visual/mobile · data/konten · a11y/UX)** → verdict PASS / PASS-w-fixes ×2 / PASS, **0 critical/blocker**. Data 100% (roster 59 match PDF, tanggal Juli tentatif, AI ga nyebut Juni). **9 fix diterapkan:** kontras `.ec-cd-lbl` (t2→text, lolos AA), **reorder nav-hint ke bawah ec-spotlight** (Eye Care ga ke-fold lagi), **buang backdrop-filter dari `.card`** (perf mobile, blur tetap di sidebar/topbar/modal), tap-target 44px (hamburger/navhint-x/📞), qa-grid 2-col @900px, checklist urgent "Mendesak—" (cue non-warna), buang `role="timer"` (double-announce SR), promote h2 (spotlight+Untukmu), "TBC"→"belum fix/menyusul". `node --check` clean, brace 499/499 verified.
+- (9) **🚀 SHIP PROD (9 Jun)** — **NIM 59 mahasiswa di-strip dari `data.js`** (privasi, repo+site publik; render ga pakai NIM) → commit `cb961e3` (no Claude co-author) + push GitHub `dc67490..cb961e3` + `vercel --prod`. **LIVE & verified `kknstem.vercel.app`** (serving welcome-hero/Eye Care/Space-Grotesk; data.js prod 0 NIM). Web DONE.
+- **NEXT:** Dex kirim **Tanya-APL** + **WA Syendhi** (2 file `docs/_internal/`, masih pending — aksi human) · post-APL: fix tanggal final web (SD5 24v25). Sisa LOW opsional (dead CSS ~30 baris, "Smart Search" jargon) — ga blocker.
 
 ---
 
@@ -98,6 +116,8 @@
 ---
 
 ## 0. STATUS SNAPSHOT (30 Mei 2026)
+
+> ⚠️ **SNAPSHOT HISTORIS (30 Mei) — sebagian SUPERSEDED.** Tanggal "Eyecare Juni" di bawah = **SALAH/lama** → sekarang **JULI** (lihat §RESUME 9-Jun, paling atas). Web KKN-HUB juga udah di-overhaul + ship prod (9 Jun). Baca §RESUME dulu.
 
 **Dua program paralel:**
 1. **SO Eyecare** — Vision Screening + Edukasi mata, SD/SMP, **Juni 2026**.

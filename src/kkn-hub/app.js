@@ -260,10 +260,9 @@ function md(raw) {
 
 /* ── DASHBOARD — PHASE BRIEFS ── */
 function getSituation(t) {
-  // CATATAN TANGGAL: Eyecare digeser Juni → JULI 2026. Hanya SD1 = 21 Juli yang pasti;
-  // opening/closing/akhir-SD masih tentatif (nunggu konfirmasi APL). Gate dipindah ke Juli,
-  // brief fase Eyecare diberi catatan "tentatif". Struktur logika sengaja dijaga tetap sama.
-  const TENTATIF = '🕓 Tanggal Eyecare tentatif — nunggu konfirmasi APL (SD1 = 21 Juli pasti, sisanya bisa geser)';
+  // CATATAN TANGGAL: Eyecare digeser Juni → JULI 2026. Service Day 1-5 = 21-25 Juli confirmed (APL 18 Jun).
+  // opening/closing/akhir-SD masih tentatif. Gate dipindah ke Juli.
+  const TENTATIF = '🕓 Service Day 21-25 Juli confirmed. Tanggal lain (training, opening, closing, dll) masih TBC — nunggu info APL';
   if (t < parseDate('2026-07-13')) return {
     color: 'var(--indigo)', border: 'var(--indigo)', glow: 'rgba(129,140,248,.08)',
     tag: 'Fase 1 · Persiapan',
@@ -484,7 +483,7 @@ function renderDashboard() {
     ];
     const ecNext = ecMilestones.find(m => parseDate(m.date) >= t) || ecMilestones[ecMilestones.length - 1];
     const ecDays = Math.max(0, daysBetween(t, parseDate(ecNext.date)));
-    const serviceDays = ecInfo.serviceDays || '21 – 24(27) Juli 2026';
+    const serviceDays = ecInfo.serviceDays || '21 – 25 Juli 2026';
     const totalPeserta = ecInfo.totalPeserta || 59;
     ecEl.innerHTML = `
       <div class="ec-sp-inner">
@@ -501,7 +500,7 @@ function renderDashboard() {
         </div>
         <div class="ec-sp-meta">
           <span class="badge b-orange">🗓️ Service Day ${serviceDays}</span>
-          <span class="badge b-gray" style="font-size:10.5px">tentatif · nunggu konfirmasi APL</span>
+          <span class="badge b-green" style="font-size:10.5px">✅ Service Days confirmed · tanggal lain TBC</span>
         </div>
         <div class="ec-sp-actions">
           <button class="btn btn-primary" onclick="showPage('eyecare')"><span aria-hidden="true">👁️</span> Cari timmu (A/B/C)</button>
@@ -696,8 +695,8 @@ function renderEyecare() {
       <div class="g3" style="gap:12px">
         <div class="card card-sm" style="padding:14px">
           <div class="sec-label" style="margin-bottom:6px">🗓️ Service Day 1–5</div>
-          <div style="font-size:16px;font-weight:800;color:var(--orange);letter-spacing:-.3px">${info.serviceDays || '21 – 24(27) Juli 2026'}</div>
-          <div style="font-size:11px;color:var(--t3);margin-top:5px;line-height:1.45">${info.serviceDaysNote || 'SD1 = 21 Juli (pasti). Tanggal akhir tentatif.'}</div>
+          <div style="font-size:16px;font-weight:800;color:var(--orange);letter-spacing:-.3px">${info.serviceDays || '21 – 25 Juli 2026'}</div>
+          <div style="font-size:11px;color:var(--t3);margin-top:5px;line-height:1.45">${info.serviceDaysNote || 'Service Day 21-25 Juli confirmed. Tanggal lain TBC.'}</div>
         </div>
         <div class="card card-sm" style="padding:14px">
           <div class="sec-label" style="margin-bottom:6px">👥 Total Peserta</div>
@@ -941,7 +940,7 @@ function initSearch() {
   (KKN.eyecareTeams || []).forEach(team => (team.roster || []).forEach(m => corpus.push({
     category: 'Eye Care',
     title: `${m.nama} — ${team.team}`,
-    body: `Masuk ${team.team} Eyecare. Prodi: ${m.prodi}. Gender: ${m.gender}.${m.isDex ? ' Ketua keseluruhan KKN STEM + liaison PolyU.' : m.klp2 ? ' Anggota Kelompok 2.' : ''} Service Day Eyecare: ${(KKN.eyecareInfo && KKN.eyecareInfo.serviceDays) || '21 – 24(27) Juli 2026'} (tentatif).`,
+    body: `Masuk ${team.team} Eyecare. Prodi: ${m.prodi}. Gender: ${m.gender}.${m.isDex ? ' Ketua keseluruhan KKN STEM + liaison PolyU.' : m.klp2 ? ' Anggota Kelompok 2.' : ''} Service Day Eyecare: ${(KKN.eyecareInfo && KKN.eyecareInfo.serviceDays) || '21 – 25 Juli 2026'} (confirmed).`,
     tags: `eyecare ${team.team} screening tim ${m.prodi}`,
   })));
   KKN.contacts.forEach(c => corpus.push({ category: 'Kontak', title: c.role + ' — ' + c.nama, body: `Kontak: ${c.phoneDisplay}. ${c.note}`, tags: 'DPL APL kontak' }));
