@@ -9,6 +9,8 @@
 **Workshop Simulasi Hidup 10 Tahun: Keputusanmu Hari Ini, Hidupmu 2036**  
 *(Brand name: LEAP 2036 \- Life Experience & Action Planning)*
 
+> **Versi 4.5 (audit Panduan KKN, 18 Juni 2026)** — nama berkas tetap `Proposal-LEAP-2036-v4.4.md`, namun isi dokumen ini adalah **versi 4.5** (hasil audit komprehensif vs Panduan KKN International Service Learning — Eye Care Project 2026). Versi 4.5 = canonical/terbaru.
+
 ## 
 
 ## **BAB I**  **PENDAHULUAN**
@@ -96,7 +98,7 @@ Secara operasional, fenomena simulasi makro ini di dekonstruksi secara kronologi
 
 Program LEAP 2036 mengacu pada prinsip pelaksanaan KKN Tematik STEM & Eye Care Project 2026 (Panduan §2.1) yaitu: (a) **sederhana dan dapat dilaksanakan** oleh mahasiswa — seluruh alat simulasi berbasis kartu fisik dan Google Sheets; (b) **sinergis** — menjalin kolaborasi antara mahasiswa, siswa, dan pihak sekolah; (c) **mengutamakan kemandirian dan keberlanjutan** — luaran "Surat dari Diri 2036" menjadi artefak reflektif jangka panjang; dan (d) **kreatif dan inovatif** — simulasi *experiential learning* sebagai pengembangan pemikiran ilmiah dalam pengabdian masyarakat.
 
-### **3.1a Rencana Mitigasi Risiko Teknis**
+**3.1a Rencana Mitigasi Risiko Teknis**
 
 Berdasarkan arahan Pembekalan KKN Tahap II (30 Mei 2026) mengenai perlunya backup plan, tim menyusun rencana mitigasi untuk skenario kendala teknis di lapangan:
 
@@ -228,7 +230,7 @@ Menindaklanjuti arahan LPPM UKDW pada Pembekalan KKN Tahap II, Kelompok 2 meneta
 | No | Indikator | Target |
 | :-- | :-------- | :----- |
 | 1 | Kehadiran peserta | ≥75% peserta hadir pada mayoritas hari layanan di sekolahnya |
-| 2 | Penyelesaian luaran "Surat dari Diri 2036" | ≥70% peserta hadir |
+| 2 | Penyelesaian luaran "Surat dari Diri 2036" | ≥70% peserta menyelesaikan |
 | 3 | Peningkatan skor pre/post (kuesioner buatan tim) | ≥50% peserta menunjukkan peningkatan |
 | 4 | Keragaman hasil simulasi (sebaran Profil 2036 dari ekspor CSV) | sebaran mencakup ≥4 dari 7 profil |
 | 5 | Kelengkapan dokumentasi & penyerahan laporan ke SMA mitra | 100% sesi terdokumentasi; 100% SMA mitra menerima laporan |

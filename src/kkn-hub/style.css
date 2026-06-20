@@ -73,8 +73,8 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',system-ui,-app
 
 /* Headings → Space Grotesk (Tech-Startup pairing) */
 h1,h2,h3,h4,
-.ph1,.ph2,.ph3,.phase-title,.cd-days,.m-name,.c-name,
-.mt-title,.mt-welcome-title,.modal-title,.tp-name,.qa-label,
+.ph1,.ph2,.ph3,.phase-title,.m-name,.c-name,
+.mt-title,.mt-welcome-title,.modal-title,.qa-label,
 .tugas-nama,.dok-name,.lub-title,.dlog-decision,.dash-head .left .title{
   font-family:'Space Grotesk',system-ui,sans-serif;
 }
@@ -204,14 +204,6 @@ label{display:block;font-size:12px;font-weight:600;color:var(--t2);margin-bottom
 .situation-card .action-list{list-style:none;display:flex;flex-direction:column;gap:8px}
 .situation-card .action-list li{display:flex;align-items:flex-start;gap:8px;font-size:14px;font-weight:500;line-height:1.5}
 .situation-card .action-list li::before{content:'→';font-size:12px;margin-top:1px;flex-shrink:0;opacity:.7}
-
-/* Countdown */
-.countdown-widget{background:linear-gradient(180deg,rgba(251,146,60,.06) 0%,var(--card) 60%);border:1px solid var(--orange);border-radius:var(--r-lg);padding:24px;text-align:center;position:relative;overflow:hidden;box-shadow:0 0 0 1px rgba(251,146,60,.08),0 6px 24px rgba(0,0,0,.3)}
-.countdown-widget .cd-days{font-size:58px;font-weight:800;line-height:1;letter-spacing:-2px;font-variant-numeric:tabular-nums}
-.countdown-widget .cd-label{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--t2);margin-top:4px}
-.countdown-widget .cd-event{font-size:13px;font-weight:600;margin-top:14px}
-.countdown-widget .cd-date{font-size:11px;color:var(--t2);margin-top:3px}
-.countdown-widget .cd-reminder{font-size:12px;font-weight:600;margin-top:14px;padding-top:13px;border-top:1px dashed var(--border-h);line-height:1.5}
 
 /* Checklist teaser */
 .check-teaser{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);padding:22px;box-shadow:var(--sh-2)}
@@ -421,9 +413,6 @@ label{display:block;font-size:12px;font-weight:600;color:var(--t2);margin-bottom
   #proker-body [style*="grid-template-columns:1fr 1fr"]{display:block}
   #proker-body [style*="grid-template-columns:1fr 1fr"] > *{margin-bottom:16px}
   .dash-head{flex-direction:column;gap:8px}
-
-  /* Countdown — tighter on mobile */
-  .countdown-widget .cd-days{font-size:42px;letter-spacing:-1px}
 
   /* Chat box — shorter on mobile */
   .chat-box{min-height:200px;max-height:300px}
@@ -750,13 +739,6 @@ body{min-height:100dvh}
   .qa-icon{background:var(--indigo-d);border-color:var(--border-h)}
 }
 
-/* ── TWO-PROGRAM STRIP ── */
-.tp-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--ios-gap);margin-bottom:0}
-.tp-card{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent,var(--indigo));border-radius:var(--r);padding:18px 20px;cursor:pointer;transition:border-color .15s,transform .12s;font-family:inherit;text-align:left;box-shadow:var(--sh-1)}
-.tp-card:hover{border-color:var(--border-h);transform:translateY(-1px)}
-.tp-when{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--accent,var(--indigo))}
-.tp-name{font-size:15px;font-weight:700;margin-top:4px;color:var(--text)}
-.tp-desc{font-size:12px;color:var(--t2);margin-top:4px;line-height:1.5}
 
 /* ════════════════════════════════════════════
    DASHBOARD iOS IA — hero / wayfinding / eye-care spotlight
@@ -838,7 +820,6 @@ body{min-height:100dvh}
 }
 @media(max-width:820px){
   .qa-grid{grid-template-columns:1fr 1fr}
-  .tp-grid{grid-template-columns:1fr}
 }
 @media(max-width:700px){
   .nav-item{padding:13px 18px;font-size:15px;min-height:46px}

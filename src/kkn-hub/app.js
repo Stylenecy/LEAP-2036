@@ -294,18 +294,19 @@ function getSituation(t) {
   };
   if (t < parseDate('2026-07-21')) return {
     color: 'var(--gold)', border: 'var(--gold)', glow: 'rgba(251,191,36,.08)',
-    tag: 'Hari Ini · Opening Ceremony',
-    title: 'Hari H — Opening Ceremony',
-    sub: 'Service Day 1 mulai besok — pastikan semua persiapan final.',
+    tag: 'Hari Ini · Opening Ceremony (TENTATIF)',
+    title: 'Hari H — Opening Ceremony (TBC)',
+    sub: 'Service Day 1 mulai besok — pastikan semua persiapan final. Tanggal Opening masih TBC.',
     actions: [
-      'Hadir di Opening Ceremony tepat waktu',
+      'Opening Ceremony tanggalnya masih TENTATIF/TBC — konfirmasi ke APL/DPL',
+      'Kalau Opening jadi hari ini, hadir tepat waktu',
       'Catat titik kumpul dan jadwal Service Day 1 besok',
       'Cek timmu (A/B/C) & temanmu di halaman Eye Care',
       'Pastikan semua item checklist sudah tercentang',
       TENTATIF,
     ],
   };
-  if (t <= parseDate('2026-07-27')) {
+  if (t <= parseDate('2026-07-25')) {
     const day = Math.min(5, Math.max(1, daysBetween(parseDate('2026-07-21'), t) + 1));
     return {
       color: 'var(--orange)', border: 'var(--orange)', glow: 'rgba(251,146,60,.08)',
@@ -439,6 +440,8 @@ function renderDashboard() {
       'NEW': 'var(--green)',
       'UPDATE': 'var(--indigo)',
       'ALERT': 'var(--rose)',
+      'CONFIRMED': 'var(--green)',
+      'PENTING': 'var(--gold)',
     }[latest.tag] || 'var(--indigo)';
     lubEl.innerHTML = `
       <div class="lub-card" style="border-color:${tagColor}">
@@ -685,7 +688,7 @@ function renderEyecare() {
     <div class="card card-accent-l" style="border-left-color:var(--orange);margin-bottom:18px">
       <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px">
         <span class="badge b-orange">👁️ Fokus Bersama Semua Anak KKN STEM</span>
-        <span class="badge b-gray" style="font-size:10.5px">tentatif · nunggu konfirmasi APL</span>
+        <span class="badge b-gray" style="font-size:10.5px">${info.tentatifNote ? 'SD 21–25 Juli confirmed · tanggal lain TBC' : 'nunggu konfirmasi APL'}</span>
       </div>
       <div class="ph1" style="font-size:24px;margin-bottom:6px">SO Eyecare 2026</div>
       <div style="font-size:13px;color:var(--t2);line-height:1.6;margin-bottom:14px">
@@ -704,9 +707,9 @@ function renderEyecare() {
           <div style="font-size:11px;color:var(--t3);margin-top:5px;line-height:1.45">3 tim besar lintas-kelompok: A (20) · B (20) · C (19)</div>
         </div>
         <div class="card card-sm" style="padding:14px">
-          <div class="sec-label" style="margin-bottom:6px">🧭 Koordinator Tim</div>
-          <div style="font-size:16px;font-weight:800;color:var(--t2);letter-spacing:-.3px">Belum ada</div>
-          <div style="font-size:11px;color:var(--t3);margin-top:5px;line-height:1.45">${info.koorNote || 'Belum diumumkan — nunggu konfirmasi APL.'}</div>
+          <div class="sec-label" style="margin-bottom:6px">🧭 Kepengurusan</div>
+          <div style="font-size:16px;font-weight:800;color:var(--orange);letter-spacing:-.3px">1 kepengurusan besar</div>
+          <div style="font-size:11px;color:var(--t3);margin-top:5px;line-height:1.45">${info.koorNote || 'Struktur Eyecare = 1 kepengurusan besar (confirmed APL 18 Jun). Detail peran masih diskusi.'}</div>
         </div>
       </div>
     </div>
@@ -739,7 +742,7 @@ function renderEyecare() {
           <h2 class="ph2" style="margin:0">${team.team}</h2>
           <div style="display:flex;gap:6px;flex-wrap:wrap">
             <span class="badge ${badgeCls[team.color] || 'b-indigo'}">${team.count} orang</span>
-            <span class="badge b-gray" style="font-size:10.5px">Koor: ${(team.koor && team.koor !== 'TBC') ? team.koor : 'belum ada'}</span>
+            <span class="badge b-gray" style="font-size:10.5px">${(team.koor && team.koor !== 'TBC') ? `Koor: ${team.koor}` : '1 kepengurusan besar (terpusat)'}</span>
           </div>
         </div>
         <div class="g2" style="gap:10px">`;
@@ -1047,7 +1050,7 @@ async function sendChat() {
     const body = {
       contents: [
         { role: 'user', parts: [{ text: GEMINI_CONTEXT }] },
-        { role: 'model', parts: [{ text: 'Saya siap membantu menjawab pertanyaan seputar KKN STEM 2026 Kelompok 2.' }] },
+        { role: 'model', parts: [{ text: 'Saya siap membantu menjawab pertanyaan seputar KKN STEM 2026 untuk semua tim (Eye Care A/B/C + Workshop SMA).' }] },
         ...chatHistory,
       ],
       generationConfig: { temperature: 0.7, maxOutputTokens: 1500 },

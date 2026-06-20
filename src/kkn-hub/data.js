@@ -214,7 +214,7 @@ const KKN = {
       kategori: "Workshop LEAP 2036 (Desain & Proposal)",
       files: [
         { name: "🌟 Rundown v2 — Desain Lengkap (BACA INI DULU)", file: "workshop/LEAP-2036_Modular_v2.md", desc: "Desain workshop TERBARU & terlengkap: 5 modul harian (3 jam/hari) + skenario + sistem data per-siswa + naskah fasilitator. Versi paling update.", priority: "high" },
-        { name: "Proposal Workshop SMA (v3)", file: "workshop/Proposal-LEAP-2036-v3.md", desc: "Proposal LEAP 2036 v3 — versi terbaru untuk DPL", priority: "high" },
+        { name: "Proposal Workshop SMA (v4.5)", file: "workshop/Proposal-LEAP-2036-v4.4.md", desc: "Proposal LEAP 2036 v4.5 — versi terbaru untuk DPL (RAB Rp500k, skenario 2+3, eksekusi 3-7 Agustus)", priority: "high" },
         { name: "Desain Lengkap (Project Master)", file: "workshop/Project-Master-LEAP-2036.md", desc: "Deep-design workshop (visi, risk, decision log) — sumber NotebookLM", priority: "medium" },
         { name: "Prompt PPT NotebookLM", file: "workshop/NotebookLM-Prompt-PPT-DPL.md", desc: "Prompt untuk generate PPT presentasi ke DPL", priority: "medium" },
       ],
@@ -341,7 +341,7 @@ const KKN = {
   timeline: [
     { id: "pembekalan", label: "Pembekalan KKN", start: "2026-05-09", end: "2026-05-09", phase: "persiapan", color: "cyan", done: true },
     { id: "persiapan-proposal", label: "Persiapan Proposal Workshop SMA", start: "2026-05-11", end: "2026-05-13", phase: "persiapan", color: "cyan", done: true },
-    { id: "presentasi-proposal", label: "Presentasi Proposal ke DPL", start: "2026-05-25", end: "2026-05-26", phase: "persiapan", color: "cyan", done: false },
+    { id: "presentasi-proposal", label: "Presentasi Proposal ke DPL", start: "2026-05-25", end: "2026-05-26", phase: "persiapan", color: "cyan", done: true },
     // Eyecare = JULI 2026. Service Days 21-25 confirmed (APL 18 Jun). Sisanya (training, opening, closing, dll) masih TBC.
     { id: "orientation", label: "Orientation Session UKDW × PolyU (TBC)", start: "2026-07-19", end: "2026-07-19", phase: "orientasi", color: "purple", done: false },
     { id: "opening", label: "Opening Ceremony Eyecare (TBC)", start: "2026-07-20", end: "2026-07-20", phase: "eyecare", color: "green", done: false },
@@ -935,7 +935,7 @@ const KKN = {
 
 const GEMINI_CONTEXT = `
 Kamu adalah asisten KKN STEM 2026 (UKDW Yogyakarta) — info hub yang dipakai BERSAMA oleh SEMUA anak KKN STEM, bukan cuma satu kelompok.
-Jawab berdasarkan data KKN berikut. Bahasa Indonesia santai tapi informatif. Kalau tidak ada info relevan, katakan jujur. Acuan update data terakhir: 9 Juni 2026.
+Jawab berdasarkan data KKN berikut. Bahasa Indonesia santai tapi informatif. Kalau tidak ada info relevan, katakan jujur. Acuan update data terakhir: 18 Juni 2026 (semua tim KKN STEM).
 
 CARA MERESPON (penting):
 - Di AWAL percakapan, kalau belum jelas siapa yang bertanya, TANYAKAN dulu dengan ramah: "Halo! Boleh tahu ini siapa? (Dex / Dhevina / Syendhi / Benediktus / Maria / Theana, atau tamu)" — supaya jawabanmu bisa fokus ke bagian yang relevan untuk orang itu (lihat peran tiap orang di bawah).
@@ -1008,7 +1008,7 @@ ORIENTATION SESSION 19 Juli: 7 kelompok, UKDW rotasi ke tiap kelompok PolyU 15 m
 
 VIDEO SMA WORKSHOP: 1 kelompok = 1 materi workshop softskill. Harus disetujui DPL dulu.
 
-═══ WORKSHOP SMA "LEAP 2036" — VERSI 2 (REVISI 31 MEI, 3 JAM/HARI) ═══
+═══ WORKSHOP SMA "LEAP 2036" — PROPOSAL v4.5 (update 18 Jun, 3 JAM/HARI, skenario 2+3, eksekusi 3-7 Agustus) ═══
 JUDUL: "Simulasi Hidup 10 Tahun: Keputusanmu Hari Ini, Hidupmu 2036". BRAND: LEAP 2036. Untuk siswa SMA kelas 11-12 (Agustus = tahun ajaran baru).
 IDE INTI: experiential learning — siswa MENGALAMI konsekuensi keputusan hidup lewat simulasi kartu keputusan (bukan ceramah). Tiap siswa punya 3 "baterai hidup": ENERGI, UANG, MENTAL (mulai 100; tiap keputusan menaikkan/menurunkan; tidak pernah minus). Tujuan: melawan "buta masa depan" + komplemen Eyecare (Eyecare = penglihatan fisik, LEAP = penglihatan masa depan).
 PERUBAHAN v2 (penting): karena waktu cuma ~3 jam/hari, dirombak: BAHASA POLOS (tanpa jargon — mis. "delta" jadi "perubahan poin", ada Kamus Istilah), tiap fitur di-timebox + ada "katup aman" (boleh dipangkas kalau waktu mepet), dan ada SISTEM DATA PER-SISWA (permintaan DPL): tiap anak punya skor akhir Energi/Uang/Mental + "Profil 2036", bisa diekspor jadi CSV (lewat Google Form/Sheet; fallback Kartu Skor kertas).
@@ -1016,8 +1016,8 @@ STRUKTUR = 5 MODUL HARIAN (tiap modul <=3 jam, berdiri sendiri): (1) MATERI — 
 ALUR TIAP KEPUTUSAN (6 langkah): fasilitator baca cerita → siswa pilih A/B DIAM-DIAM (rahasia, ini sumber data pribadi) → diskusi kelompok → kelompok putuskan → skor diperbarui → konsekuensi diceritakan.
 NO JUARA: tiap kelompok punya GOAL HIDUP berbeda (8 pilihan) → "jalan paralel, bukan lomba". Tidak ada peringkat — hanya "papan keragaman". Tiap pola hidup punya untung-rugi, tidak ada "hidup terbaik".
 OUTPUT: Surat dari Diri 2036 (tiap siswa) + Profil 2036 (7 tipe: Pembangun Seimbang, Sukses-tapi-Tumbang, Mekar Belakangan, Pemberontak Kreatif, Bijak yang Tenang, Pelari Tanpa Rem, Penjelajah Reflektif) + Surprise Apresiasi (semua dapat, bukan juara).
-2 SKEMA PELAKSANAAN (LPPM belum final): A = 5 hari di 1 SMA (Modul 1-5, 1 modul/hari). B = 2 SMA (Sekolah A 2 hari + Sekolah B 2 hari + 1 Fun Day; modul digabung pakai katup aman). Prioritas = skema B.
+SKEMA PELAKSANAAN (confirmed 18 Jun): skenario 2+3 — eksekusi Workshop SMA 3-7 Agustus 2026, pure 2 SMA (modul digabung pakai katup aman). Skema 5-hari-1-SMA sudah ditinggalkan.
 PEMBAGIAN PERAN (USULAN, minta konfirmasi tiap orang): Dex = MC/koordinator + briefing + reveal. Dhevina = Lead Fase 1 (finansial/karier) + banker. Benediktus = Lead Fase 2 (krisis) + brief medis. Maria = Keamanan Emosi + co-lead Surat 2036. Syendhi = Operator Data & Skor (Form/Sheet/CSV) + teknis. Theana = Dokumentasi + desain materi cetak (lagi magang → beban paling ringan). Tiap orang konfirmasi bagiannya di halaman 'Tugas Tim'.
-ANGGARAN: RAB FINAL = Rp 500.000, TANPA makanan/konsumsi (constraint Pembekalan 30 Mei). Snack di-drop; apresiasi non-material (sticker/sertifikat/gantungan); strategi reusable (laminasi kartu sekali, pakai 2 SMA); backup kertas (Kartu Skor + Surat cetak) sudah dibiayai. Detail RAB di Proposal-v3 §3.1.6 / Project-Master §7.
+ANGGARAN: RAB FINAL = Rp 500.000, TANPA makanan/konsumsi (constraint Pembekalan 30 Mei). Snack di-drop; apresiasi non-material (sticker/sertifikat/gantungan); strategi reusable (laminasi kartu sekali, pakai 2 SMA); backup kertas (Kartu Skor + Surat cetak) sudah dibiayai. Detail RAB di Proposal-LEAP-2036-v4.4.md (= v4.5, §3.1.6) / Project-Master §7.
 DOKUMEN LENGKAP WORKSHOP: docs/LEAP-2036_Modular_v2.md (rundown 5 modul + skenario + sistem data + naskah). State proyek: PROJECT_MASTER.md.
 `;

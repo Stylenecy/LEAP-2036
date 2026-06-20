@@ -14,9 +14,9 @@
   1. **§1.2 Visi ditambahkan** — sesuai §2.1 Panduan (Visi wajib).
   2. **Tujuan ke-6 "Dukungan Prioritas Nasional"** — §2.2 Panduan (mendukung prioritas nasional).
   3. **§3.1 Prinsip Pelaksanaan** — dari Panduan §2.1 (sistematis, terukur, partisipatif, dll).
-  4. **§3.1a Mitigasi Risiko Teknis** — 5 skenario (sinyal buruk→local server, listrik padam→offline, proyektor rusak→visual, keterbatasan IT→mentor damping, absensi→cadangan).
-  5. **Tabel Target Terukur (5 indikator)** — dipulihkan dari v4.3, target ≥60% peserta capai.
-  6. **RAB normalisasi Rp 480.000** — item 8 diganti ke Hadiah Apresiasi Rp 47.000; total turun dari Rp 493.000 (buffer Rp 20.000 ke pagu 500k).
+  4. **§3.1a Mitigasi Risiko Teknis** — 5 baris (sesuai tabel proposal): sinyal buruk→backup manual kartu skor, listrik padam→sesi offline/lisan, proyektor rusak→poster cetak laminasi, siswa cemas (Fase 2)→protokol emosional tim FK, peserta melebihi estimasi (≥45)→fotokopi darurat.
+  5. **Tabel Target Terukur (5 indikator)** — dipulihkan dari v4.3, target **per-indikator** (bukan satu angka generik): (1) kehadiran ≥75%, (2) penyelesaian "Surat dari Diri 2036" ≥70%, (3) peningkatan skor pre/post ≥50%, (4) keragaman ≥4 dari 7 Profil 2036, (5) dokumentasi 100% sesi + 100% SMA mitra terima laporan.
+  6. **RAB normalisasi Rp 480.000** — item 8 diganti ke Hadiah Apresiasi Rp 47.000; total turun dari Rp 493.000. **Headroom Rp 20.000** ke pagu Rp 500k (selisih total↔pagu, *bukan* baris buffer di dalam RAB).
   7. **Sertifikat → digital gratis** — dikembalikan ke strategi efisiensi (bukan biaya cetak).
   8. **Nama Profil bilingual** — Indonesia+English: Pembangun Seimbang / Balanced Builder, Sukses-tapi-Tumbang / Burnout Achiever, Pejalan Lambat / Late Bloomer.
   9. **Rundown dengan estimasi durasi ~1–1,5 jam per modul** — realistis, sesuai pagu waktu.
@@ -306,9 +306,9 @@
 ## 8. OPEN THREADS / PENDING
 
 - [x] ✅ **Revisi anggaran** ≤ Rp 500k, **tanpa makanan** (1 Jun) — RAB Rp500.000, snack di-drop, apresiasi non-material, reusable. Disinkron: Proposal-v3 §3.1.6, Project-Master §7, Brief-Dhevina, NotebookLM prompt, data.js.
-- [ ] **Backup plan** sinyal lemah (local server / Canvas Lite offline / kartu fisik) — tulis eksplisit di proposal.
+- [x] ✅ **Backup plan** sinyal lemah / kendala teknis — **RESOLVED (18 Jun):** tertulis eksplisit di Proposal §3.1a "Rencana Mitigasi Risiko Teknis" (5 baris: sinyal buruk→kartu skor manual, listrik padam→sesi offline, proyektor rusak→poster laminasi, siswa cemas→protokol emosional FK, peserta melebihi estimasi→fotokopi darurat).
 - [x] ✅ **Rundown Modular v2 (3 jam/hari)** → `docs/LEAP-2036_Modular_v2.md` (31 Mei) — 5 modul + 2 Config assembly (A: 5-hari · B: 2-SMA). Supersede doc Sekolah A 4–5 jam (diarsip `docs/_archive/`).
-- [ ] **Fun Day — penanggung jawab?** Konfirm APL (desain sementara: student-driven + fasilitator ringan).
+- [x] ✅ **Fun Day — penanggung jawab?** — **RESOLVED (18 Jun, jawaban Dex #K):** PJ Fun Day = **kita sendiri** (kelompok), bukan APL/DPL. Desain: student-driven + fasilitator ringan.
 - [ ] **Setup + uji data per-siswa** (Google Form/Sheet → CSV Energi/Uang/Mental/Profil, req DPL) — Syendhi, test 1 kelas dummy sebelum hari-H.
 - [ ] **Sinkron `docs/arsip/Skenario-Starter-Pack.md`** — taksonomi Profil lama + skenario crypto, tidak sinkron dgn kanonik (sudah diarsip 1 Jun). Update biar konsisten kalau dipakai lagi.
 - [ ] **LPPM final** pilih skema 1 vs 2 — tunggu konfirmasi.

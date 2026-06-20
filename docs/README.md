@@ -9,13 +9,13 @@
 ## 🚀 Mulai dari mana? (per peran)
 
 **Semua anggota (15 menit):**
-1. `workshop/Proposal-LEAP-2036-v3.md` — proposal lengkap workshop (yang dipresentasikan ke DPL).
+1. `workshop/Proposal-LEAP-2036-v4.4.md` — proposal lengkap workshop (isi = **v4.5**, canonical/terbaru; nama berkas masih v4.4).
 2. `info-program/Catatan-KKN-STEM-2026.md` — master info KKN (timeline, prosedur, kontak).
 3. Buka **kknstem.vercel.app** → pilih namamu → halaman **"Tugasku"**.
 
 **Dhevina** (Lead Fase 1 / banker) → `panduan-tim/Brief-Dhevina.md`
 **Syendhi** (data & teknis) → `panduan-tim/Brief-Syendhi.md` **+** `sistem-data/PANDUAN-SISTEM-DATA.md` *(ini pengganti "setup Google Sheets manual" yang lama — pakai yang ini)*
-**Benediktus / Maria / Theana** (FK) → peran kamu ada di `workshop/Proposal-LEAP-2036-v3.md` + `workshop/Project-Master-LEAP-2036.md` (bagian pembagian tugas).
+**Benediktus / Maria / Theana** (FK) → peran kamu ada di `workshop/Proposal-LEAP-2036-v4.4.md` (isi v4.5, canonical) + `workshop/Project-Master-LEAP-2036.md` (bagian pembagian tugas).
 
 > ⚠️ Jangan pakai `arsip/Skenario-Starter-Pack.md` sebagai acuan skenario — itu **model lama** (skor beda). Skenario & skor final ada di `workshop/LEAP-2036_Modular_v2.md`.
 
@@ -28,7 +28,7 @@
 |------|-----|
 | ⭐ `LEAP-2036_Modular_v2.md` | **Desain TERBARU & terlengkap** — 5 modul harian (3 jam/hari), skenario, sistem data, 7 Profil 2036, naskah fasilitator, katup aman. Baca ini dulu. |
 | `Project-Master-LEAP-2036.md` | Deep-design (visi, risk register, decision log, strategi 3-layer, daftar pustaka) — sumber NotebookLM. |
-| `Proposal-LEAP-2036-v3.md` | Proposal formal terbaru untuk DPL (BAB I–IV siap submit). *Anggaran masih pra-constraint — revisi ≤Rp500k tanpa makanan sebelum submit final.* |
+| ⭐ `Proposal-LEAP-2036-v4.4.md` | **Proposal formal CANONICAL** untuk DPL/APL (BAB I–IV siap submit). Isi = **versi 4.5** (audit Panduan KKN, 18 Jun 2026) meski nama berkas masih v4.4. RAB final **Rp 480.000** (≤Rp500k, tanpa makanan). Versi v3/v2/un-versioned = arsip. |
 | `NotebookLM-Prompt-PPT-DPL.md` | Prompt generate PPT 18-slide untuk presentasi DPL. |
 | `Simulator-Visualisasi.html` | Prototipe simulator (buka di browser). ⚠️ Model skor LAMA (Kapital/4 profil) — demo/portofolio, bukan desain final. |
 
