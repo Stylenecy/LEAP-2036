@@ -247,13 +247,134 @@
     ]
   };
 
+  // =====================================================================
+  //  FRONT-HALF — IDENTITY ONBOARDING (Values / DISC-lite / Goal Hidup)
+  //  ---------------------------------------------------------------------
+  //  Captured BEFORE the first decision round (F1.1). This is IDENTITY
+  //  METADATA only — it adds ZERO resource deltas. The engine stays the
+  //  single source of scoring for the 12 rounds. All selections persist to
+  //  localStorage and are appended to the CSV export AFTER the original 6
+  //  columns. Pseudonymous: only a Kode is ever stored, never a real name.
+  //
+  //  Source: docs/workshop/LEAP-2036_Modular_v2.md §1 (15 nilai), §2 (DISC),
+  //  §3 (3-Lapis), §4 (8 Goal Hidup, cap 5 nilai); arah condong/menjauh from
+  //  docs/arsip/LPPM-2_Sekolah-A_2hari_v1.md §B.3 (lines 205 & 228).
+  // =====================================================================
+  var FRONTHALF = {
+    // ----- VALUES: pick EXACTLY 5 (game default; facilitator KATUP AMAN = 3) -----
+    values_pick: 5,
+    values_pick_min: 3,        // facilitator safety valve when time is tight
+    values_title: '5 Hal yang Tak Bisa Ditawar',
+    values_prompt: 'Pilih TEPAT 5 nilai yang buatmu tidak bisa ditawar — yang kalau dicabut, kamu ngerasa "itu bukan aku lagi". Bukan yang kedengaran keren, tapi yang beneran kamu.',
+    values_hint: 'Tombol lanjut terbuka setelah persis 5 terpilih.',
+    values: [
+      'Keluarga',
+      'Kebebasan',
+      'Prestasi',
+      'Stabilitas',
+      'Kreativitas',
+      'Menolong orang lain',
+      'Petualangan',
+      'Kejujuran',
+      'Keamanan finansial (uang aman)',
+      'Pertumbuhan diri',
+      'Persahabatan',
+      'Iman/spiritualitas',
+      'Pengakuan/dihargai',
+      'Kesehatan',
+      'Keadilan'
+    ],
+
+    // ----- DISC-LITE: self-pick exactly ONE of D/I/S/C -----
+    disc_title: 'Gaya Alamimu',
+    disc_prompt: 'Mana yang paling kerasa "aku banget"? Pilih satu.',
+    disc: [
+      { type: 'D', label: 'Penggerak',   descriptor: 'Aku tegas dan langsung ke tujuan — "udah, kerjain aja", yang penting hasil kelihatan.' },
+      { type: 'I', label: 'Penyemangat', descriptor: 'Aku suka orang dan bikin suasana hidup — antusias, ramai, gampang nyambung sama siapa aja.' },
+      { type: 'S', label: 'Penjaga',     descriptor: 'Aku sabar dan tenang, pendengar yang baik — bikin orang di sekitarku ngerasa nyaman.' },
+      { type: 'C', label: 'Pemikir',     descriptor: 'Aku teliti dan hati-hati — mikir matang dulu, baru bertindak, biar nggak salah langkah.' }
+    ],
+
+    // ----- GOAL HIDUP: pick exactly ONE of 8. REQUIRED (anchors the reveal). -----
+    goal_title: 'Tujuan Hidupmu',
+    goal_prompt: 'Kalau membayangkan dirimu di 2036, mana yang paling kamu mau? Pilih satu — ini yang akan kita lihat lagi di akhir.',
+    goals: [
+      { id: 'wirausaha',  label: 'Wirausahawan Kreatif',          desc: 'Bikin usaha sendiri dari nol dan jalanin ide jadi nyata.' },
+      { id: 'keluarga',   label: 'Keluarga di Atas Segalanya',    desc: 'Yang paling penting: dekat dan ada buat keluarga.' },
+      { id: 'dampak',     label: 'Berdampak buat Banyak Orang',   desc: 'Hidup yang bikin perubahan baik buat banyak orang sekaligus.' },
+      { id: 'keahlian',   label: 'Mendalami Satu Keahlian',       desc: 'Jadi jago banget di satu bidang yang kamu cintai.' },
+      { id: 'penjelajah', label: 'Penjelajah Bebas',              desc: 'Hidup ringan dan bebas, jelajahi tempat dan pengalaman baru.' },
+      { id: 'karier',     label: 'Karier Stabil & Punya Komunitas', desc: 'Pekerjaan yang aman dan jejaring/komunitas yang erat.' },
+      { id: 'pembaru',    label: 'Pembaru / Pencipta Hal Baru',   desc: 'Menciptakan hal-hal baru yang belum pernah ada.' },
+      { id: 'perawat',    label: 'Perawat / Penolong',            desc: 'Merawat dan menyembuhkan — hadir buat orang yang butuh.' }
+    ],
+
+    // ----- 3-LAPIS-DIRI bridge card (zero new input; replays chosen data) -----
+    bridge_title: '3 Lapis Dirimu',
+    bridge_layers: {
+      sifat: 'Lapis 1 — SIFAT',
+      nilai: 'Lapis 2 — NILAI',
+      tujuan: 'Lapis 3 — TUJUAN'
+    },
+    bridge_layer_notes: {
+      sifat: 'gaya alami kamu.',
+      nilai: 'hal yang tak bisa kamu tawar.',
+      tujuan: 'mau jadi apa kamu nanti.'
+    },
+    bridge_closer: 'Kadang ketiganya nggak sejalan. Pas kamu lagi galau milih nanti — mana yang menang: Sifatmu, Nilaimu, atau Tujuanmu? Itu yang bakal kita lihat.',
+
+    // ----- REVEAL ANCHOR — "cermin Tujuan" at end-game (no gagal/menang/kalah) -----
+    // Bucket = Condong | Menjauh | Campuran, derived from the alignment table
+    // below. NEVER says "kamu gagal mencapai Tujuanmu". Always closes with the
+    // canonical "cermin pola, BUKAN vonis" line.
+    reveal_anchor: {
+      buckets: {
+        // {Tujuan} replaced with the chosen goal's label.
+        Condong: 'Sepanjang 10 tahun ini, pilihan-pilihanmu banyak yang condong ke arah Tujuanmu: {Tujuan}. Kamu cukup setia sama yang kamu mau jadi.',
+        Menjauh: 'Menarik — di awal kamu pilih Tujuan {Tujuan}, tapi banyak keputusanmu malah membawamu ke arah lain. Itu bukan salah; kadang kita nemu jalan yang nggak kita rencanain. Yang penting kamu lihat polanya.',
+        Campuran: 'Pilihanmu kadang dekat, kadang jauh dari Tujuan {Tujuan}. Hidup memang nggak selalu lurus — dan itu wajar.'
+      },
+      closer: 'Ingat: ini cermin pola pilihanmu, BUKAN vonis — dan pola selalu bisa diubah.',
+      heading: 'Cermin Tujuanmu'
+    },
+
+    // ----- ALIGNMENT TABLE (metadata only — NO resource delta) -----
+    // Per goal id: which choice ('A'/'B') at a round is "selaras Tujuan".
+    // Only rounds that meaningfully lean toward/away from a goal are listed;
+    // unlisted rounds are neutral for that goal and don't count either way.
+    // Derived from facilitator notes §B.3 ("Goal hidupmu bilang apa soal ini?",
+    // lines 205 & 228): e.g. Family-First -> A at F1.1; Master-a-Craft /
+    // Innovator -> B at F1.1; Stable-Career -> A & Reflective/Travel -> B at F1.3.
+    // The reveal computes aligned-vs-not over the rounds the player actually
+    // answered, then buckets Condong / Menjauh / Campuran. Pure label, no score.
+    goal_align: {
+      // Wirausahawan Kreatif — berani ambil peluang/usaha, taruhan, reinvensi.
+      wirausaha:  { 'F1.1': 'B', 'F1.3': 'A', 'F1.4': 'A', 'F1.5': 'A', 'F2.1': 'A', 'F2.5': 'A', 'F3.1': 'A', 'F3.2': 'B' },
+      // Keluarga di Atas Segalanya — aman, hadir buat keluarga, konsolidasi.
+      keluarga:   { 'F1.1': 'A', 'F1.2': 'A', 'F1.5': 'B', 'F2.1': 'B', 'F2.2': 'A', 'F2.5': 'B', 'F3.1': 'B', 'F3.2': 'A' },
+      // Berdampak buat Banyak Orang — memimpin, menolong, ambil peran besar.
+      dampak:     { 'F1.4': 'A', 'F2.2': 'A', 'F2.3': 'A', 'F2.4': 'A', 'F3.1': 'A', 'F3.2': 'B' },
+      // Mendalami Satu Keahlian — fokus, magang/portofolio, jaga arah sendiri.
+      keahlian:   { 'F1.1': 'B', 'F1.3': 'B', 'F1.4': 'B', 'F2.4': 'A', 'F3.1': 'A', 'F3.2': 'A' },
+      // Penjelajah Bebas — jeda, ringan, lepas dari yang mengekang, reinvensi.
+      penjelajah: { 'F1.1': 'B', 'F1.2': 'B', 'F1.3': 'B', 'F2.3': 'A', 'F2.4': 'A', 'F3.1': 'B', 'F3.2': 'B' },
+      // Karier Stabil & Punya Komunitas — aman, bertahan, jejaring, konsolidasi.
+      karier:     { 'F1.1': 'A', 'F1.3': 'A', 'F1.4': 'A', 'F1.5': 'B', 'F2.1': 'B', 'F2.5': 'B', 'F3.1': 'B', 'F3.2': 'A' },
+      // Pembaru / Pencipta Hal Baru — berani beda, taruhan, bab baru.
+      pembaru:    { 'F1.1': 'B', 'F1.4': 'A', 'F1.5': 'A', 'F2.1': 'A', 'F2.4': 'A', 'F2.5': 'A', 'F3.1': 'A', 'F3.2': 'B' },
+      // Perawat / Penolong — hadir buat orang, menjaga, pulih, merawat hubungan.
+      perawat:    { 'F1.4': 'B', 'F2.2': 'A', 'F2.3': 'A', 'F2.4': 'A', 'F3.1': 'B', 'F3.2': 'A' }
+    }
+  };
+
   var DATA = {
     headline: '7 jalur. 0 juara. Semua nyata.',
     rounds: ROUNDS,
     profiles: PROFILES,
     chaos: CHAOS,
     bet: BET,
-    surat: SURAT
+    surat: SURAT,
+    fronthalf: FRONTHALF
   };
 
   if (global) { global.LEAP_DATA = DATA; }

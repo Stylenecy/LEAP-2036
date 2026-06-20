@@ -82,6 +82,58 @@
     </details>
   </section>
 
+  <!-- ============ SCREEN: VALUES (pick exactly 5) ============ -->
+  <section id="screen-values" class="card hidden">
+    <div class="phase-row"><span class="phase-badge phase-Fondasi">Kenali dirimu · 1 dari 3</span></div>
+    <div class="fh-kicker" id="valuesKicker">5 Hal yang Tak Bisa Ditawar</div>
+    <h2 class="r-title" id="valuesTitle">Apa yang bikin kamu, kamu?</h2>
+    <p class="fh-prompt" id="valuesPrompt"></p>
+    <div class="fh-counter">
+      <span class="fh-count-pill" id="valuesCount">0 / 5 terpilih</span>
+    </div>
+    <div class="value-grid" id="valueGrid"><!-- filled by JS --></div>
+    <p class="fh-hint" id="valuesHint"></p>
+    <div class="btn-row end" style="margin-top:18px">
+      <button class="btn btn-primary" id="btnValuesNext" disabled>Lanjut →</button>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN: DISC-LITE (pick one) ============ -->
+  <section id="screen-disc" class="card hidden">
+    <div class="phase-row"><span class="phase-badge phase-Fondasi">Kenali dirimu · 2 dari 3</span></div>
+    <div class="fh-kicker" id="discKicker">Gaya Alamimu</div>
+    <h2 class="r-title">Kamu paling kayak yang mana?</h2>
+    <p class="fh-prompt" id="discPrompt"></p>
+    <div class="pick-list" id="discList"><!-- filled by JS --></div>
+    <div class="btn-row end" style="margin-top:18px">
+      <button class="btn btn-primary" id="btnDiscNext" disabled>Lanjut →</button>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN: GOAL HIDUP (pick one — required) ============ -->
+  <section id="screen-goal" class="card hidden">
+    <div class="phase-row"><span class="phase-badge phase-Fondasi">Kenali dirimu · 3 dari 3</span></div>
+    <div class="fh-kicker" id="goalKicker">Tujuan Hidupmu</div>
+    <h2 class="r-title">Mau jadi apa kamu nanti?</h2>
+    <p class="fh-prompt" id="goalPrompt"></p>
+    <div class="pick-list" id="goalList"><!-- filled by JS --></div>
+    <div class="btn-row end" style="margin-top:18px">
+      <button class="btn btn-primary" id="btnGoalNext" disabled>Lanjut →</button>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN: 3-LAPIS DIRI bridge ============ -->
+  <section id="screen-bridge" class="card bridge-card hidden">
+    <div class="phase-row"><span class="phase-badge phase-Fondasi">Jembatan</span></div>
+    <h2 class="r-title" id="bridgeTitle">3 Lapis Dirimu</h2>
+    <p class="fh-prompt">Sebelum mulai, ini ringkasan dirimu yang akan kamu bawa ke 12 keputusan nanti.</p>
+    <div class="lapis-list" id="lapisList"><!-- filled by JS --></div>
+    <p class="bridge-closer" id="bridgeCloser"></p>
+    <div class="btn-row end" style="margin-top:18px">
+      <button class="btn btn-primary" id="btnBridgeNext">Mulai 12 keputusan →</button>
+    </div>
+  </section>
+
   <!-- ============ SCREEN: ROUND (decision) ============ -->
   <section id="screen-round" class="card hidden">
     <div class="phase-row">
@@ -181,6 +233,14 @@
         <p id="pbReframe"></p>
       </div>
 
+      <!-- "cermin Tujuan" anchor — leaned toward/away from the chosen Goal.
+           Emotionally safe: no gagal/menang/kalah. Hidden if no goal chosen. -->
+      <div class="goal-mirror hidden" id="goalMirror">
+        <div class="gm-h" id="goalMirrorH">Cermin Tujuanmu</div>
+        <p id="goalMirrorText"></p>
+        <p class="gm-closer" id="goalMirrorCloser"></p>
+      </div>
+
       <div class="toolbar">
         <button class="btn" id="btnCopyResult">Salin hasil</button>
         <button class="btn" id="btnExportCsv">Ekspor CSV</button>
@@ -261,7 +321,13 @@
       code: '',
       answers: {},            // { 'F1.1':'A', ... }
       idx: 0,                 // pointer into ROUND_IDS
-      stage: 'code',          // code | round | chaos | bet | reveal | surat
+      // stage: code | values | disc | goal | bridge | round | chaos | bet | reveal | surat
+      stage: 'code',
+      // ---- front-half identity (metadata only; NO resource deltas) ----
+      values: [],             // array of chosen value strings (exactly 5)
+      disc: '',               // one of 'D' | 'I' | 'S' | 'C'
+      goal: '',               // goal id, e.g. 'wirausaha' (REQUIRED before rounds)
+      arahTujuan: '',         // 'Condong' | 'Menjauh' | 'Campuran' (computed at reveal)
       chaosPlayed: [],        // operator toggle, e.g. ['C.2']
       chaosSeen: false,       // chaos interstitials already shown
       betResolved: null,      // true/false once the F2.5 card is drawn (null = not yet / N/A)
@@ -282,7 +348,9 @@
   function hide(el) { el.classList.add('hidden'); }
   function setText(id, t) { $(id).textContent = t; }
 
-  var SCREENS = ['screen-code', 'screen-round', 'screen-chaos', 'screen-bet', 'screen-reveal', 'screen-surat'];
+  var SCREENS = ['screen-code', 'screen-values', 'screen-disc', 'screen-goal', 'screen-bridge', 'screen-round', 'screen-chaos', 'screen-bet', 'screen-reveal', 'screen-surat'];
+
+  var FH = DATA.fronthalf || {};
   function gotoScreen(name) {
     SCREENS.forEach(function (s) { hide($(s)); });
     show($('screen-' + name));
@@ -420,13 +488,249 @@
     var code = $('inpCode').value.trim().toUpperCase();
     S.code = code;
     S.idx = 0;
-    S.stage = 'round';
     S.startedAt = Date.now();
     S.day = dayStamp();
-    show($('statBars'));
+    save();
+    // Front-half (identity) comes BEFORE round 1. Stat bars + progress stay
+    // hidden until the first decision begins (front-half adds no resources).
+    renderValues();
+  }
+
+  // =====================================================================
+  //  FRONT-HALF — IDENTITY ONBOARDING (Values → DISC → Goal → 3-Lapis)
+  //  Metadata only. Engine still owns all 12-round scoring.
+  // =====================================================================
+
+  // ---- (1) VALUES: pick EXACTLY 5 (lock Lanjut until count === 5) ----
+  function renderValues() {
+    S.stage = 'values';
+    save();
+    gotoScreen('values');
+    if (FH.values_title) setText('valuesKicker', FH.values_title);
+    if (FH.values_prompt) setText('valuesPrompt', FH.values_prompt);
+    if (FH.values_hint) setText('valuesHint', FH.values_hint);
+
+    var need = FH.values_pick || 5;
+    var grid = $('valueGrid');
+    if (!grid._built) {
+      grid.innerHTML = '';
+      (FH.values || []).forEach(function (v) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'value-chip';
+        b.setAttribute('data-value', v);
+        b.setAttribute('aria-pressed', 'false');
+        b.textContent = v;
+        b.addEventListener('click', function () { toggleValue(v, b); });
+        grid.appendChild(b);
+      });
+      grid._built = true;
+    }
+    // restore prior selection
+    grid.querySelectorAll('.value-chip').forEach(function (b) {
+      var on = (S.values || []).indexOf(b.getAttribute('data-value')) >= 0;
+      b.classList.toggle('selected', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    updateValuesUI();
+
+    $('btnValuesNext').onclick = function () {
+      if ((S.values || []).length !== need) {
+        toast('Pilih tepat ' + need + ' nilai dulu.');
+        return;
+      }
+      renderDisc();
+    };
+  }
+
+  function toggleValue(v, btn) {
+    if (!S.values) S.values = [];
+    var i = S.values.indexOf(v);
+    var need = FH.values_pick || 5;
+    if (i >= 0) {
+      S.values.splice(i, 1);
+    } else {
+      if (S.values.length >= need) {
+        toast('Sudah ' + need + ' nilai. Lepas satu dulu kalau mau ganti.');
+        return;
+      }
+      S.values.push(v);
+    }
+    var on = S.values.indexOf(v) >= 0;
+    btn.classList.toggle('selected', on);
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    updateValuesUI();
+    save();
+  }
+
+  function updateValuesUI() {
+    var need = FH.values_pick || 5;
+    var n = (S.values || []).length;
+    var pill = $('valuesCount');
+    setText('valuesCount', n + ' / ' + need + ' terpilih');
+    pill.classList.toggle('ok', n === need);
+    pill.classList.toggle('over', n > need);
+    $('btnValuesNext').disabled = (n !== need);
+    $('valueGrid').classList.toggle('locked', n >= need);
+  }
+
+  // ---- (2) DISC-LITE: self-pick exactly ONE of D/I/S/C ----
+  function renderDisc() {
+    S.stage = 'disc';
+    save();
+    gotoScreen('disc');
+    if (FH.disc_title) setText('discKicker', FH.disc_title);
+    if (FH.disc_prompt) setText('discPrompt', FH.disc_prompt);
+
+    var list = $('discList');
+    if (!list._built) {
+      list.innerHTML = '';
+      (FH.disc || []).forEach(function (d) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'pick-card';
+        b.setAttribute('data-disc', d.type);
+        var lab = document.createElement('div');
+        lab.className = 'pc-label';
+        lab.textContent = d.label + ' (' + d.type + ')';
+        var desc = document.createElement('div');
+        desc.className = 'pc-desc';
+        desc.textContent = d.descriptor;
+        b.appendChild(lab); b.appendChild(desc);
+        b.addEventListener('click', function () { pickDisc(d.type); });
+        list.appendChild(b);
+      });
+      list._built = true;
+    }
+    markPicked('discList', 'data-disc', S.disc);
+    $('btnDiscNext').disabled = !S.disc;
+
+    $('btnDiscNext').onclick = function () {
+      if (!S.disc) { toast('Pilih satu gaya dulu.'); return; }
+      renderGoal();
+    };
+  }
+
+  function pickDisc(type) {
+    S.disc = type;
+    markPicked('discList', 'data-disc', type);
+    $('btnDiscNext').disabled = false;
+    save();
+  }
+
+  // ---- (3) GOAL HIDUP: pick exactly ONE of 8 — REQUIRED (anchors reveal) ----
+  function renderGoal() {
+    S.stage = 'goal';
+    save();
+    gotoScreen('goal');
+    if (FH.goal_title) setText('goalKicker', FH.goal_title);
+    if (FH.goal_prompt) setText('goalPrompt', FH.goal_prompt);
+
+    var list = $('goalList');
+    if (!list._built) {
+      list.innerHTML = '';
+      (FH.goals || []).forEach(function (g) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'pick-card';
+        b.setAttribute('data-goal', g.id);
+        var lab = document.createElement('div');
+        lab.className = 'pc-label';
+        lab.textContent = g.label;
+        var desc = document.createElement('div');
+        desc.className = 'pc-desc';
+        desc.textContent = g.desc;
+        b.appendChild(lab); b.appendChild(desc);
+        b.addEventListener('click', function () { pickGoal(g.id); });
+        list.appendChild(b);
+      });
+      list._built = true;
+    }
+    markPicked('goalList', 'data-goal', S.goal);
+    $('btnGoalNext').disabled = !S.goal;
+
+    $('btnGoalNext').onclick = function () {
+      if (!S.goal) { toast('Pilih satu Tujuan Hidup dulu.'); return; }
+      renderBridge();
+    };
+  }
+
+  function pickGoal(id) {
+    S.goal = id;
+    markPicked('goalList', 'data-goal', id);
+    $('btnGoalNext').disabled = false;
+    save();
+  }
+
+  function markPicked(listId, attr, val) {
+    $(listId).querySelectorAll('.pick-card').forEach(function (b) {
+      b.classList.toggle('selected', b.getAttribute(attr) === val && !!val);
+    });
+  }
+
+  // ---- (4) 3-LAPIS bridge — replays chosen data; zero new input ----
+  function renderBridge() {
+    S.stage = 'bridge';
+    save();
+    gotoScreen('bridge');
+    if (FH.bridge_title) setText('bridgeTitle', FH.bridge_title);
+    if (FH.bridge_closer) setText('bridgeCloser', FH.bridge_closer);
+
+    var disc = discInfo(S.disc);
+    var goal = goalInfo(S.goal);
+    var layers = FH.bridge_layers || {};
+    var notes = FH.bridge_layer_notes || {};
+
+    var rows = [
+      { h: layers.sifat || 'Lapis 1 — SIFAT',
+        val: disc ? (disc.type + ' · ' + disc.label) : '—',
+        note: notes.sifat || '' },
+      { h: layers.nilai || 'Lapis 2 — NILAI',
+        val: (S.values && S.values.length) ? S.values.join(', ') : '—',
+        note: notes.nilai || '' },
+      { h: layers.tujuan || 'Lapis 3 — TUJUAN',
+        val: goal ? goal.label : '—',
+        note: notes.tujuan || '' }
+    ];
+
+    var box = $('lapisList');
+    box.innerHTML = '';
+    rows.forEach(function (r) {
+      var card = document.createElement('div');
+      card.className = 'lapis';
+      var h = document.createElement('div'); h.className = 'lp-h'; h.textContent = r.h;
+      var v = document.createElement('div'); v.className = 'lp-val'; v.textContent = r.val;
+      card.appendChild(h); card.appendChild(v);
+      if (r.note) {
+        var n = document.createElement('div'); n.className = 'lp-note'; n.textContent = r.note;
+        card.appendChild(n);
+      }
+      box.appendChild(card);
+    });
+
+    $('btnBridgeNext').onclick = beginRounds;
+  }
+
+  // ---- hand off from front-half to the 12 decision rounds ----
+  function beginRounds() {
+    S.idx = 0;
+    S.stage = 'round';
+    show($('statBars'));   // resources only appear once play starts
     show($('progress'));
     save();
     renderRound();
+  }
+
+  // ---- front-half lookups ----
+  function discInfo(type) {
+    var found = null;
+    (FH.disc || []).forEach(function (d) { if (d.type === type) found = d; });
+    return found;
+  }
+  function goalInfo(id) {
+    var found = null;
+    (FH.goals || []).forEach(function (g) { if (g.id === id) found = g; });
+    return found;
   }
 
   // =====================================================================
@@ -449,13 +753,28 @@
     var prev = S._pending || load();
     if (!prev) { toast('Tidak ada sesi tersimpan.'); return; }
     S = prev;
+    // backfill front-half fields for sessions saved before this feature existed
+    if (typeof S.values === 'undefined') S.values = [];
+    if (typeof S.disc === 'undefined') S.disc = '';
+    if (typeof S.goal === 'undefined') S.goal = '';
+    if (typeof S.arahTujuan === 'undefined') S.arahTujuan = '';
     // carry over to a fresh day stamp but keep all scores/answers
     S.day = dayStamp();
     hide($('resumeBanner'));
-    show($('statBars'));
-    show($('progress'));
+    // bars + progress are play-only; keep them hidden while still in front-half
+    if (isFrontHalf(S.stage)) {
+      hide($('statBars'));
+      hide($('progress'));
+    } else {
+      show($('statBars'));
+      show($('progress'));
+    }
     routeToStage();
     toast('Sesi dilanjutkan.');
+  }
+
+  function isFrontHalf(stage) {
+    return stage === 'values' || stage === 'disc' || stage === 'goal' || stage === 'bridge';
   }
 
   function routeToStage() {
@@ -463,6 +782,10 @@
     else if (S.stage === 'surat') { renderSurat(); }
     else if (S.stage === 'bet') { renderBet(); }
     else if (S.stage === 'chaos') { renderChaosSequence(0); }
+    else if (S.stage === 'values') { renderValues(); }
+    else if (S.stage === 'disc') { renderDisc(); }
+    else if (S.stage === 'goal') { renderGoal(); }
+    else if (S.stage === 'bridge') { renderBridge(); }
     else { renderRound(); }
   }
 
@@ -667,6 +990,47 @@
     });
   }
 
+  // =====================================================================
+  //  GOAL DIRECTION (reveal anchor) — metadata ONLY, no resource delta.
+  //  Counts how many ANSWERED rounds aligned with the chosen Goal (per the
+  //  data.js goal_align table) vs not, then buckets the run as
+  //  Condong / Menjauh / Campuran. This NEVER changes any score; it only
+  //  labels the reveal. Emotionally safe: no gagal/menang/kalah.
+  // =====================================================================
+  function computeArahTujuan() {
+    if (!S.goal) return '';
+    var table = (FH.goal_align || {})[S.goal];
+    if (!table) return 'Campuran';
+    var aligned = 0, counted = 0;
+    Object.keys(table).forEach(function (rid) {
+      var pick = S.answers[rid];
+      if (pick !== 'A' && pick !== 'B') return; // only rounds actually answered
+      counted++;
+      if (pick === table[rid]) aligned++;
+    });
+    if (counted === 0) return 'Campuran';
+    var ratio = aligned / counted;
+    if (ratio >= 0.6) return 'Condong';
+    if (ratio <= 0.4) return 'Menjauh';
+    return 'Campuran';
+  }
+
+  function applyGoalMirror() {
+    var box = $('goalMirror');
+    var goal = goalInfo(S.goal);
+    var anchor = FH.reveal_anchor || {};
+    if (!goal || !anchor.buckets) { hide(box); return; }
+
+    S.arahTujuan = computeArahTujuan();
+    var tmpl = anchor.buckets[S.arahTujuan] || anchor.buckets.Campuran || '';
+    var line = tmpl.replace(/\{Tujuan\}/g, goal.label);
+    if (anchor.heading) setText('goalMirrorH', anchor.heading);
+    setText('goalMirrorText', line);
+    setText('goalMirrorCloser', anchor.closer || '');
+    show(box);
+    save();
+  }
+
   function renderReveal() {
     S.stage = 'reveal';
     save();
@@ -695,6 +1059,10 @@
       setText('pbReframe', prof.safe_reframe);
     }
 
+    // "cermin Tujuan" anchor — threads the chosen Goal into the reveal
+    // (leaned toward/away). No-op when no Goal was chosen (older sessions).
+    applyGoalMirror();
+
     $('btnSeePrivate').onclick = function () {
       hide($('groupReveal'));
       show($('privateReveal'));
@@ -714,16 +1082,51 @@
     return d;
   }
 
+  // =====================================================================
+  //  CSV — engine owns the first 6 columns (Kode,Energi,Uang,Mental,
+  //  TotalF1,Profil) byte-for-byte so web==Sheet==paper stays intact.
+  //  The front-half identity columns are APPENDED AFTER them here, never
+  //  inside the engine: Nilai1..Nilai5, DISC, Tujuan, ArahTujuan.
+  // =====================================================================
+  var FH_CSV_COLS = ['Nilai1', 'Nilai2', 'Nilai3', 'Nilai4', 'Nilai5', 'DISC', 'Tujuan', 'ArahTujuan'];
+
+  function csvCellSafe(c) {
+    var v = (c === null || c === undefined) ? '' : String(c);
+    return /[",\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v;
+  }
+
+  function csvHeaderFull() {
+    return ENG.csvHeader() + ',' + FH_CSV_COLS.join(',');
+  }
+
+  // front-half cells in the SAME order as FH_CSV_COLS.
+  function fhCells() {
+    var vals = (S.values || []).slice(0, 5);
+    while (vals.length < 5) vals.push(''); // pad to exactly 5 columns
+    var goal = goalInfo(S.goal);
+    var arah = S.arahTujuan || computeArahTujuan(); // ensure populated for export
+    var cells = vals.concat([
+      S.disc || '',
+      goal ? goal.label : '',
+      arah || ''
+    ]);
+    return cells.map(csvCellSafe).join(',');
+  }
+
+  function csvRowFull(kode, r) {
+    return ENG.csvRow(kode, r) + ',' + fhCells();
+  }
+
   // ---- copy / csv ----
   $('btnCopyResult').addEventListener('click', function () {
     var r = S._final || finalResult();
-    var line = ENG.csvHeader() + '\n' + ENG.csvRow(S.code || '(grup)', r);
+    var line = csvHeaderFull() + '\n' + csvRowFull(S.code || '(grup)', r);
     copyText(line);
   });
 
   $('btnExportCsv').addEventListener('click', function () {
     var r = S._final || finalResult();
-    var csv = ENG.csvHeader() + '\n' + ENG.csvRow(S.code || '', r) + '\n';
+    var csv = csvHeaderFull() + '\n' + csvRowFull(S.code || '', r) + '\n';
     var name = 'LEAP2036-' + (S.code ? S.code.replace(/[^A-Za-z0-9_-]/g, '') : 'grup') + '.csv';
     downloadFile(name, csv, 'text/csv;charset=utf-8');
     toast('CSV diunduh: ' + name);

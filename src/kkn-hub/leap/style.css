@@ -580,6 +580,154 @@ a { color: var(--accent); }
   padding: 0 22px;
 }
 
+/* ============================================================
+   FRONT-HALF — identity onboarding (Values / DISC / Goal / 3-Lapis)
+   Same navy theme + selectable cards/chips. Picks are metadata
+   only (no resource deltas); engine still owns all 12-round scoring.
+   ============================================================ */
+
+/* shared little kicker above an onboarding prompt */
+.fh-kicker {
+  font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--accent); font-weight: 700; margin-bottom: 4px;
+}
+.fh-prompt { color: var(--ink-soft); font-size: 15.5px; margin: 0 0 16px; }
+.fh-hint { font-size: 12.5px; color: var(--ink-dim); margin: 10px 0 0; }
+
+/* live count + lock note for the values picker */
+.fh-counter {
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  margin: 0 0 14px;
+}
+.fh-count-pill {
+  font-family: var(--mono);
+  font-size: 13px; font-weight: 700;
+  border: 1px solid var(--line2);
+  background: var(--panel2);
+  border-radius: 999px;
+  padding: 5px 13px;
+  color: var(--ink-soft);
+}
+.fh-count-pill.ok { color: #08101f; background: var(--good); border-color: transparent; }
+.fh-count-pill.over { color: #08101f; background: var(--warn); border-color: transparent; }
+
+/* VALUES — grid of toggle chips */
+.value-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+}
+.value-chip {
+  text-align: left;
+  cursor: pointer;
+  border: 1px solid var(--line2);
+  background: var(--panel2);
+  color: var(--ink);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px 12px 42px;
+  position: relative;
+  font-size: 14px;
+  font-family: inherit;
+  line-height: 1.4;
+  transition: transform .12s ease, border-color .15s ease, background .15s ease;
+}
+.value-chip:hover { border-color: var(--accent); background: #1b244a; transform: translateY(-1px); }
+.value-chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.value-chip::before {
+  content: "";
+  position: absolute;
+  left: 13px; top: 50%; transform: translateY(-50%);
+  width: 18px; height: 18px;
+  border-radius: 6px;
+  border: 1px solid var(--line2);
+  background: var(--panel);
+}
+.value-chip.selected {
+  border-color: var(--mental);
+  background: rgba(90,209,200,.12);
+  box-shadow: 0 0 0 1px var(--mental) inset;
+}
+.value-chip.selected::before {
+  background: var(--mental); border-color: var(--mental);
+}
+.value-chip.selected::after {
+  content: "✓";
+  position: absolute;
+  left: 16px; top: 50%; transform: translateY(-50%);
+  font-size: 12px; font-weight: 900; color: #08101f;
+}
+/* once 5 are picked, soften the un-picked ones (still clickable) */
+.value-grid.locked .value-chip:not(.selected) { opacity: .5; }
+
+/* DISC + GOAL — selectable description cards */
+.pick-list { display: grid; gap: 12px; }
+.pick-card {
+  text-align: left;
+  cursor: pointer;
+  width: 100%;
+  border: 1px solid var(--line2);
+  background: var(--panel2);
+  color: var(--ink);
+  border-radius: var(--radius-sm);
+  padding: 15px 16px;
+  font-family: inherit;
+  transition: transform .12s ease, border-color .15s ease, background .15s ease, box-shadow .15s ease;
+}
+.pick-card:hover { border-color: var(--accent); background: #1b244a; transform: translateY(-1px); }
+.pick-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.pick-card .pc-label {
+  font-size: 16px; font-weight: 800; color: #fff; margin-bottom: 3px;
+}
+.pick-card .pc-desc { font-size: 14px; color: var(--ink-soft); line-height: 1.5; }
+.pick-card.selected {
+  border-color: var(--accent);
+  background: rgba(110,168,255,.14);
+  box-shadow: 0 0 0 1px var(--accent) inset;
+}
+
+/* 3-LAPIS bridge card */
+.bridge-card { border-left: 3px solid var(--accent2); }
+.bridge-card .r-title { color: var(--accent); }
+.lapis-list { display: grid; gap: 12px; margin: 8px 0 4px; }
+.lapis {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--panel2);
+  padding: 13px 15px;
+}
+.lapis .lp-h {
+  font-size: 11px; text-transform: uppercase; letter-spacing: .1em;
+  font-weight: 700; color: var(--accent); margin-bottom: 4px;
+}
+.lapis .lp-val { font-size: 15px; font-weight: 700; color: #fff; }
+.lapis .lp-note { font-size: 13px; color: var(--ink-dim); margin-top: 2px; }
+.bridge-closer {
+  margin-top: 16px;
+  border-left: 3px solid var(--gold);
+  background: rgba(255,207,107,.07);
+  padding: 12px 15px;
+  border-radius: 10px;
+  color: var(--ink-soft);
+  font-style: italic;
+  font-size: 14.5px;
+}
+
+/* reveal: the "cermin Tujuan" anchor line */
+.goal-mirror {
+  margin: 18px 0 4px;
+  border: 1px solid rgba(110,168,255,.3);
+  border-left: 3px solid var(--accent);
+  background: rgba(110,168,255,.07);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+}
+.goal-mirror .gm-h {
+  font-size: 11px; text-transform: uppercase; letter-spacing: .14em;
+  color: var(--accent); font-weight: 700; margin-bottom: 6px;
+}
+.goal-mirror p { margin: 0 0 8px; color: var(--ink-soft); font-size: 15px; }
+.goal-mirror .gm-closer { margin: 0; color: var(--ink-dim); font-size: 13.5px; font-style: italic; }
+
 /* ---------- misc ---------- */
 .center { text-align: center; }
 .muted { color: var(--ink-dim); font-size: 13px; }
@@ -657,6 +805,10 @@ a { color: var(--accent); }
   .resume-banner,
   .surat-form,
   #screen-code,
+  #screen-values,
+  #screen-disc,
+  #screen-goal,
+  #screen-bridge,
   #screen-round,
   #screen-chaos,
   #screen-bet,
