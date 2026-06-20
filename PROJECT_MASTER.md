@@ -6,16 +6,21 @@
 
 ---
 
-## ⏸️ RESUME HERE — update 20 Juni 2026 (Sabtu pagi, sesi WORKFLOW ULTRACODE)
+## ⏸️ RESUME HERE — update 20 Juni 2026 (Sabtu, sesi WORKFLOW ULTRACODE — SHIPPED & LIVE)
 
 > Sesi ini multi-agent workflow (ultracode). Saat recap, **6 Claude jalan paralel lintas-projek** → file Brain shared (NOW.md/Dex-Core) rawan ketiban. **PROJECT_MASTER ini = sumber kebenaran KKN.** Kalau shared keliatan aneh, percaya block ini.
 
-**🎯 HEADLINE: Game LEAP 2036 (web playable) DIBANGUN + verified. BELUM deploy/push — HELD nunggu acc Dex.**
+**🎯 HEADLINE: Game LEAP 2036 (web) DIBANGUN PENUH + DEPLOYED LIVE** — `kknstem.vercel.app/leap/` : playable, offline, per-siswa, + front-half (Values/DISC/Goal) + visual polish + PWA installable + optional Supabase data layer. Semua pushed + deployed.
 
-**3 COMMIT LOKAL hari ini (branch `main`, BELUM di-push ke GitHub):**
-1. `8e2c19f` — docs(proposal): commit kerjaan 18-Jun yang nyangkut (v4.5 audit + PROJECT_MASTER + Audit md). *[Wave 0 — protect uncommitted, 1 reset dari ilang]*
-2. `0ada0b6` — fix(hub+docs): sync renderer + docs ke fakta confirmed. *[Wave 3+4]*
-3. `b507ba3` — feat(leap): game LEAP 2036 offline + wiring hub + guard `/api/chat`. *[Wave 1+5]*
+**7 COMMIT hari ini (branch `main`, SEMUA di-push ke Stylenecy/LEAP-2036):**
+1. `8e2c19f` docs(proposal) — kerjaan 18-Jun (v4.5 audit). *[Wave 0]*
+2. `0ada0b6` fix(hub+docs) — sync renderer+docs ke fakta confirmed. *[Wave 3+4]*
+3. `b507ba3` feat(leap) — game core offline + wiring hub + guard `/api/chat`. *[Wave 1+5]*
+4. `d6252f3` docs(state) — recap RESUME 20-Jun.
+5. `63d7591` feat(leap) — front-half Values/DISC/Goal + Goal-anchored reveal. *[Build A]*
+6. `ad1933a` style(leap) — premium visual polish + print-leak fix (real Chrome render). *[Build B]*
+7. `ae918a9` feat(leap) — PWA installable + offline SW + optional Supabase sync + dashboard. *[Build C+D]*
+- **Deployed 2× `vercel --prod`**, final `ae918a9` LIVE. Verified /leap/, manifest, sw.js, dashboard, icon = HTTP 200.
 
 **WAVE 1 — GAME di `src/kkn-hub/leap/`** (engine.js, data.js, style.css, index.html, parity.test.js):
 - Standalone static, **OFFLINE/`file://` safe** (classic `<script src>`, system font, 0 CDN — jalan dari USB tanpa sinyal). Per-siswa (kode opsional + localStorage resume + carry-over hari A1→A2 + CSV export `Kode,Energi,Uang,Mental,TotalF1,Profil`) + mode fasilitator (tanpa kode).
@@ -30,16 +35,23 @@
 
 **🔴 SECURITY — Gemini key (memory lama DIKOREKSI):** key **TIDAK exposed** di client lagi — udah proxied `/api/chat` (env `GEMINI_KEY`). Sisa: (a) key LAMA masih di git history → **rotate (human, Google console)**; (b) `/api/chat` dikasih guard origin/referer (commit b507ba3, fail-open biar ga rusak AI) — perlu test dari live.
 
-**⏸️ HELD — nunggu keputusan Dex (deploy diblok auto-classifier krn lo minta "lihat laporan dulu"):**
-- **Deploy:** `cd src/kkn-hub && vercel --prod` (Vercel authed = `stylenecy`). Belum jalan.
-- **Push GitHub:** `git push` 3 commit ke Stylenecy/LEAP-2036. Belum.
-- **2 PDF untracked** (`assets/Pembagian Team Screening Eyecare.pdf` + `docs/info-program/Panduan KKN...Eyecare Project 2026.pdf`): masuk repo public atau internal? Default = ga di-commit.
+**✅ SHIPPED — semua pushed + deployed (bukan HELD lagi).** Game lengkap di `kknstem.vercel.app/leap/`.
 
-**🔴 HUMAN-ONLY (Dex):** (1) **lembar pengesahan print+ttd Senin 22 Jun ≤09:30**; (2) rotate key Gemini lama; (3) play-test game + eyeball print/PDF; (4) Drive re-upload v4.5; (5) GitHub topics; (6) chase APL TBC (training/consent/orientation/ceremony/video/SMA mitra); (7) LinkedIn.
+**Fitur final game (Build A-D di atas core):**
+- **Front-half** (Build A): pilih-5 Values dari 15, DISC-Lite, Goal Hidup dari 8, 3-Lapis bridge — SEBELUM 12 ronde. Reveal di-anchor ke Goal (Goal-mirror: Condong/Menjauh/Campuran). CSV → 14 kolom (6 asli byte-identical → parity web==Sheet==paper tetap).
+- **Visual** (Build B): deep-space dusk theme, calm motion (no-winner ethos), mobile-first, real Chrome render-verified @390px. Print-leak fixed.
+- **PWA** (Build C): installable (manifest+sw.js cache-first); SW register guarded http(s)-only → `file://` tetap jalan offline.
+- **Data layer** (Build D, OPTIONAL pseudonymous): `leap-sync.js` push ke Supabase kalau dikonfig+online, else queue localStorage; **Kode+skor+profil+Values/DISC/Goal, BUKAN nama**; + `dashboard.html` (distribusi profil+tabel+CSV, passcode ringan). Graceful no-op tanpa config (game tetap jalan).
 
-**Provenance workflow:** map `w9aoqeun7` (6 agen) → game build `wn31ym1yl` (9 agen, 554k tok, parity 0-mismatch) → hub+docs `w54xkutff` (3 agen, review 0-blocker). Backstop log: `last-progress_20-Jun_workflows.md`.
+**🔴 BUTUH DEX (biar tuntas beneran):**
+1. **Provision Supabase** (biar data ngumpul, bukan cuma local CSV): bikin project → run `src/kkn-hub/leap/schema.sql` → copy `leap-config.example.js`→`leap-config.js` isi url+anonKey (gitignored) → buka `dashboard.html`. Panduan: `src/kkn-hub/leap/SETUP.md`. anon key public-safe; **service_role JANGAN**.
+2. **Play-test + eyeball** game di HP/browser asli sebelum 3-7 Agt — copy reveal 7 profil DITULIS BARU (emotional-safety depan minor) + print/PDF + touch feel.
+3. **Lembar pengesahan** print+ttd **Senin 22 Jun ≤09:30**.
+4. Rotate key Gemini lama (git history) · **2 PDF untracked** → REKOMENDASI keep internal (privasi nama + IP eksternal), default ga di-commit · Drive re-upload v4.5 · GitHub topics · chase APL TBC (training/consent/ceremony/video/SMA mitra) · LinkedIn.
 
-**→ LANJUT (chat baru):** baca block ini. Kalau Dex acc lanjut → `git push` + `cd src/kkn-hub && vercel --prod`, verify live (`kknstem.vercel.app/leap/` main offline; hub tampil SD 21-25; pointer v4.5). Lalu human items.
+**Provenance (6 workflow):** map `w9aoqeun7` → game `wn31ym1yl` → hub+docs `w54xkutff` → front-half `w2v5e0yn7` → visual `wekmws96d` → PWA+backend `wmvgry46w` (verify kena session-limit → di-verify MANUAL: node/parity/offline-guard/secret-scan semua PASS). Backstop: `last-progress_20-Jun_workflows.md`.
+
+**→ LANJUT (chat baru):** KKN web SHIPPED + live, ga ada yang nyangkut. Sisa = aksi human di atas (utama: provision Supabase + play-test + **lembar pengesahan Senin**). Game live: `kknstem.vercel.app/leap/`.
 
 ---
 
