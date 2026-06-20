@@ -2,11 +2,48 @@
 
 > **Canonical STATE tracker** untuk SELURUH program KKN (Eyecare + Workshop SMA).
 > Detail desain Workshop SMA ada di **`docs/workshop/Project-Master-LEAP-2036.md`** (jangan duplikat di sini — file itu deep-design, file ini state/status).
-> **Last synced: 2026-06-18.** Update tiap sesi (Universal Session Protocol).
+> **Last synced: 2026-06-20.** Update tiap sesi (Universal Session Protocol).
 
 ---
 
-## ⏸️ RESUME HERE — update 18 Juni 2026 (sore — proposal AUDIT + v4.4→v4.5 upgrade)
+## ⏸️ RESUME HERE — update 20 Juni 2026 (Sabtu pagi, sesi WORKFLOW ULTRACODE)
+
+> Sesi ini multi-agent workflow (ultracode). Saat recap, **6 Claude jalan paralel lintas-projek** → file Brain shared (NOW.md/Dex-Core) rawan ketiban. **PROJECT_MASTER ini = sumber kebenaran KKN.** Kalau shared keliatan aneh, percaya block ini.
+
+**🎯 HEADLINE: Game LEAP 2036 (web playable) DIBANGUN + verified. BELUM deploy/push — HELD nunggu acc Dex.**
+
+**3 COMMIT LOKAL hari ini (branch `main`, BELUM di-push ke GitHub):**
+1. `8e2c19f` — docs(proposal): commit kerjaan 18-Jun yang nyangkut (v4.5 audit + PROJECT_MASTER + Audit md). *[Wave 0 — protect uncommitted, 1 reset dari ilang]*
+2. `0ada0b6` — fix(hub+docs): sync renderer + docs ke fakta confirmed. *[Wave 3+4]*
+3. `b507ba3` — feat(leap): game LEAP 2036 offline + wiring hub + guard `/api/chat`. *[Wave 1+5]*
+
+**WAVE 1 — GAME di `src/kkn-hub/leap/`** (engine.js, data.js, style.css, index.html, parity.test.js):
+- Standalone static, **OFFLINE/`file://` safe** (classic `<script src>`, system font, 0 CDN — jalan dari USB tanpa sinyal). Per-siswa (kode opsional + localStorage resume + carry-over hari A1→A2 + CSV export `Kode,Energi,Uang,Mental,TotalF1,Profil`) + mode fasilitator (tanpa kode).
+- Engine **byte-identical** ke `docs/sistem-data/leap2036-build.gs`: 12 kartu + 3 chaos + F2.5 deferred bet, running-clamp 0-200, TotalF1 seam akhir Fase 1, ladder 7 profil (Pelari-before-Sukses). Single source of scoring (renderer ga hardcode angka).
+- Flow: Fondasi→Krisis (chaos toggle, off default)→Resolusi Taruhan F2.5 50:50 di awal Panen (kalau pilih A)→Panen→reveal profil (group lalu privat, safe reframe, headline "7 jalur. 0 juara. Semua nyata.")→Surat dari Diri 2036 fill-in→print/PDF.
+- **VERIFIED:** parity.test.js 11 case + 2000-run fuzz + full classifier grid vs `.gs` = **0 mismatch**; offline audit PASS; pedagogy PASS (jargon sanitized, F1.5 no "reksa dana"); `node --check` clean. Test bisa diulang: `node src/kkn-hub/leap/parity.test.js`.
+- ⚠️ **Copy reveal 7 profil = DITULIS BARU** (sumber cuma one-liner). Dex **WAJIB play-test + eyeball copy & print/PDF di browser asli** sebelum 3-7 Agt (emotional-safety di depan minor). Build pakai headless DOM shim, belum screenshot browser nyata.
+
+**WAVE 3+4 — hub renderer + docs (commit `0ada0b6`):**
+- `getSituation()` cap SD window di 25 Juli (was 27), Opening/Closing tag TENTATIF. `renderEyecare` drop blanket "tentatif" → "1 kepengurusan besar (terpusat)". timeline SD 21-25 confirmed. tagColor +CONFIRMED/+PENTING. GEMINI_CONTEXT/seed → 18-Jun/all-teams/v4.5/2+3/3-7 Agt. member link proposal v3→v4.5. dead CSS ~22 baris dibuang. **getSituation di-trace adversarial 2026-06-20..08-03 = bener, 0 blocker.**
+- docs/README v3→v4.4(=v4.5) canonical. Proposal +header v4.5 in-doc + 3.1a heading fix + target "hadir"→"menyelesaikan". PROJECT_MASTER §17-19/§8 mitigation/target/headroom reconciled + backup-plan & Fun Day PJ resolved.
+
+**🔴 SECURITY — Gemini key (memory lama DIKOREKSI):** key **TIDAK exposed** di client lagi — udah proxied `/api/chat` (env `GEMINI_KEY`). Sisa: (a) key LAMA masih di git history → **rotate (human, Google console)**; (b) `/api/chat` dikasih guard origin/referer (commit b507ba3, fail-open biar ga rusak AI) — perlu test dari live.
+
+**⏸️ HELD — nunggu keputusan Dex (deploy diblok auto-classifier krn lo minta "lihat laporan dulu"):**
+- **Deploy:** `cd src/kkn-hub && vercel --prod` (Vercel authed = `stylenecy`). Belum jalan.
+- **Push GitHub:** `git push` 3 commit ke Stylenecy/LEAP-2036. Belum.
+- **2 PDF untracked** (`assets/Pembagian Team Screening Eyecare.pdf` + `docs/info-program/Panduan KKN...Eyecare Project 2026.pdf`): masuk repo public atau internal? Default = ga di-commit.
+
+**🔴 HUMAN-ONLY (Dex):** (1) **lembar pengesahan print+ttd Senin 22 Jun ≤09:30**; (2) rotate key Gemini lama; (3) play-test game + eyeball print/PDF; (4) Drive re-upload v4.5; (5) GitHub topics; (6) chase APL TBC (training/consent/orientation/ceremony/video/SMA mitra); (7) LinkedIn.
+
+**Provenance workflow:** map `w9aoqeun7` (6 agen) → game build `wn31ym1yl` (9 agen, 554k tok, parity 0-mismatch) → hub+docs `w54xkutff` (3 agen, review 0-blocker). Backstop log: `last-progress_20-Jun_workflows.md`.
+
+**→ LANJUT (chat baru):** baca block ini. Kalau Dex acc lanjut → `git push` + `cd src/kkn-hub && vercel --prod`, verify live (`kknstem.vercel.app/leap/` main offline; hub tampil SD 21-25; pointer v4.5). Lalu human items.
+
+---
+
+## ⏸️ RESUME — update 18 Juni 2026 (sore — proposal AUDIT + v4.4→v4.5 upgrade)
 
 **✅ PROPOSAL AUDIT KOMPREHENSIF vs PANDUAN KKN (18 Jun):**
 - **Sumber:** `Panduan KKN International Service Learning - Eyecare Project 2026.pdf` (full teks diekstrak).
