@@ -28,6 +28,8 @@ assets/Surat Kesanggupan*
 .env
 .env.local
 .env.*.local
+# LEAP game Supabase config (Dex isi url+anonKey lokal; anon public-safe tapi keep project URL out of repo)
+src/kkn-hub/leap/leap-config.js
 
 # ═══════════════════════════════════════════════════════════
 # PUBLIC REPO — exclude internal / machine / personal (1 Jun)

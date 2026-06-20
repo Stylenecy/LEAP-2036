@@ -6,6 +6,10 @@
 <meta name="theme-color" content="#080b16">
 <title>LEAP 2036 — Decision Engine</title>
 <!-- OFFLINE / file:// SAFE: classic scripts + same-folder stylesheet. NO CDN, NO type=module, NO web fonts. -->
+<!-- PWA: installable + offline shell. Relative paths so it works under any sub-path; harmless on file://. -->
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/svg+xml" href="icon.svg">
+<link rel="apple-touch-icon" href="icon.svg">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -286,6 +290,13 @@
 <!-- classic scripts, same folder, no CDN -->
 <script src="engine.js"></script>
 <script src="data.js"></script>
+<!-- OPTIONAL Supabase data layer — both load BEFORE the controller.
+     leap-config.js may not exist (template is leap-config.example.js);
+     onerror swallows the 404 so the game never breaks. leap-sync.js is
+     fully graceful: with no config it's a silent no-op (see its header).
+     The core game does NOT depend on either of these. -->
+<script src="leap-config.js" onerror="window.__LEAP_CFG_MISSING=true"></script>
+<script src="leap-sync.js"></script>
 <script>
 /* =====================================================================
    LEAP 2036 — flow controller (classic script).
@@ -1061,7 +1072,15 @@
 
     // "cermin Tujuan" anchor — threads the chosen Goal into the reveal
     // (leaned toward/away). No-op when no Goal was chosen (older sessions).
+    // applyGoalMirror() also finalizes S.arahTujuan, so the sync payload
+    // below sees the resolved direction.
     applyGoalMirror();
+
+    // ---- OPTIONAL cloud sync — fire ONCE per completed run, here at the
+    // reveal (profile + arahTujuan are now final). Pseudonymous fields
+    // only; NEVER a real name. Fully guarded: no-op if leap-sync.js absent
+    // or unconfigured, and it can never throw into the game flow. ----
+    submitResultToSync(res);
 
     $('btnSeePrivate').onclick = function () {
       hide($('groupReveal'));
@@ -1071,6 +1090,48 @@
 
     renderBars();
     renderProgress();
+  }
+
+  // ---------------------------------------------------------------------
+  //  OPTIONAL CLOUD SYNC bridge. Builds the SAME pseudonymous payload the
+  //  CSV uses (engine scores + front-half identity) and hands it to
+  //  window.LEAP_SYNC.submit — IF that exists. Guarded three ways:
+  //    (1) no leap-sync.js loaded  -> window.LEAP_SYNC is undefined -> skip
+  //    (2) submit() itself no-ops when there's no Supabase config / offline
+  //        (it queues to localStorage and retries) — see leap-sync.js
+  //    (3) we de-dupe per run via S._synced so re-rendering / resuming the
+  //        reveal won't submit twice.
+  //  Privacy: kode + scores + profil + values/disc/goal/arah ONLY. No name.
+  //  Wrapped in try/catch so sync can NEVER break the reveal.
+  // ---------------------------------------------------------------------
+  function submitResultToSync(res) {
+    try {
+      if (!window.LEAP_SYNC || typeof window.LEAP_SYNC.submit !== 'function') return;
+      if (S._synced) return; // already sent this run
+      var goal = goalInfo(S.goal);
+      var arah = S.arahTujuan || computeArahTujuan();
+      var payload = {
+        kode: S.code || '',
+        // engine resource names: E / K(Uang) / M
+        energi: res.E,
+        uang: res.K,
+        mental: res.M,
+        total_f1: res.totalF1,
+        profil: res.profil,
+        // front-half identity (metadata only) — same as CSV columns
+        nilai: (S.values || []).slice(0, 5),
+        disc: S.disc || '',
+        tujuan: goal ? goal.label : '',
+        arah_tujuan: arah || ''
+      };
+      S._synced = true;
+      save();
+      // submit() returns a Promise but we intentionally don't await it —
+      // the reveal renders immediately regardless of network.
+      window.LEAP_SYNC.submit(payload);
+    } catch (e) {
+      /* sync must never interfere with play */
+    }
   }
 
   function resChip(cls, name, val) {
@@ -1309,6 +1370,36 @@
   checkResume();
   gotoScreen('code');
 
+})();
+
+/* =====================================================================
+   PWA SERVICE WORKER — GUARDED registration (classic script).
+   The core game does NOT need this: it already runs from file:// with no
+   network. The SW only adds an installable offline shell on http(s).
+
+   GUARD: register ONLY when
+     (1) the Service Worker API exists in this browser, AND
+     (2) the page is served over http/https (location.protocol starts
+         with 'http') — so file:// (USB / double-click) silently SKIPS,
+         where SW registration is unsupported and would throw.
+   Any failure is swallowed; it never blocks or breaks play.
+   ===================================================================== */
+(function () {
+  'use strict';
+  try {
+    var canSW = ('serviceWorker' in navigator) &&
+                (typeof location !== 'undefined') &&
+                /^http/.test(location.protocol); // 'http:' or 'https:' only — NOT 'file:'
+    if (!canSW) return; // file:// and unsupported browsers: no-op, zero errors
+    window.addEventListener('load', function () {
+      // relative 'sw.js' => scope = this folder; same path strategy as the manifest.
+      navigator.serviceWorker.register('sw.js').catch(function () {
+        /* offline shell unavailable; game still plays normally */
+      });
+    });
+  } catch (e) {
+    /* never let PWA wiring interfere with the game */
+  }
 })();
 </script>
 </body>

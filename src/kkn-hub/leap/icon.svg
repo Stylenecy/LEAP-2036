@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="LEAP 2036">
+  <defs>
+    <!-- deep-space dusk background -->
+    <radialGradient id="bg" cx="50%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#182142"/>
+      <stop offset="55%" stop-color="#0c1124"/>
+      <stop offset="100%" stop-color="#080b16"/>
+    </radialGradient>
+    <!-- periwinkle -> violet accent gradient -->
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#9bbcff"/>
+      <stop offset="45%" stop-color="#7aa2ff"/>
+      <stop offset="100%" stop-color="#9d8bff"/>
+    </linearGradient>
+    <linearGradient id="accentSoft" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7aa2ff" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#9d8bff" stop-opacity="0.9"/>
+    </linearGradient>
+  </defs>
+
+  <!-- full-bleed background (maskable: covers entire canvas, no transparency) -->
+  <rect x="0" y="0" width="512" height="512" fill="url(#bg)"/>
+
+  <!-- ===== safe zone ~ center 80% (mark kept within the maskable safe area) ===== -->
+  <g transform="translate(256 256)">
+    <!-- orbit / leap arc -->
+    <path d="M -120 70 A 150 150 0 0 1 120 -70"
+          fill="none" stroke="url(#accent)" stroke-width="14"
+          stroke-linecap="round" opacity="0.55"/>
+    <!-- the leaping spark sitting on the arc -->
+    <circle cx="120" cy="-70" r="20" fill="url(#accent)"/>
+    <circle cx="120" cy="-70" r="34" fill="none" stroke="url(#accentSoft)" stroke-width="6" opacity="0.45"/>
+
+    <!-- LEAP wordmark -->
+    <text x="0" y="-8" text-anchor="middle"
+          font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif"
+          font-size="116" font-weight="800" letter-spacing="6"
+          fill="url(#accent)">LEAP</text>
+    <!-- 2036 sub-mark -->
+    <text x="0" y="64" text-anchor="middle"
+          font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif"
+          font-size="60" font-weight="700" letter-spacing="14"
+          fill="#b3bce0">2036</text>
+  </g>
+</svg>
