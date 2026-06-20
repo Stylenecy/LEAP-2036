@@ -1,9 +1,29 @@
 // Vercel serverless proxy for Gemini — keeps the API key server-side (Vercel env
 // GEMINI_KEY) so it is NEVER in the public client bundle/repo (no more leaked-key
 // auto-disable). The browser POSTs {contents, generationConfig} here.
+// Light origin guard: blocks cross-origin browser abuse (hotlinking/embedding the
+// public proxy) without breaking legit users. Allows kknstem.vercel.app, any
+// *.vercel.app preview, localhost, AND missing/malformed headers (privacy browsers
+// strip Referer/Origin — fail OPEN so real users are never blocked). Not a hard
+// auth (a scripted client with no headers still passes); pairs with rotating the
+// old key. Stateless, no KV needed.
+function isAllowedOrigin(req) {
+  const ref = req.headers['origin'] || req.headers['referer'] || '';
+  if (!ref) return true;
+  try {
+    const host = new URL(ref).hostname;
+    return host === 'kknstem.vercel.app' || host === 'localhost' || host === '127.0.0.1' || host.endsWith('.vercel.app');
+  } catch {
+    return true;
+  }
+}
+
 module.exports = async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: { message: 'Method not allowed' } });
+  }
+  if (!isAllowedOrigin(req)) {
+    return res.status(403).json({ error: { message: 'Origin tidak diizinkan.' } });
   }
   const key = process.env.GEMINI_KEY;
   if (!key) {

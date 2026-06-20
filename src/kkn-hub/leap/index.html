@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0a0e1a">
+<title>LEAP 2036 — Decision Engine</title>
+<!-- OFFLINE / file:// SAFE: classic scripts + same-folder stylesheet. NO CDN, NO type=module, NO web fonts. -->
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="wrap" id="app">
+
+  <!-- ============ HEADER ============ -->
+  <header class="app-head no-print" id="appHead">
+    <div class="app-logo">LEAP · 2036</div>
+    <h1 class="app-title">Decision Engine</h1>
+    <p class="app-sub">10 tahun keputusan, dimainkan dalam beberapa menit.</p>
+    <div class="headline-tag" id="headlineTag">7 jalur. 0 juara. Semua nyata.</div>
+  </header>
+
+  <!-- live resource bars (hidden until play starts) -->
+  <section class="stats hidden" id="statBars" aria-label="Modal hidup">
+    <div class="stat stat-e">
+      <span class="stat-name">Energi</span>
+      <span class="stat-track"><span class="stat-fill" id="barE"></span></span>
+      <span class="stat-val" id="valE">100</span>
+    </div>
+    <div class="stat stat-u">
+      <span class="stat-name">Uang</span>
+      <span class="stat-track"><span class="stat-fill" id="barU"></span></span>
+      <span class="stat-val" id="valU">100</span>
+    </div>
+    <div class="stat stat-m">
+      <span class="stat-name">Mental</span>
+      <span class="stat-track"><span class="stat-fill" id="barM"></span></span>
+      <span class="stat-val" id="valM">100</span>
+    </div>
+  </section>
+
+  <!-- progress -->
+  <div class="progress hidden" id="progress">
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-label"><span id="progressPhase">Fondasi</span><span id="progressCount">0 / 12</span></div>
+  </div>
+
+  <!-- ============ SCREEN: CODE ENTRY ============ -->
+  <section id="screen-code" class="card">
+    <div id="resumeBanner" class="resume-banner hidden">
+      <span class="rb-text" id="resumeText">Ada sesi tersimpan.</span>
+      <button class="btn btn-primary" id="btnResume">Lanjutkan</button>
+      <button class="btn btn-ghost" id="btnDiscard">Mulai baru</button>
+    </div>
+
+    <div class="phase-row"><span class="phase-badge phase-Fondasi">Mulai</span></div>
+    <h2 class="r-title">Siap menjalani 2026 sampai 2036?</h2>
+    <p class="r-situation">
+      Kamu akan menghadapi 12 keputusan hidup. Tiap pilihan mengubah tiga hal yang kamu bawa:
+      <strong style="color:var(--energi)">Energi</strong>,
+      <strong style="color:var(--uang)">Uang</strong>, dan
+      <strong style="color:var(--mental)">Mental</strong>.
+      Tidak ada jawaban benar atau salah — yang ada hanya konsekuensi. Di ujung jalan, kamu akan
+      bertemu salah satu dari 7 versi dirimu di 2036.
+    </p>
+
+    <div class="field">
+      <label for="inpCode">Kode siswa <span class="hint">(opsional — mis. A-01)</span></label>
+      <input id="inpCode" class="input code" type="text" inputmode="text" autocomplete="off"
+             placeholder="A-01" maxlength="12" aria-describedby="codeHint">
+      <p class="muted" id="codeHint" style="margin-top:7px">Kosongkan kalau bermain berkelompok bersama fasilitator. Kode dipakai untuk menyimpan & mengekspor hasilmu.</p>
+    </div>
+
+    <button class="btn btn-primary btn-block" id="btnStart">Mulai perjalanan →</button>
+    <p class="mode-line" id="modeLine">Mode: kelompok (tanpa kode)</p>
+
+    <details class="op-toggle" id="opToggle">
+      <summary>Operator / fasilitator: Kartu Chaos (opsional)</summary>
+      <p class="op-note">Kartu Chaos diterapkan ke semua peserta di antara Fase 2 dan Fase 3. Default mati. Biasanya cabut maksimal 2 dari 3.</p>
+      <div class="chaos-picks" id="chaosPicks"><!-- filled by JS --></div>
+      <p class="op-note" id="chaosNote">Tidak ada Kartu Chaos dipilih.</p>
+    </details>
+  </section>
+
+  <!-- ============ SCREEN: ROUND (decision) ============ -->
+  <section id="screen-round" class="card hidden">
+    <div class="phase-row">
+      <span class="phase-badge" id="rPhaseBadge">Fondasi</span>
+      <span class="year-chip" id="rYear">2026</span>
+      <span class="round-id" id="rId">F1.1</span>
+    </div>
+    <h2 class="r-title" id="rTitle"></h2>
+    <p class="r-situation" id="rSituation"></p>
+    <div class="guardrail hidden" id="rGuardrail"></div>
+
+    <div class="options" id="rOptions">
+      <button class="opt" id="optA" data-choice="A"><span class="opt-key">A</span><span class="opt-text" id="optAText"></span></button>
+      <button class="opt" id="optB" data-choice="B"><span class="opt-key">B</span><span class="opt-text" id="optBText"></span></button>
+    </div>
+
+    <div class="reveal hidden" id="rReveal">
+      <div class="reveal-h">Beberapa waktu kemudian…</div>
+      <div id="rRevealText"></div>
+    </div>
+
+    <div class="btn-row end" style="margin-top:18px">
+      <button class="btn btn-primary hidden" id="btnNext">Lanjut →</button>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN: CHAOS ============ -->
+  <section id="screen-chaos" class="card chaos-card hidden">
+    <div class="phase-row">
+      <span class="phase-badge phase-Krisis">Kartu Chaos</span>
+      <span class="round-id" id="chId">C.1</span>
+    </div>
+    <h2 class="r-title" id="chTitle"></h2>
+    <p class="r-situation" id="chNarrative"></p>
+    <div class="chaos-instruction">
+      <div class="ci-h">Tantangan kelompok</div>
+      <div id="chInstruction"></div>
+    </div>
+    <div class="btn-row end" style="margin-top:18px">
+      <button class="btn btn-primary" id="btnChaosNext">Lanjut →</button>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN: BET RESOLUTION (F2.5) ============ -->
+  <section id="screen-bet" class="card bet-card hidden">
+    <div class="phase-row">
+      <span class="phase-badge phase-Panen">Resolusi Taruhan</span>
+      <span class="round-id">F2.5</span>
+    </div>
+    <h2 class="r-title" id="betTitle"></h2>
+    <p class="r-situation" id="betIntro"></p>
+    <div class="bet-draw">
+      <button class="btn btn-primary" id="btnDrawCard">Tarik kartu hasil</button>
+      <div class="bet-cards" id="betResult"></div>
+    </div>
+    <div class="btn-row end" style="margin-top:18px">
+      <button class="btn btn-primary hidden" id="btnBetNext">Lanjut ke Panen →</button>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN: REVEAL (profile) ============ -->
+  <section id="screen-reveal" class="card hidden">
+    <div class="reveal-hero">
+      <div class="reveal-kicker">Tahun 2036 · Hasil panen</div>
+      <div class="reveal-headline" id="revealHeadline">7 jalur. 0 juara. Semua nyata.</div>
+    </div>
+
+    <div class="res-summary" id="resSummary"></div>
+
+    <!-- group reveal first -->
+    <div id="groupReveal">
+      <hr class="divider">
+      <div class="center">
+        <div class="muted" style="letter-spacing:.14em;text-transform:uppercase;font-size:11px;font-weight:700;color:var(--accent)">Reveal bersama</div>
+        <h3 class="profile-name" id="profileName"></h3>
+        <div class="profile-en" id="profileEn"></div>
+      </div>
+      <div class="reveal-stage-note">Ini cermin, bukan rapor. Tiap jalur sama nyata dan sama berharganya.</div>
+      <div class="center">
+        <button class="btn btn-primary" id="btnSeePrivate">Lihat pesan pribadiku →</button>
+      </div>
+    </div>
+
+    <!-- private reveal -->
+    <div id="privateReveal" class="hidden">
+      <hr class="divider">
+      <div class="profile-block">
+        <div class="pb-h">Yang terbaca dari jalurmu</div>
+        <p id="pbReveal"></p>
+      </div>
+      <div class="profile-block tradeoff">
+        <div class="pb-h">Yang kamu pertukarkan</div>
+        <p id="pbTradeoff"></p>
+      </div>
+      <div class="profile-block reframe">
+        <div class="pb-h">Cara memandangnya</div>
+        <p id="pbReframe"></p>
+      </div>
+
+      <div class="toolbar">
+        <button class="btn" id="btnCopyResult">Salin hasil</button>
+        <button class="btn" id="btnExportCsv">Ekspor CSV</button>
+        <button class="btn" id="btnReplay">Main lagi</button>
+      </div>
+
+      <div class="center" style="margin-top:18px">
+        <button class="btn btn-primary" id="btnToSurat">Tulis Surat dari Diri 2036 →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN: SURAT (fill-in + print) ============ -->
+  <section id="screen-surat" class="card hidden">
+    <div class="phase-row"><span class="phase-badge phase-Panen">Surat dari Diri 2036</span></div>
+    <h2 class="r-title">Surat untuk dirimu yang sekarang</h2>
+    <p class="surat-intro">Tulis surat dari dirimu di tahun 2036 untuk dirimu hari ini. Ini milikmu sendiri — tidak ada skor, tidak dinilai, tidak dibagikan. Isi yang kamu bisa; sisanya boleh dilanjutkan di rumah.</p>
+    <div class="surat-seed" id="suratSeed"></div>
+
+    <form class="surat-form" id="suratForm" autocomplete="off" onsubmit="return false"><!-- inputs by JS --></form>
+
+    <div class="toolbar">
+      <button class="btn btn-primary" id="btnPrint">Cetak / Simpan PDF</button>
+      <button class="btn" id="btnBackReveal">← Kembali ke hasil</button>
+      <button class="btn" id="btnReplay2">Main lagi</button>
+    </div>
+    <p class="muted center" style="margin-top:12px">Saat mencetak, hanya suratmu yang muncul — rapi dan terang di kertas.</p>
+  </section>
+
+  <!-- ============ PRINT AREA (light, only visible when printing) ============ -->
+  <div id="print-area">
+    <div class="print-head">
+      <div class="ph-title">Surat dari Diriku di Tahun 2036</div>
+      <div class="ph-sub" id="printSub">LEAP 2036</div>
+    </div>
+    <div class="surat-print" id="suratPrint"></div>
+  </div>
+
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<!-- classic scripts, same folder, no CDN -->
+<script src="engine.js"></script>
+<script src="data.js"></script>
+<script>
+/* =====================================================================
+   LEAP 2036 — flow controller (classic script).
+   Engine is the SINGLE source of scoring. This file never hardcodes
+   deltas/thresholds; it asks window.LEAP_ENGINE for every number.
+   ===================================================================== */
+(function () {
+  'use strict';
+
+  var ENG = window.LEAP_ENGINE;
+  var DATA = window.LEAP_DATA;
+  if (!ENG || !DATA) {
+    document.body.innerHTML = '<div class="wrap"><div class="card">Gagal memuat engine.js / data.js. Pastikan ketiga file berada di folder yang sama.</div></div>';
+    return;
+  }
+
+  var STORE_KEY = 'leap2036.session.v1';
+
+  // ---- ordered playable round ids (decisions only) ----
+  var ROUND_IDS = ENG.ROUNDS_F1.concat(ENG.ROUNDS_F2, ENG.ROUNDS_F3); // 12
+  var ROUND_BY_ID = {};
+  DATA.rounds.forEach(function (r) { ROUND_BY_ID[r.id] = r; });
+  var PROFILE_BY_ID = {};
+  DATA.profiles.forEach(function (p) { PROFILE_BY_ID[p.id_name] = p; });
+  var CHAOS_BY_ID = {};
+  DATA.chaos.forEach(function (c) { CHAOS_BY_ID[c.id] = c; });
+
+  // ---- session state ----
+  var S = newSession();
+
+  function newSession() {
+    return {
+      code: '',
+      answers: {},            // { 'F1.1':'A', ... }
+      idx: 0,                 // pointer into ROUND_IDS
+      stage: 'code',          // code | round | chaos | bet | reveal | surat
+      chaosPlayed: [],        // operator toggle, e.g. ['C.2']
+      chaosSeen: false,       // chaos interstitials already shown
+      betResolved: null,      // true/false once the F2.5 card is drawn (null = not yet / N/A)
+      surat: {},              // surat field values
+      startedAt: Date.now(),
+      day: dayStamp()         // for day-boundary carry-over note
+    };
+  }
+
+  function dayStamp() {
+    var d = new Date();
+    return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
+  }
+
+  // ---- DOM helpers ----
+  function $(id) { return document.getElementById(id); }
+  function show(el) { el.classList.remove('hidden'); }
+  function hide(el) { el.classList.add('hidden'); }
+  function setText(id, t) { $(id).textContent = t; }
+
+  var SCREENS = ['screen-code', 'screen-round', 'screen-chaos', 'screen-bet', 'screen-reveal', 'screen-surat'];
+  function gotoScreen(name) {
+    SCREENS.forEach(function (s) { hide($(s)); });
+    show($('screen-' + name));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function toast(msg) {
+    var t = $('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(toast._t);
+    toast._t = setTimeout(function () { t.classList.remove('show'); }, 2200);
+  }
+
+  // ---- persistence ----
+  function save() {
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(S)); } catch (e) {}
+  }
+  function load() {
+    try {
+      var raw = localStorage.getItem(STORE_KEY);
+      return raw ? JSON.parse(raw) : null;
+    } catch (e) { return null; }
+  }
+  function clearSave() {
+    try { localStorage.removeItem(STORE_KEY); } catch (e) {}
+  }
+
+  // =====================================================================
+  //  LIVE SCORING (engine is the source). Recompute partial state up to
+  //  the answers given so far, using the SAME sequence the engine builds.
+  // =====================================================================
+  function liveState() {
+    // Score with whatever answers exist; engine running-clamps each round.
+    // We pass the resolved bet so the bars match post-resolution; if the
+    // bet isn't resolved yet, engine leaves the payoff as a no-op (delta null).
+    var res = ENG.scoreRun(S.answers, {
+      chaosPlayed: chaosAppliedSoFar(),
+      f25Success: (typeof S.betResolved === 'boolean') ? S.betResolved : null,
+      rng: function () { return 1; } // never auto-resolve mid-play; keep payoff pending
+    });
+    return res;
+  }
+
+  // chaos only counts once we've passed Fase 2 (chaosSeen)
+  function chaosAppliedSoFar() {
+    return S.chaosSeen ? S.chaosPlayed : [];
+  }
+
+  function renderBars() {
+    var st = liveState();
+    paintBar('barE', 'valE', st.E);
+    paintBar('barU', 'valU', st.K);
+    paintBar('barM', 'valM', st.M);
+  }
+
+  function paintBar(barId, valId, v) {
+    var pct = Math.max(0, Math.min(100, (v / ENG.MAX) * 100));
+    $(barId).style.width = pct + '%';
+    var valEl = $(valId);
+    if (valEl.textContent !== String(v)) {
+      valEl.textContent = v;
+      valEl.classList.remove('bump');
+      // force reflow to restart animation
+      void valEl.offsetWidth;
+      valEl.classList.add('bump');
+    }
+  }
+
+  function renderProgress() {
+    var done = Object.keys(S.answers).filter(function (k) { return ROUND_IDS.indexOf(k) >= 0; }).length;
+    var pct = (done / ROUND_IDS.length) * 100;
+    $('progressFill').style.width = pct + '%';
+    setText('progressCount', done + ' / ' + ROUND_IDS.length);
+    var cur = ROUND_IDS[Math.min(S.idx, ROUND_IDS.length - 1)];
+    var r = ROUND_BY_ID[cur];
+    if (r) setText('progressPhase', r.phase);
+  }
+
+  // =====================================================================
+  //  CODE SCREEN
+  // =====================================================================
+  function initCodeScreen() {
+    // chaos toggles
+    var wrap = $('chaosPicks');
+    wrap.innerHTML = '';
+    DATA.chaos.forEach(function (c) {
+      var lab = document.createElement('label');
+      lab.className = 'chk';
+      var cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.value = c.id;
+      cb.checked = S.chaosPlayed.indexOf(c.id) >= 0;
+      cb.addEventListener('change', onChaosToggle);
+      lab.appendChild(cb);
+      lab.appendChild(document.createTextNode(' ' + c.id + ' · ' + c.title));
+      wrap.appendChild(lab);
+    });
+    updateChaosNote();
+
+    $('inpCode').addEventListener('input', function () {
+      var v = $('inpCode').value.trim();
+      setText('modeLine', v ? ('Mode: per-siswa · kode ' + v.toUpperCase()) : 'Mode: kelompok (tanpa kode)');
+    });
+
+    $('btnStart').addEventListener('click', startPlay);
+    $('btnResume').addEventListener('click', resumeSaved);
+    $('btnDiscard').addEventListener('click', function () {
+      clearSave();
+      hide($('resumeBanner'));
+      toast('Sesi lama dihapus. Mulai baru.');
+    });
+
+    setText('headlineTag', DATA.headline);
+  }
+
+  function onChaosToggle() {
+    var picks = [];
+    $('chaosPicks').querySelectorAll('input[type=checkbox]').forEach(function (cb) {
+      if (cb.checked) picks.push(cb.value);
+    });
+    S.chaosPlayed = picks;
+    updateChaosNote();
+    save();
+  }
+
+  function updateChaosNote() {
+    var n = $('chaosNote');
+    n.textContent = S.chaosPlayed.length
+      ? ('Kartu Chaos aktif: ' + S.chaosPlayed.join(', '))
+      : 'Tidak ada Kartu Chaos dipilih.';
+  }
+
+  function startPlay() {
+    var code = $('inpCode').value.trim().toUpperCase();
+    S.code = code;
+    S.idx = 0;
+    S.stage = 'round';
+    S.startedAt = Date.now();
+    S.day = dayStamp();
+    show($('statBars'));
+    show($('progress'));
+    save();
+    renderRound();
+  }
+
+  // =====================================================================
+  //  RESUME / DAY-BOUNDARY CARRY-OVER
+  // =====================================================================
+  function checkResume() {
+    var prev = load();
+    if (!prev || !prev.stage || prev.stage === 'code') return;
+    var answered = prev.answers ? Object.keys(prev.answers).length : 0;
+    S._pending = prev;
+    var who = prev.code ? ('Kode ' + prev.code) : 'Mode kelompok';
+    var crossDay = prev.day && prev.day !== dayStamp();
+    setText('resumeText',
+      who + ' · ' + answered + ' keputusan tersimpan' +
+      (crossDay ? ' (dari sesi hari sebelumnya — skor dibawa lanjut)' : '') + '.');
+    show($('resumeBanner'));
+  }
+
+  function resumeSaved() {
+    var prev = S._pending || load();
+    if (!prev) { toast('Tidak ada sesi tersimpan.'); return; }
+    S = prev;
+    // carry over to a fresh day stamp but keep all scores/answers
+    S.day = dayStamp();
+    hide($('resumeBanner'));
+    show($('statBars'));
+    show($('progress'));
+    routeToStage();
+    toast('Sesi dilanjutkan.');
+  }
+
+  function routeToStage() {
+    if (S.stage === 'reveal') { renderReveal(); }
+    else if (S.stage === 'surat') { renderSurat(); }
+    else if (S.stage === 'bet') { renderBet(); }
+    else if (S.stage === 'chaos') { renderChaosSequence(0); }
+    else { renderRound(); }
+  }
+
+  // =====================================================================
+  //  ROUND RENDER
+  // =====================================================================
+  function renderRound() {
+    S.stage = 'round';
+    if (S.idx >= ROUND_IDS.length) { afterAllRounds(); return; }
+
+    var id = ROUND_IDS[S.idx];
+    var r = ROUND_BY_ID[id];
+    gotoScreen('round');
+
+    var badge = $('rPhaseBadge');
+    badge.className = 'phase-badge phase-' + r.phase;
+    badge.textContent = r.phase;
+    setText('rYear', r.year);
+    setText('rId', r.id);
+    setText('rTitle', r.title);
+    setText('rSituation', r.situation);
+
+    var g = $('rGuardrail');
+    if (r.guardrail) { g.innerHTML = '<strong>Pagar aman:</strong> ' + escapeHtml(r.guardrail); show(g); }
+    else { hide(g); }
+
+    setText('optAText', r.optionA);
+    setText('optBText', r.optionB);
+
+    var prior = S.answers[id] || null;
+    var optA = $('optA'), optB = $('optB');
+    resetOpt(optA); resetOpt(optB);
+    hide($('rReveal'));
+    hide($('btnNext'));
+
+    optA.onclick = function () { choose(id, 'A'); };
+    optB.onclick = function () { choose(id, 'B'); };
+
+    if (prior) { applyChosenUI(id, prior, false); } // re-entry shows prior pick + reveal
+
+    renderBars();
+    renderProgress();
+    save();
+  }
+
+  function resetOpt(btn) {
+    btn.classList.remove('selected', 'dimmed');
+    btn.disabled = false;
+  }
+
+  function choose(id, ch) {
+    S.answers[id] = ch;
+    applyChosenUI(id, ch, true);
+    renderBars();   // bars update immediately with running clamp from engine
+    renderProgress();
+    save();
+  }
+
+  function applyChosenUI(id, ch, animate) {
+    var r = ROUND_BY_ID[id];
+    var optA = $('optA'), optB = $('optB');
+    var chosen = (ch === 'A') ? optA : optB;
+    var other = (ch === 'A') ? optB : optA;
+    chosen.classList.add('selected');
+    chosen.classList.remove('dimmed');
+    other.classList.remove('selected');
+    other.classList.add('dimmed');
+
+    var rev = $('rReveal');
+    $('rRevealText').textContent = (ch === 'A') ? r.revealA : r.revealB;
+    show(rev);
+    show($('btnNext'));
+
+    // allow switching choice (re-pick) before advancing
+    optA.onclick = function () { choose(id, 'A'); };
+    optB.onclick = function () { choose(id, 'B'); };
+  }
+
+  $('btnNext').addEventListener('click', function () {
+    var id = ROUND_IDS[S.idx];
+    if (!S.answers[id]) { toast('Pilih A atau B dulu.'); return; }
+    advanceFromRound();
+  });
+
+  function advanceFromRound() {
+    var curId = ROUND_IDS[S.idx];
+    // After the LAST Fase 2 round (F2.5), insert chaos + bet before Fase 3.
+    if (curId === 'F2.5') {
+      S.idx++;            // point at first F3 round
+      runInterstitials();
+      return;
+    }
+    S.idx++;
+    renderRound();
+  }
+
+  // =====================================================================
+  //  INTERSTITIALS between Fase 2 and Fase 3:
+  //  (1) Chaos cards (operator toggle, class-wide)
+  //  (2) F2.5 deferred-bet resolution (only if A chosen)
+  //  then -> Fase 3 (F3.1)
+  // =====================================================================
+  function runInterstitials() {
+    S.chaosSeen = true; // chaos now counts toward live bars
+    save();
+    if (S.chaosPlayed && S.chaosPlayed.length) {
+      renderChaosSequence(0);
+    } else {
+      afterChaos();
+    }
+  }
+
+  function renderChaosSequence(i) {
+    S.stage = 'chaos';
+    if (i >= S.chaosPlayed.length) { afterChaos(); return; }
+    var c = CHAOS_BY_ID[S.chaosPlayed[i]];
+    if (!c) { renderChaosSequence(i + 1); return; }
+    gotoScreen('chaos');
+    setText('chId', c.id);
+    setText('chTitle', c.title);
+    setText('chNarrative', c.narrative);
+    setText('chInstruction', c.group_instruction);
+    renderBars();
+    $('btnChaosNext').onclick = function () { renderChaosSequence(i + 1); };
+  }
+
+  function afterChaos() {
+    // F2.5 bet resolution only if option A chosen
+    if (S.answers['F2.5'] === 'A') {
+      renderBet();
+    } else {
+      gotoFase3();
+    }
+  }
+
+  function renderBet() {
+    S.stage = 'bet';
+    save();
+    var b = DATA.bet;
+    gotoScreen('bet');
+    setText('betTitle', b.title);
+    setText('betIntro', b.intro);
+    $('betResult').innerHTML = '';
+    hide($('btnBetNext'));
+    var draw = $('btnDrawCard');
+    show(draw);
+
+    // If already resolved (re-entry), show the outcome directly.
+    if (typeof S.betResolved === 'boolean') {
+      hide(draw);
+      paintBetOutcome(S.betResolved);
+      show($('btnBetNext'));
+    }
+
+    draw.onclick = function () {
+      // neutral 50:50, NO dice/coin imagery — just a drawn card.
+      var won = Math.random() < ENG.F25.prob_success;
+      S.betResolved = won;
+      save();
+      hide(draw);
+      paintBetOutcome(won);
+      renderBars(); // payoff now applied via engine
+      show($('btnBetNext'));
+    };
+
+    $('btnBetNext').onclick = gotoFase3;
+    renderBars();
+  }
+
+  function paintBetOutcome(won) {
+    var b = DATA.bet;
+    var box = document.createElement('div');
+    box.className = 'bet-outcome ' + (won ? 'win' : 'lose');
+    var h = document.createElement('h4');
+    h.textContent = won ? b.success_title : b.fail_title;
+    var p = document.createElement('p');
+    p.textContent = won ? b.success_text : b.fail_text;
+    box.appendChild(h); box.appendChild(p);
+    var res = $('betResult');
+    res.innerHTML = '';
+    res.appendChild(box);
+  }
+
+  function gotoFase3() {
+    renderRound(); // S.idx already points at F3.1
+  }
+
+  function afterAllRounds() {
+    // safety: if somehow reached here without interstitials (no F2.5 path issues)
+    renderReveal();
+  }
+
+  // =====================================================================
+  //  REVEAL
+  // =====================================================================
+  function finalResult() {
+    // Authoritative final score from engine, with resolved bet.
+    return ENG.scoreRun(S.answers, {
+      chaosPlayed: S.chaosPlayed || [],
+      f25Success: (typeof S.betResolved === 'boolean') ? S.betResolved : null,
+      rng: Math.random
+    });
+  }
+
+  function renderReveal() {
+    S.stage = 'reveal';
+    save();
+    var res = finalResult();
+    S._final = res; // cache for export/copy
+    gotoScreen('reveal');
+    setText('revealHeadline', DATA.headline);
+
+    // final resource chips
+    var rs = $('resSummary');
+    rs.innerHTML = '';
+    rs.appendChild(resChip('e', 'Energi', res.E));
+    rs.appendChild(resChip('u', 'Uang', res.K));
+    rs.appendChild(resChip('m', 'Mental', res.M));
+
+    var prof = PROFILE_BY_ID[res.profil] || null;
+    setText('profileName', res.profil);
+    setText('profileEn', prof ? prof.en_name : '');
+
+    // private block (hidden until "see private")
+    hide($('privateReveal'));
+    show($('groupReveal'));
+    if (prof) {
+      setText('pbReveal', prof.reveal_paragraph);
+      setText('pbTradeoff', prof.tradeoff);
+      setText('pbReframe', prof.safe_reframe);
+    }
+
+    $('btnSeePrivate').onclick = function () {
+      hide($('groupReveal'));
+      show($('privateReveal'));
+      window.scrollTo({ top: $('privateReveal').offsetTop - 20, behavior: 'smooth' });
+    };
+
+    renderBars();
+    renderProgress();
+  }
+
+  function resChip(cls, name, val) {
+    var d = document.createElement('div');
+    d.className = 'res-chip ' + cls;
+    var n = document.createElement('div'); n.className = 'rc-name'; n.textContent = name;
+    var v = document.createElement('div'); v.className = 'rc-val'; v.textContent = val;
+    d.appendChild(n); d.appendChild(v);
+    return d;
+  }
+
+  // ---- copy / csv ----
+  $('btnCopyResult').addEventListener('click', function () {
+    var r = S._final || finalResult();
+    var line = ENG.csvHeader() + '\n' + ENG.csvRow(S.code || '(grup)', r);
+    copyText(line);
+  });
+
+  $('btnExportCsv').addEventListener('click', function () {
+    var r = S._final || finalResult();
+    var csv = ENG.csvHeader() + '\n' + ENG.csvRow(S.code || '', r) + '\n';
+    var name = 'LEAP2036-' + (S.code ? S.code.replace(/[^A-Za-z0-9_-]/g, '') : 'grup') + '.csv';
+    downloadFile(name, csv, 'text/csv;charset=utf-8');
+    toast('CSV diunduh: ' + name);
+  });
+
+  function copyText(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(
+        function () { toast('Hasil disalin ke clipboard.'); },
+        function () { fallbackCopy(text); }
+      );
+    } else { fallbackCopy(text); }
+  }
+  function fallbackCopy(text) {
+    try {
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.focus(); ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      toast('Hasil disalin.');
+    } catch (e) { toast('Tidak bisa menyalin otomatis — salin manual.'); }
+  }
+
+  function downloadFile(name, content, mime) {
+    try {
+      var blob = new Blob([content], { type: mime });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url; a.download = name;
+      document.body.appendChild(a); a.click();
+      document.body.removeChild(a);
+      setTimeout(function () { URL.revokeObjectURL(url); }, 1500);
+    } catch (e) {
+      // file:// blob fallback: data URI
+      var uri = 'data:' + mime + ',' + encodeURIComponent(content);
+      var a2 = document.createElement('a');
+      a2.href = uri; a2.download = name;
+      document.body.appendChild(a2); a2.click();
+      document.body.removeChild(a2);
+    }
+  }
+
+  // ---- replay / reset ----
+  function replay() {
+    if (!confirm('Mulai dari awal? Jawaban sesi ini akan dihapus.')) return;
+    clearSave();
+    S = newSession();
+    hide($('statBars'));
+    hide($('progress'));
+    $('inpCode').value = '';
+    setText('modeLine', 'Mode: kelompok (tanpa kode)');
+    initChaosChecks();
+    gotoScreen('code');
+    toast('Sesi baru siap.');
+  }
+  $('btnReplay').addEventListener('click', replay);
+  $('btnReplay2').addEventListener('click', replay);
+
+  function initChaosChecks() {
+    $('chaosPicks').querySelectorAll('input[type=checkbox]').forEach(function (cb) {
+      cb.checked = S.chaosPlayed.indexOf(cb.value) >= 0;
+    });
+    updateChaosNote();
+  }
+
+  // =====================================================================
+  //  SURAT
+  // =====================================================================
+  $('btnToSurat').addEventListener('click', function () { renderSurat(); });
+  $('btnBackReveal').addEventListener('click', function () { renderReveal(); });
+
+  function renderSurat() {
+    S.stage = 'surat';
+    save();
+    gotoScreen('surat');
+
+    // seed from profile
+    var res = S._final || finalResult();
+    var prof = PROFILE_BY_ID[res.profil];
+    $('suratSeed').textContent = prof ? ('Pemantik: ' + prof.surat_seed) : '';
+
+    var form = $('suratForm');
+    if (!form._built) {
+      buildSuratFields(form);
+      form._built = true;
+    }
+    // restore saved values
+    DATA.surat.blanks.forEach(function (b) {
+      var el = $('surat_' + b.key);
+      if (el) el.value = (S.surat && S.surat[b.key]) ? S.surat[b.key] : '';
+    });
+    renderSuratPreview();
+  }
+
+  function buildSuratFields(form) {
+    form.innerHTML = '';
+    var reqSet = DATA.surat.required_keys || [];
+    DATA.surat.blanks.forEach(function (b) {
+      var wrap = document.createElement('div');
+      wrap.className = 'field';
+      var lab = document.createElement('label');
+      lab.setAttribute('for', 'surat_' + b.key);
+      lab.textContent = b.label;
+      if (reqSet.indexOf(b.key) >= 0) {
+        var rb = document.createElement('span');
+        rb.className = 'req-badge';
+        rb.textContent = 'isi minimal';
+        lab.appendChild(rb);
+      }
+      var input;
+      if (b.multiline) {
+        input = document.createElement('textarea');
+        input.className = 'textarea';
+      } else {
+        input = document.createElement('input');
+        input.className = 'input';
+        input.type = 'text';
+      }
+      input.id = 'surat_' + b.key;
+      input.addEventListener('input', function () {
+        if (!S.surat) S.surat = {};
+        S.surat[b.key] = input.value;
+        renderSuratPreview();
+        save();
+      });
+      wrap.appendChild(lab);
+      wrap.appendChild(input);
+      form.appendChild(wrap);
+    });
+  }
+
+  function renderSuratPreview() {
+    var vals = S.surat || {};
+    var filled = fillTemplate(DATA.surat.template, vals, false); // screen preview (html, dotted blanks)
+    // build print version
+    $('suratPrint').innerHTML = fillTemplate(DATA.surat.template, vals, true);
+    var sub = S.code ? ('Kode ' + S.code) : 'LEAP 2036';
+    setText('printSub', sub + ' · ditulis ' + new Date().toLocaleDateString('id-ID'));
+    // (no on-screen letter card needed beyond inputs; preview drives print)
+    void filled;
+  }
+
+  // Replace {{key}} with typed value; empty -> dotted placeholder span.
+  function fillTemplate(tpl, vals, forPrint) {
+    var html = escapeHtml(tpl);
+    html = html.replace(/\{\{(\w+)\}\}/g, function (_, key) {
+      var v = vals[key];
+      if (v && String(v).trim() !== '') return escapeHtml(String(v));
+      return '<span class="blank-empty">&nbsp;</span>';
+    });
+    void forPrint;
+    return html;
+  }
+
+  $('btnPrint').addEventListener('click', function () {
+    renderSuratPreview();
+    window.print();
+  });
+
+  // =====================================================================
+  //  UTIL
+  // =====================================================================
+  function escapeHtml(s) {
+    return String(s)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  // =====================================================================
+  //  BOOT
+  // =====================================================================
+  initCodeScreen();
+  checkResume();
+  gotoScreen('code');
+
+})();
+</script>
+</body>
+</html>
