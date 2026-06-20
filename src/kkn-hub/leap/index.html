@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#0a0e1a">
+<meta name="theme-color" content="#080b16">
 <title>LEAP 2036 — Decision Engine</title>
 <!-- OFFLINE / file:// SAFE: classic scripts + same-folder stylesheet. NO CDN, NO type=module, NO web fonts. -->
 <link rel="stylesheet" href="style.css">
@@ -1301,6 +1301,10 @@
   // =====================================================================
   //  BOOT
   // =====================================================================
+  // Enable CSS-driven screen/reveal motion only when JS is alive (so a
+  // no-script fallback still shows content). prefers-reduced-motion is
+  // already honoured inside style.css, so this is always safe to add.
+  document.body.classList.add('js-anim');
   initCodeScreen();
   checkResume();
   gotoScreen('code');
