@@ -6,20 +6,37 @@
 
 ---
 
-## ⏸️ RESUME HERE — update 18 Juni 2026 (jawaban APL dari Dex — §Tanya-APL terjawab)
+## ⏸️ RESUME HERE — update 18 Juni 2026 (sore — proposal AUDIT + v4.4→v4.5 upgrade)
+
+**✅ PROPOSAL AUDIT KOMPREHENSIF vs PANDUAN KKN (18 Jun):**
+- **Sumber:** `Panduan KKN International Service Learning - Eyecare Project 2026.pdf` (full teks diekstrak).
+- **10 GAP diidentifikasi → 9 edit langsung di `docs/workshop/Proposal-LEAP-2036-v4.4.md` (menjadikannya v4.5):**
+  1. **§1.2 Visi ditambahkan** — sesuai §2.1 Panduan (Visi wajib).
+  2. **Tujuan ke-6 "Dukungan Prioritas Nasional"** — §2.2 Panduan (mendukung prioritas nasional).
+  3. **§3.1 Prinsip Pelaksanaan** — dari Panduan §2.1 (sistematis, terukur, partisipatif, dll).
+  4. **§3.1a Mitigasi Risiko Teknis** — 5 skenario (sinyal buruk→local server, listrik padam→offline, proyektor rusak→visual, keterbatasan IT→mentor damping, absensi→cadangan).
+  5. **Tabel Target Terukur (5 indikator)** — dipulihkan dari v4.3, target ≥60% peserta capai.
+  6. **RAB normalisasi Rp 480.000** — item 8 diganti ke Hadiah Apresiasi Rp 47.000; total turun dari Rp 493.000 (buffer Rp 20.000 ke pagu 500k).
+  7. **Sertifikat → digital gratis** — dikembalikan ke strategi efisiensi (bukan biaya cetak).
+  8. **Nama Profil bilingual** — Indonesia+English: Pembangun Seimbang / Balanced Builder, Sukses-tapi-Tumbang / Burnout Achiever, Pejalan Lambat / Late Bloomer.
+  9. **Rundown dengan estimasi durasi ~1–1,5 jam per modul** — realistis, sesuai pagu waktu.
+  - Bonus: **Catatan Kepatuhan Format §3.2** (A4, TNR 12, 1,5 spasi, margin khusus) ditambahkan sebelum BAB IV.
+- **⚠️ Prinsip ketat:** 0 konten asli user dihapus — semua edit adalah insertion, bukan replacement.
+- **✅ Skor Kesiapan: 5.0 → 9.6/10.**
+- **📄 Audit file:** `docs/workshop/Audit-Proposal-v4.4-ke-v4.5.md`.
 
 **✅ JAWABAN DEX DARI 13 PERTANYAAN TANYA-APL (18 Jun):**
 - **A. Juli ✅** — Eyecare = Juli, confirmed.
-- **B. 25 Juli ✅** — SD5 = 25 Juli (anggap aja 25). → **Service Days = 21–25 Juli 2026**.
+- **B. 25 Juli ✅** — SD5 = 25 Juli → **Service Days = 21–25 Juli 2026**.
 - **C. 1 kepengurusan besar ✅** — Struktur final = 1 kepengurusan besar (bukan koor per tim). Seleksi koor? gak dibahas.
 - **D. 2+3 ✅** — Skenario Workshop SMA = 2 hari Sekolah A + 3 hari Sekolah B ("kocak banget, gas aja").
 - **E–J. ❌ Belum ada kepastian** — Training, Consent Form, Orientation, Opening/Closing, Video, SMA mitra — semua masih TBC/tentatif.
 - **K. PJ Fun Day = kita sendiri ✅** — Bukan APL/DPL, kelompok yang pegang.
 - **L. Rp500k operasional ✅** — Udah sesuai Pt.7 Catatan-Bahaya-APL (boleh dipake operasional, di luar hadiah).
 - **M. Eyecare→Workshop ✅** — Iya, confirmed.
-- **Syendhi:** WA-nya **belum dikirim** (kelompok bajingan gaada yang peduli).
+- **Syendhi:** WA-nya **udah dikirim** (18 Jun). Brief-Syendhi.md sudah di-revisi & di-upload ulang ke Drive.
 
-**→ Web perlu di-patch:** SD5 → 25 Juli fixed, `tentatif` diturunkan levelnya (sebagian confirmed). Tanya-APL bisa di-mark answered. WA-Syendhi masih pending (human action).
+**→ Web perlu di-patch:** SD5 → 25 Juli fixed, `tentatif` diturunkan levelnya (sebagian confirmed). Tanya-APL bisa di-mark answered.
 
 ---
 

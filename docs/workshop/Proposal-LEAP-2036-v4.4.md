@@ -21,15 +21,20 @@ Pendekatan konvensional dalam workshop soft skill (seminar motivasi, presentasi 
 
 Dalam rangka menjawab tantangan tersebut, tim KKN STEM kelompok 2 akan menyelenggarakan program berupa workshop interaktif berbasis *experiential learning*. Melalui simulasi yang terstruktur, siswa akan diajak mengalami konsekuensi dari pilihan hidup mereka secara aman dalam waktu beberapa jam, hal ini guna meningkatkan *future literacy* dan kesiapan mental mereka dalam merencanakan masa depan. 
 
-### **1.2 Tujuan Kegiatan**
+### **1.2 Visi**
+
+Menjadi wahana reflektif yang memberdayakan siswa SMA untuk menghubungkan keputusan masa kini dengan perencanaan masa depan secara sadar, terstruktur, dan berkelanjutan — selaras dengan Visi KKN Tematik STEM & Eye Care Project 2026.
+
+### **1.3 Tujuan Kegiatan**
 
 1. **Meningkatkan Kesadaran Temporal:** Menumbuhkan kesadaran kritis siswa SMA mengenai implikasi jangka panjang dari pola pengambilan keputusan harian.  
 2. **Mengembangkan Keterampilan Reflektif:** Mengembangkan kapasitas siswa dalam merumuskan keputusan hidup yang reflektif, sadar nilai (*value-driven*), dan berorientasi pada masa depan.  
 3. **Membangun *Future Literacy*:** Membekali peserta dengan literasi masa depan seperti kemampuan membayangkan, memetakan risiko, dan mempersiapkan opsi masa depan secara taktis dan realistis.  
 4. **Identifikasi Nilai Inti (*Core Values*):** Mendorong siswa mengidentifikasi dan mengkristalisasi nilai-nilai inti personal mereka sebagai panduan moral dan navigasi hidup.  
 5. **Apresiasi Keragaman Sosial:** Melatih kerjasama tim lintas kepribadian dan nilai hidup melalui pemecahan dilema simulasi dalam kelompok kecil.
+6. **Dukungan Prioritas Nasional:** Mendukung program pengembangan kapasitas generasi muda yang selaras dengan target nasional pendidikan karakter dan kesiapan karier siswa.
 
-### **1.3 Manfaat Kegiatan**
+### **1.4 Manfaat Kegiatan**
 
 **Bagi Siswa:**
 
@@ -71,7 +76,7 @@ Program pengabdian masyarakat ini ditujukan kepada civitas akademika di SMA mitr
 1. **Paket Simulasi *"The Decision Engine"*:** Terlaksananya sesi simulasi interaktif 10 tahun menggunakan format *hybrid* (kartu keputusan fisik dibantu entri data *real-time* berbasis Google Sheets).  
 2. **Surat dari Diri 2036:** Terbitnya dokumen refleksi individu yang dihasilkan secara personal oleh masing-masing peserta sebagai pengingat komitmen masa depan.  
 3. **Dataset Kesiapan Temporal Siswa:** Rekapitulasi data *pre-test* dan *post-test* yang mengukur pergeseran kesadaran siswa sebelum dan sesudah intervensi dilakukan.  
-4. **Dokumen Profil Agregat BK:** Dokumen laporan sebaran klasifikasi profil hasil simulasi (misalnya distribusi kelompok yang tergolong *The Balanced Builder*, *The Burnout Achiever*, dsb.) untuk diserahkan ke unit BK sekolah.
+4. **Dokumen Profil Agregat BK:** Dokumen laporan sebaran klasifikasi profil hasil simulasi (misalnya distribusi kelompok yang tergolong *Pembangun Seimbang* / *The Balanced Builder*, *Sukses-tapi-Tumbang* / *The Burnout Achiever*, dsb.) untuk diserahkan ke unit BK sekolah.
 
 ### **2.3 Media Publikasi Luaran** 
 
@@ -87,7 +92,21 @@ Sebagai bentuk pertanggungjawaban publik dan diseminasi dampak program, dokument
 
 **3.1 Program Kegiatan**  
 Rancangan program *workshop softskill* "LEAP 2036" ini didesain sebagai bentuk intervensi psikoedukasi dalam kerangka pengabdian masyarakat KKN STEM Kelompok 2 UKDW yang secara metodologis menerapkan *Experiential Learning Theory* (ELT). Melalui pendekatan epistemologis ini, siswa diarahkan untuk mengkonstruksi pemahaman dan ketangkasan kognitif secara mandiri melalui siklus transformasi pengalaman empiris yang diwujudkan dalam simulasi interaktif berbasis kartu keputusan bertajuk *"The Decision Engine"*. Model ini bertindak sebagai proyeksi temporal untuk merekonstruksi lintasan linearitas dinamika kehidupan individu dalam rentang waktu satu dekade dari tahun 2026 hingga 2036\. Guna menguji kesadaran strategis, kemampuan berpikir kritis (*critical thinking*), dan daya tahan psikologis subjek dalam menghadapi tekanan, alur simulasi ini mengintegrasikan tiga variabel modalitas utama yang saling berinteraksi secara resiprokal (*interconnected variables*), yaitu modalitas energi untuk mengukur kapasitas vitalitas fisik dan manajemen waktu, modalitas kapital yang merepresentasikan ketahanan finansial serta alokasi sumber daya material, dan modalitas kesehatan mental untuk mengukur indikator stabilitas emosional serta tingkat daya tahan psikologis (*psychological resilience*) subjek di bawah tekanan lingkungan.   
-Secara operasional, fenomena simulasi makro ini di dekonstruksi secara kronologis ke dalam tiga fase transisi sosiologis-psikologis yang wajib dieksplorasi oleh seluruh partisipan. Fase pertama adalah Konstruksi Fondasi Sosio-Edukasi (2026-2028) yang merekonstruksi fenomena krusial transisi pasca-sekolah menengah, di mana subjek dihadapkan pada dilema pilihan strategis bercabang melalui kartu keputusan yang mencakup opsi kelanjutan studi akademik, bursa kerja, atau inisiasi sektor kewirausahaan. Memasuki fase kedua, yaitu Penetrasi Krisis dan Manajemen Konflik Sektoral (2029-2032), simulasi menyajikan fase dewasa awal yang dikarakterisasi oleh fluktuasi ketidakpastian eksternal (kondisi VUCA) melalui introduksi variabel gangguan mekanis berupa *Random Event Cards* (Kartu Kejadian Tak Terduga) seperti disrupsi karir, krisis ekonomi, hingga fluktuasi interpersonal guna menguji tingkat daya juang (*resilience*) subjek. Alur simulasi ini bermuara pada fase ketiga, yaitu Konvergensi Hasil dan Determinasi Profil Akhir (2033-2036) sebagai sesi terminasi komparatif dari akumulasi kausalitas keputusan sosiologis subjek. Melalui algoritma matriks penilaian langsung (*live scoring system*) berbasis Google Sheets, skor modalitas residual dikalkulasi untuk mengklasifikasikan subjek ke dalam taksonomi profil masa depan 2036, seperti *The Balanced Builder* atau *The Burnout Achiever*, yang berfungsi sebagai instrumen refleksi visual objektif untuk mendegradasi fenomena *future blindness* pada remaja secara aplikatif. 
+Secara operasional, fenomena simulasi makro ini di dekonstruksi secara kronologis ke dalam tiga fase transisi sosiologis-psikologis yang wajib dieksplorasi oleh seluruh partisipan. Fase pertama adalah Konstruksi Fondasi Sosio-Edukasi (2026-2028) yang merekonstruksi fenomena krusial transisi pasca-sekolah menengah, di mana subjek dihadapkan pada dilema pilihan strategis bercabang melalui kartu keputusan yang mencakup opsi kelanjutan studi akademik, bursa kerja, atau inisiasi sektor kewirausahaan. Memasuki fase kedua, yaitu Penetrasi Krisis dan Manajemen Konflik Sektoral (2029-2032), simulasi menyajikan fase dewasa awal yang dikarakterisasi oleh fluktuasi ketidakpastian eksternal (kondisi VUCA) melalui introduksi variabel gangguan mekanis berupa *Random Event Cards* (Kartu Kejadian Tak Terduga) seperti disrupsi karir, krisis ekonomi, hingga fluktuasi interpersonal guna menguji tingkat daya juang (*resilience*) subjek. Alur simulasi ini bermuara pada fase ketiga, yaitu Konvergensi Hasil dan Determinasi Profil Akhir (2033-2036) sebagai sesi terminasi komparatif dari akumulasi kausalitas keputusan sosiologis subjek. Melalui algoritma matriks penilaian langsung (*live scoring system*) berbasis Google Sheets, skor modalitas residual dikalkulasi untuk mengklasifikasikan subjek ke dalam taksonomi profil masa depan 2036, seperti *Pembangun Seimbang (The Balanced Builder)* atau *Sukses-tapi-Tumbang (The Burnout Achiever)*, yang berfungsi sebagai instrumen refleksi visual objektif untuk mendegradasi fenomena *future blindness* pada remaja secara aplikatif.
+
+Program LEAP 2036 mengacu pada prinsip pelaksanaan KKN Tematik STEM & Eye Care Project 2026 (Panduan §2.1) yaitu: (a) **sederhana dan dapat dilaksanakan** oleh mahasiswa — seluruh alat simulasi berbasis kartu fisik dan Google Sheets; (b) **sinergis** — menjalin kolaborasi antara mahasiswa, siswa, dan pihak sekolah; (c) **mengutamakan kemandirian dan keberlanjutan** — luaran "Surat dari Diri 2036" menjadi artefak reflektif jangka panjang; dan (d) **kreatif dan inovatif** — simulasi *experiential learning* sebagai pengembangan pemikiran ilmiah dalam pengabdian masyarakat.
+
+### **3.1a Rencana Mitigasi Risiko Teknis**
+
+Berdasarkan arahan Pembekalan KKN Tahap II (30 Mei 2026) mengenai perlunya backup plan, tim menyusun rencana mitigasi untuk skenario kendala teknis di lapangan:
+
+| Risiko | Dampak | Mitigasi |
+| :----- | :----- | :------- |
+| **Sinyal internet buruk** — Google Sheets *live scoring* tidak dapat diakses | Simulasi kehilangan elemen *real-time* | **Backup Manual:** Fasilitator mencatat skor di kartu skor fisik dan menghitung delta menggunakan kalkulator/kertas kerja; hasil akhir diinput saat koneksi pulih |
+| **Listrik padam** — proyektor dan laptop mati | Seluruh sesi digital terhenti | **Backup Offline:** Sesi refleksi lisan, diskusi kelompok tanpa teknologi, dan *Card Sort Values* manual |
+| **Proyektor rusak/tidak tersedia** — visual dashboard dan narasi skenario tidak bisa ditampilkan | Instruksi simulasi tidak dapat dikomunikasikan secara visual | **Poster Cetak:** Set poster pos (Tujuan/DISC/Profil) yang sudah dicetak dan dilaminasi sebagai pengganti layar proyektor |
+| **Siswa mengalami kecemasan** saat menghadapi skenario krisis (Fase 2) | Dampak psikologis negatif pada peserta | **Protokol Emosional:** Tim Kedokteran (Benediktus, Maria, Theana) menyediakan *cool-down session* pribadi dan ruang tenang |
+| **Jumlah peserta melebihi estimasi** (≥45 per sekolah) | Kartu skor dan lembar Surat 2036 tidak mencukupi | **Opsi Fotokopi Darurat:** Stok kertas ekstra + akses fotokopi di sekolah mitra |
 
 **3.1.1 Program Utama** 
 
@@ -127,11 +146,11 @@ Menindaklanjuti arahan LPPM UKDW pada Pembekalan KKN Tahap II, Kelompok 2 meneta
 | 5 | Laminasi kartu reusable | 35 lembar | Rp 3.000 | Rp 105.000 | reusable  |
 | 6 | Cetak poster pos | 1 set  | Rp 30.000 | Rp 30.000 | reusable |
 | 7 | Stiker Custom LEAP 2036 | 14 lembar | Rp 2.000 | Rp 28.000 | habis-pakai |
-| 8 | Amplop apresiasi \+ isi simbolik | 6 amplop | Rp 10.000 | Rp 60.000 | habis-pakai |
+| 8 | Hadiah apresiasi (gantungan/pin non-makanan) | 10 buah | Rp 4.700 | Rp 47.000 | habis-pakai |
 | 9 | Cetak dokumen formal (proposal/izin/MoU) | 2 SMA | Rp 20.000 | Rp 40.000 | habis-pakai |
 | 10 | Tisu | 4 pack  | Rp 5.000 | Rp 20.000 | habis-pakai |
-| 11 | Dana tak terduga | 1 paket | Rp 30.000 | Rp 30.000 | cadangan |
-|  | **TOTAL ANGGARAN** |  |  | **Rp 493.000** |  |
+| 11 | Buffer operasional tak terduga | 1 paket | Rp 30.000 | Rp 30.000 | cadangan |
+| **-** | **TOTAL ANGGARAN** |  |  | **Rp 480.000** |  |
 
 ##### 
 
@@ -139,7 +158,8 @@ Menindaklanjuti arahan LPPM UKDW pada Pembekalan KKN Tahap II, Kelompok 2 meneta
 
    ##### **Strategi Efisiensi Anggaran & Keberlanjutan Pendanaan:**
 
-* **Penerbitan Sertifikat Digital:** Sertifikat diolah melalui sistem otomatis berbasis web dan didistribusikan dalam bentuk berkas PDF guna menekan ongkos cetak.  
+* **Penerbitan Sertifikat Digital:** Sertifikat diolah melalui sistem otomatis berbasis web dan didistribusikan dalam bentuk berkas PDF guna menekan ongkos cetak.
+* **Sertifikat Tanpa Biaya Cetak:** Sertifikat partisipasi untuk seluruh peserta diterbitkan **digital (PDF, gratis)** dan dibagikan via WhatsApp/email — tidak ada alokasi cetak di RAB.
 * **Sistem Surat Digital:** Luaran utama "Surat dari Diri 2036" diproses secara digital auto-generated melalui interaksi sistem pangkalan data kelompok.  
 * **Bebas Biaya Server Web:** Website KKN-HUB Kelompok 2 menggunakan skema *free-tier hosting* Vercel (kknstem.vercel.app) tanpa biaya domain tahunan.  
 * **Efisiensi Identifikasi Peserta:** Kode unik siswa ditulis langsung pada Kartu Skor Pribadi (No. 1), sehingga *name tag* terpisah ditiadakan dan dananya dialihkan ke apresiasi peserta (No. 8) — sesuai masukan APL.  
@@ -192,7 +212,7 @@ Menindaklanjuti arahan LPPM UKDW pada Pembekalan KKN Tahap II, Kelompok 2 meneta
 
 5. ##### **Filosofi "Parallel Journeys, Not Competing Teams"**
 
-   Workshop LEAP 2036 memegang teguh asas bebas kompetisi antar-peserta. Penentuan "juara" atau "pemenang" tidak diakomodasi untuk menghindari persepsi sempit bahwa ada satu gaya hidup tunggal yang lebih unggul dibanding yang lain. Semua profil akhir (baik *The Balanced Builder*, *The Burnout Achiever*, maupun *The Late Bloomer*) dipandang setara dengan konsekuensi *trade-off* masing-masing. Bentuk apresiasi diberikan secara setara: sticker untuk seluruh peserta, serta *Surprise Apresiasi* non-material bagi relawan yang berani membagikan refleksinya di depan kelas, sebagai penghargaan atas keberanian berbagi.
+   Workshop LEAP 2036 memegang teguh asas bebas kompetisi antar-peserta. Penentuan "juara" atau "pemenang" tidak diakomodasi untuk menghindari persepsi sempit bahwa ada satu gaya hidup tunggal yang lebih unggul dibanding yang lain. Semua profil akhir (baik *Pembangun Seimbang / The Balanced Builder*, *Sukses-tapi-Tumbang / The Burnout Achiever*, maupun *Pejalan Lambat / The Late Bloomer*) dipandang setara dengan konsekuensi *trade-off* masing-masing. Bentuk apresiasi diberikan secara setara: sticker untuk seluruh peserta, serta *Surprise Apresiasi* non-material bagi relawan yang berani membagikan refleksinya di depan kelas, sebagai penghargaan atas keberanian berbagi.
 
 6. **Indikator Keberhasilan Program**  
    Untuk melakukan standarisasi evaluasi dampak sosiologis dari kegiatan ini, dirumuskan parameter indikator keberhasilan sebagai berikut:  
@@ -201,7 +221,18 @@ Menindaklanjuti arahan LPPM UKDW pada Pembekalan KKN Tahap II, Kelompok 2 meneta
 * Terselenggaranya sesi diskusi kelompok kecil dan evaluasi kritis mengenai penyaringan informasi, pemecahan masalah, dan pertimbangan manajemen risiko hidup.  
 * Meningkatnya kemampuan peserta dalam berpikir kritis terhadap pengaruh konformitas lingkungan, tekanan sosial teman sebaya, dan tren sesaat dalam penentuan karir serta masa depan.   
 * Terbentuknya kesadaran reflektif peserta untuk mengidentifikasi nilai-nilai inti personal sebagai kompas hidup, yang dibuktikan dengan selesainya dokumen komitmen tertulis “Surat dari Diri 2036”   
-* Terdokumentasinya seluruh rangkaian kegiatan program dalam bentuk kompilasi visual foto, video dokumentasi luaran media sosial, serta hasil rekapitulasi data grafik sebaran profil akhir peserta.  
+* Terdokumentasinya seluruh rangkaian kegiatan program dalam bentuk kompilasi visual foto, video dokumentasi luaran media sosial, serta hasil rekapitulasi data grafik sebaran profil akhir peserta.
+
+**Target terukur (untuk verifikasi):**
+
+| No | Indikator | Target |
+| :-- | :-------- | :----- |
+| 1 | Kehadiran peserta | ≥75% peserta hadir pada mayoritas hari layanan di sekolahnya |
+| 2 | Penyelesaian luaran "Surat dari Diri 2036" | ≥70% peserta hadir |
+| 3 | Peningkatan skor pre/post (kuesioner buatan tim) | ≥50% peserta menunjukkan peningkatan |
+| 4 | Keragaman hasil simulasi (sebaran Profil 2036 dari ekspor CSV) | sebaran mencakup ≥4 dari 7 profil |
+| 5 | Kelengkapan dokumentasi & penyerahan laporan ke SMA mitra | 100% sesi terdokumentasi; 100% SMA mitra menerima laporan |
+
 7. **Alat Verifikasi** 
 
 | Fase Implementasi | Jenis Dokumen Verifikasi | Wujud Output Fisik/Digital |
@@ -230,19 +261,19 @@ Menindaklanjuti arahan LPPM UKDW pada Pembekalan KKN Tahap II, Kelompok 2 meneta
 | **Maria Nadira Dosinaen** | Kedokteran | Support medis, fasilitator kelompok |
 | **Theana Amabel K.** | Kedokteran | Support medis, emotional support protokol |
 
-9. **Rundown**
+9. **Rundown — Urutan Modul Program (satu siklus utuh per sekolah)**
 
-| Waktu | Durasi | Segmen | Lead |
+Program berisi 5 modul berurutan berikut. Setiap sekolah menerima **siklus utuh yang sama**, dipadatkan sesuai alokasi hari: di **Sekolah A** (2 hari) lebih padat, di **Sekolah B** (3 hari) lebih lapang. Estimasi ~3 jam layanan per hari.
+
+| Modul | Estimasi Durasi | Segmen | Lead |
 | :---- | :---- | :---- | :---- |
-| Modul 1 | \< 3 jam | **Materi- perkenalan \+ nilai \+ DISC \+ 3 Lapis Diri \+ bentuk kelompok \+ briefing \+ 1 pemanasan** | Dex+Semua |
-| Modul 2  |  \< 3 jam | **Fase 1 Fondasi (2026-2028) \- keputusan awal (sekolah/karier/uang)+ refleksi** | Dhevina |
-| Modul 3 | \< 3 jam | **Fase 2 Krisis (2029-2032) \- keputusan badai \= kartu kejutan (opsional) \+ keamanan emosi**  | Benediktus \- Maria |
-| Modul 4 | \< 3 jam | **Fase 3 Panen (2033-2036)- hitung skor \+ reveal profil 2036 \+ mulai surat 2036** | Dex \+ Syendhi |
-| Modul 5 | \< 3 jam | **Fun Day- selesai surat \+ games \+ galeri \+ surprise apresiasi \+ foto** | Semua \+ Theana  |
+| Modul 1 | ~1–1,5 jam | **Pembukaan: perkenalan + pembentukan kelompok (Goal Hidup) + kuis kecenderungan gaya + pemetaan 3 Lapis Diri + pemanasan** | Dex + Semua |
+| Modul 2 | ~1–1,5 jam | **Fase 1 Fondasi (2026–2028): keputusan awal (studi/karier/uang) + refleksi** | Dhevina |
+| Modul 3 | ~1–1,5 jam | **Fase 2 Krisis (2029–2032): keputusan badai + Kartu Kejutan (opsional) + keamanan emosi** | Benediktus – Maria |
+| Modul 4 | ~1–1,5 jam | **Fase 3 Panen (2033–2036): hitung skor + reveal Profil 2036 + mulai Surat 2036** | Dex + Syendhi |
+| Modul 5 | ~1–1,5 jam | **Penutup & Apresiasi: selesaikan Surat 2036 + games ringan + galeri + apresiasi setara + sesi foto** | Semua + Theana |
 
-### 
-
-### ***Rundown dapat disesuaikan tergantung konfirmasi pihak SMA.***
+***Rundown dapat disesuaikan tergantung konfirmasi pihak SMA.***
 
 10. **Teknis Pelaksanaan Program dan Prosedur Kerja Program**  
     Guna menjamin akuntabilitas pelaksanaan kegiatan di lapangan, tim menetapkan empat pilar tahapan prosedur kerja standardisasi:
@@ -270,6 +301,18 @@ Menindaklanjuti arahan LPPM UKDW pada Pembekalan KKN Tahap II, Kelompok 2 meneta
 * **Analisis Data Kualitatif/Kuantitatif:** Mengolah selisih angka hasil pengisian tes awal dan akhir serta menyajikan analisis trend perkembangan siswa.  
 * **Penyerahan Berkas Rekomendasi BK:** Menyerahkan berkas jilid rapi profil sebaran keputusan masa depan siswa kepada jajaran BK sekolah sebagai bahan tindak lanjut bimbingan konseling pribadi.  
 * **Dokumentasi Publikasi:** Mengunggah kompilasi dokumentasi visual serta ringkasan jalannya acara di media sosial dan situs KKN-HUB resmi Kelompok 2\.
+
+### **Catatan Kepatuhan Format (Panduan §3.2)**
+
+Saat dikonversi ke dokumen final, proposal ini akan mengikuti pedoman penulisan Panduan KKN:
+| Parameter | Spesifikasi |
+| :-------- | :---------- |
+| Ukuran kertas | A4 |
+| Huruf | Times New Roman, font 12 |
+| Spasi | 1,5 (kecuali judul, tabel, keterangan: 1 spasi) |
+| Margin kiri | 4 cm |
+| Margin kanan, atas, bawah | 3 cm |
+| Awal alinea | 5 ketukan dari tepi kiri |
 
 ## **BAB IV** **PENUTUP**
 
