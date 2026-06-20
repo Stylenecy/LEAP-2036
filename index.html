@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#eaf1ff">
+<title>LEAP 2036 — Decision Engine</title>
+<!-- OFFLINE / file:// SAFE: classic scripts + same-folder stylesheet. NO CDN, NO type=module, NO web fonts. -->
+<!-- PWA: installable + offline shell. Relative paths so it works under any sub-path; harmless on file://. -->
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/svg+xml" href="icon.svg">
+<link rel="apple-touch-icon" href="icon.svg">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="wrap" id="app">
+
+  <!-- ============ HEADER ============ -->
+  <header class="app-head no-print" id="appHead">
+    <div class="app-logo">🚀 LEAP · 2036</div>
+    <h1 class="app-title">Decision Engine</h1>
+    <p class="app-sub">10 tahun keputusan, dimainkan dalam beberapa menit.</p>
+    <div class="headline-tag" id="headlineTag">7 jalur. 0 juara. Semua nyata.</div>
+  </header>
+
+  <!-- live resource bars (hidden until play starts) -->
+  <section class="stats hidden" id="statBars" aria-label="Modal hidup">
+    <div class="stat stat-e">
+      <span class="stat-name">Energi</span>
+      <span class="stat-track"><span class="stat-fill" id="barE"></span></span>
+      <span class="stat-val" id="valE">100</span>
+    </div>
+    <div class="stat stat-u">
+      <span class="stat-name">Uang</span>
+      <span class="stat-track"><span class="stat-fill" id="barU"></span></span>
+      <span class="stat-val" id="valU">100</span>
+    </div>
+    <div class="stat stat-m">
+      <span class="stat-name">Mental</span>
+      <span class="stat-track"><span class="stat-fill" id="barM"></span></span>
+      <span class="stat-val" id="valM">100</span>
+    </div>
+  </section>
+
+  <!-- progress -->
+  <div class="progress hidden" id="progress">
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-label"><span id="progressPhase">Fondasi</span><span id="progressCount">0 / 12</span></div>
+  </div>
+
+  <!-- ============ SCREEN: CODE ENTRY ============ -->
+  <section id="screen-code" class="card">
+    <div id="resumeBanner" class="resume-banner hidden">
+      <span class="rb-text" id="resumeText">Ada sesi tersimpan.</span>
+      <button class="btn btn-primary" id="btnResume">Lanjutkan</button>
+      <button class="btn btn-ghost" id="btnDiscard">Mulai baru</button>
+    </div>
+
+    <div class="phase-row"><span class="phase-badge phase-Fondasi">Mulai</span></div>
+    <h2 class="r-title">🌈 Siap menjalani 2026 sampai 2036?</h2>
+    <p class="r-situation">
+      Kamu akan menghadapi 12 keputusan hidup. Tiap pilihan mengubah tiga hal yang kamu bawa:
+      <strong style="color:var(--energi)">Energi</strong>,
+      <strong style="color:var(--uang)">Uang</strong>, dan
+      <strong style="color:var(--mental)">Mental</strong>.
+      Tidak ada jawaban benar atau salah — yang ada hanya konsekuensi. Di ujung jalan, kamu akan
+      bertemu salah satu dari 7 versi dirimu di 2036.
+    </p>
+
+    <div class="field">
+      <label for="inpCode">Kode siswa <span class="hint">(opsional — mis. A-01)</span></label>
+      <input id="inpCode" class="input code" type="text" inputmode="text" autocomplete="off"
+             placeholder="A-01" maxlength="12" aria-describedby="codeHint">
+      <p class="muted" id="codeHint" style="margin-top:7px">Kosongkan kalau bermain berkelompok bersama fasilitator. Kode dipakai untuk menyimpan & mengekspor hasilmu.</p>
+    </div>
+
+    <button class="btn btn-primary btn-block" id="btnStart">Mulai perjalanan →</button>
+    <p class="mode-line" id="modeLine">Mode: kelompok (tanpa kode)</p>
+
+    <details class="op-toggle" id="opToggle">
+      <summary>Operator / fasilitator: Kartu Chaos (opsional)</summary>
+      <p class="op-note">Kartu Chaos diterapkan ke semua peserta di antara Fase 2 dan Fase 3. Default mati. Biasanya cabut maksimal 2 dari 3.</p>
+      <div class="chaos-picks" id="chaosPicks"><!-- filled by JS --></div>
+      <p class="op-note" id="chaosNote">Tidak ada Kartu Chaos dipilih.</p>
+    </details>
+  </section>
+
+  <!-- ============ SCREEN: VALUES (pick exactly 5) ============ -->
+  <section id="screen-values" class="card hidden">
+    <div class="phase-row"><span class="phase-badge phase-Fondasi">Kenali dirimu · 1 dari 3</span></div>
+    <div class="fh-kicker" id="valuesKicker">5 Hal yang Tak Bisa Ditawar</div>
+    <h2 class="r-title" id="valuesTitle">💖 Apa yang bikin kamu, kamu?</h2>
+    <p class="fh-prompt" id="valuesPrompt"></p>
+    <div class="fh-counter">
+      <span class="fh-count-pill" id="valuesCount">0 / 5 terpilih</span>
+    </div>
+    <div class="value-grid" id="valueGrid"><!-- filled by JS --></div>
+    <p class="fh-hint" id="valuesHint"></p>
+    <div class="btn-row end" style="margin-top:18px">
+      <button class="btn btn-primary" id="btnValuesNext" disabled>Lanjut →</button>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN: DISC-LITE (pick one) ============ -->
+  <section id="screen-disc" class="card hidden">
+    <div class="phase-row"><span class="phase-badge phase-Fondasi">Kenali dirimu · 2 dari 3</span></div>
+    <div class="fh-kicker" id="discKicker">Gaya Alamimu</div>
+    <h2 class="r-title">🧭 Kamu paling kayak yang mana?</h2>
+    <p class="fh-prompt" id="discPrompt"></p>
+    <div class="pick-list" id="discList"><!-- filled by JS --></div>
+    <div class="btn-row end" style="margin-top:18px">
+      <button class="btn btn-primary" id="btnDiscNext" disabled>Lanjut →</button>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN: GOAL HIDUP (pick one — required) ============ -->
+  <section id="screen-goal" class="card hidden">
+    <div class="phase-row"><span class="phase-badge phase-Fondasi">Kenali dirimu · 3 dari 3</span></div>
+    <div class="fh-kicker" id="goalKicker">Tujuan Hidupmu</div>
+    <h2 class="r-title">🎯 Mau jadi apa kamu nanti?</h2>
+    <p class="fh-prompt" id="goalPrompt"></p>
+    <div class="pick-list" id="goalList"><!-- filled by JS --></div>
+    <div class="btn-row end" style="margin-top:18px">
+      <button class="btn btn-primary" id="btnGoalNext" disabled>Lanjut →</button>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN: 3-LAPIS DIRI bridge ============ -->
+  <section id="screen-bridge" class="card bridge-card hidden">
+    <div class="phase-row"><span class="phase-badge phase-Fondasi">Jembatan</span></div>
+    <h2 class="r-title" id="bridgeTitle">3 Lapis Dirimu</h2>
+    <p class="fh-prompt">Sebelum mulai, ini ringkasan dirimu yang akan kamu bawa ke 12 keputusan nanti.</p>
+    <div class="lapis-list" id="lapisList"><!-- filled by JS --></div>
+    <p class="bridge-closer" id="bridgeCloser"></p>
+    <div class="btn-row end" style="margin-top:18px">
+      <button class="btn btn-primary" id="btnBridgeNext">Mulai 12 keputusan →</button>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN: ROUND (decision) ============ -->
+  <section id="screen-round" class="card hidden">
+    <div class="phase-row">
+      <span class="phase-badge" id="rPhaseBadge">Fondasi</span>
+      <span class="year-chip" id="rYear">2026</span>
+      <span class="round-id" id="rId">F1.1</span>
+    </div>
+    <h2 class="r-title" id="rTitle"></h2>
+    <p class="r-situation" id="rSituation"></p>
+    <div class="guardrail hidden" id="rGuardrail"></div>
+
+    <div class="options" id="rOptions">
+      <button class="opt" id="optA" data-choice="A"><span class="opt-key">A</span><span class="opt-text" id="optAText"></span></button>
+      <button class="opt" id="optB" data-choice="B"><span class="opt-key">B</span><span class="opt-text" id="optBText"></span></button>
+    </div>
+
+    <div class="reveal hidden" id="rReveal">
+      <div class="reveal-h">Beberapa waktu kemudian…</div>
+      <div id="rRevealText"></div>
+    </div>
+
+    <div class="btn-row end" style="margin-top:18px">
+      <button class="btn btn-primary hidden" id="btnNext">Lanjut →</button>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN: CHAOS ============ -->
+  <section id="screen-chaos" class="card chaos-card hidden">
+    <div class="phase-row">
+      <span class="phase-badge phase-Krisis">Kartu Chaos</span>
+      <span class="round-id" id="chId">C.1</span>
+    </div>
+    <h2 class="r-title" id="chTitle"></h2>
+    <p class="r-situation" id="chNarrative"></p>
+    <div class="chaos-instruction">
+      <div class="ci-h">Tantangan kelompok</div>
+      <div id="chInstruction"></div>
+    </div>
+    <div class="btn-row end" style="margin-top:18px">
+      <button class="btn btn-primary" id="btnChaosNext">Lanjut →</button>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN: BET RESOLUTION (F2.5) ============ -->
+  <section id="screen-bet" class="card bet-card hidden">
+    <div class="phase-row">
+      <span class="phase-badge phase-Panen">Resolusi Taruhan</span>
+      <span class="round-id">F2.5</span>
+    </div>
+    <h2 class="r-title" id="betTitle"></h2>
+    <p class="r-situation" id="betIntro"></p>
+    <div class="bet-draw">
+      <button class="btn btn-primary" id="btnDrawCard">Tarik kartu hasil</button>
+      <div class="bet-cards" id="betResult"></div>
+    </div>
+    <div class="btn-row end" style="margin-top:18px">
+      <button class="btn btn-primary hidden" id="btnBetNext">Lanjut ke Panen →</button>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN: REVEAL (profile) ============ -->
+  <section id="screen-reveal" class="card hidden">
+    <div class="reveal-hero">
+      <div class="reveal-kicker">Tahun 2036 · Hasil panen</div>
+      <div class="reveal-headline" id="revealHeadline">7 jalur. 0 juara. Semua nyata.</div>
+    </div>
+
+    <div class="res-summary" id="resSummary"></div>
+
+    <!-- group reveal first -->
+    <div id="groupReveal">
+      <hr class="divider">
+      <div class="center">
+        <div class="muted" style="letter-spacing:.14em;text-transform:uppercase;font-size:11px;font-weight:700;color:var(--accent)">Reveal bersama</div>
+        <h3 class="profile-name" id="profileName"></h3>
+        <div class="profile-en" id="profileEn"></div>
+      </div>
+      <div class="reveal-stage-note">Ini cermin, bukan rapor. Tiap jalur sama nyata dan sama berharganya.</div>
+      <div class="center">
+        <button class="btn btn-primary" id="btnSeePrivate">Lihat pesan pribadiku →</button>
+      </div>
+    </div>
+
+    <!-- private reveal -->
+    <div id="privateReveal" class="hidden">
+      <hr class="divider">
+      <div class="profile-block">
+        <div class="pb-h">Yang terbaca dari jalurmu</div>
+        <p id="pbReveal"></p>
+      </div>
+      <div class="profile-block tradeoff">
+        <div class="pb-h">Yang kamu pertukarkan</div>
+        <p id="pbTradeoff"></p>
+      </div>
+      <div class="profile-block reframe">
+        <div class="pb-h">Cara memandangnya</div>
+        <p id="pbReframe"></p>
+      </div>
+
+      <!-- "cermin Tujuan" anchor — leaned toward/away from the chosen Goal.
+           Emotionally safe: no gagal/menang/kalah. Hidden if no goal chosen. -->
+      <div class="goal-mirror hidden" id="goalMirror">
+        <div class="gm-h" id="goalMirrorH">Cermin Tujuanmu</div>
+        <p id="goalMirrorText"></p>
+        <p class="gm-closer" id="goalMirrorCloser"></p>
+      </div>
+
+      <div class="toolbar">
+        <button class="btn" id="btnCopyResult">Salin hasil</button>
+        <button class="btn" id="btnExportCsv">Ekspor CSV</button>
+        <button class="btn" id="btnReplay">Main lagi</button>
+      </div>
+
+      <div class="center" style="margin-top:18px">
+        <button class="btn btn-primary" id="btnToSurat">Tulis Surat dari Diri 2036 →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN: SURAT (fill-in + print) ============ -->
+  <section id="screen-surat" class="card hidden">
+    <div class="phase-row"><span class="phase-badge phase-Panen">Surat dari Diri 2036</span></div>
+    <h2 class="r-title">✉️ Surat untuk dirimu yang sekarang</h2>
+    <p class="surat-intro">Tulis surat dari dirimu di tahun 2036 untuk dirimu hari ini. Ini milikmu sendiri — tidak ada skor, tidak dinilai, tidak dibagikan. Isi yang kamu bisa; sisanya boleh dilanjutkan di rumah.</p>
+    <div class="surat-seed" id="suratSeed"></div>
+
+    <form class="surat-form" id="suratForm" autocomplete="off" onsubmit="return false"><!-- inputs by JS --></form>
+
+    <div class="toolbar">
+      <button class="btn btn-primary" id="btnPrint">Cetak / Simpan PDF</button>
+      <button class="btn" id="btnBackReveal">← Kembali ke hasil</button>
+      <button class="btn" id="btnReplay2">Main lagi</button>
+    </div>
+    <p class="muted center" style="margin-top:12px">Saat mencetak, hanya suratmu yang muncul — rapi dan terang di kertas.</p>
+  </section>
+
+  <!-- ============ PRINT AREA (light, only visible when printing) ============ -->
+  <div id="print-area">
+    <div class="print-head">
+      <div class="ph-title">Surat dari Diriku di Tahun 2036</div>
+      <div class="ph-sub" id="printSub">LEAP 2036</div>
+    </div>
+    <div class="surat-print" id="suratPrint"></div>
+  </div>
+
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<!-- classic scripts, same folder, no CDN -->
+<script src="engine.js"></script>
+<script src="data.js"></script>
+<!-- OPTIONAL Supabase data layer — both load BEFORE the controller.
+     leap-config.js may not exist (template is leap-config.example.js);
+     onerror swallows the 404 so the game never breaks. leap-sync.js is
+     fully graceful: with no config it's a silent no-op (see its header).
+     The core game does NOT depend on either of these. -->
+<script src="leap-config.js" onerror="window.__LEAP_CFG_MISSING=true"></script>
+<script src="leap-sync.js"></script>
+<script>
+/* =====================================================================
+   LEAP 2036 — flow controller (classic script).
+   Engine is the SINGLE source of scoring. This file never hardcodes
+   deltas/thresholds; it asks window.LEAP_ENGINE for every number.
+   ===================================================================== */
+(function () {
+  'use strict';
+
+  var ENG = window.LEAP_ENGINE;
+  var DATA = window.LEAP_DATA;
+  if (!ENG || !DATA) {
+    document.body.innerHTML = '<div class="wrap"><div class="card">Gagal memuat engine.js / data.js. Pastikan ketiga file berada di folder yang sama.</div></div>';
+    return;
+  }
+
+  var STORE_KEY = 'leap2036.session.v1';
+
+  // ---- ordered playable round ids (decisions only) ----
+  var ROUND_IDS = ENG.ROUNDS_F1.concat(ENG.ROUNDS_F2, ENG.ROUNDS_F3); // 12
+  var ROUND_BY_ID = {};
+  DATA.rounds.forEach(function (r) { ROUND_BY_ID[r.id] = r; });
+  var PROFILE_BY_ID = {};
+  DATA.profiles.forEach(function (p) { PROFILE_BY_ID[p.id_name] = p; });
+  var CHAOS_BY_ID = {};
+  DATA.chaos.forEach(function (c) { CHAOS_BY_ID[c.id] = c; });
+
+  // ---- session state ----
+  var S = newSession();
+
+  function newSession() {
+    return {
+      code: '',
+      answers: {},            // { 'F1.1':'A', ... }
+      idx: 0,                 // pointer into ROUND_IDS
+      // stage: code | values | disc | goal | bridge | round | chaos | bet | reveal | surat
+      stage: 'code',
+      // ---- front-half identity (metadata only; NO resource deltas) ----
+      values: [],             // array of chosen value strings (exactly 5)
+      disc: '',               // one of 'D' | 'I' | 'S' | 'C'
+      goal: '',               // goal id, e.g. 'wirausaha' (REQUIRED before rounds)
+      arahTujuan: '',         // 'Condong' | 'Menjauh' | 'Campuran' (computed at reveal)
+      chaosPlayed: [],        // operator toggle, e.g. ['C.2']
+      chaosSeen: false,       // chaos interstitials already shown
+      betResolved: null,      // true/false once the F2.5 card is drawn (null = not yet / N/A)
+      surat: {},              // surat field values
+      startedAt: Date.now(),
+      day: dayStamp()         // for day-boundary carry-over note
+    };
+  }
+
+  function dayStamp() {
+    var d = new Date();
+    return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
+  }
+
+  // ---- DOM helpers ----
+  function $(id) { return document.getElementById(id); }
+  function show(el) { el.classList.remove('hidden'); }
+  function hide(el) { el.classList.add('hidden'); }
+  function setText(id, t) { $(id).textContent = t; }
+
+  var SCREENS = ['screen-code', 'screen-values', 'screen-disc', 'screen-goal', 'screen-bridge', 'screen-round', 'screen-chaos', 'screen-bet', 'screen-reveal', 'screen-surat'];
+
+  var FH = DATA.fronthalf || {};
+  function gotoScreen(name) {
+    SCREENS.forEach(function (s) { hide($(s)); });
+    show($('screen-' + name));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function toast(msg) {
+    var t = $('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(toast._t);
+    toast._t = setTimeout(function () { t.classList.remove('show'); }, 2200);
+  }
+
+  // ---- persistence ----
+  function save() {
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(S)); } catch (e) {}
+  }
+  function load() {
+    try {
+      var raw = localStorage.getItem(STORE_KEY);
+      return raw ? JSON.parse(raw) : null;
+    } catch (e) { return null; }
+  }
+  function clearSave() {
+    try { localStorage.removeItem(STORE_KEY); } catch (e) {}
+  }
+
+  // =====================================================================
+  //  LIVE SCORING (engine is the source). Recompute partial state up to
+  //  the answers given so far, using the SAME sequence the engine builds.
+  // =====================================================================
+  function liveState() {
+    // Score with whatever answers exist; engine running-clamps each round.
+    // We pass the resolved bet so the bars match post-resolution; if the
+    // bet isn't resolved yet, engine leaves the payoff as a no-op (delta null).
+    var res = ENG.scoreRun(S.answers, {
+      chaosPlayed: chaosAppliedSoFar(),
+      f25Success: (typeof S.betResolved === 'boolean') ? S.betResolved : null,
+      rng: function () { return 1; } // never auto-resolve mid-play; keep payoff pending
+    });
+    return res;
+  }
+
+  // chaos only counts once we've passed Fase 2 (chaosSeen)
+  function chaosAppliedSoFar() {
+    return S.chaosSeen ? S.chaosPlayed : [];
+  }
+
+  function renderBars() {
+    var st = liveState();
+    paintBar('barE', 'valE', st.E);
+    paintBar('barU', 'valU', st.K);
+    paintBar('barM', 'valM', st.M);
+  }
+
+  function paintBar(barId, valId, v) {
+    var pct = Math.max(0, Math.min(100, (v / ENG.MAX) * 100));
+    $(barId).style.width = pct + '%';
+    var valEl = $(valId);
+    if (valEl.textContent !== String(v)) {
+      valEl.textContent = v;
+      valEl.classList.remove('bump');
+      // force reflow to restart animation
+      void valEl.offsetWidth;
+      valEl.classList.add('bump');
+    }
+  }
+
+  function renderProgress() {
+    var done = Object.keys(S.answers).filter(function (k) { return ROUND_IDS.indexOf(k) >= 0; }).length;
+    var pct = (done / ROUND_IDS.length) * 100;
+    $('progressFill').style.width = pct + '%';
+    setText('progressCount', done + ' / ' + ROUND_IDS.length);
+    var cur = ROUND_IDS[Math.min(S.idx, ROUND_IDS.length - 1)];
+    var r = ROUND_BY_ID[cur];
+    if (r) setText('progressPhase', r.phase);
+  }
+
+  // =====================================================================
+  //  CODE SCREEN
+  // =====================================================================
+  function initCodeScreen() {
+    // chaos toggles
+    var wrap = $('chaosPicks');
+    wrap.innerHTML = '';
+    DATA.chaos.forEach(function (c) {
+      var lab = document.createElement('label');
+      lab.className = 'chk';
+      var cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.value = c.id;
+      cb.checked = S.chaosPlayed.indexOf(c.id) >= 0;
+      cb.addEventListener('change', onChaosToggle);
+      lab.appendChild(cb);
+      lab.appendChild(document.createTextNode(' ' + c.id + ' · ' + c.title));
+      wrap.appendChild(lab);
+    });
+    updateChaosNote();
+
+    $('inpCode').addEventListener('input', function () {
+      var v = $('inpCode').value.trim();
+      setText('modeLine', v ? ('Mode: per-siswa · kode ' + v.toUpperCase()) : 'Mode: kelompok (tanpa kode)');
+    });
+
+    $('btnStart').addEventListener('click', startPlay);
+    $('btnResume').addEventListener('click', resumeSaved);
+    $('btnDiscard').addEventListener('click', function () {
+      clearSave();
+      hide($('resumeBanner'));
+      toast('Sesi lama dihapus. Mulai baru.');
+    });
+
+    setText('headlineTag', DATA.headline);
+  }
+
+  function onChaosToggle() {
+    var picks = [];
+    $('chaosPicks').querySelectorAll('input[type=checkbox]').forEach(function (cb) {
+      if (cb.checked) picks.push(cb.value);
+    });
+    S.chaosPlayed = picks;
+    updateChaosNote();
+    save();
+  }
+
+  function updateChaosNote() {
+    var n = $('chaosNote');
+    n.textContent = S.chaosPlayed.length
+      ? ('Kartu Chaos aktif: ' + S.chaosPlayed.join(', '))
+      : 'Tidak ada Kartu Chaos dipilih.';
+  }
+
+  function startPlay() {
+    var code = $('inpCode').value.trim().toUpperCase();
+    S.code = code;
+    S.idx = 0;
+    S.startedAt = Date.now();
+    S.day = dayStamp();
+    save();
+    // Front-half (identity) comes BEFORE round 1. Stat bars + progress stay
+    // hidden until the first decision begins (front-half adds no resources).
+    renderValues();
+  }
+
+  // =====================================================================
+  //  FRONT-HALF — IDENTITY ONBOARDING (Values → DISC → Goal → 3-Lapis)
+  //  Metadata only. Engine still owns all 12-round scoring.
+  // =====================================================================
+
+  // ---- (1) VALUES: pick EXACTLY 5 (lock Lanjut until count === 5) ----
+  function renderValues() {
+    S.stage = 'values';
+    save();
+    gotoScreen('values');
+    if (FH.values_title) setText('valuesKicker', FH.values_title);
+    if (FH.values_prompt) setText('valuesPrompt', FH.values_prompt);
+    if (FH.values_hint) setText('valuesHint', FH.values_hint);
+
+    var need = FH.values_pick || 5;
+    var grid = $('valueGrid');
+    if (!grid._built) {
+      grid.innerHTML = '';
+      (FH.values || []).forEach(function (v) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'value-chip';
+        b.setAttribute('data-value', v);
+        b.setAttribute('aria-pressed', 'false');
+        b.textContent = v;
+        b.addEventListener('click', function () { toggleValue(v, b); });
+        grid.appendChild(b);
+      });
+      grid._built = true;
+    }
+    // restore prior selection
+    grid.querySelectorAll('.value-chip').forEach(function (b) {
+      var on = (S.values || []).indexOf(b.getAttribute('data-value')) >= 0;
+      b.classList.toggle('selected', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    updateValuesUI();
+
+    $('btnValuesNext').onclick = function () {
+      if ((S.values || []).length !== need) {
+        toast('Pilih tepat ' + need + ' nilai dulu.');
+        return;
+      }
+      renderDisc();
+    };
+  }
+
+  function toggleValue(v, btn) {
+    if (!S.values) S.values = [];
+    var i = S.values.indexOf(v);
+    var need = FH.values_pick || 5;
+    if (i >= 0) {
+      S.values.splice(i, 1);
+    } else {
+      if (S.values.length >= need) {
+        toast('Sudah ' + need + ' nilai. Lepas satu dulu kalau mau ganti.');
+        return;
+      }
+      S.values.push(v);
+    }
+    var on = S.values.indexOf(v) >= 0;
+    btn.classList.toggle('selected', on);
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    updateValuesUI();
+    save();
+  }
+
+  function updateValuesUI() {
+    var need = FH.values_pick || 5;
+    var n = (S.values || []).length;
+    var pill = $('valuesCount');
+    setText('valuesCount', n + ' / ' + need + ' terpilih');
+    pill.classList.toggle('ok', n === need);
+    pill.classList.toggle('over', n > need);
+    $('btnValuesNext').disabled = (n !== need);
+    $('valueGrid').classList.toggle('locked', n >= need);
+  }
+
+  // ---- (2) DISC-LITE: self-pick exactly ONE of D/I/S/C ----
+  function renderDisc() {
+    S.stage = 'disc';
+    save();
+    gotoScreen('disc');
+    if (FH.disc_title) setText('discKicker', FH.disc_title);
+    if (FH.disc_prompt) setText('discPrompt', FH.disc_prompt);
+
+    var list = $('discList');
+    if (!list._built) {
+      list.innerHTML = '';
+      (FH.disc || []).forEach(function (d) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'pick-card';
+        b.setAttribute('data-disc', d.type);
+        var lab = document.createElement('div');
+        lab.className = 'pc-label';
+        lab.textContent = d.label + ' (' + d.type + ')';
+        var desc = document.createElement('div');
+        desc.className = 'pc-desc';
+        desc.textContent = d.descriptor;
+        b.appendChild(lab); b.appendChild(desc);
+        b.addEventListener('click', function () { pickDisc(d.type); });
+        list.appendChild(b);
+      });
+      list._built = true;
+    }
+    markPicked('discList', 'data-disc', S.disc);
+    $('btnDiscNext').disabled = !S.disc;
+
+    $('btnDiscNext').onclick = function () {
+      if (!S.disc) { toast('Pilih satu gaya dulu.'); return; }
+      renderGoal();
+    };
+  }
+
+  function pickDisc(type) {
+    S.disc = type;
+    markPicked('discList', 'data-disc', type);
+    $('btnDiscNext').disabled = false;
+    save();
+  }
+
+  // ---- (3) GOAL HIDUP: pick exactly ONE of 8 — REQUIRED (anchors reveal) ----
+  function renderGoal() {
+    S.stage = 'goal';
+    save();
+    gotoScreen('goal');
+    if (FH.goal_title) setText('goalKicker', FH.goal_title);
+    if (FH.goal_prompt) setText('goalPrompt', FH.goal_prompt);
+
+    var list = $('goalList');
+    if (!list._built) {
+      list.innerHTML = '';
+      (FH.goals || []).forEach(function (g) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'pick-card';
+        b.setAttribute('data-goal', g.id);
+        var lab = document.createElement('div');
+        lab.className = 'pc-label';
+        lab.textContent = g.label;
+        var desc = document.createElement('div');
+        desc.className = 'pc-desc';
+        desc.textContent = g.desc;
+        b.appendChild(lab); b.appendChild(desc);
+        b.addEventListener('click', function () { pickGoal(g.id); });
+        list.appendChild(b);
+      });
+      list._built = true;
+    }
+    markPicked('goalList', 'data-goal', S.goal);
+    $('btnGoalNext').disabled = !S.goal;
+
+    $('btnGoalNext').onclick = function () {
+      if (!S.goal) { toast('Pilih satu Tujuan Hidup dulu.'); return; }
+      renderBridge();
+    };
+  }
+
+  function pickGoal(id) {
+    S.goal = id;
+    markPicked('goalList', 'data-goal', id);
+    $('btnGoalNext').disabled = false;
+    save();
+  }
+
+  function markPicked(listId, attr, val) {
+    $(listId).querySelectorAll('.pick-card').forEach(function (b) {
+      b.classList.toggle('selected', b.getAttribute(attr) === val && !!val);
+    });
+  }
+
+  // ---- (4) 3-LAPIS bridge — replays chosen data; zero new input ----
+  function renderBridge() {
+    S.stage = 'bridge';
+    save();
+    gotoScreen('bridge');
+    if (FH.bridge_title) setText('bridgeTitle', FH.bridge_title);
+    if (FH.bridge_closer) setText('bridgeCloser', FH.bridge_closer);
+
+    var disc = discInfo(S.disc);
+    var goal = goalInfo(S.goal);
+    var layers = FH.bridge_layers || {};
+    var notes = FH.bridge_layer_notes || {};
+
+    var rows = [
+      { h: layers.sifat || 'Lapis 1 — SIFAT',
+        val: disc ? (disc.type + ' · ' + disc.label) : '—',
+        note: notes.sifat || '' },
+      { h: layers.nilai || 'Lapis 2 — NILAI',
+        val: (S.values && S.values.length) ? S.values.join(', ') : '—',
+        note: notes.nilai || '' },
+      { h: layers.tujuan || 'Lapis 3 — TUJUAN',
+        val: goal ? goal.label : '—',
+        note: notes.tujuan || '' }
+    ];
+
+    var box = $('lapisList');
+    box.innerHTML = '';
+    rows.forEach(function (r) {
+      var card = document.createElement('div');
+      card.className = 'lapis';
+      var h = document.createElement('div'); h.className = 'lp-h'; h.textContent = r.h;
+      var v = document.createElement('div'); v.className = 'lp-val'; v.textContent = r.val;
+      card.appendChild(h); card.appendChild(v);
+      if (r.note) {
+        var n = document.createElement('div'); n.className = 'lp-note'; n.textContent = r.note;
+        card.appendChild(n);
+      }
+      box.appendChild(card);
+    });
+
+    $('btnBridgeNext').onclick = beginRounds;
+  }
+
+  // ---- hand off from front-half to the 12 decision rounds ----
+  function beginRounds() {
+    S.idx = 0;
+    S.stage = 'round';
+    show($('statBars'));   // resources only appear once play starts
+    show($('progress'));
+    save();
+    renderRound();
+  }
+
+  // ---- front-half lookups ----
+  function discInfo(type) {
+    var found = null;
+    (FH.disc || []).forEach(function (d) { if (d.type === type) found = d; });
+    return found;
+  }
+  function goalInfo(id) {
+    var found = null;
+    (FH.goals || []).forEach(function (g) { if (g.id === id) found = g; });
+    return found;
+  }
+
+  // =====================================================================
+  //  RESUME / DAY-BOUNDARY CARRY-OVER
+  // =====================================================================
+  function checkResume() {
+    var prev = load();
+    if (!prev || !prev.stage || prev.stage === 'code') return;
+    var answered = prev.answers ? Object.keys(prev.answers).length : 0;
+    S._pending = prev;
+    var who = prev.code ? ('Kode ' + prev.code) : 'Mode kelompok';
+    var crossDay = prev.day && prev.day !== dayStamp();
+    setText('resumeText',
+      who + ' · ' + answered + ' keputusan tersimpan' +
+      (crossDay ? ' (dari sesi hari sebelumnya — skor dibawa lanjut)' : '') + '.');
+    show($('resumeBanner'));
+  }
+
+  function resumeSaved() {
+    var prev = S._pending || load();
+    if (!prev) { toast('Tidak ada sesi tersimpan.'); return; }
+    S = prev;
+    // backfill front-half fields for sessions saved before this feature existed
+    if (typeof S.values === 'undefined') S.values = [];
+    if (typeof S.disc === 'undefined') S.disc = '';
+    if (typeof S.goal === 'undefined') S.goal = '';
+    if (typeof S.arahTujuan === 'undefined') S.arahTujuan = '';
+    // carry over to a fresh day stamp but keep all scores/answers
+    S.day = dayStamp();
+    hide($('resumeBanner'));
+    // bars + progress are play-only; keep them hidden while still in front-half
+    if (isFrontHalf(S.stage)) {
+      hide($('statBars'));
+      hide($('progress'));
+    } else {
+      show($('statBars'));
+      show($('progress'));
+    }
+    routeToStage();
+    toast('Sesi dilanjutkan.');
+  }
+
+  function isFrontHalf(stage) {
+    return stage === 'values' || stage === 'disc' || stage === 'goal' || stage === 'bridge';
+  }
+
+  function routeToStage() {
+    if (S.stage === 'reveal') { renderReveal(); }
+    else if (S.stage === 'surat') { renderSurat(); }
+    else if (S.stage === 'bet') { renderBet(); }
+    else if (S.stage === 'chaos') { renderChaosSequence(0); }
+    else if (S.stage === 'values') { renderValues(); }
+    else if (S.stage === 'disc') { renderDisc(); }
+    else if (S.stage === 'goal') { renderGoal(); }
+    else if (S.stage === 'bridge') { renderBridge(); }
+    else { renderRound(); }
+  }
+
+  // =====================================================================
+  //  ROUND RENDER
+  // =====================================================================
+  function renderRound() {
+    S.stage = 'round';
+    if (S.idx >= ROUND_IDS.length) { afterAllRounds(); return; }
+
+    var id = ROUND_IDS[S.idx];
+    var r = ROUND_BY_ID[id];
+    gotoScreen('round');
+
+    var badge = $('rPhaseBadge');
+    badge.className = 'phase-badge phase-' + r.phase;
+    badge.textContent = r.phase;
+    setText('rYear', r.year);
+    setText('rId', r.id);
+    setText('rTitle', r.title);
+    setText('rSituation', r.situation);
+
+    var g = $('rGuardrail');
+    if (r.guardrail) { g.innerHTML = '<strong>Pagar aman:</strong> ' + escapeHtml(r.guardrail); show(g); }
+    else { hide(g); }
+
+    setText('optAText', r.optionA);
+    setText('optBText', r.optionB);
+
+    var prior = S.answers[id] || null;
+    var optA = $('optA'), optB = $('optB');
+    resetOpt(optA); resetOpt(optB);
+    hide($('rReveal'));
+    hide($('btnNext'));
+
+    optA.onclick = function () { choose(id, 'A'); };
+    optB.onclick = function () { choose(id, 'B'); };
+
+    if (prior) { applyChosenUI(id, prior, false); } // re-entry shows prior pick + reveal
+
+    renderBars();
+    renderProgress();
+    save();
+  }
+
+  function resetOpt(btn) {
+    btn.classList.remove('selected', 'dimmed');
+    btn.disabled = false;
+  }
+
+  function choose(id, ch) {
+    S.answers[id] = ch;
+    applyChosenUI(id, ch, true);
+    renderBars();   // bars update immediately with running clamp from engine
+    renderProgress();
+    save();
+  }
+
+  function applyChosenUI(id, ch, animate) {
+    var r = ROUND_BY_ID[id];
+    var optA = $('optA'), optB = $('optB');
+    var chosen = (ch === 'A') ? optA : optB;
+    var other = (ch === 'A') ? optB : optA;
+    chosen.classList.add('selected');
+    chosen.classList.remove('dimmed');
+    other.classList.remove('selected');
+    other.classList.add('dimmed');
+
+    var rev = $('rReveal');
+    $('rRevealText').textContent = (ch === 'A') ? r.revealA : r.revealB;
+    show(rev);
+    show($('btnNext'));
+
+    // allow switching choice (re-pick) before advancing
+    optA.onclick = function () { choose(id, 'A'); };
+    optB.onclick = function () { choose(id, 'B'); };
+  }
+
+  $('btnNext').addEventListener('click', function () {
+    var id = ROUND_IDS[S.idx];
+    if (!S.answers[id]) { toast('Pilih A atau B dulu.'); return; }
+    advanceFromRound();
+  });
+
+  function advanceFromRound() {
+    var curId = ROUND_IDS[S.idx];
+    // After the LAST Fase 2 round (F2.5), insert chaos + bet before Fase 3.
+    if (curId === 'F2.5') {
+      S.idx++;            // point at first F3 round
+      runInterstitials();
+      return;
+    }
+    S.idx++;
+    renderRound();
+  }
+
+  // =====================================================================
+  //  INTERSTITIALS between Fase 2 and Fase 3:
+  //  (1) Chaos cards (operator toggle, class-wide)
+  //  (2) F2.5 deferred-bet resolution (only if A chosen)
+  //  then -> Fase 3 (F3.1)
+  // =====================================================================
+  function runInterstitials() {
+    S.chaosSeen = true; // chaos now counts toward live bars
+    save();
+    if (S.chaosPlayed && S.chaosPlayed.length) {
+      renderChaosSequence(0);
+    } else {
+      afterChaos();
+    }
+  }
+
+  function renderChaosSequence(i) {
+    S.stage = 'chaos';
+    if (i >= S.chaosPlayed.length) { afterChaos(); return; }
+    var c = CHAOS_BY_ID[S.chaosPlayed[i]];
+    if (!c) { renderChaosSequence(i + 1); return; }
+    gotoScreen('chaos');
+    setText('chId', c.id);
+    setText('chTitle', c.title);
+    setText('chNarrative', c.narrative);
+    setText('chInstruction', c.group_instruction);
+    renderBars();
+    $('btnChaosNext').onclick = function () { renderChaosSequence(i + 1); };
+  }
+
+  function afterChaos() {
+    // F2.5 bet resolution only if option A chosen
+    if (S.answers['F2.5'] === 'A') {
+      renderBet();
+    } else {
+      gotoFase3();
+    }
+  }
+
+  function renderBet() {
+    S.stage = 'bet';
+    save();
+    var b = DATA.bet;
+    gotoScreen('bet');
+    setText('betTitle', b.title);
+    setText('betIntro', b.intro);
+    $('betResult').innerHTML = '';
+    hide($('btnBetNext'));
+    var draw = $('btnDrawCard');
+    show(draw);
+
+    // If already resolved (re-entry), show the outcome directly.
+    if (typeof S.betResolved === 'boolean') {
+      hide(draw);
+      paintBetOutcome(S.betResolved);
+      show($('btnBetNext'));
+    }
+
+    draw.onclick = function () {
+      // neutral 50:50, NO dice/coin imagery — just a drawn card.
+      var won = Math.random() < ENG.F25.prob_success;
+      S.betResolved = won;
+      save();
+      hide(draw);
+      paintBetOutcome(won);
+      renderBars(); // payoff now applied via engine
+      show($('btnBetNext'));
+    };
+
+    $('btnBetNext').onclick = gotoFase3;
+    renderBars();
+  }
+
+  function paintBetOutcome(won) {
+    var b = DATA.bet;
+    var box = document.createElement('div');
+    box.className = 'bet-outcome ' + (won ? 'win' : 'lose');
+    var h = document.createElement('h4');
+    h.textContent = won ? b.success_title : b.fail_title;
+    var p = document.createElement('p');
+    p.textContent = won ? b.success_text : b.fail_text;
+    box.appendChild(h); box.appendChild(p);
+    var res = $('betResult');
+    res.innerHTML = '';
+    res.appendChild(box);
+  }
+
+  function gotoFase3() {
+    renderRound(); // S.idx already points at F3.1
+  }
+
+  function afterAllRounds() {
+    // safety: if somehow reached here without interstitials (no F2.5 path issues)
+    renderReveal();
+  }
+
+  // =====================================================================
+  //  REVEAL
+  // =====================================================================
+  function finalResult() {
+    // Authoritative final score from engine, with resolved bet.
+    return ENG.scoreRun(S.answers, {
+      chaosPlayed: S.chaosPlayed || [],
+      f25Success: (typeof S.betResolved === 'boolean') ? S.betResolved : null,
+      rng: Math.random
+    });
+  }
+
+  // =====================================================================
+  //  GOAL DIRECTION (reveal anchor) — metadata ONLY, no resource delta.
+  //  Counts how many ANSWERED rounds aligned with the chosen Goal (per the
+  //  data.js goal_align table) vs not, then buckets the run as
+  //  Condong / Menjauh / Campuran. This NEVER changes any score; it only
+  //  labels the reveal. Emotionally safe: no gagal/menang/kalah.
+  // =====================================================================
+  function computeArahTujuan() {
+    if (!S.goal) return '';
+    var table = (FH.goal_align || {})[S.goal];
+    if (!table) return 'Campuran';
+    var aligned = 0, counted = 0;
+    Object.keys(table).forEach(function (rid) {
+      var pick = S.answers[rid];
+      if (pick !== 'A' && pick !== 'B') return; // only rounds actually answered
+      counted++;
+      if (pick === table[rid]) aligned++;
+    });
+    if (counted === 0) return 'Campuran';
+    var ratio = aligned / counted;
+    if (ratio >= 0.6) return 'Condong';
+    if (ratio <= 0.4) return 'Menjauh';
+    return 'Campuran';
+  }
+
+  function applyGoalMirror() {
+    var box = $('goalMirror');
+    var goal = goalInfo(S.goal);
+    var anchor = FH.reveal_anchor || {};
+    if (!goal || !anchor.buckets) { hide(box); return; }
+
+    S.arahTujuan = computeArahTujuan();
+    var tmpl = anchor.buckets[S.arahTujuan] || anchor.buckets.Campuran || '';
+    var line = tmpl.replace(/\{Tujuan\}/g, goal.label);
+    if (anchor.heading) setText('goalMirrorH', anchor.heading);
+    setText('goalMirrorText', line);
+    setText('goalMirrorCloser', anchor.closer || '');
+    show(box);
+    save();
+  }
+
+  function renderReveal() {
+    S.stage = 'reveal';
+    save();
+    var res = finalResult();
+    S._final = res; // cache for export/copy
+    gotoScreen('reveal');
+    setText('revealHeadline', DATA.headline);
+
+    // final resource chips
+    var rs = $('resSummary');
+    rs.innerHTML = '';
+    rs.appendChild(resChip('e', 'Energi', res.E));
+    rs.appendChild(resChip('u', 'Uang', res.K));
+    rs.appendChild(resChip('m', 'Mental', res.M));
+
+    var prof = PROFILE_BY_ID[res.profil] || null;
+    setText('profileName', res.profil);
+    setText('profileEn', prof ? prof.en_name : '');
+
+    // private block (hidden until "see private")
+    hide($('privateReveal'));
+    show($('groupReveal'));
+    if (prof) {
+      setText('pbReveal', prof.reveal_paragraph);
+      setText('pbTradeoff', prof.tradeoff);
+      setText('pbReframe', prof.safe_reframe);
+    }
+
+    // "cermin Tujuan" anchor — threads the chosen Goal into the reveal
+    // (leaned toward/away). No-op when no Goal was chosen (older sessions).
+    // applyGoalMirror() also finalizes S.arahTujuan, so the sync payload
+    // below sees the resolved direction.
+    applyGoalMirror();
+
+    // ---- OPTIONAL cloud sync — fire ONCE per completed run, here at the
+    // reveal (profile + arahTujuan are now final). Pseudonymous fields
+    // only; NEVER a real name. Fully guarded: no-op if leap-sync.js absent
+    // or unconfigured, and it can never throw into the game flow. ----
+    submitResultToSync(res);
+
+    $('btnSeePrivate').onclick = function () {
+      hide($('groupReveal'));
+      show($('privateReveal'));
+      window.scrollTo({ top: $('privateReveal').offsetTop - 20, behavior: 'smooth' });
+    };
+
+    renderBars();
+    renderProgress();
+  }
+
+  // ---------------------------------------------------------------------
+  //  OPTIONAL CLOUD SYNC bridge. Builds the SAME pseudonymous payload the
+  //  CSV uses (engine scores + front-half identity) and hands it to
+  //  window.LEAP_SYNC.submit — IF that exists. Guarded three ways:
+  //    (1) no leap-sync.js loaded  -> window.LEAP_SYNC is undefined -> skip
+  //    (2) submit() itself no-ops when there's no Supabase config / offline
+  //        (it queues to localStorage and retries) — see leap-sync.js
+  //    (3) we de-dupe per run via S._synced so re-rendering / resuming the
+  //        reveal won't submit twice.
+  //  Privacy: kode + scores + profil + values/disc/goal/arah ONLY. No name.
+  //  Wrapped in try/catch so sync can NEVER break the reveal.
+  // ---------------------------------------------------------------------
+  function submitResultToSync(res) {
+    try {
+      if (!window.LEAP_SYNC || typeof window.LEAP_SYNC.submit !== 'function') return;
+      if (S._synced) return; // already sent this run
+      var goal = goalInfo(S.goal);
+      var arah = S.arahTujuan || computeArahTujuan();
+      var payload = {
+        kode: S.code || '',
+        // engine resource names: E / K(Uang) / M
+        energi: res.E,
+        uang: res.K,
+        mental: res.M,
+        total_f1: res.totalF1,
+        profil: res.profil,
+        // front-half identity (metadata only) — same as CSV columns
+        nilai: (S.values || []).slice(0, 5),
+        disc: S.disc || '',
+        tujuan: goal ? goal.label : '',
+        arah_tujuan: arah || ''
+      };
+      S._synced = true;
+      save();
+      // submit() returns a Promise but we intentionally don't await it —
+      // the reveal renders immediately regardless of network.
+      window.LEAP_SYNC.submit(payload);
+    } catch (e) {
+      /* sync must never interfere with play */
+    }
+  }
+
+  function resChip(cls, name, val) {
+    var d = document.createElement('div');
+    d.className = 'res-chip ' + cls;
+    var n = document.createElement('div'); n.className = 'rc-name'; n.textContent = name;
+    var v = document.createElement('div'); v.className = 'rc-val'; v.textContent = val;
+    d.appendChild(n); d.appendChild(v);
+    return d;
+  }
+
+  // =====================================================================
+  //  CSV — engine owns the first 6 columns (Kode,Energi,Uang,Mental,
+  //  TotalF1,Profil) byte-for-byte so web==Sheet==paper stays intact.
+  //  The front-half identity columns are APPENDED AFTER them here, never
+  //  inside the engine: Nilai1..Nilai5, DISC, Tujuan, ArahTujuan.
+  // =====================================================================
+  var FH_CSV_COLS = ['Nilai1', 'Nilai2', 'Nilai3', 'Nilai4', 'Nilai5', 'DISC', 'Tujuan', 'ArahTujuan'];
+
+  function csvCellSafe(c) {
+    var v = (c === null || c === undefined) ? '' : String(c);
+    return /[",\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v;
+  }
+
+  function csvHeaderFull() {
+    return ENG.csvHeader() + ',' + FH_CSV_COLS.join(',');
+  }
+
+  // front-half cells in the SAME order as FH_CSV_COLS.
+  function fhCells() {
+    var vals = (S.values || []).slice(0, 5);
+    while (vals.length < 5) vals.push(''); // pad to exactly 5 columns
+    var goal = goalInfo(S.goal);
+    var arah = S.arahTujuan || computeArahTujuan(); // ensure populated for export
+    var cells = vals.concat([
+      S.disc || '',
+      goal ? goal.label : '',
+      arah || ''
+    ]);
+    return cells.map(csvCellSafe).join(',');
+  }
+
+  function csvRowFull(kode, r) {
+    return ENG.csvRow(kode, r) + ',' + fhCells();
+  }
+
+  // ---- copy / csv ----
+  $('btnCopyResult').addEventListener('click', function () {
+    var r = S._final || finalResult();
+    var line = csvHeaderFull() + '\n' + csvRowFull(S.code || '(grup)', r);
+    copyText(line);
+  });
+
+  $('btnExportCsv').addEventListener('click', function () {
+    var r = S._final || finalResult();
+    var csv = csvHeaderFull() + '\n' + csvRowFull(S.code || '', r) + '\n';
+    var name = 'LEAP2036-' + (S.code ? S.code.replace(/[^A-Za-z0-9_-]/g, '') : 'grup') + '.csv';
+    downloadFile(name, csv, 'text/csv;charset=utf-8');
+    toast('CSV diunduh: ' + name);
+  });
+
+  function copyText(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(
+        function () { toast('Hasil disalin ke clipboard.'); },
+        function () { fallbackCopy(text); }
+      );
+    } else { fallbackCopy(text); }
+  }
+  function fallbackCopy(text) {
+    try {
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.focus(); ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      toast('Hasil disalin.');
+    } catch (e) { toast('Tidak bisa menyalin otomatis — salin manual.'); }
+  }
+
+  function downloadFile(name, content, mime) {
+    try {
+      var blob = new Blob([content], { type: mime });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url; a.download = name;
+      document.body.appendChild(a); a.click();
+      document.body.removeChild(a);
+      setTimeout(function () { URL.revokeObjectURL(url); }, 1500);
+    } catch (e) {
+      // file:// blob fallback: data URI
+      var uri = 'data:' + mime + ',' + encodeURIComponent(content);
+      var a2 = document.createElement('a');
+      a2.href = uri; a2.download = name;
+      document.body.appendChild(a2); a2.click();
+      document.body.removeChild(a2);
+    }
+  }
+
+  // ---- replay / reset ----
+  function replay() {
+    if (!confirm('Mulai dari awal? Jawaban sesi ini akan dihapus.')) return;
+    clearSave();
+    S = newSession();
+    hide($('statBars'));
+    hide($('progress'));
+    $('inpCode').value = '';
+    setText('modeLine', 'Mode: kelompok (tanpa kode)');
+    initChaosChecks();
+    gotoScreen('code');
+    toast('Sesi baru siap.');
+  }
+  $('btnReplay').addEventListener('click', replay);
+  $('btnReplay2').addEventListener('click', replay);
+
+  function initChaosChecks() {
+    $('chaosPicks').querySelectorAll('input[type=checkbox]').forEach(function (cb) {
+      cb.checked = S.chaosPlayed.indexOf(cb.value) >= 0;
+    });
+    updateChaosNote();
+  }
+
+  // =====================================================================
+  //  SURAT
+  // =====================================================================
+  $('btnToSurat').addEventListener('click', function () { renderSurat(); });
+  $('btnBackReveal').addEventListener('click', function () { renderReveal(); });
+
+  function renderSurat() {
+    S.stage = 'surat';
+    save();
+    gotoScreen('surat');
+
+    // seed from profile
+    var res = S._final || finalResult();
+    var prof = PROFILE_BY_ID[res.profil];
+    $('suratSeed').textContent = prof ? ('Pemantik: ' + prof.surat_seed) : '';
+
+    var form = $('suratForm');
+    if (!form._built) {
+      buildSuratFields(form);
+      form._built = true;
+    }
+    // restore saved values
+    DATA.surat.blanks.forEach(function (b) {
+      var el = $('surat_' + b.key);
+      if (el) el.value = (S.surat && S.surat[b.key]) ? S.surat[b.key] : '';
+    });
+    renderSuratPreview();
+  }
+
+  function buildSuratFields(form) {
+    form.innerHTML = '';
+    var reqSet = DATA.surat.required_keys || [];
+    DATA.surat.blanks.forEach(function (b) {
+      var wrap = document.createElement('div');
+      wrap.className = 'field';
+      var lab = document.createElement('label');
+      lab.setAttribute('for', 'surat_' + b.key);
+      lab.textContent = b.label;
+      if (reqSet.indexOf(b.key) >= 0) {
+        var rb = document.createElement('span');
+        rb.className = 'req-badge';
+        rb.textContent = 'isi minimal';
+        lab.appendChild(rb);
+      }
+      var input;
+      if (b.multiline) {
+        input = document.createElement('textarea');
+        input.className = 'textarea';
+      } else {
+        input = document.createElement('input');
+        input.className = 'input';
+        input.type = 'text';
+      }
+      input.id = 'surat_' + b.key;
+      input.addEventListener('input', function () {
+        if (!S.surat) S.surat = {};
+        S.surat[b.key] = input.value;
+        renderSuratPreview();
+        save();
+      });
+      wrap.appendChild(lab);
+      wrap.appendChild(input);
+      form.appendChild(wrap);
+    });
+  }
+
+  function renderSuratPreview() {
+    var vals = S.surat || {};
+    var filled = fillTemplate(DATA.surat.template, vals, false); // screen preview (html, dotted blanks)
+    // build print version
+    $('suratPrint').innerHTML = fillTemplate(DATA.surat.template, vals, true);
+    var sub = S.code ? ('Kode ' + S.code) : 'LEAP 2036';
+    setText('printSub', sub + ' · ditulis ' + new Date().toLocaleDateString('id-ID'));
+    // (no on-screen letter card needed beyond inputs; preview drives print)
+    void filled;
+  }
+
+  // Replace {{key}} with typed value; empty -> dotted placeholder span.
+  function fillTemplate(tpl, vals, forPrint) {
+    var html = escapeHtml(tpl);
+    html = html.replace(/\{\{(\w+)\}\}/g, function (_, key) {
+      var v = vals[key];
+      if (v && String(v).trim() !== '') return escapeHtml(String(v));
+      return '<span class="blank-empty">&nbsp;</span>';
+    });
+    void forPrint;
+    return html;
+  }
+
+  $('btnPrint').addEventListener('click', function () {
+    renderSuratPreview();
+    window.print();
+  });
+
+  // =====================================================================
+  //  UTIL
+  // =====================================================================
+  function escapeHtml(s) {
+    return String(s)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  // =====================================================================
+  //  BOOT
+  // =====================================================================
+  // Enable CSS-driven screen/reveal motion only when JS is alive (so a
+  // no-script fallback still shows content). prefers-reduced-motion is
+  // already honoured inside style.css, so this is always safe to add.
+  document.body.classList.add('js-anim');
+  initCodeScreen();
+  checkResume();
+  gotoScreen('code');
+
+})();
+
+/* =====================================================================
+   PWA SERVICE WORKER — GUARDED registration (classic script).
+   The core game does NOT need this: it already runs from file:// with no
+   network. The SW only adds an installable offline shell on http(s).
+
+   GUARD: register ONLY when
+     (1) the Service Worker API exists in this browser, AND
+     (2) the page is served over http/https (location.protocol starts
+         with 'http') — so file:// (USB / double-click) silently SKIPS,
+         where SW registration is unsupported and would throw.
+   Any failure is swallowed; it never blocks or breaks play.
+   ===================================================================== */
+(function () {
+  'use strict';
+  try {
+    var canSW = ('serviceWorker' in navigator) &&
+                (typeof location !== 'undefined') &&
+                /^http/.test(location.protocol); // 'http:' or 'https:' only — NOT 'file:'
+    if (!canSW) return; // file:// and unsupported browsers: no-op, zero errors
+    window.addEventListener('load', function () {
+      // relative 'sw.js' => scope = this folder; same path strategy as the manifest.
+      navigator.serviceWorker.register('sw.js').catch(function () {
+        /* offline shell unavailable; game still plays normally */
+      });
+    });
+  } catch (e) {
+    /* never let PWA wiring interfere with the game */
+  }
+})();
+</script>
+</body>
+</html>

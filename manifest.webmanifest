@@ -1,0 +1,23 @@
+{
+  "name": "LEAP 2036",
+  "short_name": "LEAP 2036",
+  "description": "Decision Engine — 10 tahun keputusan hidup, dimainkan dalam beberapa menit. 7 jalur, 0 juara, semua nyata.",
+  "lang": "id",
+  "dir": "ltr",
+  "start_url": ".",
+  "scope": ".",
+  "id": ".",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#eaf1ff",
+  "theme_color": "#eaf1ff",
+  "categories": ["education", "games"],
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

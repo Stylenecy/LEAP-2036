@@ -1,0 +1,11 @@
+# local Supabase config (url + anon key) — never commit; copy from leap-config.example.js
+leap-config.js
+
+# editor / OS cruft
+.DS_Store
+Thumbs.db
+.vscode/
+*.log
+
+# vercel local link
+.vercel

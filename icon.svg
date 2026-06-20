@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="LEAP 2036">
+  <defs>
+    <!-- bright daylight background (sky -> warm horizon) -->
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#dfeaff"/>
+      <stop offset="55%" stop-color="#efe9ff"/>
+      <stop offset="100%" stop-color="#fff1dc"/>
+    </linearGradient>
+    <!-- cheerful blue-violet -> pink accent gradient -->
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6a5cff"/>
+      <stop offset="52%" stop-color="#a062ff"/>
+      <stop offset="100%" stop-color="#ff77b1"/>
+    </linearGradient>
+    <linearGradient id="accentSoft" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6a5cff" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#a062ff" stop-opacity="0.85"/>
+    </linearGradient>
+  </defs>
+
+  <!-- full-bleed background (maskable: covers entire canvas, no transparency) -->
+  <rect x="0" y="0" width="512" height="512" fill="url(#bg)"/>
+
+  <!-- soft sun glow top-right -->
+  <circle cx="430" cy="92" r="120" fill="#ffd46b" opacity="0.35"/>
+
+  <!-- ===== safe zone ~ center 80% (mark kept within the maskable safe area) ===== -->
+  <g transform="translate(256 256)">
+    <!-- leap arc (a hop into the future) -->
+    <path d="M -120 78 A 152 152 0 0 1 120 -62"
+          fill="none" stroke="url(#accent)" stroke-width="16"
+          stroke-linecap="round" opacity="0.65"/>
+    <!-- the leaping spark sitting on the arc -->
+    <circle cx="120" cy="-62" r="22" fill="url(#accent)"/>
+    <circle cx="120" cy="-62" r="38" fill="none" stroke="url(#accentSoft)" stroke-width="7" opacity="0.4"/>
+    <!-- friendly star sparkle -->
+    <path d="M -132 -96 l 9 22 22 9 -22 9 -9 22 -9 -22 -22 -9 22 -9 z" fill="#ffb01f"/>
+
+    <!-- LEAP wordmark -->
+    <text x="0" y="-6" text-anchor="middle"
+          font-family="ui-rounded, Segoe UI, Roboto, Helvetica, Arial, sans-serif"
+          font-size="118" font-weight="900" letter-spacing="4"
+          fill="url(#accent)">LEAP</text>
+    <!-- 2036 sub-mark -->
+    <text x="0" y="66" text-anchor="middle"
+          font-family="ui-rounded, Segoe UI, Roboto, Helvetica, Arial, sans-serif"
+          font-size="58" font-weight="800" letter-spacing="12"
+          fill="#56527a">2036</text>
+  </g>
+</svg>
