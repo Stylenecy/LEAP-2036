@@ -10,11 +10,12 @@
      - NEVER caches or intercepts cross-origin requests (e.g. Supabase /
        any API or CDN) — those pass straight through to the network so
        sync stays online-only and is never silently served from cache.
+     - NEVER caches dashboard.html (always live from network).
    ===================================================================== */
 'use strict';
 
 // Bump this string on any asset change to invalidate the old cache.
-var CACHE = 'leap2036-v2';
+var CACHE = 'leap2036-v3';
 
 // Core shell — all same-folder, relative to the SW scope (the /leap/ dir).
 var CORE_ASSETS = [
@@ -31,8 +32,6 @@ var CORE_ASSETS = [
 self.addEventListener('install', function (event) {
   event.waitUntil(
     caches.open(CACHE).then(function (cache) {
-      // addAll is atomic; if one asset 404s the whole install fails, which
-      // is what we want (don't ship a half-cached offline shell).
       return cache.addAll(CORE_ASSETS);
     }).then(function () {
       return self.skipWaiting();
@@ -58,27 +57,24 @@ self.addEventListener('activate', function (event) {
 self.addEventListener('fetch', function (event) {
   var req = event.request;
 
-  // Only handle GET. Let POST/PUT/etc (e.g. any future sync) hit the network.
+  // Only handle GET. Let POST/PUT/etc hit the network.
   if (req.method !== 'GET') return;
 
   var url;
   try {
     url = new URL(req.url);
   } catch (e) {
-    return; // unparseable — leave to the browser
+    return;
   }
 
-  // CRITICAL: never touch cross-origin (Supabase, CDNs, analytics, etc).
-  // Those must reach the live network and never be served from cache.
-  if (url.origin !== self.location.origin) return;
+  // CRITICAL: never touch cross-origin or dashboard.html in SW cache.
+  if (url.origin !== self.location.origin || url.pathname.includes('dashboard')) return;
 
   event.respondWith(
     caches.match(req).then(function (cached) {
       if (cached) return cached;
 
       return fetch(req).then(function (res) {
-        // Cache successful, basic (same-origin) responses for next time so
-        // navigations to sub-paths within scope also work offline.
         if (res && res.status === 200 && res.type === 'basic') {
           var copy = res.clone();
           caches.open(CACHE).then(function (cache) {
@@ -87,8 +83,6 @@ self.addEventListener('fetch', function (event) {
         }
         return res;
       }).catch(function () {
-        // Offline and not cached: fall back to the cached app shell for
-        // navigations so the game still boots; otherwise fail gracefully.
         if (req.mode === 'navigate') {
           return caches.match('index.html');
         }
