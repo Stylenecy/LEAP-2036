@@ -3,168 +3,307 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0f172a">
+<meta name="theme-color" content="#0b0f19">
 <meta name="robots" content="noindex,nofollow">
-<title>LEAP 2036 — Papan Fasilitator</title>
-<!--
-  STANDALONE facilitator / DPL page. OPTIONAL — only useful if the
-  Supabase data layer is configured (leap-config.js). Same offline-
-  friendly stack as the game: classic script, system fonts, NO CDN.
-  Reads PSEUDONYMOUS data only (kode + scores + profil + values/disc/
-  goal/arah). No names exist in the table to begin with.
-
-  PRIVACY / SECURITY NOTE (honest):
-    The passcode below is a LIGHT client-side gate — it only deters
-    casual snooping by someone who opens this file. It is NOT real
-    security (anyone can read it in "View Source"). REAL protection is:
-      (1) the data is pseudonymous (no names), and
-      (2) Row Level Security in Supabase (schema.sql) controls who can
-          read the table. For true access control, switch the SELECT
-          policy to "authenticated only" (see schema.sql / SETUP.md) so
-          the public anon key can't read at all.
--->
+<title>🚀 LEAP 2036 — Papan Fasilitator Live</title>
 <style>
-  :root{
-    --bg:#0f172a; --panel:#16203a; --panel2:#1b2747; --line:#2a3a63;
-    --ink:#e8eefc; --muted:#9fb0d4; --accent:#7aa2ff; --accent2:#3ad6b5;
-    --warn:#ffb86b;
+  :root {
+    --bg: #0b0f19;
+    --panel: rgba(18, 24, 40, 0.92);
+    --panel2: #161f36;
+    --panel-hover: #1e2a47;
+    --line: rgba(255, 255, 255, 0.1);
+    --line-accent: rgba(91, 70, 246, 0.3);
+    --ink: #f1f5f9;
+    --muted: #94a3b8;
+    --accent: #6366f1;
+    --accent-bright: #818cf8;
+    --accent2: #10b981;
+    --energi: #ff6b3b;
+    --uang: #ffab00;
+    --mental: #10b981;
+    --warn: #f59e0b;
+    --radius: 16px;
+    --shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+    --font: ui-rounded, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --mono: ui-monospace, "SF Mono", Consolas, monospace;
   }
-  *{box-sizing:border-box}
-  html,body{margin:0}
-  body{
-    background:var(--bg); color:var(--ink);
-    font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    line-height:1.5; padding:22px; -webkit-font-smoothing:antialiased;
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); font-family: var(--font); line-height: 1.5; -webkit-font-smoothing: antialiased; }
+  
+  body {
+    background:
+      radial-gradient(800px 500px at 85% -10%, rgba(99, 102, 241, 0.15), transparent 60%),
+      radial-gradient(800px 600px at 10% 110%, rgba(16, 185, 129, 0.12), transparent 60%),
+      linear-gradient(180deg, #0b0f19 0%, #080b12 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    padding: 24px 16px;
   }
-  h1{font-size:20px;margin:0 0 2px}
-  h2{font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:26px 0 10px}
-  .sub{color:var(--muted);font-size:13px;margin:0 0 18px}
-  .wrap{max-width:1040px;margin:0 auto}
-  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:16px}
-  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-  label{font-size:12px;color:var(--muted);display:block;margin-bottom:5px}
-  input,button,select{font:inherit}
-  input[type=text],input[type=password]{
-    background:var(--panel2);border:1px solid var(--line);color:var(--ink);
-    border-radius:9px;padding:10px 12px;min-width:220px;
-  }
-  button{
-    background:var(--accent);color:#0a1020;border:0;border-radius:9px;
-    padding:10px 14px;font-weight:700;cursor:pointer;
-  }
-  button.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
-  button:disabled{opacity:.5;cursor:default}
-  .pill{display:inline-block;background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:3px 10px;font-size:12px;color:var(--muted)}
-  .err{color:var(--warn);font-size:13px;margin-top:8px;min-height:18px}
-  .note{color:var(--muted);font-size:12px}
-  .hidden{display:none}
 
-  /* distribution bars */
-  .dist{display:flex;flex-direction:column;gap:9px}
-  .dist-row{display:grid;grid-template-columns:200px 1fr 46px;gap:10px;align-items:center}
-  .dist-name{font-size:13px}
-  .dist-track{background:var(--panel2);border-radius:8px;height:20px;overflow:hidden;border:1px solid var(--line)}
-  .dist-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));min-width:2px;transition:width .25s}
-  .dist-count{text-align:right;font-variant-numeric:tabular-nums;font-size:13px}
+  .wrap { max-width: 1160px; margin: 0 auto; }
+  
+  /* Header */
+  .dash-head {
+    display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;
+    gap: 16px; margin-bottom: 24px; padding-bottom: 20px;
+    border-bottom: 1.5px solid var(--line);
+  }
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .brand-logo {
+    background: linear-gradient(135deg, var(--accent), #933cf8);
+    color: #fff; font-weight: 900; font-size: 14px; letter-spacing: 0.18em;
+    padding: 8px 16px; border-radius: 999px; box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
+  }
+  .title { font-size: 24px; font-weight: 900; margin: 0; letter-spacing: -0.02em; }
+  .sub { color: var(--muted); font-size: 13px; margin: 2px 0 0; }
 
-  /* table */
-  .tbl-scroll{overflow:auto;border:1px solid var(--line);border-radius:12px}
-  table{border-collapse:collapse;width:100%;font-size:13px;min-width:760px}
-  th,td{padding:9px 11px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}
-  th{position:sticky;top:0;background:var(--panel2);cursor:pointer;user-select:none;font-size:12px;letter-spacing:.03em}
-  th .arr{color:var(--accent);font-size:10px;margin-left:4px}
-  tbody tr:hover{background:rgba(122,162,255,.08)}
-  tbody tr:nth-child(odd){background:rgba(255,255,255,.015)}
-  td.num{text-align:right;font-variant-numeric:tabular-nums}
-  .toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
-  .count-line{font-size:13px;color:var(--muted);margin:0 0 10px}
+  /* Cards & Grid */
+  .card {
+    background: var(--panel);
+    backdrop-filter: blur(16px);
+    border: 1.5px solid var(--line);
+    border-radius: var(--radius);
+    padding: 22px; margin-bottom: 20px;
+    box-shadow: var(--shadow);
+  }
+  .card-title {
+    font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--muted); font-weight: 800; margin: 0 0 16px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+
+  /* Metric summary tiles */
+  .metrics-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px; margin-bottom: 20px;
+  }
+  .tile {
+    background: var(--panel2); border: 1.5px solid var(--line);
+    border-radius: 14px; padding: 16px 18px; text-align: center;
+    transition: transform 0.2s ease;
+  }
+  .tile:hover { transform: translateY(-2px); border-color: var(--line-accent); }
+  .tile-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); font-weight: 700; }
+  .tile-val { font-size: 28px; font-weight: 900; margin-top: 4px; font-family: var(--mono); color: #fff; }
+  .tile-sub { font-size: 12px; color: var(--accent-bright); font-weight: 700; margin-top: 2px; }
+
+  /* Live Controls & Badges */
+  .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--panel2); border: 1px solid var(--line);
+    border-radius: 999px; padding: 5px 14px; font-size: 12px; color: var(--muted); font-weight: 700;
+  }
+  .pill.live { border-color: rgba(16, 185, 129, 0.4); color: #34d399; background: rgba(16, 185, 129, 0.1); }
+  .pulse-dot {
+    width: 8px; height: 8px; border-radius: 50%; background: #10b981;
+    box-shadow: 0 0 8px #10b981; animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.85); } }
+
+  input[type=text], input[type=password], select {
+    background: var(--panel2); border: 1.5px solid var(--line); color: var(--ink);
+    border-radius: 10px; padding: 10px 14px; font-family: inherit; font-size: 14px;
+    transition: border-color 0.15s ease;
+  }
+  input:focus, select:focus { outline: none; border-color: var(--accent); }
+  
+  button {
+    background: linear-gradient(135deg, var(--accent), #4f46e5);
+    color: #fff; border: 0; border-radius: 10px;
+    padding: 10px 18px; font-weight: 800; font-family: inherit; font-size: 13px;
+    cursor: pointer; transition: filter 0.15s ease, transform 0.15s ease;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
+  }
+  button:hover { filter: brightness(1.1); transform: translateY(-1px); }
+  button:active { transform: translateY(0); }
+  button.ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--line); box-shadow: none; }
+  button.ghost:hover { background: rgba(255,255,255,0.05); }
+
+  /* Profile Distribution Bars */
+  .dist-list { display: flex; flex-direction: column; gap: 12px; }
+  .dist-item {
+    display: grid; grid-template-columns: 210px 1fr 60px;
+    gap: 12px; align-items: center; font-size: 13px;
+  }
+  .dist-name { font-weight: 700; color: var(--ink); }
+  .dist-track {
+    background: var(--panel2); border-radius: 999px; height: 22px;
+    overflow: hidden; border: 1px solid var(--line); position: relative;
+  }
+  .dist-fill {
+    height: 100%; border-radius: 999px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    min-width: 4px; transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .dist-pct { text-align: right; font-family: var(--mono); font-weight: 800; color: var(--muted); }
+
+  /* Profile specific bar gradients */
+  .dist-item[data-profile="Pelari Tanpa Rem"] .dist-fill { background: linear-gradient(90deg, #ff6b3b, #ff4769); }
+  .dist-item[data-profile="Sukses-tapi-Tumbang"] .dist-fill { background: linear-gradient(90deg, #f59e0b, #ef4444); }
+  .dist-item[data-profile="Bijak yang Tenang"] .dist-fill { background: linear-gradient(90deg, #10b981, #06b6d4); }
+  .dist-item[data-profile="Mekar Belakangan"] .dist-fill { background: linear-gradient(90deg, #8b5cf6, #ec4899); }
+  .dist-item[data-profile="Pemberontak Kreatif"] .dist-fill { background: linear-gradient(90deg, #3b82f6, #8b5cf6); }
+  .dist-item[data-profile="Pembangun Seimbang"] .dist-fill { background: linear-gradient(90deg, #10b981, #84cc16); }
+
+  /* Table styling */
+  .tbl-wrap { overflow-x: auto; border: 1.5px solid var(--line); border-radius: 12px; }
+  table { border-collapse: collapse; width: 100%; font-size: 13px; min-width: 860px; }
+  th, td { padding: 12px 14px; text-align: left; border-bottom: 1px solid var(--line); white-space: nowrap; }
+  th {
+    position: sticky; top: 0; background: #162038;
+    color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em;
+    font-weight: 800; cursor: pointer; user-select: none;
+  }
+  th:hover { color: #fff; }
+  th .arr { color: var(--accent-bright); margin-left: 4px; }
+  tbody tr { transition: background 0.15s ease; }
+  tbody tr:hover { background: rgba(99, 102, 241, 0.08); }
+  tbody tr:nth-child(even) { background: rgba(255, 255, 255, 0.015); }
+  td.num { text-align: right; font-family: var(--mono); font-weight: 700; }
+
+  .badge-profil {
+    display: inline-block; padding: 4px 10px; border-radius: 999px;
+    font-size: 11px; font-weight: 800; background: rgba(99, 102, 241, 0.15);
+    border: 1px solid rgba(99, 102, 241, 0.3); color: var(--accent-bright);
+  }
+  
+  .err { color: #f87171; font-size: 13px; margin-top: 8px; }
+  .hidden { display: none !important; }
+
+  /* Passcode Modal Gate */
+  .gate-box {
+    max-width: 420px; margin: 60px auto; text-align: center; padding: 32px 24px;
+  }
+  .gate-icon { font-size: 40px; margin-bottom: 12px; }
 </style>
 </head>
 <body>
 <div class="wrap">
 
-  <h1>LEAP 2036 · Papan Fasilitator</h1>
-  <p class="sub">Ringkasan hasil kelas. Data anonim (cuma kode + skor + profil) — tidak ada nama.</p>
-
-  <!-- ============ PASSCODE GATE ============ -->
-  <div class="card" id="gate">
-    <label for="pass">Kata sandi fasilitator</label>
+  <!-- ============ HEADER ============ -->
+  <header class="dash-head">
+    <div class="brand">
+      <span class="brand-logo">🚀 LEAP 2036</span>
+      <div>
+        <h1 class="title">Papan Fasilitator Live</h1>
+        <p class="sub">Pantauan sebaran profil & rekap kelas secara real-time</p>
+      </div>
+    </div>
     <div class="row">
-      <input id="pass" type="password" autocomplete="off" placeholder="masukkan kata sandi">
-      <button id="btnUnlock">Buka</button>
+      <div class="pill live" id="livePill">
+        <span class="pulse-dot"></span>
+        <span id="liveText">LIVE SINKRONISASI</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ GATE ============ -->
+  <div class="card gate-box" id="gate">
+    <div class="gate-icon">🔐</div>
+    <h2 style="margin:0 0 8px;font-size:18px;font-weight:900">Akses Fasilitator</h2>
+    <p class="sub" style="margin-bottom:20px">Masukkan kata sandi untuk melihat dashboard kelas.</p>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <input id="pass" type="password" autocomplete="off" placeholder="Kata sandi..." style="text-align:center">
+      <button id="btnUnlock">Buka Papan Dashboard →</button>
     </div>
     <div class="err" id="gateErr"></div>
-    <p class="note" style="margin-top:12px">
-      Catatan jujur: kata sandi ini cuma penghalang ringan biar orang nggak sengaja
-      buka — <strong>bukan</strong> pengaman sungguhan (bisa dibaca di kode halaman).
-      Pengaman sebenarnya = data yang anonim + aturan akses (RLS) di Supabase.
-      Lihat <code>SETUP.md</code>.
-    </p>
   </div>
 
-  <!-- ============ DASHBOARD (after unlock) ============ -->
+  <!-- ============ DASHBOARD BODY ============ -->
   <div id="board" class="hidden">
 
-    <!-- config / fetch state -->
-    <div class="card">
+    <!-- Controls bar -->
+    <div class="card" style="padding:14px 20px">
       <div class="row" style="justify-content:space-between">
-        <div>
-          <span class="pill" id="cfgPill">memeriksa konfigurasi…</span>
-          <span class="pill" id="countPill">0 hasil</span>
+        <div class="row">
+          <span class="pill" id="cfgPill">Memeriksa Supabase...</span>
+          <span class="pill" id="countPill">0 data</span>
+          <span class="pill" id="timerPill">Auto-update: 5s</span>
         </div>
         <div class="row">
-          <button class="ghost" id="btnReload">Muat ulang</button>
+          <select id="selAuto">
+            <option value="5000">Auto Refresh (5s)</option>
+            <option value="10000">Auto Refresh (10s)</option>
+            <option value="0">Manual Refresh</option>
+          </select>
+          <button class="ghost" id="btnReload">🔄 Muat Sekarang</button>
+          <button id="btnCsv">📥 Ekspor CSV</button>
         </div>
       </div>
       <div class="err" id="fetchErr"></div>
-      <p class="note hidden" id="noCfgNote" style="margin-top:10px">
-        Belum ada <code>leap-config.js</code> (atau url/anonKey kosong). Salin
-        <code>leap-config.example.js</code> ke <code>leap-config.js</code>, isi URL
-        + anon key Supabase-mu, lalu muat ulang. Lihat <code>SETUP.md</code>.
+      <p class="sub hidden" id="noCfgNote" style="margin-top:10px;color:#f87171">
+        Belum ada <code>leap-config.js</code>. Salin <code>leap-config.example.js</code> ke <code>leap-config.js</code> dan isi URL + anonKey Supabase kamu.
       </p>
     </div>
 
-    <!-- profile distribution -->
-    <div class="card">
-      <h2 style="margin-top:4px">Sebaran Profil (7 jalur)</h2>
-      <div class="dist" id="dist"></div>
+    <!-- Metric Summary Tiles -->
+    <div class="metrics-grid">
+      <div class="tile">
+        <div class="tile-label">Total Peserta</div>
+        <div class="tile-val" id="mTotal">0</div>
+        <div class="tile-sub">Permainan Selesai</div>
+      </div>
+      <div class="tile">
+        <div class="tile-label">Profil Dominan</div>
+        <div class="tile-val" id="mTopProfile" style="font-size:16px;line-height:1.3;margin-top:8px;color:#818cf8">—</div>
+        <div class="tile-sub" id="mTopCount">0 peserta</div>
+      </div>
+      <div class="tile">
+        <div class="tile-label">Rata-Rata Energi</div>
+        <div class="tile-val" id="mAvgE" style="color:var(--energi)">—</div>
+        <div class="tile-sub">Skor 0–200</div>
+      </div>
+      <div class="tile">
+        <div class="tile-label">Rata-Rata Uang</div>
+        <div class="tile-val" id="mAvgU" style="color:var(--uang)">—</div>
+        <div class="tile-sub">Skor 0–200</div>
+      </div>
+      <div class="tile">
+        <div class="tile-label">Rata-Rata Mental</div>
+        <div class="tile-val" id="mAvgM" style="color:var(--mental)">—</div>
+        <div class="tile-sub">Skor 0–200</div>
+      </div>
     </div>
 
-    <!-- table -->
+    <!-- Profile Distribution Chart -->
     <div class="card">
-      <h2 style="margin-top:4px">Tabel Hasil</h2>
-      <div class="toolbar">
-        <button id="btnCsv">Ekspor CSV</button>
-        <span class="count-line" id="tblCount"></span>
+      <div class="card-title">
+        <span>📊 Sebaran 7 Profil 2036</span>
+        <span id="distTotalBadge" style="font-size:12px;color:var(--muted)">0 total</span>
       </div>
-      <div class="tbl-scroll">
+      <div class="dist-list" id="dist"></div>
+    </div>
+
+    <!-- Results Table -->
+    <div class="card">
+      <div class="card-title">
+        <span>📋 Tabel Rekapitulasi Data</span>
+        <div class="row">
+          <input type="text" id="inpFilter" placeholder="Cari kode / profil..." style="padding:6px 12px;font-size:12px;min-width:180px">
+          <span id="tblCount" style="font-size:12px;color:var(--muted)">0 baris</span>
+        </div>
+      </div>
+      <div class="tbl-wrap">
         <table id="tbl">
           <thead><tr id="thead"></tr></thead>
           <tbody id="tbody"></tbody>
         </table>
       </div>
-      <p class="note" style="margin-top:10px">Klik judul kolom untuk mengurutkan.</p>
     </div>
 
   </div>
 </div>
 
-<!-- optional config (same file the game uses). Harmless if missing. -->
+<!-- Load optional local Supabase config -->
 <script src="leap-config.js" onerror="window.__LEAP_CFG_MISSING=true"></script>
 <script>
-/* =====================================================================
-   Facilitator dashboard controller (classic script, no deps).
-   ===================================================================== */
 (function () {
   'use strict';
 
-  /* ------------------------------------------------------------------
-     LIGHT PASSCODE — change this constant before sharing the file.
-     Honest reminder: client-side only, deterrent not security.
-     ------------------------------------------------------------------ */
-  var PASSCODE = 'leap2036';
+  var PASSCODE = 'leap2036'; // facilitator passcode
 
-  // canonical 7 profiles, same order as engine.PROFILE_ORDER
   var PROFILES = [
     'Pelari Tanpa Rem',
     'Sukses-tapi-Tumbang',
@@ -175,7 +314,6 @@
     'Penjelajah Reflektif'
   ];
 
-  // table columns: key in row -> header label (+ numeric flag)
   var COLS = [
     { k: 'kode',        h: 'Kode',    num: false },
     { k: 'energi',      h: 'Energi',  num: true  },
@@ -192,12 +330,12 @@
 
   var $ = function (id) { return document.getElementById(id); };
   var ROWS = [];
-  var sortKey = 'created_at', sortDir = -1; // newest first
+  var sortKey = 'created_at', sortDir = -1;
+  var autoTimer = null;
 
-  // ---- passcode gate ----
+  // Gate
   function unlock() {
-    var v = $('pass').value;
-    if (v === PASSCODE) {
+    if ($('pass').value === PASSCODE) {
       $('gate').classList.add('hidden');
       $('board').classList.remove('hidden');
       boot();
@@ -208,7 +346,6 @@
   $('btnUnlock').addEventListener('click', unlock);
   $('pass').addEventListener('keydown', function (e) { if (e.key === 'Enter') unlock(); });
 
-  // ---- config ----
   function cfg() {
     var c = window.LEAP_SUPABASE;
     if (!c || !c.url || !c.anonKey) return null;
@@ -218,82 +355,141 @@
   function boot() {
     var c = cfg();
     if (!c) {
-      $('cfgPill').textContent = 'konfigurasi: belum ada';
+      $('cfgPill').textContent = 'Supabase: Belum Terhubung';
       $('noCfgNote').classList.remove('hidden');
-      renderDist([]); renderTable();
+      renderMetrics([]); renderDist([]); renderTable();
       return;
     }
-    $('cfgPill').textContent = 'konfigurasi: OK';
+    $('cfgPill').textContent = 'Supabase: Terhubung 🟢';
     fetchRows();
+    setupAutoRefresh();
   }
 
-  $('btnReload').addEventListener('click', function () { var c = cfg(); if (c) fetchRows(); });
+  function setupAutoRefresh() {
+    clearInterval(autoTimer);
+    var ms = parseInt($('selAuto').value, 10);
+    if (ms > 0) {
+      $('timerPill').textContent = 'Auto-update: ' + (ms / 1000) + 's';
+      autoTimer = setInterval(fetchRows, ms);
+    } else {
+      $('timerPill').textContent = 'Auto-update: Mati';
+    }
+  }
+  $('selAuto').addEventListener('change', setupAutoRefresh);
+  $('btnReload').addEventListener('click', function () { fetchRows(); });
+  $('inpFilter').addEventListener('input', renderTable);
 
-  // ---- fetch from Supabase REST (PostgREST) ----
+  // Fetch REST API
   function fetchRows() {
     var c = cfg();
     if (!c) return;
     $('fetchErr').textContent = '';
-    $('countPill').textContent = 'memuat…';
     var url = c.url + '/rest/v1/leap_results?select=*&order=created_at.desc';
     fetch(url, {
       headers: { 'apikey': c.anonKey, 'Authorization': 'Bearer ' + c.anonKey }
     }).then(function (res) {
-      if (!res.ok) {
-        return res.text().then(function (t) {
-          throw new Error('HTTP ' + res.status + (t ? ' — ' + t.slice(0, 180) : ''));
-        });
-      }
+      if (!res.ok) throw new Error('HTTP ' + res.status);
       return res.json();
     }).then(function (data) {
       ROWS = Array.isArray(data) ? data : [];
-      $('countPill').textContent = ROWS.length + ' hasil';
+      $('countPill').textContent = ROWS.length + ' data masuk';
+      renderMetrics(ROWS);
       renderDist(ROWS);
       renderTable();
     }).catch(function (err) {
-      $('countPill').textContent = 'gagal';
-      $('fetchErr').textContent =
-        'Gagal memuat data: ' + err.message +
-        '. Cek koneksi, URL/anon key, dan apakah aturan SELECT (RLS) mengizinkan anon membaca ' +
-        '(kalau dipasang "authenticated only", dashboard anon-key tidak bisa baca — lihat SETUP.md).';
+      $('countPill').textContent = 'Gagal';
+      $('fetchErr').textContent = 'Gagal memuat data live: ' + err.message;
     });
   }
 
-  // ---- profile distribution ----
+  // Summary Metrics
+  function renderMetrics(rows) {
+    $('mTotal').textContent = rows.length;
+    if (!rows.length) {
+      $('mTopProfile').textContent = '—';
+      $('mTopCount').textContent = '0 peserta';
+      $('mAvgE').textContent = '—'; $('mAvgU').textContent = '—'; $('mAvgM').textContent = '—';
+      return;
+    }
+
+    var counts = {}, sumE = 0, sumU = 0, sumM = 0;
+    rows.forEach(function (r) {
+      if (r.profil) counts[r.profil] = (counts[r.profil] || 0) + 1;
+      sumE += Number(r.energi || 0);
+      sumU += Number(r.uang || 0);
+      sumM += Number(r.mental || 0);
+    });
+
+    var topProf = '—', maxC = 0;
+    Object.keys(counts).forEach(function (p) {
+      if (counts[p] > maxC) { maxC = counts[p]; topProf = p; }
+    });
+
+    $('mTopProfile').textContent = topProf;
+    $('mTopCount').textContent = maxC + ' peserta (' + Math.round((maxC / rows.length) * 100) + '%)';
+    $('mAvgE').textContent = Math.round(sumE / rows.length);
+    $('mAvgU').textContent = Math.round(sumU / rows.length);
+    $('mAvgM').textContent = Math.round(sumM / rows.length);
+  }
+
+  // Distribution Bars
   function renderDist(rows) {
     var counts = {};
     PROFILES.forEach(function (p) { counts[p] = 0; });
-    var other = 0;
-    rows.forEach(function (r) {
-      var p = r.profil;
-      if (counts.hasOwnProperty(p)) counts[p]++;
-      else if (p) other++;
-    });
-    var max = 1;
-    PROFILES.forEach(function (p) { if (counts[p] > max) max = counts[p]; });
-    if (other > max) max = other;
+    rows.forEach(function (r) { if (r.profil && counts.hasOwnProperty(r.profil)) counts[r.profil]++; });
+
+    var total = rows.length || 1;
+    $('distTotalBadge').textContent = rows.length + ' peserta selesai';
 
     var box = $('dist');
     box.innerHTML = '';
-    var list = PROFILES.slice();
-    var allCounts = counts;
-    if (other > 0) { list = list.concat(['(lainnya)']); allCounts = Object.assign({}, counts, { '(lainnya)': other }); }
 
-    list.forEach(function (p) {
-      var n = allCounts[p] || 0;
-      var pct = Math.round((n / max) * 100);
-      var row = document.createElement('div'); row.className = 'dist-row';
+    PROFILES.forEach(function (p) {
+      var n = counts[p] || 0;
+      var pct = Math.round((n / total) * 100);
+      var item = document.createElement('div');
+      item.className = 'dist-item';
+      item.setAttribute('data-profile', p);
+
       var name = document.createElement('div'); name.className = 'dist-name'; name.textContent = p;
       var track = document.createElement('div'); track.className = 'dist-track';
       var fill = document.createElement('div'); fill.className = 'dist-fill'; fill.style.width = pct + '%';
       track.appendChild(fill);
-      var c = document.createElement('div'); c.className = 'dist-count'; c.textContent = n;
-      row.appendChild(name); row.appendChild(track); row.appendChild(c);
-      box.appendChild(row);
+      var count = document.createElement('div'); count.className = 'dist-pct'; count.textContent = n + ' (' + pct + '%)';
+
+      item.appendChild(name); item.appendChild(track); item.appendChild(count);
+      box.appendChild(item);
     });
   }
 
-  // ---- table (sortable) ----
+  // Filtered & Sorted Table
+  function filterRows() {
+    var q = $('inpFilter').value.trim().toLowerCase();
+    if (!q) return ROWS;
+    return ROWS.filter(function (r) {
+      var txt = (r.kode || '') + ' ' + (r.profil || '') + ' ' + (r.tujuan || '') + ' ' + (Array.isArray(r.nilai) ? r.nilai.join(' ') : '');
+      return txt.toLowerCase().indexOf(q) >= 0;
+    });
+  }
+
+  function sortedRows() {
+    var arr = filterRows().slice();
+    var col = null;
+    COLS.forEach(function (c) { if (c.k === sortKey) col = c; });
+    arr.sort(function (a, b) {
+      var av = a[sortKey], bv = b[sortKey];
+      if (col && col.num) {
+        av = (av == null || av === '') ? -Infinity : Number(av);
+        bv = (bv == null || bv === '') ? -Infinity : Number(bv);
+        return (av - bv) * sortDir;
+      }
+      av = (av == null) ? '' : String(av);
+      bv = (bv == null) ? '' : String(bv);
+      return av.localeCompare(bv) * sortDir;
+    });
+    return arr;
+  }
+
   function buildHead() {
     var tr = $('thead');
     tr.innerHTML = '';
@@ -314,33 +510,6 @@
     });
   }
 
-  function cellText(row, col) {
-    var v = row[col.k];
-    if (col.k === 'nilai') return Array.isArray(v) ? v.join(' · ') : (v == null ? '' : String(v));
-    if (col.k === 'created_at' && v) {
-      try { return new Date(v).toLocaleString('id-ID'); } catch (e) { return String(v); }
-    }
-    return (v === null || v === undefined) ? '' : String(v);
-  }
-
-  function sortedRows() {
-    var col = null;
-    COLS.forEach(function (c) { if (c.k === sortKey) col = c; });
-    var arr = ROWS.slice();
-    arr.sort(function (a, b) {
-      var av = a[sortKey], bv = b[sortKey];
-      if (col && col.num) {
-        av = (av == null || av === '') ? -Infinity : Number(av);
-        bv = (bv == null || bv === '') ? -Infinity : Number(bv);
-        return (av - bv) * sortDir;
-      }
-      av = (av == null) ? '' : (Array.isArray(av) ? av.join(',') : String(av));
-      bv = (bv == null) ? '' : (Array.isArray(bv) ? bv.join(',') : String(bv));
-      return av.localeCompare(bv) * sortDir;
-    });
-    return arr;
-  }
-
   function renderTable() {
     buildHead();
     var rows = sortedRows();
@@ -351,7 +520,18 @@
       COLS.forEach(function (col) {
         var td = document.createElement('td');
         if (col.num) td.className = 'num';
-        td.textContent = cellText(r, col);
+        
+        var v = r[col.k];
+        if (col.k === 'profil' && v) {
+          td.innerHTML = '<span class="badge-profil">' + escapeHtml(v) + '</span>';
+        } else if (col.k === 'nilai' && Array.isArray(v)) {
+          td.textContent = v.join(' · ');
+        } else if (col.k === 'created_at' && v) {
+          try { td.textContent = new Date(v).toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit' }); }
+          catch (e) { td.textContent = String(v); }
+        } else {
+          td.textContent = (v == null || v === undefined) ? '' : String(v);
+        }
         tr.appendChild(td);
       });
       tb.appendChild(tr);
@@ -359,7 +539,11 @@
     $('tblCount').textContent = rows.length + ' baris';
   }
 
-  // ---- CSV export ----
+  function escapeHtml(s) {
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  // Export CSV
   function csvCell(c) {
     var v = (c === null || c === undefined) ? '' : String(c);
     return /[",\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v;
@@ -369,13 +553,17 @@
     var header = COLS.map(function (c) { return c.h; });
     var lines = [header.map(csvCell).join(',')];
     rows.forEach(function (r) {
-      lines.push(COLS.map(function (col) { return csvCell(cellText(r, col)); }).join(','));
+      lines.push(COLS.map(function (col) {
+        var v = r[col.k];
+        if (col.k === 'nilai' && Array.isArray(v)) v = v.join(' ; ');
+        return csvCell((v == null) ? '' : String(v));
+      }).join(','));
     });
     var csv = lines.join('\n') + '\n';
     var blob = new Blob([csv], { type: 'text/csv;charset=utf-8' });
     var url = URL.createObjectURL(blob);
     var a = document.createElement('a');
-    a.href = url; a.download = 'LEAP2036-dashboard.csv';
+    a.href = url; a.download = 'LEAP2036-RekapLive.csv';
     document.body.appendChild(a); a.click(); document.body.removeChild(a);
     setTimeout(function () { URL.revokeObjectURL(url); }, 1500);
   }
