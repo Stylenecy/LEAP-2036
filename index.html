@@ -79,10 +79,15 @@
     <p class="mode-line" id="modeLine">Mode: kelompok (tanpa kode)</p>
 
     <details class="op-toggle" id="opToggle">
-      <summary>Operator / fasilitator: Kartu Chaos (opsional)</summary>
+      <summary>Operator / fasilitator: Kartu Chaos & Dashboard</summary>
       <p class="op-note">Kartu Chaos diterapkan ke semua peserta di antara Fase 2 dan Fase 3. Default mati. Biasanya cabut maksimal 2 dari 3.</p>
       <div class="chaos-picks" id="chaosPicks"><!-- filled by JS --></div>
       <p class="op-note" id="chaosNote">Tidak ada Kartu Chaos dipilih.</p>
+      <div style="margin-top:12px;padding-top:10px;border-top:1px dashed var(--border);text-align:center">
+        <a href="dashboard.html" target="_blank" style="color:var(--energi);font-weight:800;font-size:13px;text-decoration:none;display:inline-flex;align-items:center;gap:6px">
+          📊 Buka Papan Fasilitator (Dashboard Kelas) →
+        </a>
+      </div>
     </details>
   </section>
 
@@ -281,7 +286,9 @@
       <div class="ph-sub" id="printSub">LEAP 2036</div>
     </div>
     <div class="surat-print" id="suratPrint"></div>
-  </div>
+  <footer style="margin-top:28px;padding-top:16px;border-top:1.5px solid var(--border);text-align:center;font-size:12px;color:var(--muted)">
+    LEAP 2036 · KKN STEM 2026 · <a href="dashboard.html" style="color:var(--muted);text-decoration:underline">Papan Fasilitator (Dashboard Kelas)</a>
+  </footer>
 
 </div>
 
