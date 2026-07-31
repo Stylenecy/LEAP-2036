@@ -167,3 +167,14 @@ Claude's side beyond the constraint work already included in the
 migration above — constraints were bundled into the same migration file
 rather than a separate later step, since they're independent of the RLS
 fix and low-risk to include together.
+
+**CLOSED — 2026-07-31.** Dex ran the migration, set the 3 Vercel env
+vars, redeployed. Re-verified in production: anon SELECT → `[]`, all 3
+CHECK constraints reject bad data with proper error codes, valid game
+INSERT still returns 201, old passcode `leap2036` rejected server-side
+(401), new `DASHBOARD_PASSWORD` confirmed working by Dex (dashboard
+loads real data). 3 test rows this verification pass inserted into
+production (`SECVER02`, `THIRTEEN-CHR`, `JSVER01`) were cleaned up by
+Dex via SQL (anon key has no DELETE policy, by design). Committed
+`01cac75` and pushed to `origin/master` — repo now matches what's
+actually running in production.
