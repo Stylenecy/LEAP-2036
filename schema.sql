@@ -32,10 +32,10 @@
 -- ---------------------------------------------------------------------
 create table if not exists public.leap_results (
   id          uuid          primary key default gen_random_uuid(),
-  kode        text,                       -- optional student code, e.g. "A-01" ('' = group play)
-  energi      int,                        -- Energi 0..200
-  uang        int,                        -- Uang (engine "Kapital") 0..200
-  mental      int,                        -- Mental 0..200
+  kode        text          check (kode is null or char_length(kode) <= 12), -- optional student code, e.g. "A-01" ('' = group play)
+  energi      int           check (energi is null or (energi between 0 and 200)), -- Energi 0..200
+  uang        int           check (uang is null or (uang between 0 and 200)),     -- Uang (engine "Kapital") 0..200
+  mental      int           check (mental is null or (mental between 0 and 200)), -- Mental 0..200
   total_f1    int,                        -- TotalF1 = E+K+M captured at end of Fase 1
   profil      text,                       -- one of the 7 profile names
   nilai       text[],                     -- the 5 chosen values (Nilai1..Nilai5)
@@ -44,6 +44,9 @@ create table if not exists public.leap_results (
   arah_tujuan text,                       -- Condong / Menjauh / Campuran
   created_at  timestamptz   not null default now()
 );
+-- Data-shape guards above stop a raw curl/POST from writing out-of-range
+-- scores or oversized text (the anon INSERT policy below has no other
+-- validation — "with check (true)" accepts any row shape the table allows).
 
 -- Helpful for the dashboard's "newest first" sort + profile grouping.
 create index if not exists leap_results_created_at_idx on public.leap_results (created_at desc);
@@ -68,40 +71,40 @@ create policy leap_results_insert_anon
   to anon
   with check (true);
 
--- 2b) SELECT — needed by dashboard.html to show the distribution + table.
+-- 2b) SELECT — needed by the facilitator dashboard to show the
+--     distribution + table.
 --
---     >>> DEFAULT (simple): allow the anon role to read. <<<
---     This is the easy path: open dashboard.html with the anon key and it
---     just works, no login. Because the data is pseudonymous (no names),
---     the exposure if the anon key leaks is limited to anonymous scores.
---     The dashboard adds a light client-side passcode on top (deterrent
---     only — see the honest note in dashboard.html / SETUP.md).
-drop policy if exists leap_results_select_anon on public.leap_results;
-create policy leap_results_select_anon
+--     >>> DEFAULT (secure): only the `authenticated` role can read. <<<
+--     The anon/public key (shipped in leap-config.js, same key the game
+--     uses to INSERT) can NEVER read this table — not curl, not a
+--     browser console, not a forked copy of dashboard.html. The
+--     facilitator dashboard does not use a Supabase login session
+--     either: it reads through a small Vercel serverless function
+--     (`api/dashboard-data.js`) that holds the service_role key
+--     server-side and checks a password server-side before returning
+--     any rows. See dashboard.html / api/dashboard-data.js.
+drop policy if exists leap_results_select_auth on public.leap_results;
+create policy leap_results_select_auth
   on public.leap_results
   for select
-  to anon
+  to authenticated
   using (true);
 
 -- ---------------------------------------------------------------------
---     >>> STRICTER ALTERNATIVE (recommended if you want real gating) <<<
---     Switch to this if you'd rather the data NOT be readable with the
---     public anon key. Then only a logged-in Supabase user (authenticated
---     role) can read, and the dashboard must use a Supabase auth session
---     (e.g. magic-link login) instead of the bare anon key.
+--     >>> LEGACY / DO NOT USE — kept only for history. <<<
+--     This project used to run with SELECT open to the anon role, which
+--     meant anyone holding the public anon key (public by design, and
+--     it's committed in this repo) could read every row directly via
+--     the REST API, completely bypassing dashboard.html's passcode.
+--     Confirmed exploitable 2026-07-31. Do not re-enable this without
+--     also removing the raw REST fetch from the client and replacing it
+--     with a server-side gate.
 --
---     To switch:
---       1. Comment out / drop the `leap_results_select_anon` policy above:
---             drop policy if exists leap_results_select_anon on public.leap_results;
---       2. Enable the policy below.
---       3. Give the dashboard a real auth session (see SETUP.md "tighten
---          SELECT RLS"). The bare anon-key dashboard will then read nothing.
---
---   drop policy if exists leap_results_select_auth on public.leap_results;
---   create policy leap_results_select_auth
+--   drop policy if exists leap_results_select_anon on public.leap_results;
+--   create policy leap_results_select_anon
 --     on public.leap_results
 --     for select
---     to authenticated
+--     to anon
 --     using (true);
 -- ---------------------------------------------------------------------
 

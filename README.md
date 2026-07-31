@@ -20,12 +20,12 @@ Dibuat untuk **KKN Tematik STEM 2026 (UKDW × Hong Kong PolyU)** sebagai aktivit
 | `data.js` | Konten: 12 ronde, 3 kartu chaos, taruhan F2.5, profil, front-half (Values/DISC/Goal), Surat. |
 | `style.css` | Presentasi (tema terang ramah-anak). Mengubah ini **tidak** menyentuh logika/skor. |
 | `manifest.webmanifest`, `sw.js`, `icon.svg` | Lapisan PWA (installable + offline shell). Opsional; game tetap jalan tanpa ini. |
-| `leap-sync.js`, `leap-config.example.js`, `schema.sql`, `dashboard.html`, `SETUP.md` | **Opsional**: sinkronisasi data pseudonim ke Supabase + dashboard fasilitator. Tanpa konfigurasi = no-op senyap (game tetap jalan). Panduan di `SETUP.md`. |
+| `leap-sync.js`, `leap-config.example.js`, `schema.sql`, `dashboard.html`, `api/dashboard-data.js`, `SETUP.md` | **Opsional**: sinkronisasi data pseudonim ke Supabase + dashboard fasilitator (auth password dicek server-side lewat serverless function, bukan di client). Tanpa konfigurasi = no-op senyap (game tetap jalan). Panduan di `SETUP.md`. |
 | `parity.test.js` | Uji paritas engine vs referensi. Jalankan: `node parity.test.js`. |
 
 ## Privasi
 
-Tidak mengumpulkan nama. Bila Supabase dikonfigurasi, yang tersimpan hanya **kode + skor + profil + Values/DISC/Goal** (pseudonim). `anon key` aman publik; **jangan** pernah taruh `service_role` di klien. `leap-config.js` di-`.gitignore`.
+Tidak mengumpulkan nama. Bila Supabase dikonfigurasi, yang tersimpan hanya **kode + skor + profil + Values/DISC/Goal** (pseudonim). `anon key` aman publik (memang sengaja di-commit di `leap-config.js` — lihat `leap-config.example.js`) dan sejak `migration_2026-07-31_security_fix.sql` cuma bisa INSERT, gak bisa baca data balik. **jangan** pernah taruh `service_role` di klien — itu cuma hidup di env var Vercel (`api/dashboard-data.js`).
 
 ## Deploy (Vercel)
 

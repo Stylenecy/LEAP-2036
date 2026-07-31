@@ -43,7 +43,14 @@ are queued on the device and synced later — the game never breaks.
 2. Open `schema.sql` from this folder, copy **all** of it, paste into a
    new query, and click **Run**.
 3. This creates the `leap_results` table and the Row Level Security
-   policies (anon can INSERT; by default anon can also SELECT).
+   policies: anon can INSERT (the game submits without login), but
+   SELECT is **authenticated-only by default** — the anon/public key can
+   never read the table back. The facilitator dashboard reads through a
+   server-side proxy instead (Step 5).
+4. **Already have a project from before 2026-07-31?** Run
+   `migration_2026-07-31_security_fix.sql` instead (or as well) — it
+   closes the old open-read policy on an existing table and adds the
+   CHECK constraints, safely, without dropping any data.
 
 ### 3. Get your keys
 1. Open **Project Settings → API**.
@@ -66,33 +73,29 @@ are queued on the device and synced later — the game never breaks.
    run is submitted automatically. Offline runs queue and sync later
    (on next load or when the device reconnects).
 
-   - Committing `leap-config.js` to git is fine (anon key is public-safe).
-     If you'd rather not, add `src/kkn-hub/leap/leap-config.js` to
-     `.gitignore`. Your call.
+   - Committing `leap-config.js` to git is fine (anon key is public-safe,
+     and it can now only INSERT — it lost SELECT access in Step 2).
 
-### 5. (Optional) Tighten who can READ the data
-By default the dashboard reads with the public anon key — easy, but it
-means anyone with the anon key + URL could read the (pseudonymous) rows.
-The data has no names, so the risk is limited, but if you want real
-gating:
+### 5. Set up the facilitator dashboard (server-side auth)
+The dashboard no longer uses a client-side passcode or the anon key to
+read data — it calls `api/dashboard-data.js`, a small Vercel serverless
+function that holds the real secret and checks the real password on the
+server. Set these in **Vercel → Project Settings → Environment
+Variables** (do NOT put them in any file in this repo):
 
-1. In `schema.sql`, switch the SELECT policy from anon to authenticated
-   (the file has a clearly-commented **STRICTER ALTERNATIVE** block —
-   drop `leap_results_select_anon`, enable `leap_results_select_auth`,
-   and re-run those statements in the SQL Editor).
-2. Then the dashboard must read with a real logged-in Supabase session
-   (e.g. enable email magic-link auth and add a sign-in step), because
-   the bare anon key will no longer be allowed to read.
-3. **INSERT stays open to anon either way** — the game must be able to
-   submit without anyone logging in. Tightening SELECT only changes who
-   can *read*, not who can *write*.
+| Variable | Value | Notes |
+|---|---|---|
+| `LEAP_SUPABASE_URL` | same Project URL as `leap-config.js` | not secret, just needs to exist server-side too |
+| `SUPABASE_SERVICE_ROLE_KEY` | Project Settings → API → `service_role` key | **SECRET.** Bypasses RLS. Never put this in a client file — only here. |
+| `DASHBOARD_PASSWORD` | pick a real password | **SECRET.** This replaces the old hardcoded `leap2036`. |
+
+After adding the env vars, redeploy (`vercel --prod` or push to the
+branch Vercel auto-deploys) so the function picks them up.
 
 ### 6. Open the facilitator dashboard
-1. Open `dashboard.html` (double-click, or serve it — same folder as the
-   game so it picks up `leap-config.js`).
-2. Enter the passcode. The default is `leap2036` — **change it** before
-   sharing: edit the `PASSCODE` constant near the top of the `<script>`
-   in `dashboard.html`.
+1. Open the deployed `dashboard.html` (it needs the Vercel serverless
+   function, so this only works on the live URL — not `file://`/USB).
+2. Enter the `DASHBOARD_PASSWORD` you set in Step 5.
 3. You'll see: profile distribution (count per of the 7 profiles), a
    sortable table of every run, and a **Ekspor CSV** button.
 
@@ -100,31 +103,34 @@ gating:
 
 ## Honest privacy & security note
 
-- The passcode on `dashboard.html` is a **light deterrent only**. It is
-  client-side and readable in "View Source". It stops casual snooping,
-  not a determined person.
-- **Real protection** is two things working together:
+- The dashboard's password check now happens **server-side**, in
+  `api/dashboard-data.js` — not in the shipped JS. Viewing page source no
+  longer reveals it, and there's no way to read `leap_results` with just
+  the anon key (curl, browser console, or a forked page all get nothing).
+- **Real protection** is three things working together:
   1. **Pseudonymity** — the table never contains names, so a leak
      exposes anonymous scores, not identities.
-  2. **Row Level Security (RLS)** in Supabase — this is what actually
-     controls access to the table. For genuine access control, use the
-     "authenticated only" SELECT policy (Step 5).
-- The **anon key is public by design**. It being visible in the browser
-  is expected and safe *because* RLS limits what it can do. The
-  **service_role / secret key is the dangerous one** — keep it out of
-  every client file, forever.
-- The optional service worker (`sw.js`) never caches Supabase requests,
-  so submissions always go to the live network and reads are never
-  served stale.
+  2. **Row Level Security (RLS)** in Supabase — anon can INSERT only;
+     SELECT is `authenticated`-only, which the anon key never is.
+  3. **Server-side password + service_role key** — both live in Vercel
+     environment variables, never in a client file or git.
+- The **anon key is still public by design** (it's in `leap-config.js`,
+  committed on purpose) — that's fine now because it can only append
+  rows, never read them.
+- The optional service worker (`sw.js`) never caches Supabase or `/api`
+  requests, so submissions always go to the live network and reads are
+  never served stale.
 
 ---
 
 ## Troubleshooting
 
-- **Dashboard shows "Gagal memuat data"** → check the URL + anon key in
-  `leap-config.js`, your internet, and whether the SELECT policy allows
-  anon. If you switched to "authenticated only" (Step 5), the anon-key
-  dashboard *cannot* read — that's expected; add an auth session.
+- **Dashboard shows "Dashboard belum dikonfigurasi di server"** → the
+  Vercel env vars from Step 5 aren't set (or the function wasn't
+  redeployed after setting them).
+- **Dashboard shows "Kata sandi salah"** → `DASHBOARD_PASSWORD` on Vercel
+  doesn't match what you typed. Check for trailing spaces/typos in the
+  env var value.
 - **No rows appear even though people played** → the players' devices may
   have been offline (rows are queued locally and sync on reconnect), or
   `leap-config.js` wasn't present/filled on those devices.

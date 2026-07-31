@@ -218,7 +218,7 @@
     <div class="card" style="padding:14px 20px">
       <div class="row" style="justify-content:space-between">
         <div class="row">
-          <span class="pill" id="cfgPill">Memeriksa Supabase...</span>
+          <span class="pill" id="cfgPill">Supabase: Terhubung 🟢</span>
           <span class="pill" id="countPill">0 data</span>
           <span class="pill" id="timerPill">Auto-update: 5s</span>
         </div>
@@ -233,9 +233,6 @@
         </div>
       </div>
       <div class="err" id="fetchErr"></div>
-      <p class="sub hidden" id="noCfgNote" style="margin-top:10px;color:#f87171">
-        Belum ada <code>leap-config.js</code>. Salin <code>leap-config.example.js</code> ke <code>leap-config.js</code> dan isi URL + anonKey Supabase kamu.
-      </p>
     </div>
 
     <!-- Metric Summary Tiles -->
@@ -296,13 +293,16 @@
   </div>
 </div>
 
-<!-- Load optional local Supabase config -->
-<script src="leap-config.js" onerror="window.__LEAP_CFG_MISSING=true"></script>
 <script>
 (function () {
   'use strict';
 
-  var PASSCODE = 'leap2036'; // facilitator passcode
+  // Facilitator password is verified server-side by /api/dashboard-data
+  // (see that file + migration_2026-07-31_security_fix.sql). This page
+  // no longer holds the password or the Supabase key — it only holds
+  // the password IN MEMORY after a successful unlock, to resend on
+  // each auto-refresh poll. Nothing is persisted to localStorage.
+  var PASSWORD = null;
 
   var PROFILES = [
     'Pelari Tanpa Rem',
@@ -333,37 +333,45 @@
   var sortKey = 'created_at', sortDir = -1;
   var autoTimer = null;
 
+  // Ask the server whether `password` is correct and, if so, get the
+  // current rows back in the same round trip. Never touches Supabase
+  // directly from the browser.
+  function authFetch(password) {
+    return fetch('/api/dashboard-data', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password: password })
+    }).then(function (res) {
+      return res.json().catch(function () { return {}; }).then(function (data) {
+        if (!res.ok) throw new Error(data.error || ('HTTP ' + res.status));
+        return Array.isArray(data.rows) ? data.rows : [];
+      });
+    });
+  }
+
   // Gate
   function unlock() {
-    if ($('pass').value === PASSCODE) {
+    var val = $('pass').value;
+    $('gateErr').textContent = '';
+    $('btnUnlock').disabled = true;
+    authFetch(val).then(function (rows) {
+      PASSWORD = val;
       $('gate').classList.add('hidden');
       $('board').classList.remove('hidden');
-      boot();
-    } else {
-      $('gateErr').textContent = 'Kata sandi salah.';
-    }
+      ROWS = rows;
+      $('countPill').textContent = ROWS.length + ' data masuk';
+      renderMetrics(ROWS);
+      renderDist(ROWS);
+      renderTable();
+      setupAutoRefresh();
+    }).catch(function (err) {
+      $('gateErr').textContent = err.message || 'Kata sandi salah.';
+    }).then(function () {
+      $('btnUnlock').disabled = false;
+    });
   }
   $('btnUnlock').addEventListener('click', unlock);
   $('pass').addEventListener('keydown', function (e) { if (e.key === 'Enter') unlock(); });
-
-  function cfg() {
-    var c = window.LEAP_SUPABASE;
-    if (!c || !c.url || !c.anonKey) return null;
-    return { url: String(c.url).replace(/\/+$/, ''), anonKey: String(c.anonKey) };
-  }
-
-  function boot() {
-    var c = cfg();
-    if (!c) {
-      $('cfgPill').textContent = 'Supabase: Belum Terhubung';
-      $('noCfgNote').classList.remove('hidden');
-      renderMetrics([]); renderDist([]); renderTable();
-      return;
-    }
-    $('cfgPill').textContent = 'Supabase: Terhubung 🟢';
-    fetchRows();
-    setupAutoRefresh();
-  }
 
   function setupAutoRefresh() {
     clearInterval(autoTimer);
@@ -379,19 +387,13 @@
   $('btnReload').addEventListener('click', function () { fetchRows(); });
   $('inpFilter').addEventListener('input', renderTable);
 
-  // Fetch REST API
+  // Poll via the server-side proxy (re-sends the in-memory password;
+  // never talks to Supabase directly from this page).
   function fetchRows() {
-    var c = cfg();
-    if (!c) return;
+    if (!PASSWORD) return;
     $('fetchErr').textContent = '';
-    var url = c.url + '/rest/v1/leap_results?select=*&order=created_at.desc';
-    fetch(url, {
-      headers: { 'apikey': c.anonKey, 'Authorization': 'Bearer ' + c.anonKey }
-    }).then(function (res) {
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-      return res.json();
-    }).then(function (data) {
-      ROWS = Array.isArray(data) ? data : [];
+    authFetch(PASSWORD).then(function (rows) {
+      ROWS = rows;
       $('countPill').textContent = ROWS.length + ' data masuk';
       renderMetrics(ROWS);
       renderDist(ROWS);

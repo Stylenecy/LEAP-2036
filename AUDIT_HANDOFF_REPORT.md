@@ -109,3 +109,61 @@ All requirements requested by the user and specified in `HANDOFF_VISUAL-POLISH.m
 3. **Verify Facilitator Link**: Click the "📊 Buka Papan Fasilitator" link in the landing screen operator drawer or page footer.
 4. **Verify Facilitator Dashboard**: Enter passcode `leap2036` on [https://leap-2036.vercel.app/dashboard.html](https://leap-2036.vercel.app/dashboard.html) to view live metrics, 7-profile distribution bars, auto-refresh polling, and CSV export functionality.
 5. **Verify Supabase Database**: Observe live pseudonymous records in Supabase table `leap_results`.
+
+---
+
+## 8. SECURITY FIX — 2026-07-31
+
+**Trigger**: user-requested security self-audit found the live REST endpoint
+(`.../rest/v1/leap_results`) readable by anyone holding the public anon
+key — confirmed via a direct `curl` (HTTP 200, real student rows
+returned) without ever opening `dashboard.html`. The dashboard's
+`leap2036` passcode was a plaintext client-side string, visible via View
+Source, and irrelevant to this — the underlying Supabase RLS `SELECT`
+policy was `to anon using (true)` (open read to anyone with the public
+key, which is itself committed in this repo's `leap-config.js`).
+
+**Code changes made this session (uncommitted, awaiting Dex review + push):**
+- `migration_2026-07-31_security_fix.sql` (new) — production migration:
+  drops the open anon SELECT policy, adds `authenticated`-only SELECT,
+  adds CHECK constraints (energi/uang/mental 0–200, `kode` ≤12 chars).
+  **Not yet applied** — Claude has no Supabase credentials/CLI/MCP
+  access; Dex must run this in the Supabase SQL Editor himself.
+- `schema.sql` — flipped to secure-by-default for fresh installs (same
+  policy + constraints inline), old anon-open policy kept only as a
+  clearly-marked "LEGACY / DO NOT USE" comment block.
+- `api/dashboard-data.js` (new) — Vercel serverless proxy. Holds
+  `SUPABASE_SERVICE_ROLE_KEY` + `DASHBOARD_PASSWORD` server-side (env
+  vars, not in repo), verifies password with a timing-safe compare,
+  fetches `leap_results` server-side and returns JSON. This is now the
+  *only* thing that can read the table.
+- `dashboard.html` — removed the client-side `PASSCODE` compare and the
+  direct anon-key Supabase fetch; now POSTs the typed password to
+  `/api/dashboard-data` and renders whatever it returns. No longer loads
+  `leap-config.js` at all.
+- `README.md` / `SETUP.md` — updated to match: fixed a stale README
+  claim that `leap-config.js` was gitignored (it isn't — anon key is
+  meant to be public, kept as-is), documented the 3 required Vercel env
+  vars (`LEAP_SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`,
+  `DASHBOARD_PASSWORD`) and the new migration step for existing DBs.
+- Verified: `node parity.test.js` → `PARITY_RESULT=PASS` (engine/data.js
+  untouched). `node --check` on the new function + a syntax parse of the
+  dashboard inline script both clean.
+
+**BLOCKED — needs Dex, not delegable (no credentials on this end):**
+1. Run `migration_2026-07-31_security_fix.sql` in Supabase SQL Editor
+   (production project `anlvfpkjivwfhvcswfyc`).
+2. Set the 3 env vars above in Vercel Project Settings → Environment
+   Variables (service_role key from Supabase Project Settings → API;
+   pick a real `DASHBOARD_PASSWORD` — the old `leap2036` should be
+   considered burned since it was public in the repo/JS).
+3. Redeploy so the function picks up the env vars.
+4. Then: git review + commit + push (not yet done — Claude does not
+   commit/push without explicit go-ahead), Claude re-tests the closed
+   endpoint with the same `curl` used to find the hole.
+
+**Not yet done (next up per Dex's priority order)**: none remaining on
+Claude's side beyond the constraint work already included in the
+migration above — constraints were bundled into the same migration file
+rather than a separate later step, since they're independent of the RLS
+fix and low-risk to include together.
